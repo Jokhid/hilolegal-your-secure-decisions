@@ -1,9 +1,24 @@
 (() => {
   const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
+  const HERO_TEXT =
+    "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
+  const COMPANIES_TEXT =
+    "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
+
+  let isApplying = false;
 
   function normalize(text) {
     return (text || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function applyHeroText() {
+    document.querySelectorAll("main > section:first-child p").forEach((paragraph) => {
+      const text = normalize(paragraph.textContent);
+      if (text.includes("planificación financiera, hipotecas, seguros") || text.includes("abogados, hipotecas")) {
+        paragraph.textContent = HERO_TEXT;
+      }
+    });
   }
 
   function applyLinkOverrides() {
@@ -25,26 +40,34 @@
     });
   }
 
+  function getAudienceCardByTitle(cards, title) {
+    return cards.find((card) => normalize(card.querySelector("h3")?.textContent) === normalize(title));
+  }
+
   function applyAudienceOverrides() {
     const grid = document.querySelector(".audience__grid");
     if (!grid) return;
 
-    const cards = Array.from(grid.querySelectorAll(".audience__card"));
-    const companiesCard = cards.find((card) => normalize(card.querySelector("h3")?.textContent) === "comunidades de propietarios");
-    const ownersCard = cards.find((card) => normalize(card.querySelector("h3")?.textContent) === "propietarios");
+    let cards = Array.from(grid.querySelectorAll(".audience__card"));
+    const legacyCompaniesCard = getAudienceCardByTitle(cards, "Comunidades de propietarios");
 
-    if (companiesCard) {
-      const title = companiesCard.querySelector("h3");
-      const text = companiesCard.querySelector("p");
-
+    if (legacyCompaniesCard) {
+      const title = legacyCompaniesCard.querySelector("h3");
       if (title) title.textContent = "Empresas";
-      if (text) {
-        text.textContent =
-          "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
-      }
-
-      if (ownersCard) grid.insertBefore(companiesCard, ownersCard);
     }
+
+    cards = Array.from(grid.querySelectorAll(".audience__card"));
+    const companiesCard = getAudienceCardByTitle(cards, "Empresas");
+    if (companiesCard) {
+      const text = companiesCard.querySelector("p");
+      if (text) text.textContent = COMPANIES_TEXT;
+    }
+
+    const orderedCards = ["Familias", "Autónomos", "Empresas", "Propietarios"]
+      .map((title) => getAudienceCardByTitle(cards, title))
+      .filter(Boolean);
+
+    orderedCards.forEach((card) => grid.appendChild(card));
 
     Array.from(grid.querySelectorAll(".audience__card")).forEach((card, index) => {
       const number = card.querySelector(".audience__number");
@@ -64,9 +87,15 @@
   }
 
   function applyOverrides() {
+    if (isApplying) return;
+    isApplying = true;
+    applyHeroText();
     applyLinkOverrides();
     applyAudienceOverrides();
     applyToolsOverrides();
+    window.setTimeout(() => {
+      isApplying = false;
+    }, 0);
   }
 
   if (document.readyState === "loading") {
@@ -76,6 +105,10 @@
   }
 
   window.addEventListener("load", applyOverrides, { once: true });
-  window.setTimeout(applyOverrides, 500);
+  window.setTimeout(applyOverrides, 250);
+  window.setTimeout(applyOverrides, 750);
   window.setTimeout(applyOverrides, 1500);
+
+  const observer = new MutationObserver(applyOverrides);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
