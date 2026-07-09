@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /privacidad.html
+Disallow: /terminos.html
+
+Sitemap: https://josecarlos.hilolegal.es/sitemap.xml
