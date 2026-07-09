@@ -1,6 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+const GOOGLE_SHEET_ID = "1Klnh7mZ1NiWs6vNx0omeKrJWbiUaROj2tEYm5KN9HTU";
+const GOOGLE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/edit`;
+
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
   phone: z.string().trim().min(3).max(40),
@@ -15,9 +18,9 @@ export const submitContact = createServerFn({ method: "POST" })
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
     if (!webhookUrl) {
-      // Sin webhook configurado: aceptamos el envío para no romper la UI en local.
-      console.warn("GOOGLE_SHEETS_WEBHOOK_URL no está configurado. Simulando envío.");
-      return { success: true, simulated: true };
+      throw new Error(
+        "El formulario no está configurado. Falta GOOGLE_SHEETS_WEBHOOK_URL para enviar los datos a Google Sheets.",
+      );
     }
 
     const response = await fetch(webhookUrl, {
@@ -26,6 +29,9 @@ export const submitContact = createServerFn({ method: "POST" })
         "Content-Type": "text/plain;charset=utf-8",
       },
       body: JSON.stringify({
+        timestamp: new Date().toISOString(),
+        sheetId: GOOGLE_SHEET_ID,
+        sheetUrl: GOOGLE_SHEET_URL,
         name: data.name,
         phone: data.phone,
         email: data.email,
