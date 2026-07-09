@@ -197,7 +197,7 @@ const methodSteps = [
 
 const professionals = [
   {
-    img: "/8.webp",
+    img: "/vero_jurista.webp",
     eyebrow: "Socia · Jurista",
     name: "Verónica López",
     role: "Jurista senior y abogada",
@@ -424,7 +424,7 @@ function Hero() {
         >
           <motion.img
             style={{ y: imgY, scale: imgScale }}
-            src="/1.webp"
+            src="/josecarlos_veronica.webp"
             alt="HiloLegal — boutique legal y patrimonial en Alicante"
             loading="eager"
             fetchPriority="high"
