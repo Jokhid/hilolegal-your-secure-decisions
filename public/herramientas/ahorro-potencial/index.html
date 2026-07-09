@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de ahorro potencial | José Carlos Hidalgo</title>
+  <link
+    rel="preload"
+    as="image"
+    href="/1.webp"
+    type="image/webp"
+    fetchpriority="high"
+    imagesizes="(max-width: 768px) 100vw, 50vw"
+  />
+  <meta name="description" content="Calcula cuánto dinero se escapa en pequeños gastos recurrentes y estima tu ahorro potencial anual." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  </noscript>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a class="brand" href="/">
+        <img src="/logo-white.svg" alt="Logo José Carlos Hidalgo" />
+        <span>José Carlos Hidalgo</span>
+      </a>
+      <div class="nav-links">
+        <a href="/#services">Servicios</a>
+        <a href="/#method">Método</a>
+        <a href="/#about">Sobre mí</a>
+        <a href="/blog">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#herramientas">Herramientas</a>
+        <a href="/#contact">Contacto</a>
+      </div>
+      <a class="nav-cta" href="/#contact-form">Diagnóstico</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="tool-hero__inner">
+        <div class="tool-hero__copy">
+          <p class="eyebrow">Herramienta financiera</p>
+          <h1>Calculadora de ahorro potencial</h1>
+          <p class="lead">Detecta cuánto dinero se va en pequeños gastos recurrentes y visualiza qué podrías recuperar si corriges algunos hábitos.</p>
+        </div>
+        <div class="hero-stats" aria-label="Resumen de ahorro">
+          <div>
+            <span id="totalAnual">0 €</span>
+            <small>Gasto anual</small>
+          </div>
+          <div>
+            <span id="ahorroAnual">0 €</span>
+            <small>Ahorro potencial</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <div class="container narrow">
+        <p class="eyebrow">Gastos hormiga</p>
+        <h2>Lo pequeño también decide tu futuro financiero.</h2>
+        <p>Un café, una suscripción olvidada o una compra impulsiva no parecen relevantes por separado. Sumados durante un año, pueden convertirse en una oportunidad real de ahorro, inversión o protección.</p>
+      </div>
+    </section>
+
+    <section class="tool-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Configura tus gastos</p>
+          <h2>Marca los hábitos que se repiten en tu día a día.</h2>
+        </div>
+        <div class="gastos-grid" id="gastosGrid"></div>
+      </div>
+    </section>
+
+    <section class="summary-section">
+      <div class="container resumen-grid">
+        <article class="metric-card"><h3>Diario</h3><strong id="gastoDiario">0 €</strong></article>
+        <article class="metric-card"><h3>Semanal</h3><strong id="gastoSemanal">0 €</strong></article>
+        <article class="metric-card"><h3>Mensual</h3><strong id="gastoMensual">0 €</strong></article>
+        <article class="metric-card"><h3>Anual</h3><strong id="gastoAnualCard">0 €</strong></article>
+      </div>
+    </section>
+
+    <section class="charts-section">
+      <div class="container chart-grid">
+        <article class="panel">
+          <h3>Distribución por categoría</h3>
+          <div class="chart-box"><canvas id="chartDistribucion"></canvas></div>
+        </article>
+        <article class="panel">
+          <h3>Impacto en el tiempo</h3>
+          <div class="chart-box"><canvas id="chartTiempo"></canvas></div>
+        </article>
+      </div>
+      <div class="container">
+        <article class="panel level-panel">
+          <div class="panel-title-row">
+            <h3>Nivel de gastos hormiga</h3>
+            <p id="nivelText">Introduce tus gastos para ver tu nivel</p>
+          </div>
+          <div class="nivel-bar"><span id="nivelFill"></span></div>
+          <div class="nivel-labels"><span>Bajo</span><span>Medio</span><span>Alto</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="savings-section">
+      <div class="container split-grid">
+        <article class="panel">
+          <p class="eyebrow">Simulador</p>
+          <h2>Cuánto podrías recuperar al año</h2>
+          <div class="sim-grid">
+            <div><span id="ahorro50">0 €</span><small>Reduciendo el 50%</small></div>
+            <div><span id="ahorro75">0 €</span><small>Reduciendo el 75%</small></div>
+            <div><span id="ahorro100">0 €</span><small>Eliminación total</small></div>
+          </div>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">Comparativa</p>
+          <h2>Media española estimada</h2>
+          <div class="comparison-row"><span>Tu gasto mensual</span><strong id="tuGastoMensual">0 €</strong></div>
+          <div class="comparison-row"><span>Referencia mensual</span><strong>150 €</strong></div>
+          <div class="comparativa-resultado" id="comparativaResultado">Activa alguna categoría para comparar.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="advice-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Siguiente paso</p>
+          <h2>Consejos personalizados de ahorro</h2>
+        </div>
+        <div class="consejos-list" id="consejosList"></div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container cta-box">
+        <h2>Convierte este dato en una decisión.</h2>
+        <p>Si quieres revisar tu capacidad de ahorro, protección, hipoteca o planificación, podemos verlo con números reales.</p>
+        <a href="/#contact-form">Solicitar diagnóstico gratuito</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/logo-white.svg" alt="Logo José Carlos Hidalgo" />
+        <div>
+          <strong>José Carlos Hidalgo</strong>
+          <p>Gestión patrimonial e hipotecaria</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="/terminos.html" target="_blank" rel="noopener noreferrer">Términos y condiciones</a>
+        <a href="/privacidad.html" target="_blank" rel="noopener noreferrer">Política de privacidad</a>
+        <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+      </div>
+      <p class="copyright">© 2026 José Carlos Hidalgo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
