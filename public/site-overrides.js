@@ -5,6 +5,10 @@
     "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT =
     "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
+  const POSITION_IMAGE = {
+    src: "/nosotros_cliente.webp",
+    alt: "Equipo de HiloLegal asesorando a un cliente",
+  };
   const AREA_IMAGES = {
     legal: {
       src: "/area-legal.svg",
@@ -28,6 +32,16 @@
 
   function normalize(text) {
     return (text || "").replace(/\s+/g, " ").trim().toLowerCase();
+  }
+
+  function unwrapTextWrapper(card) {
+    const textWrap = card.querySelector(":scope > .service-card__text");
+    if (!textWrap) return;
+
+    while (textWrap.firstChild) {
+      card.insertBefore(textWrap.firstChild, textWrap);
+    }
+    textWrap.remove();
   }
 
   function applyHeroText() {
@@ -60,25 +74,17 @@
 
   function applyAreaImages() {
     document.querySelectorAll(".services-editorial__card").forEach((card) => {
-      const title = normalize(card.querySelector("h3")?.textContent);
+      unwrapTextWrapper(card);
+
+      const titleElement = card.querySelector("h3");
+      const title = normalize(titleElement?.textContent);
       const image = AREA_IMAGES[title];
-      if (!image) return;
+      if (!image || !titleElement) return;
 
-      card.classList.add("services-editorial__card--split");
+      card.classList.remove("services-editorial__card--split");
+      card.classList.add("services-editorial__card--with-art");
 
-      let textWrap = card.querySelector(".service-card__text");
-      if (!textWrap) {
-        textWrap = document.createElement("div");
-        textWrap.className = "service-card__text";
-        Array.from(card.childNodes).forEach((node) => {
-          if (!(node instanceof Element) || !node.classList.contains("service-card__art")) {
-            textWrap.appendChild(node);
-          }
-        });
-        card.prepend(textWrap);
-      }
-
-      let art = card.querySelector(".service-card__art");
+      let art = card.querySelector(":scope > .service-card__art");
       if (!art) {
         art = document.createElement("div");
         art.className = "service-card__art";
@@ -86,7 +92,10 @@
         img.loading = "lazy";
         img.decoding = "async";
         art.appendChild(img);
-        card.appendChild(art);
+      }
+
+      if (art.nextElementSibling !== titleElement) {
+        card.insertBefore(art, titleElement);
       }
 
       const img = art.querySelector("img");
@@ -95,6 +104,28 @@
         img.alt = image.alt;
       }
     });
+  }
+
+  function applyPositionImage() {
+    const inner = document.querySelector(".position-block__inner");
+    if (!inner) return;
+
+    let media = inner.querySelector(":scope > .position-block__media");
+    if (!media) {
+      media = document.createElement("div");
+      media.className = "position-block__media";
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.decoding = "async";
+      media.appendChild(img);
+      inner.appendChild(media);
+    }
+
+    const img = media.querySelector("img");
+    if (img) {
+      img.src = POSITION_IMAGE.src;
+      img.alt = POSITION_IMAGE.alt;
+    }
   }
 
   function getAudienceCardByTitle(cards, title) {
@@ -149,6 +180,7 @@
     applyHeroText();
     applyLinkOverrides();
     applyAreaImages();
+    applyPositionImage();
     applyAudienceOverrides();
     applyToolsOverrides();
     window.setTimeout(() => {
