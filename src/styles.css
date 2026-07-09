@@ -368,6 +368,19 @@ main > section:first-child a.btn-ghost:hover {
 
 .trust-block__body p:last-child { margin-bottom: 0; }
 
+.trust-block__body::after {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid var(--jch-line);
+  background-image: url("/hilolegal-altea.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.28);
+}
+
 @media (max-width: 900px) {
   .trust-block__inner { grid-template-columns: 1fr; }
 }
