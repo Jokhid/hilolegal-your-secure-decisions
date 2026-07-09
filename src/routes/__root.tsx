@@ -99,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "preload",
         as: "image",
-        href: "/1.webp",
+        href: "/josecarlos_veronica.webp",
         type: "image/webp",
         fetchpriority: "high",
       },
