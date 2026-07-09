@@ -5,6 +5,24 @@
     "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT =
     "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
+  const AREA_IMAGES = {
+    legal: {
+      src: "/area-legal.svg",
+      alt: "Ilustración del área legal de HiloLegal",
+    },
+    "patrimonial y financiero": {
+      src: "/area-patrimonial-financiero.svg",
+      alt: "Ilustración del área patrimonial y financiera de HiloLegal",
+    },
+    hipotecas: {
+      src: "/area-hipotecas.svg",
+      alt: "Ilustración del área de hipotecas de HiloLegal",
+    },
+    "administración de fincas": {
+      src: "/area-administracion-fincas.svg",
+      alt: "Ilustración del área de administración de fincas de HiloLegal",
+    },
+  };
 
   let isApplying = false;
 
@@ -36,6 +54,45 @@
         text.includes("ver administración de fincas")
       ) {
         link.href = JOSE_CARLOS_URL;
+      }
+    });
+  }
+
+  function applyAreaImages() {
+    document.querySelectorAll(".services-editorial__card").forEach((card) => {
+      const title = normalize(card.querySelector("h3")?.textContent);
+      const image = AREA_IMAGES[title];
+      if (!image) return;
+
+      card.classList.add("services-editorial__card--split");
+
+      let textWrap = card.querySelector(".service-card__text");
+      if (!textWrap) {
+        textWrap = document.createElement("div");
+        textWrap.className = "service-card__text";
+        Array.from(card.childNodes).forEach((node) => {
+          if (!(node instanceof Element) || !node.classList.contains("service-card__art")) {
+            textWrap.appendChild(node);
+          }
+        });
+        card.prepend(textWrap);
+      }
+
+      let art = card.querySelector(".service-card__art");
+      if (!art) {
+        art = document.createElement("div");
+        art.className = "service-card__art";
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        art.appendChild(img);
+        card.appendChild(art);
+      }
+
+      const img = art.querySelector("img");
+      if (img) {
+        img.src = image.src;
+        img.alt = image.alt;
       }
     });
   }
@@ -91,6 +148,7 @@
     isApplying = true;
     applyHeroText();
     applyLinkOverrides();
+    applyAreaImages();
     applyAudienceOverrides();
     applyToolsOverrides();
     window.setTimeout(() => {
