@@ -4,8 +4,8 @@
 
 .services-editorial__card--with-art .service-card__art {
   position: relative;
-  width: min(100%, 18rem);
-  height: clamp(5.5rem, 7vw, 7.25rem);
+  width: clamp(5.5rem, 7vw, 7.25rem);
+  aspect-ratio: 1 / 1;
   margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
   overflow: hidden;
   border: 1px solid var(--jch-line);
@@ -72,8 +72,7 @@
 
 @media (max-width: 900px) {
   .services-editorial__card--with-art .service-card__art {
-    width: min(100%, 16rem);
-    height: 5.5rem;
+    width: 5.5rem;
   }
 
   .position-block .position-block__inner {
