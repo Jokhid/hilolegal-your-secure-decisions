@@ -106,6 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         fetchpriority: "high",
       },
     ],
+    scripts: [{ src: "/site-overrides.js", defer: true }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
