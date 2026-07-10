@@ -1,3 +1,11 @@
+.header-logo-mark {
+  width: clamp(2.1rem, 3vw, 2.65rem);
+  height: clamp(2.1rem, 3vw, 2.65rem);
+  display: block;
+  object-fit: contain;
+  background: transparent;
+}
+
 .services-editorial__card.services-editorial__card--with-art {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
