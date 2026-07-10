@@ -6,6 +6,15 @@
   background: transparent;
 }
 
+.footer-logo-mark {
+  width: clamp(3rem, 5vw, 4.5rem);
+  height: clamp(3rem, 5vw, 4.5rem);
+  display: block;
+  object-fit: contain;
+  margin-bottom: 1.1rem;
+  background: transparent;
+}
+
 .services-editorial__card.services-editorial__card--with-art {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
