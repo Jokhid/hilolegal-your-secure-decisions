@@ -1,6 +1,10 @@
 (() => {
   const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
+  const JOSE_CARLOS_LOGO = {
+    src: "https://josecarlos.hilolegal.es/logo-white.png",
+    alt: "José Carlos Hidalgo",
+  };
   const HERO_TEXT =
     "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT =
@@ -46,8 +50,33 @@
     textWrap.remove();
   }
 
-  function removeInjectedLogos() {
-    document.querySelectorAll(".header-logo-mark, .footer-logo-mark").forEach((logo) => logo.remove());
+  function applyJoseCarlosLogo() {
+    const headerBrand = document.querySelector("header nav a[href='#']");
+    if (headerBrand) {
+      let headerLogo = headerBrand.querySelector(":scope > .header-logo-mark");
+      if (!headerLogo) {
+        headerLogo = document.createElement("img");
+        headerLogo.className = "header-logo-mark";
+        headerBrand.prepend(headerLogo);
+      }
+      headerLogo.src = JOSE_CARLOS_LOGO.src;
+      headerLogo.alt = JOSE_CARLOS_LOGO.alt;
+      headerLogo.decoding = "async";
+    }
+
+    const footerBrand = document.querySelector("footer .brand");
+    if (footerBrand) {
+      let footerLogo = footerBrand.querySelector(":scope > .footer-logo-mark");
+      if (!footerLogo) {
+        footerLogo = document.createElement("img");
+        footerLogo.className = "footer-logo-mark";
+        footerBrand.prepend(footerLogo);
+      }
+      footerLogo.src = JOSE_CARLOS_LOGO.src;
+      footerLogo.alt = JOSE_CARLOS_LOGO.alt;
+      footerLogo.loading = "lazy";
+      footerLogo.decoding = "async";
+    }
   }
 
   function applyHeroText() {
@@ -237,7 +266,7 @@
   function applyOverrides() {
     if (isApplying) return;
     isApplying = true;
-    removeInjectedLogos();
+    applyJoseCarlosLogo();
     applyHeroText();
     applyLinkOverrides();
     applyAreaImages();
