@@ -9,13 +9,13 @@ import { submitContact } from "@/lib/contact.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HiloLegal | Boutique legal y patrimonial en Alicante" },
+      { title: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
       {
         name: "description",
         content:
-          "Abogacía, planificación financiera, hipotecas, seguros y administración de fincas en Alicante. Diagnóstico patrimonial con criterio legal y financiero.",
+          "Abogacía, planificación financiera, hipotecas, seguros y administración de fincas en Altea - Costa Blanca. Diagnóstico patrimonial con criterio legal y financiero.",
       },
-      { property: "og:title", content: "HiloLegal | Boutique legal y patrimonial en Alicante" },
+      { property: "og:title", content: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
       {
         property: "og:description",
         content:
@@ -30,11 +30,11 @@ export const Route = createFileRoute("/")({
           "@type": "LegalService",
           name: "HiloLegal",
           description:
-            "Boutique legal y patrimonial en Alicante. Abogacía, planificación financiera, hipotecas, seguros y administración de fincas.",
+            "Boutique legal y patrimonial en Altea - Costa Blanca. Abogacía, planificación financiera, hipotecas, seguros y administración de fincas.",
           url: "https://hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
-          areaServed: [{ "@type": "City", name: "Alicante" }],
+          areaServed: [{ "@type": "City", name: "Altea" }],
           founder: [
             { "@type": "Person", name: "Verónica López" },
             { "@type": "Person", name: "José Carlos Hidalgo" },
@@ -383,7 +383,7 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
             <span className="hero-eyebrow">
-              HiloLegal · Boutique legal y patrimonial en Alicante
+              HiloLegal · Boutique legal y patrimonial en Altea - Costa Blanca
             </span>
           </FadeUp>
 
@@ -425,7 +425,7 @@ function Hero() {
           <motion.img
             style={{ y: imgY, scale: imgScale }}
             src="/josecarlos_veronica.webp"
-            alt="HiloLegal — boutique legal y patrimonial en Alicante"
+            alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
             loading="eager"
             fetchPriority="high"
           />
@@ -802,7 +802,7 @@ function Contact() {
               </p>
             </a>
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Alicante</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Altea - Costa Blanca</p>
               <p className="text-base opacity-80">
                 HiloLegal — Boutique legal y patrimonial
               </p>
@@ -961,7 +961,7 @@ function Footer() {
           <div>
             <p className="brand">HiloLegal</p>
             <p className="mt-2 text-xs uppercase tracking-[0.2em] opacity-60">
-              Boutique legal y patrimonial · Alicante
+              Boutique legal y patrimonial · Altea - Costa Blanca
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-2 text-sm">
