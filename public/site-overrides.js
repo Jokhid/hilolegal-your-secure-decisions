@@ -140,6 +140,13 @@
     }
   }
 
+  function applyClosingHeadlineSpacing() {
+    const accent = document.querySelector("#cierre h2 .jch-accent");
+    if (!accent || normalize(accent.textContent) !== "patrimonio") return;
+
+    accent.textContent = " patrimonio";
+  }
+
   function getAudienceCardByTitle(cards, title) {
     return cards.find((card) => normalize(card.querySelector("h3")?.textContent) === normalize(title));
   }
@@ -194,6 +201,7 @@
     applyAreaImages();
     applyPositionImage();
     applyToolsIntroOverride();
+    applyClosingHeadlineSpacing();
     applyAudienceOverrides();
     applyToolsOverrides();
     window.setTimeout(() => {
