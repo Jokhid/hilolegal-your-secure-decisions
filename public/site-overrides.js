@@ -92,6 +92,12 @@
         paragraph.textContent = HERO_TEXT;
       }
     });
+
+    document.querySelectorAll("main > section:first-child h1 span").forEach((span) => {
+      if (span.textContent?.includes("Abogacía")) {
+        span.textContent = span.textContent.replace("Abogacía", "Abogados");
+      }
+    });
   }
 
   function applyLinkOverrides() {
@@ -179,11 +185,37 @@
     }
   }
 
-  function applyClosingHeadlineSpacing() {
-    const accent = document.querySelector("#cierre h2 .jch-accent");
-    if (!accent || normalize(accent.textContent) !== "patrimonio") return;
+  function applyHeadlineSpacing() {
+    const audienceAccent = document.querySelector("#audiencia h2 .jch-accent");
+    if (audienceAccent && normalize(audienceAccent.textContent) === "trabajamos") {
+      audienceAccent.textContent = " trabajamos";
+    }
 
-    accent.textContent = " patrimonio";
+    const closingAccent = document.querySelector("#cierre h2 .jch-accent");
+    if (closingAccent && normalize(closingAccent.textContent).replace(/,$/, "") === "patrimonio") {
+      closingAccent.textContent = " patrimonio,";
+      const closingParts = Array.from(document.querySelectorAll("#cierre h2 span"));
+      const commaPart = closingParts.find((part) => normalize(part.textContent).startsWith(", merece"));
+      if (commaPart) commaPart.textContent = " merece ser analizada con criterio.";
+    }
+  }
+
+  function applyProfessionalTextOverrides() {
+    document.querySelectorAll("#equipo .pros__card").forEach((card) => {
+      const name = normalize(card.querySelector("h3")?.textContent);
+      const eyebrow = card.querySelector(".pros__eyebrow");
+      const role = card.querySelector(".pros__role");
+
+      if (name === "verónica lópez") {
+        if (eyebrow) eyebrow.textContent = "Socia";
+        if (role) role.textContent = "Abogada";
+      }
+
+      if (name === "josé carlos hidalgo") {
+        if (eyebrow) eyebrow.textContent = "Socio";
+        if (role) role.textContent = "gestor patrimonial e hipotecario.";
+      }
+    });
   }
 
   function getAudienceCardByTitle(cards, title) {
@@ -242,7 +274,8 @@
     applyAreaImages();
     applyPositionImage();
     applyToolsIntroOverride();
-    applyClosingHeadlineSpacing();
+    applyHeadlineSpacing();
+    applyProfessionalTextOverrides();
     applyAudienceOverrides();
     applyToolsOverrides();
     window.setTimeout(() => {
