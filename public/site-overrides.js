@@ -2,7 +2,7 @@
   const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
   const JOSE_CARLOS_LOGO = {
-    src: "https://josecarlos.hilolegal.es/logo-white.png",
+    src: "/logo-white.svg",
     alt: "José Carlos Hidalgo",
   };
   const HERO_TEXT =
