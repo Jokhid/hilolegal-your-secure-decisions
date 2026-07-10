@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 640" role="img" aria-labelledby="title desc">
   <title id="title">HiloLegal</title>
   <desc id="desc">Logo completo de HiloLegal en blanco y ocre sobre fondo transparente.</desc>
-  <g transform="translate(288 26)" fill="#f7f5ef">
-    <path d="M0 0h87v42H45v320h42v42H0V0Z"/>
-    <path d="M288 0h87v404h-87v-42h42V42h-42V0Z"/>
-    <rect x="158" y="0" width="59" height="92"/>
-    <rect x="158" y="278" width="59" height="84"/>
-    <circle cx="187.5" cy="202" r="73" fill="#c5a566"/>
+  <g fill="#fbfaf6">
+    <path d="M288 26h86v42h-31v277h31v42h-86v-42h31V68h-31V26Z"/>
+    <path d="M576 26h86v42h-31v277h31v42h-86v-42h31V68h-31V26Z"/>
+    <rect x="445" y="26" width="59" height="88"/>
+    <rect x="445" y="298" width="59" height="89"/>
   </g>
-  <text x="28" y="574" fill="#f7f5ef" font-family="Inter, Helvetica, Arial, sans-serif" font-size="158" font-weight="300" letter-spacing="-4">HiloLegal</text>
+  <circle cx="474.5" cy="205" r="73" fill="#c5a566"/>
+  <text x="28" y="575" fill="#fbfaf6" font-family="Arial Rounded MT Bold, Avenir Next, Nunito Sans, Helvetica Neue, Arial, sans-serif" font-size="158" font-weight="400" letter-spacing="-7">HiloLegal</text>
 </svg>
