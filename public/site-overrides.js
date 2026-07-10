@@ -5,6 +5,8 @@
     "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT =
     "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
+  const TOOLS_INTRO_TEXT =
+    "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
   const POSITION_IMAGE = {
     src: "/nosotros_cliente.webp",
     alt: "Equipo de HiloLegal asesorando a un cliente",
@@ -128,6 +130,16 @@
     }
   }
 
+  function applyToolsIntroOverride() {
+    const paragraph = document.querySelector(".tools__heading p");
+    if (!paragraph) return;
+
+    const text = normalize(paragraph.textContent);
+    if (text.includes("una web premium no debe limitarse a explicar servicios")) {
+      paragraph.textContent = TOOLS_INTRO_TEXT;
+    }
+  }
+
   function getAudienceCardByTitle(cards, title) {
     return cards.find((card) => normalize(card.querySelector("h3")?.textContent) === normalize(title));
   }
@@ -181,6 +193,7 @@
     applyLinkOverrides();
     applyAreaImages();
     applyPositionImage();
+    applyToolsIntroOverride();
     applyAudienceOverrides();
     applyToolsOverrides();
     window.setTimeout(() => {
