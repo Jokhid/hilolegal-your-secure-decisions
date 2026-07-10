@@ -1,15 +1,31 @@
 .services-editorial__card.services-editorial__card--with-art {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(1.25rem, 2vw, 2rem);
+  row-gap: clamp(1.25rem, 2vw, 1.75rem);
+  align-items: center;
   overflow: hidden;
+}
+
+.services-editorial__card--with-art .services-editorial__meta,
+.services-editorial__card--with-art p,
+.services-editorial__card--with-art .services-editorial__cta {
+  grid-column: 1 / -1;
 }
 
 .services-editorial__card--with-art .service-card__art {
   position: relative;
   width: clamp(5.5rem, 7vw, 7.25rem);
   aspect-ratio: 1 / 1;
-  margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+  margin: 0;
   overflow: hidden;
   border: 1px solid var(--jch-line);
   background: var(--jch-surface);
+}
+
+.services-editorial__card--with-art h3 {
+  margin: 0;
+  align-self: center;
 }
 
 .services-editorial__card--with-art .service-card__art img {
@@ -71,6 +87,10 @@
 }
 
 @media (max-width: 900px) {
+  .services-editorial__card.services-editorial__card--with-art {
+    column-gap: 1rem;
+  }
+
   .services-editorial__card--with-art .service-card__art {
     width: 5.5rem;
   }
