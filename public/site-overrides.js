@@ -7,6 +7,10 @@
     "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
   const TOOLS_INTRO_TEXT =
     "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
+  const HEADER_LOGO = {
+    src: "/hilolegal-logo-mark.svg",
+    alt: "HiloLegal",
+  };
   const POSITION_IMAGE = {
     src: "/nosotros_cliente.webp",
     alt: "Equipo de HiloLegal asesorando a un cliente",
@@ -44,6 +48,22 @@
       card.insertBefore(textWrap.firstChild, textWrap);
     }
     textWrap.remove();
+  }
+
+  function applyHeaderLogo() {
+    const brandLink = document.querySelector("header nav a[href='#']");
+    if (!brandLink) return;
+
+    let logo = brandLink.querySelector(".header-logo-mark");
+    if (!logo) {
+      logo = document.createElement("img");
+      logo.className = "header-logo-mark";
+      logo.decoding = "async";
+      brandLink.prepend(logo);
+    }
+
+    logo.src = HEADER_LOGO.src;
+    logo.alt = HEADER_LOGO.alt;
   }
 
   function applyHeroText() {
@@ -196,6 +216,7 @@
   function applyOverrides() {
     if (isApplying) return;
     isApplying = true;
+    applyHeaderLogo();
     applyHeroText();
     applyLinkOverrides();
     applyAreaImages();
