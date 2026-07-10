@@ -186,6 +186,11 @@
   }
 
   function applyHeadlineSpacing() {
+    const areasAccent = document.querySelector("#areas h2 .jch-accent");
+    if (areasAccent && normalize(areasAccent.textContent) === "principales") {
+      areasAccent.textContent = " principales";
+    }
+
     const audienceAccent = document.querySelector("#audiencia h2 .jch-accent");
     if (audienceAccent && normalize(audienceAccent.textContent) === "trabajamos") {
       audienceAccent.textContent = " trabajamos";
