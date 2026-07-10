@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 640" role="img" aria-labelledby="title desc">
   <title id="title">HiloLegal</title>
-  <desc id="desc">Logo de HiloLegal en blanco con círculo central ocre sobre fondo transparente.</desc>
-  <g fill="#f3f0ea">
-    <path d="M0 0h84v42H42v336h42v42H0V0Z"/>
-    <path d="M336 0h84v420h-84v-42h42V42h-42V0Z"/>
-    <rect x="168" y="0" width="84" height="126"/>
-    <rect x="168" y="294" width="84" height="126"/>
+  <desc id="desc">Logo completo de HiloLegal en blanco y ocre sobre fondo transparente.</desc>
+  <g transform="translate(288 26)" fill="#f7f5ef">
+    <path d="M0 0h87v42H45v320h42v42H0V0Z"/>
+    <path d="M288 0h87v404h-87v-42h42V42h-42V0Z"/>
+    <rect x="158" y="0" width="59" height="92"/>
+    <rect x="158" y="278" width="59" height="84"/>
+    <circle cx="187.5" cy="202" r="73" fill="#c5a566"/>
   </g>
-  <circle cx="210" cy="210" r="68" fill="#c5a566"/>
+  <text x="28" y="574" fill="#f7f5ef" font-family="Inter, Helvetica, Arial, sans-serif" font-size="158" font-weight="300" letter-spacing="-4">HiloLegal</text>
 </svg>
