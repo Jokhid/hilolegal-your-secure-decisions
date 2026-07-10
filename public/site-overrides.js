@@ -7,10 +7,6 @@
     "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
   const TOOLS_INTRO_TEXT =
     "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
-  const BRAND_LOGO = {
-    src: "/logo-white.svg",
-    alt: "HiloLegal",
-  };
   const POSITION_IMAGE = {
     src: "/nosotros_cliente.webp",
     alt: "Equipo de HiloLegal asesorando a un cliente",
@@ -50,115 +46,8 @@
     textWrap.remove();
   }
 
-  function applyHeaderLogo() {
-    const brandLink = document.querySelector("header nav a[href='#']");
-    if (!brandLink) return;
-
-    let logo = brandLink.querySelector(".header-logo-mark");
-    if (!logo) {
-      logo = document.createElement("img");
-      logo.className = "header-logo-mark";
-      logo.decoding = "async";
-      brandLink.prepend(logo);
-    }
-
-    logo.src = BRAND_LOGO.src;
-    logo.alt = BRAND_LOGO.alt;
-  }
-
-  function applySweetHomeHeader() {
-    const header = document.querySelector("header");
-    const nav = header?.querySelector("nav");
-    const brandLink = nav?.querySelector("a[href='#']");
-    const mobileButton = nav?.querySelector("button[aria-label='Abrir menú']");
-    if (!header || !nav || !brandLink) return;
-
-    header.classList.add("sweet-header");
-    nav.classList.add("sweet-header__nav");
-    brandLink.classList.add("sweet-header__brand");
-
-    const brandText = brandLink.querySelector("span:not(.material-symbols-outlined)");
-    if (brandText) {
-      brandText.classList.add("sweet-header__brand-text");
-      brandText.textContent = "HiloLegal";
-    }
-
-    nav.querySelectorAll("a[href^='#']:not(:first-child)").forEach((link) => {
-      link.classList.add("sweet-header__link");
-    });
-
-    const whatsApp = nav.querySelector("a[href^='https://wa.me']");
-    if (whatsApp) whatsApp.classList.add("sweet-header__cta");
-
-    if (mobileButton) {
-      mobileButton.classList.add("sweet-header__menu-button");
-      if (mobileButton.textContent?.includes("☰")) mobileButton.textContent = "menu";
-      if (mobileButton.textContent?.includes("×")) mobileButton.textContent = "close";
-    }
-
-    const mobilePanel = document.querySelector("aside[role='dialog']");
-    if (mobilePanel) {
-      mobilePanel.classList.add("sweet-mobile-panel");
-      mobilePanel.querySelector("div")?.classList.add("sweet-mobile-panel__inner");
-      mobilePanel.querySelectorAll("a").forEach((link) => link.classList.add("sweet-mobile-panel__link"));
-      mobilePanel.querySelector("button[aria-label='Cerrar menú']")?.classList.add("sweet-mobile-panel__close");
-    }
-  }
-
-  function applyFooterLogo() {
-    const footerBrand = document.querySelector("footer .brand");
-    if (!footerBrand) return;
-
-    const wrapper = footerBrand.parentElement;
-    if (!wrapper) return;
-
-    let logo = wrapper.querySelector(".footer-logo-mark");
-    if (!logo) {
-      logo = document.createElement("img");
-      logo.className = "footer-logo-mark";
-      logo.decoding = "async";
-      wrapper.insertBefore(logo, footerBrand);
-    }
-
-    logo.src = BRAND_LOGO.src;
-    logo.alt = BRAND_LOGO.alt;
-  }
-
-  function applySweetHomeFooter() {
-    const footer = document.querySelector("footer");
-    if (!footer) return;
-
-    footer.classList.add("sweet-footer");
-    const inner = footer.querySelector(".footer__inner");
-    if (!inner || inner.dataset.sweetFooter === "true") return;
-
-    const year = new Date().getFullYear();
-    inner.dataset.sweetFooter = "true";
-    inner.innerHTML = `
-      <div class="sweet-footer__top">
-        <div class="sweet-footer__brand-block">
-          <img src="${BRAND_LOGO.src}" alt="${BRAND_LOGO.alt}" loading="lazy" class="footer-logo-mark" />
-          <div class="sweet-footer__copy">
-            <div class="brand">HiloLegal</div>
-            <p>Boutique legal y patrimonial · Altea - Costa Blanca</p>
-          </div>
-        </div>
-        <div class="sweet-footer__contact" aria-label="Datos de contacto">
-          <a href="tel:+34647506040">647 50 60 40</a>
-          <a href="mailto:info@hilolegal.es">info@hilolegal.es</a>
-        </div>
-      </div>
-      <div class="sweet-footer__bottom">
-        <div class="sweet-footer__legal">
-          <a href="/terminos.html" target="_blank" rel="noopener noreferrer">Términos y condiciones</a>
-          <span aria-hidden="true">·</span>
-          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer">Política de privacidad</a>
-          <span aria-hidden="true">·</span>
-          <a href="#contact">Contacto</a>
-        </div>
-        <div class="sweet-footer__copyright">© ${year} HILOLEGAL. TODOS LOS DERECHOS RESERVADOS.</div>
-      </div>
-    `;
+  function removeInjectedLogos() {
+    document.querySelectorAll(".header-logo-mark, .footer-logo-mark").forEach((logo) => logo.remove());
   }
 
   function applyHeroText() {
@@ -348,10 +237,7 @@
   function applyOverrides() {
     if (isApplying) return;
     isApplying = true;
-    applyHeaderLogo();
-    applySweetHomeHeader();
-    applySweetHomeFooter();
-    applyFooterLogo();
+    removeInjectedLogos();
     applyHeroText();
     applyLinkOverrides();
     applyAreaImages();
