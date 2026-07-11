@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
   <title id="title">HiloLegal</title>
-  <desc id="desc">Símbolo de HiloLegal en negro y ocre sobre fondo transparente.</desc>
-  <g fill="#000000">
+  <desc id="desc">Símbolo de HiloLegal en blanco y ocre sobre fondo transparente.</desc>
+  <g fill="#ffffff">
     <path d="M0 0h84v42H42v336h42v42H0V0Z"/>
     <path d="M336 0h84v420h-84v-42h42V42h-42V0Z"/>
     <rect x="168" y="0" width="84" height="126"/>
