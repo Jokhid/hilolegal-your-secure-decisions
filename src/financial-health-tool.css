@@ -147,6 +147,10 @@
 .financial-piggy .face-happy:not(.is-visible) { animation: faceHappy 7.5s ease-in-out infinite; }
 .financial-piggy .face-neutral:not(.is-visible) { animation: faceNeutral 7.5s ease-in-out infinite; }
 .financial-piggy .face-sad:not(.is-visible) { animation: faceSad 7.5s ease-in-out infinite; }
+.financial-piggy:has(.face.is-visible) .face:not(.is-visible) {
+  animation: none;
+  opacity: 0 !important;
+}
 
 @keyframes piggyCoinFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes piggyTail { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(20deg); } }
