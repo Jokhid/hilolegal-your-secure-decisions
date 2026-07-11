@@ -28,12 +28,16 @@
       if (card === test) {
         card.removeAttribute("aria-disabled");
         card.removeAttribute("tabindex");
-        card.href = "#test-salud-financiera";
+        card.href = "/test-salud-financiera.html";
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
         setCta(card, "Hacer test");
       } else {
         card.setAttribute("aria-disabled", "true");
         card.setAttribute("tabindex", "-1");
         card.href = "#herramientas";
+        card.removeAttribute("target");
+        card.removeAttribute("rel");
         setCta(card, "Próximamente");
       }
     });
