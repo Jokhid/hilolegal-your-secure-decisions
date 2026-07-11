@@ -3,19 +3,28 @@ body {
 }
 
 .header-logo-mark {
-  width: clamp(2.1rem, 3vw, 2.65rem);
-  height: clamp(2.1rem, 3vw, 2.65rem);
+  width: clamp(2.3rem, 3.3vw, 3rem);
+  height: auto;
+  aspect-ratio: 368 / 406;
   display: block;
   object-fit: contain;
   flex: 0 0 auto;
 }
 
 .footer-logo-mark {
-  width: clamp(3rem, 5vw, 4.5rem);
-  height: clamp(3rem, 5vw, 4.5rem);
+  width: clamp(3.4rem, 5.5vw, 5rem);
+  height: auto;
+  aspect-ratio: 368 / 406;
   display: block;
   object-fit: contain;
   margin-bottom: 1.1rem;
+}
+
+.services-editorial__heading h2 .jch-accent,
+.trust-block__inner h2 .jch-accent {
+  display: inline-block;
+  margin-left: 0.14em;
+  margin-right: 0.14em;
 }
 
 .services-editorial__card.services-editorial__card--with-art {
