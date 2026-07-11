@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 406" role="img" aria-labelledby="title desc">
   <title id="title">HiloLegal</title>
   <desc id="desc">Símbolo de HiloLegal en blanco y ocre sobre fondo transparente.</desc>
   <g fill="#ffffff">
-    <path d="M0 0h84v42H42v336h42v42H0V0Z"/>
-    <path d="M336 0h84v420h-84v-42h42V42h-42V0Z"/>
-    <rect x="168" y="0" width="84" height="126"/>
-    <rect x="168" y="294" width="84" height="126"/>
+    <path d="M10 18h81v42H37v269h54v42H10v-42h27V60H10V18Z"/>
+    <path d="M277 18h81v42h-27v269h27v42h-81v-42h54V60h-54V18Z"/>
+    <rect x="155" y="18" width="55" height="88"/>
+    <rect x="155" y="280" width="55" height="91"/>
   </g>
-  <circle cx="210" cy="210" r="68" fill="#c5a566"/>
+  <circle cx="182.5" cy="193" r="66" fill="#C5A566"/>
 </svg>
