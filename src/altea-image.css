@@ -1,3 +1,7 @@
 .trust-block__body::after {
   background-image: url("/hilolegal%20altea.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #0a0a0a;
 }
