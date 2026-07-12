@@ -4,6 +4,7 @@ import { z } from "zod";
 const GOOGLE_SHEET_ID = "1Klnh7mZ1NiWs6vNx0omeKrJWbiUaROj2tEYm5KN9HTU";
 const GOOGLE_SHEET_NAME = "Leads";
 const GOOGLE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/edit`;
+const USER_ERROR = "No se ha podido enviar el formulario. Por favor, contacta por WhatsApp o inténtalo de nuevo en unos minutos.";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -26,7 +27,7 @@ export const submitContact = createServerFn({ method: "POST" })
         sheetId: GOOGLE_SHEET_ID,
         sheetName: GOOGLE_SHEET_NAME,
       });
-      return { success: false, reason: "not_configured" };
+      throw new Error(USER_ERROR);
     }
 
     const response = await fetch(webhookUrl, {
@@ -53,7 +54,7 @@ export const submitContact = createServerFn({ method: "POST" })
 
     if (!response.ok) {
       console.error("Google Sheets webhook failed", response.status, text);
-      return { success: false, reason: "webhook_failed" };
+      throw new Error(USER_ERROR);
     }
 
     return { success: true };
