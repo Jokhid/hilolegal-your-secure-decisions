@@ -7,7 +7,6 @@
   const HERO_TEXT = "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT = "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
   const TOOLS_INTRO_TEXT = "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
-  const TRUST_IMAGE = { src: "/hilolegal%20altea.webp", alt: "HiloLegal Altea - guía legal, protección patrimonial y crecimiento financiero" };
   const AREA_IMAGES = {
     legal: ["/area-legal.svg", "Ilustración del área legal de HiloLegal"],
     "patrimonial y financiero": ["/area-patrimonial-financiero.svg", "Ilustración del área patrimonial y financiera de HiloLegal"],
@@ -71,21 +70,6 @@
       if (text.includes("conocer a verónica") || text.includes("ver servicios legales")) link.href = VERONICA_URL;
       if (text.includes("conocer a josé carlos") || text.includes("ver asesoramiento patrimonial") || text.includes("ver hipotecas") || text.includes("ver administración de fincas")) link.href = JOSE_CARLOS_URL;
     });
-  }
-
-  function updateTrustImage() {
-    const inner = document.querySelector(".trust-block__inner");
-    if (!inner) return;
-    let media = inner.querySelector(":scope > .trust-block__media");
-    if (!media) {
-      media = document.createElement("div");
-      media.className = "trust-block__media";
-      media.innerHTML = '<img loading="lazy" decoding="async" />';
-      inner.appendChild(media);
-    }
-    const img = media.querySelector("img");
-    img.src = TRUST_IMAGE.src;
-    img.alt = TRUST_IMAGE.alt;
   }
 
   function updateAreas() {
@@ -219,7 +203,6 @@
     addLogos();
     updateHero();
     updateLinks();
-    updateTrustImage();
     updateAreas();
     updatePositionImage();
     updateText();
