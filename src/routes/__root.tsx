@@ -14,7 +14,7 @@ import alteaImageCss from "../altea-image.css?url";
 import servicesArtCss from "../services-art.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap";
+const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@500;600;700&display=swap";
 
 function NotFoundComponent() {
   return (
