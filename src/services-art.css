@@ -3,8 +3,8 @@ body {
 }
 
 .header-logo-mark {
-  width: 68px;
-  height: 74px;
+  width: 34px;
+  height: 37px;
   aspect-ratio: 68 / 74;
   display: block;
   object-fit: contain;
@@ -12,12 +12,19 @@ body {
 }
 
 .footer-logo-mark {
-  width: 68px;
-  height: 74px;
+  width: 34px;
+  height: 37px;
   aspect-ratio: 68 / 74;
   display: block;
   object-fit: contain;
-  margin-bottom: 1.1rem;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+footer.site-footer .brand {
+  display: inline-flex !important;
+  align-items: center;
+  gap: .8rem;
 }
 
 #contact select,
