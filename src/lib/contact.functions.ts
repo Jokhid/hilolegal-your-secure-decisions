@@ -16,12 +16,17 @@ const contactSchema = z.object({
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((input) => contactSchema.parse(input))
   .handler(async ({ data }) => {
-    const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    const webhookUrl =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+      process.env.SHEETS_WEBHOOK_URL ||
+      process.env.CONTACT_WEBHOOK_URL;
 
     if (!webhookUrl) {
-      throw new Error(
-        "Falta configurar GOOGLE_SHEETS_WEBHOOK_URL con la URL publicada de Apps Script para escribir en la hoja Leads.",
-      );
+      console.error("Contact form webhook is not configured", {
+        sheetId: GOOGLE_SHEET_ID,
+        sheetName: GOOGLE_SHEET_NAME,
+      });
+      return { success: false, reason: "not_configured" };
     }
 
     const response = await fetch(webhookUrl, {
@@ -47,7 +52,8 @@ export const submitContact = createServerFn({ method: "POST" })
     const text = await response.text();
 
     if (!response.ok) {
-      throw new Error(`No se ha podido guardar el contacto en Google Sheets (${response.status}): ${text}`);
+      console.error("Google Sheets webhook failed", response.status, text);
+      return { success: false, reason: "webhook_failed" };
     }
 
     return { success: true };
