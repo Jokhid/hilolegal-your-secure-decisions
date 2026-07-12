@@ -1,6 +1,7 @@
 (() => {
   const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
+  const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
   const LOGO = { src: "/hilolegal-logo-mark.svg", alt: "HiloLegal" };
   const HERO_TEXT = "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT = "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
@@ -143,6 +144,14 @@
     });
   }
 
+  function enableTool(card, href) {
+    card.removeAttribute("aria-disabled");
+    card.removeAttribute("tabindex");
+    card.href = href;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+  }
+
   function updateTools() {
     const grid = document.querySelector("#herramientas .tools__grid");
     if (!grid) return;
@@ -157,12 +166,11 @@
       if (number) number.textContent = `Herramienta ${String(index + 1).padStart(2, "0")}`;
       const cta = card.querySelector(".tools__cta");
       if (card === test) {
-        card.removeAttribute("aria-disabled");
-        card.removeAttribute("tabindex");
-        card.href = "/test-salud-financiera.html";
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
+        enableTool(card, "/test-salud-financiera.html");
         if (cta) cta.textContent = "→ Hacer test";
+      } else if (card === diagnostic) {
+        enableTool(card, CALENDLY_URL);
+        if (cta) cta.textContent = "→ Solicitar diagnóstico";
       } else {
         card.setAttribute("aria-disabled", "true");
         card.setAttribute("tabindex", "-1");
