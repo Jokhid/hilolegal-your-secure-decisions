@@ -47,7 +47,8 @@ footer.site-footer .brand {
 }
 
 .services-editorial__heading h2 .jch-accent,
-.trust-block__inner h2 .jch-accent {
+.trust-block__inner h2 .jch-accent,
+#audiencia h2 .jch-accent {
   display: inline-block;
   margin-left: 0.14em;
   margin-right: 0.14em;
