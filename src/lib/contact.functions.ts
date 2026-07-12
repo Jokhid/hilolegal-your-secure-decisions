@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 const GOOGLE_SHEET_ID = "1Klnh7mZ1NiWs6vNx0omeKrJWbiUaROj2tEYm5KN9HTU";
+const GOOGLE_SHEET_NAME = "Leads";
 const GOOGLE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/edit`;
 
 const contactSchema = z.object({
@@ -19,7 +20,7 @@ export const submitContact = createServerFn({ method: "POST" })
 
     if (!webhookUrl) {
       throw new Error(
-        "El formulario no está configurado. Falta GOOGLE_SHEETS_WEBHOOK_URL para enviar los datos a Google Sheets.",
+        "Falta configurar GOOGLE_SHEETS_WEBHOOK_URL con la URL publicada de Apps Script para escribir en la hoja Leads.",
       );
     }
 
@@ -31,10 +32,12 @@ export const submitContact = createServerFn({ method: "POST" })
       body: JSON.stringify({
         timestamp: new Date().toISOString(),
         sheetId: GOOGLE_SHEET_ID,
+        sheetName: GOOGLE_SHEET_NAME,
         sheetUrl: GOOGLE_SHEET_URL,
         name: data.name,
         phone: data.phone,
         email: data.email,
+        interest: data.topic,
         topic: data.topic,
         message: data.message,
         origin: "Web HiloLegal",
@@ -44,7 +47,7 @@ export const submitContact = createServerFn({ method: "POST" })
     const text = await response.text();
 
     if (!response.ok) {
-      throw new Error(`Webhook falló (${response.status}): ${text}`);
+      throw new Error(`No se ha podido guardar el contacto en Google Sheets (${response.status}): ${text}`);
     }
 
     return { success: true };
