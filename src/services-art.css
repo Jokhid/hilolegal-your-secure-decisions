@@ -53,6 +53,10 @@ footer.site-footer .brand {
   margin-right: 0.14em;
 }
 
+.trust-block__body {
+  padding-top: calc(0.7rem * 1.65 + 2rem);
+}
+
 .services-editorial__card.services-editorial__card--with-art {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -142,6 +146,10 @@ footer.site-footer .brand {
 }
 
 @media (max-width: 900px) {
+  .trust-block__body {
+    padding-top: 0;
+  }
+
   .services-editorial__card.services-editorial__card--with-art {
     column-gap: 1rem;
   }
