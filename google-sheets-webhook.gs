@@ -23,16 +23,48 @@ function doPost(e) {
     }
 
     const data = JSON.parse(e.postData.contents || "{}");
+    const submittedAt = new Date();
+    const name = data.name || "";
+    const phone = data.phone || "";
+    const email = data.email || "";
+    const interest = data.interest || data.topic || data.interes || data.servicio || "";
+    const message = data.message || data.mensaje || data.comments || "";
+    const origin = data.origin || "Web HiloLegal";
 
     sheet.appendRow([
-      new Date(),
-      data.name || "",
-      data.phone || "",
-      data.email || "",
-      data.interest || data.topic || data.interes || data.servicio || "",
-      data.message || data.mensaje || data.comments || "",
-      data.origin || "Web HiloLegal"
+      submittedAt,
+      name,
+      phone,
+      email,
+      interest,
+      message,
+      origin
     ]);
+
+    MailApp.sendEmail({
+      to: "info@hilolegal.es",
+      subject: "Nuevo formulario recibido - HiloLegal",
+      name: "HiloLegal",
+      replyTo: email || undefined,
+      body:
+        "Nuevo formulario recibido en HiloLegal\n\n" +
+        "Fecha: " + submittedAt + "\n" +
+        "Nombre: " + name + "\n" +
+        "Teléfono: " + phone + "\n" +
+        "Email: " + email + "\n" +
+        "Interés: " + interest + "\n" +
+        "Mensaje: " + message + "\n" +
+        "Origen: " + origin,
+      htmlBody:
+        "<h2>Nuevo formulario recibido en HiloLegal</h2>" +
+        "<p><strong>Fecha:</strong> " + escapeHtml(submittedAt.toString()) + "</p>" +
+        "<p><strong>Nombre:</strong> " + escapeHtml(name) + "</p>" +
+        "<p><strong>Teléfono:</strong> " + escapeHtml(phone) + "</p>" +
+        "<p><strong>Email:</strong> " + escapeHtml(email) + "</p>" +
+        "<p><strong>Interés:</strong> " + escapeHtml(interest) + "</p>" +
+        "<p><strong>Mensaje:</strong><br>" + escapeHtml(message).replace(/\n/g, "<br>") + "</p>" +
+        "<p><strong>Origen:</strong> " + escapeHtml(origin) + "</p>"
+    });
 
     return ContentService
       .createTextOutput(JSON.stringify({ success: true }))
@@ -49,4 +81,13 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
