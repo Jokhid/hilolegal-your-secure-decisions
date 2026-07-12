@@ -1,4 +1,6 @@
 (() => {
+  const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
+
   function textOf(card) {
     return (card.querySelector("h3")?.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
   }
@@ -7,6 +9,14 @@
     const cta = card.querySelector(".tools__cta");
     if (!cta) return;
     cta.innerHTML = `<span aria-hidden="true">→</span> ${label}`;
+  }
+
+  function enableCard(card, href) {
+    card.removeAttribute("aria-disabled");
+    card.removeAttribute("tabindex");
+    card.href = href;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
   }
 
   function applyToolOrder() {
@@ -26,12 +36,11 @@
       if (number) number.textContent = `Herramienta ${String(index + 1).padStart(2, "0")}`;
 
       if (card === test) {
-        card.removeAttribute("aria-disabled");
-        card.removeAttribute("tabindex");
-        card.href = "/test-salud-financiera.html";
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
+        enableCard(card, "/test-salud-financiera.html");
         setCta(card, "Hacer test");
+      } else if (card === diagnostic) {
+        enableCard(card, CALENDLY_URL);
+        setCta(card, "Solicitar diagnóstico");
       } else {
         card.setAttribute("aria-disabled", "true");
         card.setAttribute("tabindex", "-1");
