@@ -3,6 +3,7 @@
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
   const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
   const LOGO = { src: "/hilolegal-logo-mark.svg", alt: "HiloLegal" };
+  const BRAND_TEXT = "HILOLEGAL";
   const HERO_TEXT = "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT = "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
   const TOOLS_INTRO_TEXT = "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
@@ -16,6 +17,18 @@
   let applying = false;
   const norm = (text) => (text || "").replace(/\s+/g, " ").trim().toLowerCase();
 
+  function setBrandText(container) {
+    if (!container) return;
+    const span = container.querySelector("span");
+    if (span) {
+      span.textContent = BRAND_TEXT;
+      return;
+    }
+    const textNode = Array.from(container.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    if (textNode) textNode.textContent = BRAND_TEXT;
+    else container.appendChild(document.createTextNode(BRAND_TEXT));
+  }
+
   function addLogos() {
     const headerBrand = document.querySelector("header nav a[href='#']");
     if (headerBrand && !headerBrand.querySelector(".header-logo-mark")) {
@@ -26,6 +39,7 @@
       logo.decoding = "async";
       headerBrand.prepend(logo);
     }
+    setBrandText(headerBrand);
 
     const footerBrand = document.querySelector("footer .brand");
     if (footerBrand && !footerBrand.querySelector(".footer-logo-mark")) {
@@ -37,6 +51,7 @@
       logo.decoding = "async";
       footerBrand.prepend(logo);
     }
+    setBrandText(footerBrand);
   }
 
   function updateHero() {
