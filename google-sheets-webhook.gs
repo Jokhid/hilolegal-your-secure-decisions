@@ -1,31 +1,52 @@
-const SHEET_ID = '1Klnh7mZ1NiWs6vNx0omeKrJWbiUaROj2tEYm5KN9HTU';
-const SHEET_NAME = 'Leads';
-
 function doPost(e) {
-  try {
-    const payload = JSON.parse(e.postData.contents || '{}');
-    const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
-    const sheet = spreadsheet.getSheetByName(SHEET_NAME) || spreadsheet.insertSheet(SHEET_NAME);
+  const lock = LockService.getScriptLock();
+  lock.tryLock(10000);
 
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Fecha', 'Nombre', 'Teléfono', 'Email', 'Interés', 'Mensaje']);
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName("Leads");
+
+    if (!sheet) {
+      sheet = ss.insertSheet("Leads");
     }
 
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        "Fecha",
+        "Nombre",
+        "Teléfono",
+        "Email",
+        "Interés",
+        "Mensaje",
+        "Origen"
+      ]);
+    }
+
+    const data = JSON.parse(e.postData.contents || "{}");
+
     sheet.appendRow([
-      new Date(payload.timestamp || Date.now()),
-      payload.name || '',
-      payload.phone || '',
-      payload.email || '',
-      payload.interest || payload.topic || '',
-      payload.message || '',
+      new Date(),
+      data.name || "",
+      data.phone || "",
+      data.email || "",
+      data.interest || data.topic || data.interes || data.servicio || "",
+      data.message || data.mensaje || data.comments || "",
+      data.origin || "Web HiloLegal"
     ]);
 
     return ContentService
-      .createTextOutput(JSON.stringify({ ok: true }))
+      .createTextOutput(JSON.stringify({ success: true }))
       .setMimeType(ContentService.MimeType.JSON);
+
   } catch (error) {
     return ContentService
-      .createTextOutput(JSON.stringify({ ok: false, error: String(error) }))
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
+      }))
       .setMimeType(ContentService.MimeType.JSON);
+
+  } finally {
+    lock.releaseLock();
   }
 }
