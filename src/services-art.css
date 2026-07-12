@@ -3,8 +3,8 @@ body {
 }
 
 .header-logo-mark {
-  width: clamp(2.3rem, 3.3vw, 3rem);
-  height: auto;
+  width: 68px;
+  height: 74px;
   aspect-ratio: 68 / 74;
   display: block;
   object-fit: contain;
@@ -12,12 +12,18 @@ body {
 }
 
 .footer-logo-mark {
-  width: clamp(3.4rem, 5.5vw, 5rem);
-  height: auto;
+  width: 68px;
+  height: 74px;
   aspect-ratio: 68 / 74;
   display: block;
   object-fit: contain;
   margin-bottom: 1.1rem;
+}
+
+#contact select,
+#contact select option {
+  color: #000 !important;
+  background: #fff !important;
 }
 
 .services-editorial__heading h2 .jch-accent,
