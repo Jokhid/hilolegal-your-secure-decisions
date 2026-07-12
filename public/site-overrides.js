@@ -120,7 +120,7 @@
     if (areasAccent && norm(areasAccent.textContent) === "principales") areasAccent.textContent = " principales";
 
     const audienceAccent = document.querySelector("#audiencia h2 .jch-accent");
-    if (audienceAccent && norm(audienceAccent.textContent) === "trabajamos") audienceAccent.textContent = " trabajamos";
+    if (audienceAccent && norm(audienceAccent.textContent) === "trabajamos") audienceAccent.textContent = "\u00a0trabajamos";
 
     const closingAccent = document.querySelector("#cierre h2 .jch-accent");
     if (closingAccent && norm(closingAccent.textContent).replace(/,$/, "") === "patrimonio") {
