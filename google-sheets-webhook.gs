@@ -41,11 +41,10 @@ function doPost(e) {
       origin
     ]);
 
-    MailApp.sendEmail({
+    const emailOptions = {
       to: "info@hilolegal.es",
       subject: "Nuevo formulario recibido - HiloLegal",
       name: "HiloLegal",
-      replyTo: email || undefined,
       body:
         "Nuevo formulario recibido en HiloLegal\n\n" +
         "Fecha: " + submittedAt + "\n" +
@@ -64,7 +63,13 @@ function doPost(e) {
         "<p><strong>Interés:</strong> " + escapeHtml(interest) + "</p>" +
         "<p><strong>Mensaje:</strong><br>" + escapeHtml(message).replace(/\n/g, "<br>") + "</p>" +
         "<p><strong>Origen:</strong> " + escapeHtml(origin) + "</p>"
-    });
+    };
+
+    if (email) {
+      emailOptions.replyTo = email;
+    }
+
+    MailApp.sendEmail(emailOptions);
 
     return ContentService
       .createTextOutput(JSON.stringify({ success: true }))
