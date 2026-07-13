@@ -40,6 +40,14 @@ footer.site-footer .brand {
   text-transform: uppercase !important;
 }
 
+main > section:first-child > div {
+  box-sizing: border-box;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: clamp(1.25rem, 3vw, 2.75rem) !important;
+  padding-right: clamp(1.25rem, 3vw, 2.75rem) !important;
+}
+
 #contact select,
 #contact select option {
   color: #000 !important;
