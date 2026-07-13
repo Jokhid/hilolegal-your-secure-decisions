@@ -7,7 +7,7 @@
   const HERO_TEXT = "Abogados, hipotecas, planificación financiera, administración de fincas, ahorro y seguros para personas que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que has construido, anticipar riesgos y tomar mejores decisiones.";
   const COMPANIES_TEXT = "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.";
   const TOOLS_INTRO_TEXT = "Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu hipoteca y tus riesgos principales.";
-  const JOSE_CARLOS_BIO = "Administrador de fincas y gestor de Nationale Nederlanden, ING y Abanca. Especialista en planificación financiera, hipotecas, seguros y ahorro.";
+  const JOSE_CARLOS_BIO = "Más de 25 años de experiencia en asesoría y administración. Administrador de fincas y gestor de Nationale Nederlanden, ING y Abanca. Especialista en planificación financiera, hipotecas, seguros y ahorro.";
   const AREA_IMAGES = {
     legal: ["/area-legal.svg", "Ilustración del área legal de HiloLegal"],
     "patrimonial y financiero": ["/area-patrimonial-financiero.svg", "Ilustración del área patrimonial y financiera de HiloLegal"],
@@ -140,7 +140,7 @@
       }
       if (name === "josé carlos hidalgo") {
         if (eyebrow) eyebrow.textContent = "Socio";
-        if (role) role.textContent = "gestor patrimonial e hipotecario.";
+        if (role) role.textContent = "Gestor patrimonial e hipotecario.";
         const firstBio = card.querySelector(".pros__bio p");
         if (firstBio) firstBio.textContent = JOSE_CARLOS_BIO;
       }
