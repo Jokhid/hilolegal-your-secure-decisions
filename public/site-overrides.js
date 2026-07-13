@@ -68,6 +68,7 @@
     });
     document.querySelectorAll("main > section:first-child h1 span").forEach((span) => {
       if (span.textContent?.includes("Abogacía")) span.textContent = span.textContent.replace("Abogacía", "Abogados");
+      if (span.textContent?.includes("con criterio.")) span.textContent = span.textContent.replace("con criterio.", "con criterio en Altea.");
     });
   }
 
