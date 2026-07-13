@@ -15,8 +15,19 @@
     hipotecas: ["/area-hipotecas.svg", "Ilustración del área de hipotecas de HiloLegal"],
     "administración de fincas": ["/area-administracion-fincas.svg", "Ilustración del área de administración de fincas de HiloLegal"],
   };
+  const IMAGE_HINTS = [
+    ["/josecarlos_veronica.webp", 1175, 596, "eager"],
+    ["/vero_jurista.webp", 1090, 1366, "lazy"],
+    ["/hilolegal-logo-mark.svg", 68, 74, "eager"],
+    ["/area-legal.svg", 512, 512, "lazy"],
+    ["/area-patrimonial-financiero.svg", 512, 512, "lazy"],
+    ["/area-hipotecas.svg", 512, 512, "lazy"],
+    ["/area-administracion-fincas.svg", 512, 512, "lazy"],
+    ["/nosotros_cliente.webp", 1254, 1254, "lazy"],
+  ];
 
   let applying = false;
+  let queued = false;
   const norm = (text) => (text || "").replace(/\s+/g, " ").trim().toLowerCase();
 
   function setBrandText(container) {
@@ -31,6 +42,23 @@
     else container.appendChild(document.createTextNode(BRAND_TEXT));
   }
 
+  function setImageHint(img, width, height, loading) {
+    if (!img) return;
+    img.setAttribute("width", String(width));
+    img.setAttribute("height", String(height));
+    img.decoding = "async";
+    img.loading = loading;
+    if (loading === "eager") img.fetchPriority = "high";
+  }
+
+  function updateImageHints() {
+    document.querySelectorAll("img").forEach((img) => {
+      const src = img.getAttribute("src") || "";
+      const hint = IMAGE_HINTS.find(([path]) => src.endsWith(path));
+      if (hint) setImageHint(img, hint[1], hint[2], hint[3]);
+    });
+  }
+
   function addLogos() {
     const headerBrand = document.querySelector("header nav a[href='#']");
     if (headerBrand && !headerBrand.querySelector(".header-logo-mark")) {
@@ -38,7 +66,7 @@
       logo.className = "header-logo-mark";
       logo.src = LOGO.src;
       logo.alt = LOGO.alt;
-      logo.decoding = "async";
+      setImageHint(logo, 68, 74, "eager");
       headerBrand.prepend(logo);
     }
     setBrandText(headerBrand);
@@ -49,8 +77,7 @@
       logo.className = "footer-logo-mark";
       logo.src = LOGO.src;
       logo.alt = LOGO.alt;
-      logo.loading = "lazy";
-      logo.decoding = "async";
+      setImageHint(logo, 68, 74, "lazy");
       footerBrand.prepend(logo);
     }
     setBrandText(footerBrand);
@@ -107,12 +134,13 @@
       if (!art) {
         art = document.createElement("div");
         art.className = "service-card__art";
-        art.innerHTML = '<img loading="lazy" decoding="async" />';
+        art.innerHTML = '<img loading="lazy" decoding="async" width="512" height="512" />';
       }
       if (art.nextElementSibling !== title) card.insertBefore(art, title);
       const img = art.querySelector("img");
       img.src = data[0];
       img.alt = data[1];
+      setImageHint(img, 512, 512, "lazy");
     });
   }
 
@@ -123,12 +151,13 @@
     if (!media) {
       media = document.createElement("div");
       media.className = "position-block__media";
-      media.innerHTML = '<img loading="lazy" decoding="async" />';
+      media.innerHTML = '<img loading="lazy" decoding="async" width="1254" height="1254" />';
       inner.appendChild(media);
     }
     const img = media.querySelector("img");
     img.src = "/nosotros_cliente.webp";
     img.alt = "Equipo de HiloLegal asesorando a un cliente";
+    setImageHint(img, 1254, 1254, "lazy");
   }
 
   function updateText() {
@@ -229,12 +258,24 @@
     updateText();
     updateAudience();
     updateTools();
+    updateImageHints();
     window.setTimeout(() => { applying = false; }, 0);
+  }
+
+  function scheduleApply() {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(() => {
+      queued = false;
+      apply();
+    });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply, { once: true });
   else apply();
   window.addEventListener("load", apply, { once: true });
   [250, 750, 1500, 2600].forEach((delay) => window.setTimeout(apply, delay));
-  new MutationObserver(apply).observe(document.documentElement, { childList: true, subtree: true });
+  const observer = new MutationObserver(scheduleApply);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+  window.setTimeout(() => observer.disconnect(), 6000);
 })();
