@@ -1,6 +1,7 @@
 (() => {
   const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
   const VERONICA_URL = "https://veronicalopez.hilolegal.es";
+  const VERONICA_SERVICES_URL = "https://veronicalopez.hilolegal.es/#services";
   const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
   const LOGO = { src: "/hilolegal-logo-mark.svg", alt: "HiloLegal" };
   const BRAND_TEXT = "HILOLEGAL";
@@ -55,6 +56,11 @@
     setBrandText(footerBrand);
   }
 
+  function openInNewTab(link) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  }
+
   function updateHero() {
     document.querySelectorAll("main > section:first-child p").forEach((p) => {
       const text = norm(p.textContent);
@@ -68,8 +74,19 @@
   function updateLinks() {
     document.querySelectorAll("a").forEach((link) => {
       const text = norm(link.textContent);
-      if (text.includes("conocer a verónica") || text.includes("ver servicios legales")) link.href = VERONICA_URL;
-      if (text.includes("conocer a josé carlos") || text.includes("ver asesoramiento patrimonial") || text.includes("ver hipotecas") || text.includes("ver administración de fincas")) link.href = JOSE_CARLOS_URL;
+      if (text.includes("ver servicios legales")) {
+        link.href = VERONICA_SERVICES_URL;
+        openInNewTab(link);
+        return;
+      }
+      if (text.includes("conocer a verónica")) {
+        link.href = VERONICA_URL;
+        openInNewTab(link);
+      }
+      if (text.includes("conocer a josé carlos") || text.includes("ver asesoramiento patrimonial") || text.includes("ver hipotecas") || text.includes("ver administración de fincas")) {
+        link.href = JOSE_CARLOS_URL;
+        openInNewTab(link);
+      }
     });
   }
 
