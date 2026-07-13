@@ -40,6 +40,12 @@ footer.site-footer .brand {
   text-transform: uppercase !important;
 }
 
+main > section:first-child {
+  align-items: flex-start !important;
+  min-height: calc(100vh - 76px) !important;
+  padding-top: clamp(1.75rem, 3.5vw, 3.25rem) !important;
+}
+
 main > section:first-child > div {
   box-sizing: border-box;
   margin-left: auto !important;
@@ -155,6 +161,10 @@ main > section:first-child > div {
 }
 
 @media (max-width: 900px) {
+  main > section:first-child {
+    padding-top: clamp(1.25rem, 5vw, 2.25rem) !important;
+  }
+
   .trust-block__body {
     padding-top: 0;
   }
