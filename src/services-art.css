@@ -52,6 +52,11 @@ main > section:first-child > div {
   margin-right: auto !important;
   padding-left: clamp(1.25rem, 3vw, 2.75rem) !important;
   padding-right: clamp(1.25rem, 3vw, 2.75rem) !important;
+  align-items: start !important;
+}
+
+main > section:first-child > div > .group {
+  margin-top: calc(0.6rem * 1.65 + 2rem) !important;
 }
 
 #contact select,
@@ -163,6 +168,10 @@ main > section:first-child > div {
 @media (max-width: 900px) {
   main > section:first-child {
     padding-top: clamp(1.25rem, 5vw, 2.25rem) !important;
+  }
+
+  main > section:first-child > div > .group {
+    margin-top: 0 !important;
   }
 
   .trust-block__body {
