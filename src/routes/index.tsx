@@ -296,8 +296,10 @@ function Header() {
         className="sticky top-0 z-50 w-full"
       >
         <nav className="mx-auto flex w-full items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
-            <span>HiloLegal</span>
+          <a href="/" className="flex items-center gap-3"> 
+            <img src="/logo.png" alt="Logo HiloLegal" 
+              className="h-9 w-9 object-contain" /> 
+            <span>HiloLegal</span> 
           </a>
 
           <div className="hidden md:flex items-center">
