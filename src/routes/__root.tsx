@@ -97,6 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio." },
       { name: "twitter:image", content: "https://hilolegal.es/josecarlos_veronica.webp" },
     ],
+          { rel: "canonical", href: "https://hilolegal.es/" },
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: alteaImageCss },
