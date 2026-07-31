@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,14 +8,14 @@ import { submitContact } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/josecarlos")({
   head: () => ({
-    title: "JosÃ© Carlos Hidalgo | Asesoramiento Financiero e Hipotecario",
+    title: "José Carlos Hidalgo | Asesoramiento Financiero e Hipotecario",
     meta: [
       {
         name: "description",
         content:
-          "Asesoramiento financiero e hipotecario para autÃ³nomos y familias. Protege tus ingresos, tu familia y tu futuro financiero. DiagnÃ³stico gratuito en Altea, Benidorm y Alicante.",
+          "Asesoramiento financiero e hipotecario para autónomos y familias. Protege tus ingresos, tu familia y tu futuro financiero. Diagnóstico gratuito en Altea, Benidorm y Alicante.",
       },
-      { property: "og:title", content: "JosÃ© Carlos Hidalgo | Asesor Financiero" },
+      { property: "og:title", content: "José Carlos Hidalgo | Asesor Financiero" },
       {
         property: "og:description",
         content: "Protege tus ingresos, tu familia y tu futuro financiero.",
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/josecarlos")({
           "@graph": [
             {
               "@type": "Person",
-              name: "JosÃ© Carlos Hidalgo Ortega",
+              name: "José Carlos Hidalgo Ortega",
               jobTitle: "Asesor Financiero e Hipotecario",
               url: "https://hilolegal.es/josecarlos",
               telephone: "+34647506040",
@@ -53,22 +53,22 @@ export const Route = createFileRoute("/josecarlos")({
                 "Hipotecas",
                 "Seguros de vida",
                 "Seguros de salud",
-                "PlanificaciÃ³n financiera",
-                "Ahorro e inversiÃ³n",
-                "AdministraciÃ³n de fincas",
-                "ProtecciÃ³n patrimonial",
+                "Planificación financiera",
+                "Ahorro e inversión",
+                "Administración de fincas",
+                "Protección patrimonial",
               ],
             },
             {
               "@type": "FinancialService",
-              name: "JosÃ© Carlos Hidalgo â€” AsesorÃ­a Financiera e Hipotecaria",
+              name: "José Carlos Hidalgo — Asesoría Financiera e Hipotecaria",
               url: "https://hilolegal.es/josecarlos",
               telephone: "+34647506040",
               email: "josecarlos@hilolegal.es",
               image: "https://hilolegal.es/8.webp",
               description:
-                "Asesoramiento financiero e hipotecario para autÃ³nomos y familias en Altea, Benidorm y Alicante. Hipotecas hasta el 100%, seguros, pensiones y administraciÃ³n de fincas en la Costa Blanca.",
-              priceRange: "â‚¬â‚¬",
+                "Asesoramiento financiero e hipotecario para autónomos y familias en Altea, Benidorm y Alicante. Hipotecas hasta el 100%, seguros, pensiones y administración de fincas en la Costa Blanca.",
+              priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
               hasMap: "https://share.google/GlqwXv7lO958pDPDS",
               currenciesAccepted: "EUR",
@@ -79,24 +79,24 @@ export const Route = createFileRoute("/josecarlos")({
                 { "@type": "AdministrativeArea", name: "Marina Baixa" },
                 { "@type": "AdministrativeArea", name: "Costa Blanca" },
               ],
-              founder: { "@type": "Person", name: "JosÃ© Carlos Hidalgo Ortega" },
+              founder: { "@type": "Person", name: "José Carlos Hidalgo Ortega" },
               makesOffer: [
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas hasta el 100% de financiaciÃ³n" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas hasta el 100% de financiación" } },
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Seguros de vida y salud" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "PlanificaciÃ³n financiera personal" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ahorro, pensiÃ³n e inversiÃ³n" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "AdministraciÃ³n de fincas" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planificación financiera personal" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ahorro, pensión e inversión" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Administración de fincas" } },
               ],
             },
             {
               "@type": "FAQPage",
               mainEntity: [
-                { "@type": "Question", name: "Â¿Realmente es gratuito el primer diagnÃ³stico?", acceptedAnswer: { "@type": "Answer", text: "SÃ­, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. TÃº obtienes claridad sobre tu situaciÃ³n y yo entiendo el reto. Sin compromisos." } },
-                { "@type": "Question", name: "Â¿Trabajas con todos los bancos para las hipotecas?", acceptedAnswer: { "@type": "Answer", text: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiaciÃ³n." } },
-                { "@type": "Question", name: "Â¿Puedes ayudarme a conseguir una hipoteca?", acceptedAnswer: { "@type": "Answer", text: "SÃ­. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operaciÃ³n. DespuÃ©s vemos quÃ© opciones hipotecarias pueden encajar mejor con tu caso." } },
-                { "@type": "Question", name: "Â¿Atiendes presencialmente en Alicante?", acceptedAnswer: { "@type": "Answer", text: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estÃ¡s fuera, realizo consultas por videollamada con la misma eficacia." } },
-                { "@type": "Question", name: "Â¿Por quÃ© es importante para un autÃ³nomo revisar su protecciÃ³n financiera?", acceptedAnswer: { "@type": "Answer", text: "Porque muchos autÃ³nomos tienen ingresos variables y una cobertura pÃºblica limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificaciÃ³n puede afectar directamente a su familia, su negocio y su patrimonio." } },
-                { "@type": "Question", name: "Â¿TambiÃ©n trabajas ahorro e inversiÃ³n?", acceptedAnswer: { "@type": "Answer", text: "SÃ­. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahÃ­, podemos valorar soluciones de ahorro, inversiÃ³n, previsiÃ³n social o jubilaciÃ³n adaptadas a tu perfil." } },
+                { "@type": "Question", name: "¿Realmente es gratuito el primer diagnóstico?", acceptedAnswer: { "@type": "Answer", text: "Sí, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. Tú obtienes claridad sobre tu situación y yo entiendo el reto. Sin compromisos." } },
+                { "@type": "Question", name: "¿Trabajas con todos los bancos para las hipotecas?", acceptedAnswer: { "@type": "Answer", text: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiación." } },
+                { "@type": "Question", name: "¿Puedes ayudarme a conseguir una hipoteca?", acceptedAnswer: { "@type": "Answer", text: "Sí. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operación. Después vemos qué opciones hipotecarias pueden encajar mejor con tu caso." } },
+                { "@type": "Question", name: "¿Atiendes presencialmente en Alicante?", acceptedAnswer: { "@type": "Answer", text: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estás fuera, realizo consultas por videollamada con la misma eficacia." } },
+                { "@type": "Question", name: "¿Por qué es importante para un autónomo revisar su protección financiera?", acceptedAnswer: { "@type": "Answer", text: "Porque muchos autónomos tienen ingresos variables y una cobertura pública limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificación puede afectar directamente a su familia, su negocio y su patrimonio." } },
+                { "@type": "Question", name: "¿También trabajas ahorro e inversión?", acceptedAnswer: { "@type": "Answer", text: "Sí. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahí, podemos valorar soluciones de ahorro, inversión, previsión social o jubilación adaptadas a tu perfil." } },
               ],
             },
           ],
@@ -120,55 +120,55 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "analytics", title: "PlanificaciÃ³n financiera personal", text: "AnÃ¡lisis completo de objetivos vitales para diseÃ±ar una hoja de ruta a medida.", cta: "PlanificaciÃ³n financiera" },
-  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiaciÃ³n para tu vivienda en la zona.", cta: "Estudiar mi hipoteca" },
-  { icon: "assured_workload", title: "Servicios de protecciÃ³n inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia estÃ© siempre bajo control.", cta: "Proteger mis ingresos" },
-  { icon: "trending_up", title: "PensiÃ³n, ahorro e inversiÃ³n", text: "VehÃ­culos eficientes para que tus ahorros batan a la inflaciÃ³n con el riesgo bajo control. Rentabilidad con garantÃ­as y beneficios fiscales.", cta: "Planificar mi jubilaciÃ³n" },
-  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro mÃ©dico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud" },
-  { icon: "domain", title: "AdministraciÃ³n de fincas", text: "GestiÃ³n profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "AdministraciÃ³n de comunidades" },
+  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera" },
+  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiación para tu vivienda en la zona.", cta: "Estudiar mi hipoteca" },
+  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos" },
+  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación" },
+  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud" },
+  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades" },
 ];
 
 const errors = [
-  { n: "01", title: "Piden la hipoteca sin preparar su perfil", text: "Llegan al banco con prisas y sin saber que una preparaciÃ³n previa ahorra miles de euros en intereses." },
-  { n: "02", title: "ConfÃ­an todo a sus ingresos actuales", text: "Especialmente autÃ³nomos. El bienestar de hoy no garantiza la seguridad de maÃ±ana sin un plan B real." },
-  { n: "03", title: "Preparan la jubilaciÃ³n demasiado tarde", text: "El interÃ©s compuesto necesita tiempo. Cada aÃ±o que esperas, el coste de oportunidad es mayor." },
+  { n: "01", title: "Piden la hipoteca sin preparar su perfil", text: "Llegan al banco con prisas y sin saber que una preparación previa ahorra miles de euros en intereses." },
+  { n: "02", title: "Confían todo a sus ingresos actuales", text: "Especialmente autónomos. El bienestar de hoy no garantiza la seguridad de mañana sin un plan B real." },
+  { n: "03", title: "Preparan la jubilación demasiado tarde", text: "El interés compuesto necesita tiempo. Cada año que esperas, el coste de oportunidad es mayor." },
 ];
 
 const method = [
-  { n: "01.", title: "Analizo tu punto de partida", text: "Sin juicios. Recopilamos datos reales de tu economÃ­a actual para tener una base sÃ³lida sobre la que construir." },
-  { n: "02.", title: "Detecto riesgos y debilidades", text: "Puntos ciegos donde estÃ¡s asumiendo un riesgo que no conocÃ­as." },
-  { n: "03.", title: "DiseÃ±o un plan accionable", text: "RecibirÃ¡s recomendaciones claras y pasos a seguir que tÃº decides si ejecutar o no." },
-  { n: "04.", title: "Estoy a tu lado en el camino", text: "No te dejo solo con un informe. Te acompaÃ±o en cada decisiÃ³n importante, revisamos el plan cuando tu vida cambia y ajustamos los siguientes pasos para que avances con seguridad." },
+  { n: "01.", title: "Analizo tu punto de partida", text: "Sin juicios. Recopilamos datos reales de tu economía actual para tener una base sólida sobre la que construir." },
+  { n: "02.", title: "Detecto riesgos y debilidades", text: "Puntos ciegos donde estás asumiendo un riesgo que no conocías." },
+  { n: "03.", title: "Diseño un plan accionable", text: "Recibirás recomendaciones claras y pasos a seguir que tú decides si ejecutar o no." },
+  { n: "04.", title: "Estoy a tu lado en el camino", text: "No te dejo solo con un informe. Te acompaño en cada decisión importante, revisamos el plan cuando tu vida cambia y ajustamos los siguientes pasos para que avances con seguridad." },
 ];
 
 const faqs = [
   {
-    q: "Â¿Realmente es gratuito el primer diagnÃ³stico?",
-    a: "SÃ­, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. TÃº obtienes claridad sobre tu situaciÃ³n y yo entiendo el reto. Sin compromisos.",
+    q: "¿Realmente es gratuito el primer diagnóstico?",
+    a: "Sí, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. Tú obtienes claridad sobre tu situación y yo entiendo el reto. Sin compromisos.",
   },
   {
-    q: "Â¿Trabajas con todos los bancos para las hipotecas?",
-    a: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiaciÃ³n.",
+    q: "¿Trabajas con todos los bancos para las hipotecas?",
+    a: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiación.",
   },
   {
-    q: "Â¿Puedes ayudarme a conseguir una hipoteca?",
-    a: "SÃ­. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operaciÃ³n. DespuÃ©s vemos quÃ© opciones hipotecarias pueden encajar mejor con tu caso.",
+    q: "¿Puedes ayudarme a conseguir una hipoteca?",
+    a: "Sí. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operación. Después vemos qué opciones hipotecarias pueden encajar mejor con tu caso.",
   },
   {
-    q: "Â¿Atiendes presencialmente en Alicante?",
-    a: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estÃ¡s fuera, realizo consultas por videollamada con la misma eficacia.",
+    q: "¿Atiendes presencialmente en Alicante?",
+    a: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estás fuera, realizo consultas por videollamada con la misma eficacia.",
   },
   {
-    q: "Â¿Puedo mejorar mi hipoteca actual?",
-    a: "SÃ­. Podemos revisar tu hipoteca actual, tipo de interÃ©s, cuota, vinculaciones, seguros asociados y condiciones. En algunos casos puede ser interesante estudiar una novaciÃ³n, subrogaciÃ³n o cambio de estrategia financiera.",
+    q: "¿Puedo mejorar mi hipoteca actual?",
+    a: "Sí. Podemos revisar tu hipoteca actual, tipo de interés, cuota, vinculaciones, seguros asociados y condiciones. En algunos casos puede ser interesante estudiar una novación, subrogación o cambio de estrategia financiera.",
   },
   {
-    q: "Â¿Por quÃ© es importante para un autÃ³nomo revisar su protecciÃ³n financiera?",
-    a: "Porque muchos autÃ³nomos tienen ingresos variables y una cobertura pÃºblica limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificaciÃ³n puede afectar directamente a su familia, su negocio y su patrimonio.",
+    q: "¿Por qué es importante para un autónomo revisar su protección financiera?",
+    a: "Porque muchos autónomos tienen ingresos variables y una cobertura pública limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificación puede afectar directamente a su familia, su negocio y su patrimonio.",
   },
   {
-    q: "Â¿TambiÃ©n trabajas ahorro e inversiÃ³n?",
-    a: "SÃ­. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahÃ­, podemos valorar soluciones de ahorro, inversiÃ³n, previsiÃ³n social o jubilaciÃ³n adaptadas a tu perfil.",
+    q: "¿También trabajas ahorro e inversión?",
+    a: "Sí. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahí, podemos valorar soluciones de ahorro, inversión, previsión social o jubilación adaptadas a tu perfil.",
   },
 ];
 
@@ -255,8 +255,8 @@ function Header() {
 
   const navLinks: [string, string][] = [
     ["Servicios", "#services"],
-    ["MÃ©todo", "#method"],
-    ["Sobre mÃ­", "#about"],
+    ["Método", "#method"],
+    ["Sobre mí", "#about"],
     ["Blog", "/blog"],
     ["FAQ", "#faq"],
     ["Contacto", "#contact"],
@@ -303,7 +303,7 @@ function Header() {
         >
           <motion.button
             type="button"
-            aria-label="Cerrar menÃº"
+            aria-label="Cerrar menú"
             onClick={() => setMobileOpen(false)}
             className="absolute inset-0 h-full w-full bg-[#1A1A1A]/45 backdrop-blur-md"
             initial={{ opacity: 0 }}
@@ -315,7 +315,7 @@ function Header() {
           <motion.aside
             role="dialog"
             aria-modal="true"
-            aria-label="MenÃº principal"
+            aria-label="Menú principal"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -342,16 +342,16 @@ function Header() {
   rel="noopener noreferrer"
   className="flex items-center gap-3"
 >
-  <img src={LOGO} alt="Logo JosÃ© Carlos Hidalgo" className="h-9 w-9 object-contain" />
+  <img src={LOGO} alt="Logo José Carlos Hidalgo" className="h-9 w-9 object-contain" />
   <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A]">
-    MenÃº
+    Menú
   </span>
 </a>
 
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  aria-label="Cerrar menÃº"
+                  aria-label="Cerrar menú"
                   className="rounded-full border border-white/70 bg-white/72 p-2 text-[#1A1A1A] shadow-[0_10px_30px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-colors hover:bg-[#FF6B00] hover:text-white"
                 >
                   <Icon name="close" className="text-3xl" />
@@ -408,13 +408,13 @@ function Header() {
           <a className="group flex items-center gap-3" href="https://hilolegal.es" target="_blank" rel="noopener noreferrer">
             <motion.img
               src={LOGO}
-              alt="Logo JosÃ© Carlos Hidalgo"
+              alt="Logo José Carlos Hidalgo"
               className="h-9 w-9 object-contain"
               whileHover={{ rotate: -6, scale: 1.05 }}
               transition={spring}
             />
             <span className="text-base font-bold uppercase tracking-tight md:text-lg">
-              JosÃ© Carlos Hidalgo
+              José Carlos Hidalgo
             </span>
           </a>
 
@@ -447,7 +447,7 @@ function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              aria-label="Abrir menÃº"
+              aria-label="Abrir menú"
               aria-expanded={mobileOpen}
               className="-mr-2 p-2 text-[#1A1A1A] md:hidden"
             >
@@ -481,12 +481,12 @@ function Hero() {
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.4 }}
                 className="h-[2px] bg-[#FF6B00] block"
               />
-              HIPOTECAS, AHORRO, PENSIONES, SEGUROS Y ADMINISTRACIÃ“N DE FINCAS EN ALTEA
+              HIPOTECAS, AHORRO, PENSIONES, SEGUROS Y ADMINISTRACIÓN DE FINCAS EN ALTEA
             </div>
           </FadeUp>
 
           <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.08] tracking-tight text-balance">
-            {["Tu hipoteca, tus seguros y", <span className="text-[#FF6B00]">tu futuro financiero</span>, "no deberÃ­an decidirse por intuiciÃ³n."].map((line, i) => (
+            {["Tu hipoteca, tus seguros y", <span className="text-[#FF6B00]">tu futuro financiero</span>, "no deberían decidirse por intuición."].map((line, i) => (
               <Curtain key={i} delay={0.15 + i * 0.1} className="block">
                 <span className="block">{line}</span>
               </Curtain>
@@ -496,7 +496,7 @@ function Hero() {
 
           <FadeUp delay={0.6}>
             <p className="text-xl text-[#4A4A4A] max-w-xl leading-relaxed">
-              Analizo tu situaciÃ³n, detecto riesgos y te propongo un plan claro para proteger tus ingresos, financiar tu vivienda o preparar tu futuro con criterio.
+              Analizo tu situación, detecto riesgos y te propongo un plan claro para proteger tus ingresos, financiar tu vivienda o preparar tu futuro con criterio.
             </p>
           </FadeUp>
 
@@ -509,7 +509,7 @@ function Hero() {
                 className="bg-[#FF6B00] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors shadow-xl shadow-[#FF6B00]/10"
                 href="#contact"
               >
-                Quiero mi diagnÃ³stico gratuito
+                Quiero mi diagnóstico gratuito
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.03 }}
@@ -518,7 +518,7 @@ function Hero() {
                 className="border border-[#1A1A1A] text-[#1A1A1A] px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] hover:text-white transition-colors"
                 href="#services"
               >
-                Conocer cÃ³mo trabajo
+                Conocer cómo trabajo
               </motion.a>
             </div>
           </FadeUp>
@@ -553,9 +553,9 @@ function Hero() {
 
 function TrustStats() {
   const items = [
-    { i: "visibility", t: "360Âº visiÃ³n financiera y patrimonial" },
+    { i: "visibility", t: "360º visión financiera y patrimonial" },
     { i: "map", t: "1 plan claro antes de contratar" },
-    { i: "medical_services", t: "0â‚¬ diagnÃ³stico inicial" },
+    { i: "medical_services", t: "0€ diagnóstico inicial" },
   ];
   return (
     <section className="py-16 border-b border-[#E5E5E5]">
@@ -577,9 +577,9 @@ function TrustStats() {
 
 function Diagnosis() {
   const items = [
-    { n: "01", t: "Ingresos y estabilidad", d: "Â¿QuÃ© pasarÃ­a si maÃ±ana no pudieras facturar? Aseguramos tu motor financiero principal. No se trata de miedo, se trata de amor y responsabilidad.", img: 3 },
-    { n: "02", t: "Hipoteca y endeudamiento", d: "Analizo las ofertas disponibles, tu capacidad de endeudamiento y la viabilidad real de la operaciÃ³n antes de que firmes. El objetivo es que tu vivienda sea una decisiÃ³n segura y sostenible, no una carga para tu economÃ­a.", img: 2 },
-    { n: "03", t: "Ahorro, pensiÃ³n y protecciÃ³n", d: "Estrategias de medio y largo plazo para que tu nivel de vida no dependa solo de tu trabajo actual.", img: 4 },
+    { n: "01", t: "Ingresos y estabilidad", d: "¿Qué pasaría si mañana no pudieras facturar? Aseguramos tu motor financiero principal. No se trata de miedo, se trata de amor y responsabilidad.", img: 3 },
+    { n: "02", t: "Hipoteca y endeudamiento", d: "Analizo las ofertas disponibles, tu capacidad de endeudamiento y la viabilidad real de la operación antes de que firmes. El objetivo es que tu vivienda sea una decisión segura y sostenible, no una carga para tu economía.", img: 2 },
+    { n: "03", t: "Ahorro, pensión y protección", d: "Estrategias de medio y largo plazo para que tu nivel de vida no dependa solo de tu trabajo actual.", img: 4 },
   ];
   return (
     <section className="py-[100px]">
@@ -636,10 +636,10 @@ function Problem() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="lg:sticky lg:top-32 space-y-8">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>La mayorÃ­a toma <span className="text-[#FF6B00]">decisiones financieras</span> demasiado tarde</Curtain>
+              <Curtain>La mayoría toma <span className="text-[#FF6B00]">decisiones financieras</span> demasiado tarde</Curtain>
             </h2>
             <FadeUp delay={0.2}>
-              <p className="text-xl text-gray-400">Evitar los errores comunes es el primer paso para una economÃ­a sana. Mi trabajo es anticiparme a ellos.</p>
+              <p className="text-xl text-gray-400">Evitar los errores comunes es el primer paso para una economía sana. Mi trabajo es anticiparme a ellos.</p>
             </FadeUp>
           </div>
           <div className="space-y-12">
@@ -650,7 +650,7 @@ function Problem() {
                   transition={spring}
                   className="p-10 border border-white/10 hover:border-[#FF6B00] transition-colors"
                 >
-                  <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-[0.2em] mb-6 block">Error ComÃºn {e.n}</span>
+                  <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-[0.2em] mb-6 block">Error Común {e.n}</span>
                   <h4 className="text-2xl font-bold mb-4">{e.title}</h4>
                   <p className="text-gray-400 leading-relaxed">{e.text}</p>
                 </motion.div>
@@ -671,10 +671,10 @@ function Services() {
       <div className="services-editorial__inner">
         <div className="services-editorial__heading">
           <h2>
-            <Curtain><span className="text-[#FF6B00]">Soluciones</span> para proteger tu economÃ­a</Curtain>
+            <Curtain><span className="text-[#FF6B00]">Soluciones</span> para proteger tu economía</Curtain>
           </h2>
           <FadeUp delay={0.15}>
-            <p>Un enfoque integral para que todas las piezas de tu puzzle financiero encajen a la perfecciÃ³n.</p>
+            <p>Un enfoque integral para que todas las piezas de tu puzzle financiero encajen a la perfección.</p>
           </FadeUp>
         </div>
 
@@ -710,7 +710,7 @@ function Method() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="space-y-12">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>No se trata de contratar mÃ¡s. Se trata de <span className="text-[#FF6B00]">decidir mejor</span></Curtain>
+              <Curtain>No se trata de contratar más. Se trata de <span className="text-[#FF6B00]">decidir mejor</span></Curtain>
             </h2>
             <div className="method-steps">
               {method.map((m) => (
@@ -736,7 +736,7 @@ function Method() {
               <motion.img
                 src={IMG(9)}
                 loading="lazy"
-                alt="MÃ©todo de asesoramiento"
+                alt="Método de asesoramiento"
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 whileInView={{ scale: 1 }}
@@ -772,7 +772,7 @@ function About() {
               />
               <div className="relative overflow-hidden">
                 <motion.img
-                  alt="JosÃ© Carlos Hidalgo"
+                  alt="José Carlos Hidalgo"
                   className="w-full h-[600px] object-cover"
                   src={IMG(8)}
                   loading="lazy"
@@ -788,25 +788,25 @@ function About() {
           <div className="lg:col-span-7 space-y-10">
             <FadeUp>
               <div className="space-y-4">
-                <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-widest">SOBRE MÃ</span>
-                <h2 className="text-5xl font-bold tracking-tight">JosÃ© Carlos Hidalgo Ortega</h2>
-                <p className="text-2xl font-medium text-[#FF6B00] italic">Especialista en protecciÃ³n patrimonial e hipotecas en Altea Â· Costa Blanca Â· Alicante</p>
+                <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-widest">SOBRE M�?</span>
+                <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo Ortega</h2>
+                <p className="text-2xl font-medium text-[#FF6B00] italic">Especialista en protección patrimonial e hipotecas en Altea · Costa Blanca · Alicante</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
               <div className="space-y-6 text-xl text-[#4A4A4A] leading-relaxed">
-                <p>Hay una frase que escucho con frecuencia en mi trabajo: Â«OjalÃ¡ hubiera hablado con alguien antes de firmar esto.Â»</p>
-                <p>Mi objetivo es que tÃº nunca tengas que decirla.</p>
-                <p>Llevo aÃ±os acompaÃ±ando a familias y autÃ³nomos de la Costa Blanca en las decisiones financieras que mÃ¡s pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilaciÃ³n con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
-                <p>No soy el asesor que te recomienda el producto del mes. Soy el que se sienta contigo, revisa tu situaciÃ³n real y te dice lo que necesitas escuchar, aunque no siempre sea lo mÃ¡s fÃ¡cil.</p>
+                <p>Hay una frase que escucho con frecuencia en mi trabajo: «Ojalá hubiera hablado con alguien antes de firmar esto.»</p>
+                <p>Mi objetivo es que tú nunca tengas que decirla.</p>
+                <p>Llevo años acompañando a familias y autónomos de la Costa Blanca en las decisiones financieras que más pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilación con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
+                <p>No soy el asesor que te recomienda el producto del mes. Soy el que se sienta contigo, revisa tu situación real y te dice lo que necesitas escuchar, aunque no siempre sea lo más fácil.</p>
                 <p>Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar y negociar en tu nombre, no defender los intereses de un banco concreto.</p>
-                <p>AdemÃ¡s, soy cofundador de HiloLegal, una firma legal y de administraciÃ³n de fincas que naciÃ³ de la misma convicciÃ³n: que la gente merece profesionales que hablen claro y cumplan lo que dicen.</p>
-                <p>Si estÃ¡s en Altea, Benidorm, la Marina Baixa o la provincia de Alicante y quieres un diagnÃ³stico honesto de tu situaciÃ³n financiera, el primer paso no cuesta nada.</p>
+                <p>Además, soy cofundador de HiloLegal, una firma legal y de administración de fincas que nació de la misma convicción: que la gente merece profesionales que hablen claro y cumplan lo que dicen.</p>
+                <p>Si estás en Altea, Benidorm, la Marina Baixa o la provincia de Alicante y quieres un diagnóstico honesto de tu situación financiera, el primer paso no cuesta nada.</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.2}>
               <div className="flex flex-wrap gap-3 pt-2">
-                {["AutÃ³nomos", "Familias", "Hipotecas", "ProtecciÃ³n", "Ahorrar", "AdministraciÃ³n de fincas"].map((t) => (
+                {["Autónomos", "Familias", "Hipotecas", "Protección", "Ahorrar", "Administración de fincas"].map((t) => (
                   <motion.span
                     key={t}
                     whileHover={{ y: -2, backgroundColor: "#1A1A1A", color: "#FFFFFF" }}
@@ -821,7 +821,7 @@ function About() {
             <FadeUp delay={0.3}>
               <div className="flex items-center gap-4 text-[#1A1A1A] font-bold">
                 <Icon name="location_on" className="text-[#FF6B00]" />
-                <span className="text-sm uppercase tracking-widest text-[#C5A566]">Altea Â· Benidorm Â· Costa Blanca Â· Alicante Â· Online</span>
+                <span className="text-sm uppercase tracking-widest text-[#C5A566]">Altea · Benidorm · Costa Blanca · Alicante · Online</span>
               </div>
             </FadeUp>
             <FadeUp delay={0.4}>
@@ -896,7 +896,7 @@ function Contact() {
     name: "",
     phone: "",
     email: "",
-    topic: "DiagnÃ³stico General",
+    topic: "Diagnóstico General",
     message: "",
   });
 
@@ -907,7 +907,7 @@ function Contact() {
     e.preventDefault();
     if (!accepted) {
       setStatus("error");
-      setErrorMsg("Debes aceptar la polÃ­tica de privacidad para continuar.");
+      setErrorMsg("Debes aceptar la política de privacidad para continuar.");
       return;
     }
     setStatus("sending");
@@ -915,7 +915,7 @@ function Contact() {
     try {
       await submit({ data: form });
       setStatus("ok");
-      setForm({ name: "", phone: "", email: "", topic: "DiagnÃ³stico General", message: "" });
+      setForm({ name: "", phone: "", email: "", topic: "Diagnóstico General", message: "" });
       setAccepted(false);
     } catch (err) {
       setStatus("error");
@@ -932,12 +932,12 @@ function Contact() {
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
-              Rellena el formulario y me pondrÃ© en contacto contigo en menos de 24 horas para agendar tu diagnÃ³stico gratuito.
+              Rellena el formulario y me pondré en contacto contigo en menos de 24 horas para agendar tu diagnóstico gratuito.
             </p>
           </FadeUp>
           <div className="space-y-10 pt-10 border-t border-[#E5E5E5]">
             {[
-              { i: "call", label: "LlÃ¡manos", v: PHONE_DISPLAY, href: `tel:+34647506040` },
+              { i: "call", label: "Llámanos", v: PHONE_DISPLAY, href: `tel:+34647506040` },
               { i: "mail", label: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
             ].map((c, idx) => (
               <FadeUp key={c.i} delay={idx * 0.1}>
@@ -980,28 +980,28 @@ function Contact() {
           <form id="contact-form" className="contact-form-card space-y-10 scroll-mt-28" onSubmit={onSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
-              <Field label="TelÃ©fono" type="tel" placeholder="Tu nÃºmero" value={form.phone} onChange={onChange("phone")} required />
+              <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
             </div>
             <Field label="Email" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} required />
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Â¿QuÃ© necesitas revisar?</label>
+              <label className="text-[10px] font-black uppercase tracking-[0.2em]">¿Qué necesitas revisar?</label>
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
                 className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#FF6B00] transition-colors outline-none"
               >
-                <option>DiagnÃ³stico General</option>
+                <option>Diagnóstico General</option>
                 <option>Nueva Hipoteca</option>
-                <option>ProtecciÃ³n (AutÃ³nomos)</option>
-                <option>Plan de JubilaciÃ³n</option>
-                <option>AdministraciÃ³n de Fincas</option>
+                <option>Protección (Autónomos)</option>
+                <option>Plan de Jubilación</option>
+                <option>Administración de Fincas</option>
               </select>
             </div>
             <div className="space-y-2">
               <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje</label>
               <textarea
                 rows={4}
-                placeholder="CuÃ©ntanos tu situaciÃ³n"
+                placeholder="Cuéntanos tu situación"
                 value={form.message}
                 onChange={onChange("message")}
                 className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#FF6B00] transition-colors outline-none placeholder:text-gray-300"
@@ -1017,9 +1017,9 @@ function Contact() {
                 className="mt-1 w-4 h-4 accent-[#FF6B00] shrink-0"
               />
               <span>
-                He leÃ­do y acepto la{" "}
+                He leído y acepto la{" "}
                 <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="text-[#FF6B00] underline hover:no-underline">
-                  polÃ­tica de privacidad
+                  política de privacidad
                 </a>
                 .
               </span>
@@ -1033,7 +1033,7 @@ function Contact() {
               disabled={status === "sending"}
               className="w-full bg-[#FF6B00] text-white py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#FF6B00]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {status === "sending" ? "Enviandoâ€¦" : status === "ok" ? "Â¡Enviado!" : "Enviar Solicitud"}
+              {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
             </motion.button>
 
 
@@ -1043,7 +1043,7 @@ function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-sm text-[#1A1A1A] font-bold uppercase tracking-widest"
               >
-                Gracias. Te contactarÃ© en menos de 24h.
+                Gracias. Te contactaré en menos de 24h.
               </motion.p>
             )}
             {status === "error" && (
@@ -1052,7 +1052,7 @@ function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-sm text-red-600"
               >
-                {errorMsg || "Algo ha ido mal. IntÃ©ntalo de nuevo en unos minutos."}
+                {errorMsg || "Algo ha ido mal. Inténtalo de nuevo en unos minutos."}
               </motion.p>
             )}
           </form>
@@ -1085,8 +1085,8 @@ function Footer() {
           <div className="flex items-center gap-4 text-center md:text-left">
             <img src="/logo-white.png" alt="Logo" loading="lazy" className="h-10 w-10 object-contain" />
             <div className="space-y-2">
-              <div className="text-2xl font-black tracking-tighter uppercase">JosÃ© Carlos Hidalgo</div>
-              <p className="text-gray-500 text-xs tracking-widest uppercase">GestiÃ³n patrimonial e hipotecaria</p>
+              <div className="text-2xl font-black tracking-tighter uppercase">José Carlos Hidalgo</div>
+              <p className="text-gray-500 text-xs tracking-widest uppercase">Gestión patrimonial e hipotecaria</p>
             </div>
           </div>
           <div className="flex items-center gap-6">
@@ -1108,14 +1108,14 @@ function Footer() {
         </div>
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col items-center gap-4">
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12px] text-gray-400">
-            <a href="/terminos.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">TÃ©rminos y condiciones</a>
-            <span aria-hidden="true">Â·</span>
-            <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">PolÃ­tica de privacidad</a>
-            <span aria-hidden="true">Â·</span>
+            <a href="/terminos.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Términos y condiciones</a>
+            <span aria-hidden="true">·</span>
+            <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Política de privacidad</a>
+            <span aria-hidden="true">·</span>
             <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Ver en Google Maps</a>
           </div>
           <div className="text-center text-[10px] text-gray-600 uppercase tracking-widest">
-            Â© {new Date().getFullYear()} JOSÃ‰ CARLOS HIDALGO. TODOS LOS DERECHOS RESERVADOS.
+            © {new Date().getFullYear()} JOSÉ CARLOS HIDALGO. TODOS LOS DERECHOS RESERVADOS.
           </div>
         </div>
       </div>
@@ -1167,7 +1167,7 @@ function Partners() {
       <div className="partners-editorial__inner">
         <FadeUp>
           <p className="partners-editorial__label">
-            Colaboro con entidades lÃ­deres del sector
+            Colaboro con entidades líderes del sector
           </p>
         </FadeUp>
         <div className="partners-editorial__list">
@@ -1187,17 +1187,17 @@ function Partners() {
 const testimonials = [
   {
     name: "Ana M.",
-    text: "Gracias a JosÃ© Carlos conseguimos financiaciÃ³n al 100% para nuestra primera vivienda. El proceso fue mucho mÃ¡s sencillo de lo que esperÃ¡bamos.",
+    text: "Gracias a José Carlos conseguimos financiación al 100% para nuestra primera vivienda. El proceso fue mucho más sencillo de lo que esperábamos.",
     detail: "Primera vivienda, Benidorm",
   },
   {
     name: "Marcos R.",
-    text: "Como autÃ³nomo nunca habÃ­a pensado en lo expuesto que estaba. Me ayudÃ³ a ver riesgos que no veÃ­a y a poner soluciÃ³n sin complicarme la vida.",
-    detail: "AutÃ³nomo, Altea",
+    text: "Como autónomo nunca había pensado en lo expuesto que estaba. Me ayudó a ver riesgos que no veía y a poner solución sin complicarme la vida.",
+    detail: "Autónomo, Altea",
   },
   {
-    name: "Familia LÃ³pez",
-    text: "La administraciÃ³n de nuestra comunidad ha mejorado radicalmente. Transparente, puntual y siempre disponible.",
+    name: "Familia López",
+    text: "La administración de nuestra comunidad ha mejorado radicalmente. Transparente, puntual y siempre disponible.",
     detail: "Comunidad de propietarios, Alicante",
   },
 ];
@@ -1216,7 +1216,7 @@ function Testimonials() {
             <FadeUp key={t.name} delay={i * 0.1}>
               <article className="relative h-full bg-white border border-[#E5E5E5] p-10 hover:border-[#FF6B00] transition-colors">
                 <span aria-hidden="true" className="absolute top-2 left-6 text-7xl leading-none font-black text-[#FF6B00] select-none">
-                  â€œ
+                  “
                 </span>
                 <p className="relative text-[#4A4A4A] leading-relaxed pt-8">{t.text}</p>
                 <div className="mt-8 pt-6 border-t border-[#EEEEEE]">
@@ -1254,8 +1254,8 @@ function CookieBanner() {
     >
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-4 md:gap-8">
         <p className="text-sm text-white/85 leading-relaxed text-center md:text-left flex-1">
-          Utilizamos cookies propias y de terceros para analizar el trÃ¡fico y mejorar tu experiencia. Puedes aceptar todas las cookies o configurar tus preferencias.{" "}
-          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#FF6B00]">MÃ¡s informaciÃ³n</a>
+          Utilizamos cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia. Puedes aceptar todas las cookies o configurar tus preferencias.{" "}
+          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#FF6B00]">Más información</a>
         </p>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
           <button
