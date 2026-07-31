@@ -2,7 +2,12 @@
   const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
 
   function textOf(card) {
-    return (card.querySelector("h3")?.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+    return (card.querySelector("h3")?.textContent || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
   }
 
   function setCta(card, label) {
@@ -15,8 +20,32 @@
     card.removeAttribute("aria-disabled");
     card.removeAttribute("tabindex");
     card.href = href;
-    card.target = "_blank";
-    card.rel = "noopener noreferrer";
+    if (/^https?:\/\//i.test(href)) {
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+    } else {
+      card.removeAttribute("target");
+      card.removeAttribute("rel");
+    }
+  }
+
+  function ensureBlogCard(grid) {
+    const existing = Array.from(grid.querySelectorAll(".tool-card")).find((card) =>
+      textOf(card).includes("blog financiero"),
+    );
+    if (existing) return existing;
+
+    const card = document.createElement("a");
+    card.className = "tool-card";
+    card.href = "/blog";
+    card.innerHTML = `
+      <span class="audience__number"></span>
+      <h3>Blog financiero</h3>
+      <p>Lee artículos prácticos sobre hipotecas, ahorro, protección, pensiones y planificación financiera.</p>
+      <span class="tools__cta"><span aria-hidden="true">→</span> Leer blog</span>
+    `;
+    grid.appendChild(card);
+    return card;
   }
 
   function applyToolOrder() {
@@ -24,31 +53,42 @@
     if (!grid) return;
 
     const cards = Array.from(grid.querySelectorAll(".tool-card"));
+    const savings =
+      cards.find((card) => textOf(card).includes("calculadora de ahorro potencial")) ||
+      cards.find((card) => textOf(card).includes("calculadora hipotecaria"));
     const test = cards.find((card) => textOf(card).includes("test de salud financiera"));
-    const mortgage = cards.find((card) => textOf(card).includes("calculadora hipotecaria"));
-    const diagnostic = cards.find((card) => textOf(card).includes("diagnóstico patrimonial"));
-    const ordered = [test, mortgage, diagnostic].filter(Boolean);
+    const blog = ensureBlogCard(grid);
+    const diagnostic = cards.find((card) => textOf(card).includes("diagnostico patrimonial"));
+    const ordered = [savings, test, blog, diagnostic].filter(Boolean);
+
+    if (savings) {
+      const title = savings.querySelector("h3");
+      const text = savings.querySelector("p");
+      if (title) title.textContent = "Calculadora de ahorro potencial";
+      if (text) {
+        text.textContent =
+          "Calcula cuánto dinero se escapa en pequeños gastos recurrentes y visualiza tu ahorro anual recuperable.";
+      }
+      enableCard(savings, "/herramientas/ahorro-potencial/index.html");
+      setCta(savings, "Abrir calculadora");
+    }
+    if (test) {
+      enableCard(test, "/test-salud-financiera.html");
+      setCta(test, "Hacer test");
+    }
+    if (blog) {
+      enableCard(blog, "/blog");
+      setCta(blog, "Leer blog");
+    }
+    if (diagnostic) {
+      enableCard(diagnostic, CALENDLY_URL);
+      setCta(diagnostic, "Solicitar diagnóstico");
+    }
 
     ordered.forEach((card) => grid.appendChild(card));
-
-    ordered.forEach((card, index) => {
+    Array.from(grid.querySelectorAll(".tool-card")).forEach((card, index) => {
       const number = card.querySelector(".audience__number");
       if (number) number.textContent = `Herramienta ${String(index + 1).padStart(2, "0")}`;
-
-      if (card === test) {
-        enableCard(card, "/test-salud-financiera.html");
-        setCta(card, "Hacer test");
-      } else if (card === diagnostic) {
-        enableCard(card, CALENDLY_URL);
-        setCta(card, "Solicitar diagnóstico");
-      } else {
-        card.setAttribute("aria-disabled", "true");
-        card.setAttribute("tabindex", "-1");
-        card.href = "#herramientas";
-        card.removeAttribute("target");
-        card.removeAttribute("rel");
-        setCta(card, "Próximamente");
-      }
     });
   }
 

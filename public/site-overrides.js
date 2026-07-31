@@ -1,7 +1,7 @@
 (() => {
-  const JOSE_CARLOS_URL = "https://josecarlos.hilolegal.es";
-  const VERONICA_URL = "https://veronicalopez.hilolegal.es";
-  const VERONICA_SERVICES_URL = "https://veronicalopez.hilolegal.es/#services";
+  const JOSE_CARLOS_URL = "/josecarlos/";
+  const VERONICA_URL = "/veronica/";
+  const VERONICA_SERVICES_URL = "/veronica/#services";
   const CALENDLY_URL = "https://calendly.com/jchidalgo/plan";
   const LOGO = { src: "/hilolegal-logo-mark.svg", alt: "HiloLegal" };
   const BRAND_TEXT = "HILOLEGAL";
@@ -84,6 +84,11 @@
   }
 
   function openInNewTab(link) {
+    if (link.href.startsWith(window.location.origin)) {
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      return;
+    }
     link.target = "_blank";
     link.rel = "noopener noreferrer";
   }
@@ -213,8 +218,13 @@
     card.removeAttribute("aria-disabled");
     card.removeAttribute("tabindex");
     card.href = href;
-    card.target = "_blank";
-    card.rel = "noopener noreferrer";
+    if (/^https?:\/\//i.test(href)) {
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+    } else {
+      card.removeAttribute("target");
+      card.removeAttribute("rel");
+    }
   }
 
   function updateTools() {
@@ -223,20 +233,31 @@
     const cards = Array.from(grid.querySelectorAll(".tool-card"));
     const find = (title) => cards.find((card) => norm(card.querySelector("h3")?.textContent).includes(title));
     const test = find("test de salud financiera");
-    const mortgage = find("calculadora hipotecaria");
+    const mortgage = find("calculadora hipotecaria") || find("calculadora de ahorro potencial");
+    const blog = find("blog financiero");
     const diagnostic = find("diagnóstico patrimonial");
-    [test, mortgage, diagnostic].filter(Boolean).forEach((card) => grid.appendChild(card));
-    [test, mortgage, diagnostic].filter(Boolean).forEach((card, index) => {
+    [mortgage, test, blog, diagnostic].filter(Boolean).forEach((card) => grid.appendChild(card));
+    [mortgage, test, blog, diagnostic].filter(Boolean).forEach((card, index) => {
       const number = card.querySelector(".audience__number");
       if (number) number.textContent = `Herramienta ${String(index + 1).padStart(2, "0")}`;
       const cta = card.querySelector(".tools__cta");
-      if (card === test) {
+      if (card === mortgage) {
+        const title = card.querySelector("h3");
+        const text = card.querySelector("p");
+        if (title) title.textContent = "Calculadora de ahorro potencial";
+        if (text) text.textContent = "Calcula cuánto dinero se escapa en pequeños gastos recurrentes y visualiza tu ahorro anual recuperable.";
+        enableTool(card, "/herramientas/ahorro-potencial/index.html");
+        if (cta) cta.textContent = "→ Abrir calculadora";
+      } else if (card === test) {
         enableTool(card, "/test-salud-financiera.html");
         if (cta) cta.textContent = "→ Hacer test";
+      } else if (card === blog) {
+        enableTool(card, "/blog");
+        if (cta) cta.textContent = "→ Leer blog";
       } else if (card === diagnostic) {
         enableTool(card, CALENDLY_URL);
         if (cta) cta.textContent = "→ Solicitar diagnóstico";
-      } else {
+      } else if (false) {
         card.setAttribute("aria-disabled", "true");
         card.setAttribute("tabindex", "-1");
         card.href = "#herramientas";

@@ -222,16 +222,22 @@ const professionals = [
 
 const tools = [
   {
-    title: "Calculadora hipotecaria",
-    text: "Comprueba si una compra de vivienda es viable antes de comprometerte.",
-    cta: "Usar calculadora",
-    href: "/herramientas/ahorro-potencial/",
+    title: "Calculadora de ahorro potencial",
+    text: "Calcula cuánto dinero se escapa en pequeños gastos recurrentes y visualiza tu ahorro anual recuperable.",
+    cta: "Abrir calculadora",
+    href: "/herramientas/ahorro-potencial/index.html",
   },
   {
     title: "Test de salud financiera",
     text: "Evalúa tu nivel de protección, ahorro, endeudamiento y previsión.",
     cta: "Hacer test",
-    href: "#contact",
+    href: "/test-salud-financiera.html",
+  },
+  {
+    title: "Blog financiero",
+    text: "Lee artículos prácticos sobre hipotecas, ahorro, protección, pensiones y planificación financiera.",
+    cta: "Leer blog",
+    href: "/blog",
   },
   {
     title: "Diagnóstico patrimonial",
@@ -275,6 +281,7 @@ function Header() {
     ["Método", "#method"],
     ["Equipo", "#equipo"],
     ["Herramientas", "#herramientas"],
+    ["Blog", "/blog"],
     ["Contacto", "#contact"],
   ];
 
