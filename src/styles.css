@@ -1256,3 +1256,120 @@ footer.site-footer .brand {
     grid-template-columns: 1fr;
   }
 }
+
+/* Original Verónica page preservation */
+.veronica-original,
+.veronica-original main {
+  background: #ffffff !important;
+  color: #1A1A1A !important;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+
+.veronica-original main > section {
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
+  border-top: 0 !important;
+  overflow: hidden;
+}
+
+.veronica-original main > section:first-child {
+  min-height: auto !important;
+  padding-top: 5rem !important;
+  padding-bottom: 8rem !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.veronica-original main h1,
+.veronica-original main h2,
+.veronica-original main h3,
+.veronica-original main h4,
+.veronica-original footer [class*="text-2xl"] {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  text-transform: none !important;
+}
+
+.veronica-original .font-black { font-weight: 900 !important; }
+.veronica-original .font-extrabold { font-weight: 800 !important; }
+.veronica-original .font-bold { font-weight: 700 !important; }
+.veronica-original .font-medium { font-weight: 500 !important; }
+
+.veronica-original .tracking-tight { letter-spacing: -0.025em !important; }
+.veronica-original .tracking-tighter { letter-spacing: -0.05em !important; }
+.veronica-original .tracking-widest { letter-spacing: 0.1em !important; }
+
+.veronica-original [class*="text-[#1A1A1A]"] { color: #1A1A1A !important; }
+.veronica-original [class*="text-[#4A4A4A]"] { color: #4A4A4A !important; }
+.veronica-original [class*="text-[#C5A566]"] { color: #C5A566 !important; }
+.veronica-original .text-white { color: #ffffff !important; }
+.veronica-original .text-black { color: #000000 !important; }
+.veronica-original .text-gray-300 { color: rgb(209 213 219) !important; }
+.veronica-original .text-gray-500 { color: rgb(107 114 128) !important; }
+.veronica-original .text-gray-600 { color: rgb(75 85 99) !important; }
+
+.veronica-original [class*="bg-[#1A1A1A]"] { background-color: #1A1A1A !important; }
+.veronica-original [class*="bg-[#C5A566]"] { background-color: #C5A566 !important; }
+.veronica-original [class*="bg-[#F4EFEA]"] { background-color: #F4EFEA !important; }
+.veronica-original [class*="bg-[#F5F5F5]"] { background-color: #F5F5F5 !important; }
+.veronica-original .bg-white { background-color: #ffffff !important; }
+.veronica-original .bg-black { background-color: #000000 !important; }
+
+.veronica-original [class*="border-[#E5E5E5]"] { border-color: #E5E5E5 !important; }
+.veronica-original [class*="border-[#C5A566]"] { border-color: #C5A566 !important; }
+.veronica-original .border-white { border-color: #ffffff !important; }
+.veronica-original [class*="divide-[#E5E5E5]"] > :not([hidden]) ~ :not([hidden]) { border-color: #E5E5E5 !important; }
+
+.veronica-original main p,
+.veronica-original main li {
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.veronica-original img {
+  filter: none !important;
+}
+
+.veronica-original main iframe {
+  filter: none !important;
+}
+
+.veronica-original input,
+.veronica-original textarea,
+.veronica-original select {
+  background: transparent !important;
+  color: #1A1A1A !important;
+  border-color: #E5E5E5 !important;
+}
+
+.veronica-original select option {
+  background: #ffffff !important;
+  color: #1A1A1A !important;
+}
+
+.veronica-original header.sticky {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: #1A1A1A !important;
+  border-bottom: 1px solid #E5E5E5 !important;
+}
+
+.veronica-original header.sticky a,
+.veronica-original header.sticky button {
+  color: inherit !important;
+}
+
+.veronica-original footer {
+  background: #1A1A1A !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 767px) {
+  .veronica-original main > section {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+  .veronica-original main > section:first-child {
+    padding-top: 4.5rem !important;
+    padding-bottom: 6rem !important;
+  }
+}
