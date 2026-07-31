@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as JosecarlosRouteImport } from './routes/josecarlos'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as VeronicaRouteImport } from './routes/veronica'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -25,9 +27,19 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JosecarlosRoute = JosecarlosRouteImport.update({
+  id: '/josecarlos',
+  path: '/josecarlos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VeronicaRoute = VeronicaRouteImport.update({
+  id: '/veronica',
+  path: '/veronica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -44,13 +56,17 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/josecarlos': typeof JosecarlosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/veronica': typeof VeronicaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/josecarlos': typeof JosecarlosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/veronica': typeof VeronicaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
 }
@@ -58,22 +74,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/josecarlos': typeof JosecarlosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/veronica': typeof VeronicaRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/sitemap.xml' | '/blog/$slug' | '/blog/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/josecarlos'
+    | '/sitemap.xml'
+    | '/veronica'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/blog' | '/sitemap.xml' | '/blog/$slug' | '/blog/'
+  to:
+    '/' | '/josecarlos' | '/sitemap.xml' | '/veronica' | '/blog/$slug' | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/josecarlos'
+    | '/sitemap.xml'
+    | '/veronica'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
+  JosecarlosRoute: typeof JosecarlosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  VeronicaRoute: typeof VeronicaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +128,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/josecarlos': {
+      id: '/josecarlos'
+      path: '/josecarlos'
+      fullPath: '/josecarlos'
+      preLoaderRoute: typeof JosecarlosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/veronica': {
+      id: '/veronica'
+      path: '/veronica'
+      fullPath: '/veronica'
+      preLoaderRoute: typeof VeronicaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -131,7 +181,9 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
+  JosecarlosRoute: JosecarlosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  VeronicaRoute: VeronicaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
