@@ -197,7 +197,7 @@ function Curtain({ children, className = "", delay = 0 }: { children: React.Reac
       </motion.div>
       <motion.div
         aria-hidden
-        className="absolute inset-0 bg-[#FF6B00] origin-bottom"
+        className="absolute inset-0 bg-[#C5A566] origin-bottom"
         variants={{
           hidden: { scaleY: 1 },
           visible: { scaleY: 0, transition: { duration: 1.05, ease: easeOutExpo, delay } },
@@ -225,7 +225,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function Index() {
   return (
-    <div className="josecarlos-original bg-white text-[#1A1A1A] selection:bg-[#FF6B00] selection:text-white">
+    <div className="josecarlos-original bg-white text-[#1A1A1A] selection:bg-[#C5A566] selection:text-white">
       <SmoothScroll />
       <Header />
 
@@ -324,7 +324,7 @@ function Header() {
           >
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20 bg-[#FF6B00]"
+              className="pointer-events-none absolute inset-0 z-20 bg-[#C5A566]"
               initial={{ scaleX: 1 }}
               animate={{ scaleX: 0 }}
               exit={{ scaleX: 1 }}
@@ -352,7 +352,7 @@ function Header() {
                   type="button"
                   onClick={() => setMobileOpen(false)}
                   aria-label="Cerrar menú"
-                  className="rounded-full border border-white/70 bg-white/72 p-2 text-[#1A1A1A] shadow-[0_10px_30px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-colors hover:bg-[#FF6B00] hover:text-white"
+                  className="rounded-full border border-white/70 bg-white/72 p-2 text-[#1A1A1A] shadow-[0_10px_30px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-colors hover:bg-[#C5A566] hover:text-white"
                 >
                   <Icon name="close" className="text-3xl" />
                 </button>
@@ -374,12 +374,12 @@ function Header() {
                     }}
                     className="group relative overflow-hidden rounded-2xl border border-white/70 bg-white/72 px-5 py-4 text-xl font-bold tracking-tight text-[#1A1A1A] shadow-[0_14px_42px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-transform duration-300 active:scale-[0.98]"
                   >
-                    <span className="absolute inset-0 origin-right scale-x-0 bg-[#FF6B00] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+                    <span className="absolute inset-0 origin-right scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
                     <span className="relative z-10 flex items-center justify-between transition-colors group-hover:text-white">
                       {label}
                       <Icon
                         name="arrow_forward"
-                        className="text-xl text-[#FF6B00] transition-colors group-hover:text-white"
+                        className="text-xl text-[#C5A566] transition-colors group-hover:text-white"
                       />
                     </span>
                   </motion.a>
@@ -425,10 +425,10 @@ function Header() {
                 className="group relative text-sm font-medium text-[#1A1A1A]"
                 href={href}
               >
-                <span className="transition-colors group-hover:text-[#FF6B00]">
+                <span className="transition-colors group-hover:text-[#C5A566]">
                   {label}
                 </span>
-                <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#FF6B00] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+                <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
             ))}
           </div>
@@ -438,7 +438,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#FF6B00] sm:inline-block"
+              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -474,19 +474,19 @@ function Hero() {
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <motion.div style={{ y: textY }} className="lg:col-span-7 space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#FF6B00] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.4 }}
-                className="h-[2px] bg-[#FF6B00] block"
+                className="h-[2px] bg-[#C5A566] block"
               />
               HIPOTECAS, AHORRO, PENSIONES, SEGUROS Y ADMINISTRACIÓN DE FINCAS EN ALTEA
             </div>
           </FadeUp>
 
           <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.08] tracking-tight text-balance">
-            {["Tu hipoteca, tus seguros y", <span className="text-[#FF6B00]">tu futuro financiero</span>, "no deberían decidirse por intuición."].map((line, i) => (
+            {["Tu hipoteca, tus seguros y", <span className="text-[#C5A566]">tu futuro financiero</span>, "no deberían decidirse por intuición."].map((line, i) => (
               <Curtain key={i} delay={0.15 + i * 0.1} className="block">
                 <span className="block">{line}</span>
               </Curtain>
@@ -506,7 +506,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#FF6B00] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors shadow-xl shadow-[#FF6B00]/10"
+                className="bg-[#C5A566] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors shadow-xl shadow-[#C5A566]/10"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
@@ -531,7 +531,7 @@ function Hero() {
             transition={{ ...spring, delay: 0.4 }}
             className="relative group"
           >
-            <div className="absolute -inset-4 border border-[#E5E5E5] -z-10 transition-colors duration-500 group-hover:border-[#FF6B00]" />
+            <div className="absolute -inset-4 border border-[#E5E5E5] -z-10 transition-colors duration-500 group-hover:border-[#C5A566]" />
             <div className="relative overflow-hidden">
               <motion.img
                 style={{ y: imgY, scale: imgScale }}
@@ -564,7 +564,7 @@ function TrustStats() {
           {items.map((s, idx) => (
             <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
               <div className="flex flex-col items-center md:items-start gap-4">
-                <Icon name={s.i} className="text-[#FF6B00] text-4xl" />
+                <Icon name={s.i} className="text-[#C5A566] text-4xl" />
                 <p className="text-sm font-bold uppercase tracking-wider text-center md:text-left">{s.t}</p>
               </div>
             </FadeUp>
@@ -588,7 +588,7 @@ function Diagnosis() {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
             <Curtain>
               <span className="block">No vendo productos.</span>
-              <span className="block text-[#FF6B00]">Ordeno decisiones</span>
+              <span className="block text-[#C5A566]">Ordeno decisiones</span>
             </Curtain>
           </h2>
           <motion.div
@@ -596,7 +596,7 @@ function Diagnosis() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: easeOutExpo }}
-            className="w-20 h-2 bg-[#FF6B00] origin-left"
+            className="w-20 h-2 bg-[#C5A566] origin-left"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -615,7 +615,7 @@ function Diagnosis() {
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
-                    <div className="text-[#FF6B00] font-black text-2xl">{x.n}</div>
+                    <div className="text-[#C5A566] font-black text-2xl">{x.n}</div>
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold">{x.t}</h3>
@@ -636,7 +636,7 @@ function Problem() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="lg:sticky lg:top-32 space-y-8">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>La mayoría toma <span className="text-[#FF6B00]">decisiones financieras</span> demasiado tarde</Curtain>
+              <Curtain>La mayoría toma <span className="text-[#C5A566]">decisiones financieras</span> demasiado tarde</Curtain>
             </h2>
             <FadeUp delay={0.2}>
               <p className="text-xl text-gray-400">Evitar los errores comunes es el primer paso para una economía sana. Mi trabajo es anticiparme a ellos.</p>
@@ -648,9 +648,9 @@ function Problem() {
                 <motion.div
                   whileHover={{ x: 8 }}
                   transition={spring}
-                  className="p-10 border border-white/10 hover:border-[#FF6B00] transition-colors"
+                  className="p-10 border border-white/10 hover:border-[#C5A566] transition-colors"
                 >
-                  <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-[0.2em] mb-6 block">Error Común {e.n}</span>
+                  <span className="text-[#C5A566] font-bold text-xs uppercase tracking-[0.2em] mb-6 block">Error Común {e.n}</span>
                   <h4 className="text-2xl font-bold mb-4">{e.title}</h4>
                   <p className="text-gray-400 leading-relaxed">{e.text}</p>
                 </motion.div>
@@ -671,7 +671,7 @@ function Services() {
       <div className="services-editorial__inner">
         <div className="services-editorial__heading">
           <h2>
-            <Curtain><span className="text-[#FF6B00]">Soluciones</span> para proteger tu economía</Curtain>
+            <Curtain><span className="text-[#C5A566]">Soluciones</span> para proteger tu economía</Curtain>
           </h2>
           <FadeUp delay={0.15}>
             <p>Un enfoque integral para que todas las piezas de tu puzzle financiero encajen a la perfección.</p>
@@ -710,7 +710,7 @@ function Method() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="space-y-12">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>No se trata de contratar más. Se trata de <span className="text-[#FF6B00]">decidir mejor</span></Curtain>
+              <Curtain>No se trata de contratar más. Se trata de <span className="text-[#C5A566]">decidir mejor</span></Curtain>
             </h2>
             <div className="method-steps">
               {method.map((m) => (
@@ -768,7 +768,7 @@ function About() {
                 whileInView={{ x: 16, y: 16 }}
                 whileHover={{ x: 0, y: 0 }}
                 transition={spring}
-                className="absolute inset-0 border border-[#FF6B00] -z-10"
+                className="absolute inset-0 border border-[#C5A566] -z-10"
               />
               <div className="relative overflow-hidden">
                 <motion.img
@@ -788,9 +788,9 @@ function About() {
           <div className="lg:col-span-7 space-y-10">
             <FadeUp>
               <div className="space-y-4">
-                <span className="text-[#FF6B00] font-bold text-xs uppercase tracking-widest">SOBRE M�?</span>
+                <span className="text-[#C5A566] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
                 <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo Ortega</h2>
-                <p className="text-2xl font-medium text-[#FF6B00] italic">Especialista en protección patrimonial e hipotecas en Altea · Costa Blanca · Alicante</p>
+                <p className="text-2xl font-medium text-[#C5A566] italic">Especialista en protección patrimonial e hipotecas en Altea · Costa Blanca · Alicante</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
@@ -820,7 +820,7 @@ function About() {
             </FadeUp>
             <FadeUp delay={0.3}>
               <div className="flex items-center gap-4 text-[#1A1A1A] font-bold">
-                <Icon name="location_on" className="text-[#FF6B00]" />
+                <Icon name="location_on" className="text-[#C5A566]" />
                 <span className="text-sm uppercase tracking-widest text-[#C5A566]">Altea · Benidorm · Costa Blanca · Alicante · Online</span>
               </div>
             </FadeUp>
@@ -829,7 +829,7 @@ function About() {
                 href="https://share.google/GlqwXv7lO958pDPDS"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#FF6B00] hover:text-[#1A1A1A] transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#C5A566] hover:text-[#1A1A1A] transition-colors"
               >
                 <Icon name="travel_explore" className="text-base" />
                 Ver mi perfil en Google
@@ -864,7 +864,7 @@ function FAQ() {
                     <motion.span
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={spring}
-                      className="material-symbols-outlined text-[#FF6B00]"
+                      className="material-symbols-outlined text-[#C5A566]"
                     >
                       expand_more
                     </motion.span>
@@ -928,7 +928,7 @@ function Contact() {
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">
-            <Curtain>Hablemos de tu <span className="text-[#FF6B00]">tranquilidad financiera</span></Curtain>
+            <Curtain>Hablemos de tu <span className="text-[#C5A566]">tranquilidad financiera</span></Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
@@ -947,7 +947,7 @@ function Contact() {
                   transition={spring}
                   className="flex items-center gap-8 group"
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center text-white group-hover:bg-[#FF6B00] transition-colors shrink-0">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center text-white group-hover:bg-[#C5A566] transition-colors shrink-0">
                     <Icon name={c.i} className="text-lg md:text-2xl" />
                   </div>
                   <div>
@@ -961,7 +961,7 @@ function Contact() {
           <FadeUp>
             <div className="pt-10 border-t border-[#E5E5E5] space-y-4">
               <div className="flex items-center gap-3">
-                <Icon name="location_on" className="text-[#FF6B00] text-xl" />
+                <Icon name="location_on" className="text-[#C5A566] text-xl" />
                 <p className="text-sm font-bold uppercase tracking-widest">Calle Calitx 9, 03590 Altea</p>
               </div>
               <div className="w-full aspect-[4/3] overflow-hidden border border-[#E5E5E5]">
@@ -988,7 +988,7 @@ function Contact() {
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#FF6B00] transition-colors outline-none"
+                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
               >
                 <option>Diagnóstico General</option>
                 <option>Nueva Hipoteca</option>
@@ -1004,7 +1004,7 @@ function Contact() {
                 placeholder="Cuéntanos tu situación"
                 value={form.message}
                 onChange={onChange("message")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#FF6B00] transition-colors outline-none placeholder:text-gray-300"
+                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
               />
             </div>
 
@@ -1014,11 +1014,11 @@ function Contact() {
                 checked={accepted}
                 onChange={(e) => setAccepted(e.target.checked)}
                 required
-                className="mt-1 w-4 h-4 accent-[#FF6B00] shrink-0"
+                className="mt-1 w-4 h-4 accent-[#C5A566] shrink-0"
               />
               <span>
                 He leído y acepto la{" "}
-                <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="text-[#FF6B00] underline hover:no-underline">
+                <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="text-[#C5A566] underline hover:no-underline">
                   política de privacidad
                 </a>
                 .
@@ -1031,7 +1031,7 @@ function Contact() {
               transition={spring}
               type="submit"
               disabled={status === "sending"}
-              className="w-full bg-[#FF6B00] text-white py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#FF6B00]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full bg-[#C5A566] text-white py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
             </motion.button>
@@ -1098,7 +1098,7 @@ function Footer() {
                 rel="noopener noreferrer"
                 whileHover={{ y: -2 }}
                 transition={spring}
-                className="text-white/70 hover:text-[#FF6B00] transition-colors"
+                className="text-white/70 hover:text-[#C5A566] transition-colors"
                 aria-label={s.label}
               >
                 {s.icon}
@@ -1108,11 +1108,11 @@ function Footer() {
         </div>
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col items-center gap-4">
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12px] text-gray-400">
-            <a href="/terminos.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Términos y condiciones</a>
+            <a href="/terminos.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#C5A566] transition-colors">Términos y condiciones</a>
             <span aria-hidden="true">·</span>
-            <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Política de privacidad</a>
+            <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#C5A566] transition-colors">Política de privacidad</a>
             <span aria-hidden="true">·</span>
-            <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition-colors">Ver en Google Maps</a>
+            <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer" className="hover:text-[#C5A566] transition-colors">Ver en Google Maps</a>
           </div>
           <div className="text-center text-[10px] text-gray-600 uppercase tracking-widest">
             © {new Date().getFullYear()} JOSÉ CARLOS HIDALGO. TODOS LOS DERECHOS RESERVADOS.
@@ -1147,7 +1147,7 @@ function Field({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#FF6B00] transition-colors outline-none placeholder:text-gray-300"
+        className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
       />
     </div>
   );
@@ -1214,8 +1214,8 @@ function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <FadeUp key={t.name} delay={i * 0.1}>
-              <article className="relative h-full bg-white border border-[#E5E5E5] p-10 hover:border-[#FF6B00] transition-colors">
-                <span aria-hidden="true" className="absolute top-2 left-6 text-7xl leading-none font-black text-[#FF6B00] select-none">
+              <article className="relative h-full bg-white border border-[#E5E5E5] p-10 hover:border-[#C5A566] transition-colors">
+                <span aria-hidden="true" className="absolute top-2 left-6 text-7xl leading-none font-black text-[#C5A566] select-none">
                   “
                 </span>
                 <p className="relative text-[#4A4A4A] leading-relaxed pt-8">{t.text}</p>
@@ -1255,7 +1255,7 @@ function CookieBanner() {
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-4 md:gap-8">
         <p className="text-sm text-white/85 leading-relaxed text-center md:text-left flex-1">
           Utilizamos cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia. Puedes aceptar todas las cookies o configurar tus preferencias.{" "}
-          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#FF6B00]">Más información</a>
+          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#C5A566]">Más información</a>
         </p>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
           <button
@@ -1266,7 +1266,7 @@ function CookieBanner() {
           </button>
           <button
             onClick={() => choose("true")}
-            className="bg-[#FF6B00] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1a1a2e] transition-colors"
+            className="bg-[#C5A566] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1a1a2e] transition-colors"
           >
             Aceptar todas
           </button>

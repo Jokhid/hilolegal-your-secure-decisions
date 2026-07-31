@@ -162,7 +162,7 @@ function Header() {
           </span>
         </a>
         <div className="hidden md:flex items-center gap-10">
-          {[["�?reas", "#services"], ["Método", "#method"], ["Sobre mí", "#about"], ["FAQ", "#faq"], ["Contacto", "#contact"]].map(([l, h]) => (
+          {[["Áreas", "#services"], ["Método", "#method"], ["Sobre mí", "#about"], ["FAQ", "#faq"], ["Contacto", "#contact"]].map(([l, h]) => (
             <a
               key={h}
               className="relative text-sm font-medium text-[#1A1A1A] group"
@@ -376,7 +376,7 @@ function Services() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-24 space-y-6 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <Curtain>�?reas de asesoramiento jurídico</Curtain>
+            <Curtain>Áreas de asesoramiento jurídico</Curtain>
           </h2>
           <FadeUp delay={0.15}>
             <p className="text-xl text-[#4A4A4A] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
@@ -483,7 +483,7 @@ function About() {
           <div className="lg:col-span-7 space-y-10">
             <FadeUp>
               <div className="space-y-4">
-                <span className="text-[#C5A566] font-bold text-xs uppercase tracking-widest">SOBRE M�?</span>
+                <span className="text-[#C5A566] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
                 <h2 className="text-5xl font-bold tracking-tight">Verónica López</h2>
                 <p className="text-2xl font-medium text-[#C5A566] italic">Conocer la norma importa. Saber aplicarla con estrategia marca la diferencia.</p>
               </div>

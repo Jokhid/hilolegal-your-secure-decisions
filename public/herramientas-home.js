@@ -33,7 +33,7 @@
       [data-jc-menu-title-icon="true"] { display: inline-flex !important; align-items: center; justify-content: center; color: #1A1A1A !important; }
       [data-jc-menu-title-icon="true"] svg { width: 1.5rem; height: 1.5rem; }
       [data-jc-close-button="true"] { color: #1A1A1A !important; background: rgba(255, 255, 255, 0.9) !important; display: inline-flex !important; align-items: center; justify-content: center; }
-      [data-jc-close-button="true"]:hover { color: #ffffff !important; background: #FF6B00 !important; }
+      [data-jc-close-button="true"]:hover { color: #ffffff !important; background: #C5A566 !important; }
       [data-jc-mobile-tools-link="true"] { animation: jc-mobile-nav-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 455ms; will-change: opacity, transform; }
       @keyframes jc-mobile-nav-in { from { opacity: 0; transform: translateX(54px); } to { opacity: 1; transform: translateX(0); } }
       @media (max-width: 640px) { main > section:nth-of-type(3) h2 { max-width: 100% !important; font-size: clamp(1.45rem, 8.4vw, 2.15rem) !important; line-height: 1.08 !important; } main > section:nth-of-type(3) h2 span { white-space: nowrap; } }
@@ -96,9 +96,9 @@
     link.removeAttribute("data-jc-mobile-tools-link");
     if (mobile) {
       link.setAttribute("data-jc-mobile-tools-link", "true");
-      link.innerHTML = `<span class="absolute inset-0 origin-right scale-x-0 bg-[#FF6B00] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></span><span class="relative z-10 flex items-center justify-between transition-colors group-hover:text-white">Herramientas<span aria-hidden="true" class="material-symbols-outlined text-xl text-[#FF6B00] transition-colors group-hover:text-white">arrow_forward</span></span>`;
+      link.innerHTML = `<span class="absolute inset-0 origin-right scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></span><span class="relative z-10 flex items-center justify-between transition-colors group-hover:text-white">Herramientas<span aria-hidden="true" class="material-symbols-outlined text-xl text-[#C5A566] transition-colors group-hover:text-white">arrow_forward</span></span>`;
     } else {
-      link.innerHTML = `<span class="transition-colors group-hover:text-[#FF6B00]">Herramientas</span><span class="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#FF6B00] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></span>`;
+      link.innerHTML = `<span class="transition-colors group-hover:text-[#C5A566]">Herramientas</span><span class="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"></span>`;
     }
   }
 

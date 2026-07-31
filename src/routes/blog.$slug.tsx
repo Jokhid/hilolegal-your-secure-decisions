@@ -55,14 +55,14 @@ export const Route = createFileRoute("/blog/$slug")({
   component: BlogPostPage,
   notFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
-      <Link to="/blog" className="text-[#FF6B00] underline">
+      <Link to="/blog" className="text-[#C5A566] underline">
         Volver al blog
       </Link>
     </div>
   ),
   errorComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
-      <Link to="/blog" className="text-[#FF6B00] underline">
+      <Link to="/blog" className="text-[#C5A566] underline">
         Volver al blog
       </Link>
     </div>
@@ -117,7 +117,7 @@ function renderMarkdown(md: string) {
       blocks.push(
         <blockquote
           key={key++}
-          className="border-l-4 border-[#FF6B00] pl-6 my-8 italic text-xl text-[#1A1A1A]"
+          className="border-l-4 border-[#C5A566] pl-6 my-8 italic text-xl text-[#1A1A1A]"
         >
           {inline(line.slice(2))}
         </blockquote>,
@@ -179,14 +179,14 @@ function BlogPostPage() {
       <main className="max-w-[760px] mx-auto px-6 py-16">
         <article>
           <div className="space-y-6 mb-12">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FF6B00]">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C5A566]">
               {post.category} · {post.readingTime}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
               {post.title}
             </h1>
             <p className="text-xl text-[#4A4A4A] leading-relaxed">{post.excerpt}</p>
-            <div className="w-20 h-1 bg-[#FF6B00]" />
+            <div className="w-20 h-1 bg-[#C5A566]" />
           </div>
 
           <div className="prose-content">{renderMarkdown(post.content)}</div>
@@ -195,7 +195,7 @@ function BlogPostPage() {
             <Link
               to="/"
               hash="contact"
-              className="inline-block bg-[#FF6B00] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors"
+              className="inline-block bg-[#C5A566] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors"
             >
               Quiero mi diagnóstico gratuito
             </Link>
@@ -213,9 +213,9 @@ function BlogPostPage() {
                   key={r.slug}
                   to="/blog/$slug"
                   params={{ slug: r.slug }}
-                  className="block border border-[#E5E5E5] p-6 hover:border-[#FF6B00] transition-colors"
+                  className="block border border-[#E5E5E5] p-6 hover:border-[#C5A566] transition-colors"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FF6B00]">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C5A566]">
                     {r.category}
                   </span>
                   <h3 className="mt-3 font-bold leading-snug">{r.title}</h3>
