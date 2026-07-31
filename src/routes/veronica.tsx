@@ -14,6 +14,12 @@ export const Route = createFileRoute("/veronica")({
       { property: "og:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
       { property: "og:description", content: "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades. Consulta en Altea." },
     ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=account_balance,arrow_forward,balance,call,expand_more,gavel,home,location_on,mail,psychology,school,shield,workspace_premium&display=swap",
+      },
+    ],
   }),
   component: Index,
 });

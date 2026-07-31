@@ -23,6 +23,10 @@ export const Route = createFileRoute("/josecarlos")({
     ],
     links: [
       { rel: "canonical", href: "https://hilolegal.es/josecarlos/" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=analytics,assured_workload,balance,call,close,domain,expand_more,family_restroom,location_on,mail,map,medical_services,menu,real_estate_agent,travel_explore,trending_up,visibility&display=swap",
+      },
     ],
     scripts: [
       {
