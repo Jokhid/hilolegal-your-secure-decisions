@@ -115,7 +115,7 @@ const areas = [
     tag: "Área 01",
     title: "Legal",
     text:
-      "Asesoramiento jurídico para asuntos civiles, familiares, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
+      "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
     cta: "Ver servicios legales",
     href: "#contact",
   },
@@ -149,7 +149,7 @@ const audiences = [
   {
     title: "Familias",
     text:
-      "Para quienes quieren comprar vivienda, proteger a sus hijos, organizar su economía, planificar ahorro o resolver asuntos legales con seguridad.",
+      "Para quienes quieren resolver sus asuntos legales con seguridad, comprar vivienda, proteger a sus hijos, organizar su economía o planificar ahorro.",
   },
   {
     title: "Autónomos",
