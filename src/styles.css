@@ -678,7 +678,7 @@ main > section:first-child a.btn-ghost:hover {
 #herramientas .tools__heading p { color: var(--jch-muted) !important; font-size: 1.1rem; }
 #herramientas .tools__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--jch-line);
   border-left: 1px solid var(--jch-line);
 }
