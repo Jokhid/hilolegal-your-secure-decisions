@@ -169,19 +169,6 @@
     const toolsIntro = document.querySelector(".tools__heading p");
     if (toolsIntro && norm(toolsIntro.textContent).includes("una web premium")) toolsIntro.textContent = TOOLS_INTRO_TEXT;
 
-    const areasAccent = document.querySelector("#areas h2 .jch-accent");
-    if (areasAccent && norm(areasAccent.textContent) === "principales") areasAccent.textContent = " principales";
-
-    const audienceAccent = document.querySelector("#audiencia h2 .jch-accent");
-    if (audienceAccent && norm(audienceAccent.textContent) === "trabajamos") audienceAccent.textContent = "\u00a0trabajamos";
-
-    const closingAccent = document.querySelector("#cierre h2 .jch-accent");
-    if (closingAccent && norm(closingAccent.textContent).replace(/,$/, "") === "patrimonio") {
-      closingAccent.textContent = " patrimonio,";
-      const commaPart = Array.from(document.querySelectorAll("#cierre h2 span")).find((part) => norm(part.textContent).startsWith(", merece"));
-      if (commaPart) commaPart.textContent = " merece ser analizada con criterio.";
-    }
-
     document.querySelectorAll("#equipo .pros__card").forEach((card) => {
       const name = norm(card.querySelector("h3")?.textContent);
       const eyebrow = card.querySelector(".pros__eyebrow");

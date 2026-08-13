@@ -117,7 +117,7 @@ const areas = [
     text:
       "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
     cta: "Ver servicios legales",
-    href: "#contact",
+    href: "/veronica",
   },
   {
     tag: "Área 02",
@@ -125,7 +125,7 @@ const areas = [
     text:
       "Planificación financiera, ahorro, inversión, pensiones, seguros de vida, salud y protección de autónomos. Te ayudamos a ordenar tu economía, proteger tus ingresos y preparar decisiones importantes con una visión realista.",
     cta: "Ver asesoramiento patrimonial",
-    href: "#contact",
+    href: "/josecarlos",
   },
   {
     tag: "Área 03",
@@ -133,7 +133,7 @@ const areas = [
     text:
       "Estudio hipotecario, viabilidad financiera, comparación de opciones y acompañamiento en la compra de vivienda. No se trata solo de conseguir una hipoteca. Se trata de comprar con seguridad.",
     cta: "Ver hipotecas",
-    href: "#contact",
+    href: "/josecarlos",
   },
   {
     tag: "Área 04",
@@ -206,6 +206,7 @@ const professionals = [
       "Su perfil aporta visión estratégica, rigor técnico y experiencia institucional en asuntos legales complejos.",
     ],
     cta: "Conocer a Verónica",
+    href: "/veronica",
   },
   {
     img: "/9.webp",
@@ -217,6 +218,7 @@ const professionals = [
       "Su trabajo se centra en ayudar a familias, autónomos y propietarios a ordenar sus decisiones económicas y proteger su futuro.",
     ],
     cta: "Conocer a José Carlos",
+    href: "/josecarlos",
   },
 ];
 
@@ -397,19 +399,19 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-balance">
-            <Curtain>Abogacía, patrimonio y </Curtain>
+            <Curtain>Protegemos tu patrimonio financiero</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">decisiones importantes</span>
-            </Curtain>
-            <Curtain delay={0.2}> con criterio.</Curtain>
+              <span className="jch-accent jch-italic">y defendemos tus derechos legales</span>
+            </Curtain>{" "}
+            <Curtain delay={0.2}>en Altea.</Curtain>
           </h1>
 
           <FadeUp delay={0.55}>
             <p>
-              Planificación financiera, hipotecas, seguros y administración de fincas para personas
-              que necesitan tomar decisiones importantes con seguridad. En HiloLegal unimos criterio
-              jurídico, visión patrimonial y experiencia financiera para ayudarte a proteger lo que
-              has construido, anticipar riesgos y tomar mejores decisiones.
+              Unimos la visión de la planificación financiera estratégica con la defensa jurídica
+              integral en derecho civil, familia, penal y administrativo. Respaldamos a particulares,
+              autónomos y comunidades de propietarios para asegurar sus activos y resolver cualquier
+              conflicto legal.
             </p>
           </FadeUp>
 
@@ -453,11 +455,11 @@ function TrustBlock() {
           <div>
             <span className="trust-block__eyebrow">Nuestra visión</span>
             <h2 className="text-balance">
-              <Curtain>Decisiones importantes </Curtain>
+              <Curtain>Decisiones importantes</Curtain>{" "}
               <Curtain delay={0.1}>
                 <span className="jch-accent jch-italic">necesitan más</span>
-              </Curtain>
-              <Curtain delay={0.2}> que una respuesta rápida.</Curtain>
+              </Curtain>{" "}
+              <Curtain delay={0.2}>que una respuesta rápida.</Curtain>
             </h2>
           </div>
         </FadeUp>
@@ -485,7 +487,7 @@ function Areas() {
       <div className="services-editorial__inner">
         <div className="services-editorial__heading">
           <h2>
-            <Curtain>Áreas </Curtain>
+            <Curtain>Áreas</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">principales</span>
             </Curtain>
@@ -527,11 +529,11 @@ function Positioning() {
     <section id="posicionamiento" className="position-block">
       <div className="position-block__inner">
         <h2>
-          <Curtain>Una firma para </Curtain>
+          <Curtain>Una firma para</Curtain>{" "}
           <Curtain delay={0.1}>
             <span className="jch-accent jch-italic">proteger decisiones</span>
-          </Curtain>
-          <Curtain delay={0.2}> patrimoniales.</Curtain>
+          </Curtain>{" "}
+          <Curtain delay={0.2}>patrimoniales.</Curtain>
         </h2>
         <FadeUp delay={0.2} className="position-block__body">
           <p>
@@ -557,7 +559,7 @@ function Audience() {
     <section id="audiencia">
       <div className="audience__inner">
         <h2>
-          <Curtain>Para quién </Curtain>
+          <Curtain>Para quién</Curtain>{" "}
           <Curtain delay={0.1}>
             <span className="jch-accent jch-italic">trabajamos</span>
           </Curtain>
@@ -587,7 +589,7 @@ function Method() {
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2>
-            <Curtain>Nuestro </Curtain>
+            <Curtain>Nuestro</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">método</span>
             </Curtain>
@@ -630,7 +632,7 @@ function Professionals() {
       <div className="pros__inner">
         <div className="pros__intro">
           <h2>
-            <Curtain>Dirección experta, </Curtain>
+            <Curtain>Dirección experta,</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">trato cercano</span>
             </Curtain>
@@ -679,7 +681,7 @@ function Tools() {
       <div className="tools__inner">
         <div className="tools__heading">
           <h2>
-            <Curtain>Herramientas para </Curtain>
+            <Curtain>Herramientas para</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">decidir mejor</span>
             </Curtain>
@@ -721,7 +723,7 @@ function Closing() {
       <div className="closing__inner">
         <FadeUp>
           <h2 className="text-balance">
-            <Curtain>Si una decisión puede afectar a tu </Curtain>
+            <Curtain>Si una decisión puede afectar a tu</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">patrimonio</span>
             </Curtain>
@@ -785,7 +787,7 @@ function Contact() {
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-16 lg:grid-cols-2">
         <div className="space-y-8">
           <h2>
-            <Curtain>Solicita tu </Curtain>
+            <Curtain>Solicita tu</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic">diagnóstico</span>
             </Curtain>
