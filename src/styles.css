@@ -172,7 +172,7 @@ main [class*="font-black"] {
 
 main h1, main h2, main h3,
 footer [class*="text-2xl"] {
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
   font-weight: 500 !important;
   text-transform: none !important;
 }
@@ -444,7 +444,7 @@ main > section:first-child a.btn-ghost:hover {
 .services-editorial__card h3 {
   margin: 2.4rem 0 1rem;
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: clamp(1.8rem, 2.5vw, 2.35rem) !important;
   font-weight: 500 !important;
   line-height: 1.08 !important;
@@ -583,7 +583,7 @@ main > section:first-child a.btn-ghost:hover {
 .method-step__title {
   margin: 0 0 .75rem;
   color: var(--jch-ink);
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(1.45rem, 2.2vw, 2rem);
   font-weight: 500;
   line-height: 1.15;
@@ -698,7 +698,7 @@ main > section:first-child a.btn-ghost:hover {
 #herramientas .tool-card:hover { background: var(--jch-surface); }
 #herramientas .tool-card h3 {
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: clamp(1.6rem, 2.2vw, 2rem) !important;
   margin: 0;
   line-height: 1.15 !important;
@@ -769,7 +769,7 @@ footer.site-footer p, footer.site-footer a { color: var(--jch-muted) !important;
 footer.site-footer a:hover { color: var(--jch-accent) !important; }
 footer.site-footer .brand {
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: 1.5rem !important;
   letter-spacing: 0 !important;
 }
@@ -834,7 +834,7 @@ footer.site-footer .brand {
 .blog-editorial__heading h1 {
   margin: 2rem 0 0;
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: clamp(3.2rem, 7vw, 6.5rem) !important;
   font-weight: 500 !important;
   line-height: .96 !important;
@@ -902,7 +902,7 @@ footer.site-footer .brand {
 .blog-editorial__card h2 {
   margin: 2.4rem 0 1rem;
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: clamp(1.8rem, 2.5vw, 2.35rem) !important;
   font-weight: 400 !important;
   line-height: 1.08 !important;
@@ -1093,7 +1093,7 @@ footer.site-footer .brand {
 .profile-section__intro h2 {
   margin: 1.5rem 0 0;
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-weight: 500 !important;
   letter-spacing: 0 !important;
 }
@@ -1215,7 +1215,7 @@ footer.site-footer .brand {
 .profile-card h3 {
   margin: 2.5rem 0 0;
   color: var(--jch-ink) !important;
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: "Playfair Display", Georgia, serif !important;
   font-size: clamp(1.55rem, 2.2vw, 2.1rem) !important;
   font-weight: 400 !important;
   line-height: 1.08 !important;
