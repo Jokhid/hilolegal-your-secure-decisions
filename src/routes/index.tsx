@@ -407,11 +407,10 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-balance">
-            <Curtain>Protegemos tu patrimonio financiero</Curtain>{" "}
+            <Curtain>Defendemos tus derechos</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">y defendemos tus derechos legales</span>
-            </Curtain>{" "}
-            <Curtain delay={0.2}>en Altea.</Curtain>
+              <span className="jch-accent jch-italic">y protegemos tu patrimonio financiero.</span>
+            </Curtain>
           </h1>
 
           <FadeUp delay={0.55}>
@@ -426,10 +425,10 @@ function Hero() {
           <FadeUp delay={0.7}>
             <div className="flex flex-wrap gap-3 pt-4">
               <a href="#contact" className="btn-primary">
-                Solicitar diagnóstico
+                Solicitar consulta previa
               </a>
               <a href="#areas" className="btn-ghost">
-                Ver áreas de trabajo
+                Conocer áreas de servicios
               </a>
             </div>
           </FadeUp>
@@ -477,13 +476,19 @@ function TrustBlock() {
 
         <FadeUp delay={0.2} className="trust-block__body">
           <p>
-            Comprar una vivienda, proteger a tu familia, resolver un conflicto legal, planificar
+            Resolver un conflicto legal, comprar una vivienda, proteger a tu familia, planificar
             tu jubilación, asegurar tus ingresos o gestionar una comunidad no son trámites aislados.
           </p>
           <p>Son decisiones que afectan a tu patrimonio, tu tranquilidad y tu futuro.</p>
           <p>
-            En HiloLegal trabajamos con una visión integral: analizamos tu situación, identificamos
-            riesgos y te ayudamos a decidir con información clara.
+            HiloLegal coordina la respuesta a tus necesidades legales y financieras desde una única
+            estructura. Preservar el patrimonio y la tranquilidad personal exige controlar los
+            riesgos jurídicos, afrontar procesos judiciales con garantías y planificar los recursos
+            económicos con criterio técnico.
+          </p>
+          <p>
+            Tratamos cada asunto con visión global, garantizando atención directa, rigor analítico
+            y acompañamiento continuo en todas las áreas del derecho y las finanzas.
           </p>
         </FadeUp>
       </div>
