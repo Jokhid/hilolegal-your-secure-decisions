@@ -11,7 +11,7 @@ const USER_ERROR = "No se ha podido enviar el formulario. Por favor, contacta po
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
   phone: z.string().trim().min(3).max(40),
-  email: z.string().trim().email().max(255),
+  email: z.string().trim().email().max(255).optional(),
   topic: z.string().trim().min(1).max(100),
   message: z.string().trim().max(2000).optional().default(""),
 });

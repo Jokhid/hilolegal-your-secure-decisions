@@ -115,10 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
-      { src: "/site-overrides.js", defer: true },
       { src: "/ochre-windows.js", defer: true },
-      { src: "/tools-order.js", defer: true },
-      { src: "/matrix-integrations.js", defer: true },
     ],
   }),
   shellComponent: RootShell,

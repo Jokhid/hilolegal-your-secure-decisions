@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
             "Boutique legal y patrimonial en Altea - Costa Blanca. Abogacía, planificación financiera, hipotecas, seguros y administración de fincas.",
           url: "https://hilolegal.es",
           telephone: "+34647506040",
-          email: "info@hilolegal.es",
+          email: "contacto@hilolegal.es",
           areaServed: [{ "@type": "City", name: "Altea" }],
           founder: [
             { "@type": "Person", name: "Verónica López" },
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
 
 const PHONE_DISPLAY = "647 50 60 40";
 const PHONE_TEL = "+34647506040";
-const EMAIL = "info@hilolegal.es";
+const EMAIL = "contacto@hilolegal.es";
 const WHATSAPP = "https://wa.me/34647506040";
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
@@ -117,7 +117,9 @@ const areas = [
     text:
       "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
     cta: "Ver servicios legales",
-    href: "/veronica",
+    href: "/veronica#services",
+    art: "/area-legal.svg",
+    artAlt: "Ilustración del área legal de HiloLegal",
   },
   {
     tag: "Área 02",
@@ -126,6 +128,8 @@ const areas = [
       "Planificación financiera, ahorro, inversión, pensiones, seguros de vida, salud y protección de autónomos. Te ayudamos a ordenar tu economía, proteger tus ingresos y preparar decisiones importantes con una visión realista.",
     cta: "Ver asesoramiento patrimonial",
     href: "/josecarlos",
+    art: "/area-patrimonial-financiero.svg",
+    artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
   },
   {
     tag: "Área 03",
@@ -134,6 +138,8 @@ const areas = [
       "Estudio hipotecario, viabilidad financiera, comparación de opciones y acompañamiento en la compra de vivienda. No se trata solo de conseguir una hipoteca. Se trata de comprar con seguridad.",
     cta: "Ver hipotecas",
     href: "/josecarlos",
+    art: "/area-hipotecas.svg",
+    artAlt: "Ilustración del área de hipotecas de HiloLegal",
   },
   {
     tag: "Área 04",
@@ -141,7 +147,9 @@ const areas = [
     text:
       "Gestión profesional de comunidades de propietarios con control económico, transparencia y respuesta. Una comunidad bien administrada protege el valor de cada inmueble.",
     cta: "Ver administración de fincas",
-    href: "#contact",
+    href: "/josecarlos",
+    art: "/area-administracion-fincas.svg",
+    artAlt: "Ilustración del área de administración de fincas de HiloLegal",
   },
 ];
 
@@ -157,14 +165,14 @@ const audiences = [
       "Para profesionales que necesitan proteger sus ingresos, planificar su jubilación, cubrir riesgos personales y tomar decisiones financieras con criterio.",
   },
   {
+    title: "Empresas",
+    text:
+      "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.",
+  },
+  {
     title: "Propietarios",
     text:
       "Para quienes necesitan resolver problemas inmobiliarios, gestionar patrimonio, afrontar conflictos legales o tomar decisiones sobre vivienda, alquiler o comunidad.",
-  },
-  {
-    title: "Comunidades de propietarios",
-    text:
-      "Para presidentes y propietarios que quieren una administración clara, ordenada y profesional.",
   },
 ];
 
@@ -198,9 +206,9 @@ const methodSteps = [
 const professionals = [
   {
     img: "/vero_jurista.webp",
-    eyebrow: "Socia · Jurista",
+    eyebrow: "Socia",
     name: "Verónica López",
-    role: "Jurista senior y abogada",
+    role: "Abogada",
     bio: [
       "Más de 20 años de experiencia jurídica, trayectoria en puestos de alta responsabilidad en la Administración de Justicia y actividad docente como profesora asociada en la Facultad de Derecho de Alicante.",
       "Su perfil aporta visión estratégica, rigor técnico y experiencia institucional en asuntos legales complejos.",
@@ -210,11 +218,11 @@ const professionals = [
   },
   {
     img: "/9.webp",
-    eyebrow: "Socio · Financiero",
+    eyebrow: "Socio",
     name: "José Carlos Hidalgo",
-    role: "Asesor financiero, hipotecario y patrimonial",
+    role: "Gestor patrimonial e hipotecario.",
     bio: [
-      "Especialista en planificación financiera, hipotecas, seguros, protección de autónomos, ahorro y previsión patrimonial.",
+      "Más de 25 años de experiencia en asesoría y administración. Administrador de fincas y gestor de Nationale Nederlanden, ING y Abanca. Especialista en planificación financiera, hipotecas, seguros y ahorro.",
       "Su trabajo se centra en ayudar a familias, autónomos y propietarios a ordenar sus decisiones económicas y proteger su futuro.",
     ],
     cta: "Conocer a José Carlos",
@@ -245,7 +253,7 @@ const tools = [
     title: "Diagnóstico patrimonial",
     text: "Solicita una revisión inicial de tu situación legal, financiera o hipotecaria.",
     cta: "Solicitar diagnóstico",
-    href: "#contact",
+    href: "https://calendly.com/jchidalgo/plan",
   },
 ];
 
@@ -437,7 +445,10 @@ function Hero() {
             style={{ y: imgY, scale: imgScale }}
             src="/josecarlos_veronica.webp"
             alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
+            width={1175}
+            height={596}
             loading="eager"
+            decoding="async"
             fetchPriority="high"
           />
         </motion.div>
@@ -503,10 +514,20 @@ function Areas() {
         <div className="services-editorial__grid">
           {areas.map((a, i) => (
             <FadeUp key={a.title} delay={(i % 2) * 0.08}>
-              <a href={a.href} className="services-editorial__card">
+              <a href={a.href} className="services-editorial__card services-editorial__card--with-art">
                 <div className="services-editorial__meta">
                   <span>{String(i + 1).padStart(2, "0")}</span>
                   <span>{a.tag}</span>
+                </div>
+                <div className="service-card__art">
+                  <img
+                    src={a.art}
+                    alt={a.artAlt}
+                    width={512}
+                    height={512}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <h3>{a.title}</h3>
                 <p>{a.text}</p>
@@ -548,6 +569,16 @@ function Positioning() {
           </p>
           <p>Por eso abordamos cada caso con una mirada legal, financiera y patrimonial.</p>
         </FadeUp>
+        <div className="position-block__media">
+          <img
+            src="/nosotros_cliente.webp"
+            alt="Equipo de HiloLegal asesorando a un cliente"
+            width={1254}
+            height={1254}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </section>
   );
@@ -569,7 +600,7 @@ function Audience() {
           {audiences.map((a, i) => (
             <FadeUp key={a.title} delay={(i % 4) * 0.08}>
               <article className="audience__card">
-                <span className="audience__number">{String(i + 1).padStart(2, "0")} · Perfil</span>
+                <span className="audience__number">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{a.title}</h3>
                 <p>{a.text}</p>
               </article>
@@ -661,7 +692,7 @@ function Professionals() {
                       <p key={idx}>{b}</p>
                     ))}
                   </div>
-                  <a href="#contact" className="pros__cta">
+                  <a href={p.href} className="pros__cta">
                     <span aria-hidden="true">→</span> {p.cta}
                   </a>
                 </div>
@@ -688,9 +719,8 @@ function Tools() {
           </h2>
           <FadeUp delay={0.15}>
             <p>
-              Una web premium no debe limitarse a explicar servicios. Debe ayudarte a tomar
-              conciencia de tu situación. Ponemos a tu disposición herramientas prácticas para
-              analizar tu economía, tu hipoteca y tus riesgos principales.
+              Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu
+              hipoteca y tus riesgos principales.
             </p>
           </FadeUp>
         </div>
@@ -698,7 +728,11 @@ function Tools() {
         <div className="tools__grid">
           {tools.map((t, i) => (
             <FadeUp key={t.title} delay={i * 0.08}>
-              <a href={t.href} className="tool-card">
+              <a
+                href={t.href}
+                className="tool-card"
+                {...(t.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 <span className="audience__number">
                   Herramienta {String(i + 1).padStart(2, "0")}
                 </span>
@@ -752,8 +786,7 @@ function Contact() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    email: "",
-    topic: "Diagnóstico patrimonial",
+    topic: "Defensa Jurídica",
     message: "",
   });
 
@@ -774,7 +807,7 @@ function Contact() {
     try {
       await submit({ data: form });
       setStatus("ok");
-      setForm({ name: "", phone: "", email: "", topic: "Diagnóstico patrimonial", message: "" });
+      setForm({ name: "", phone: "", topic: "Defensa Jurídica", message: "" });
       setAccepted(false);
     } catch (err) {
       setStatus("error");
@@ -787,15 +820,15 @@ function Contact() {
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-16 lg:grid-cols-2">
         <div className="space-y-8">
           <h2>
-            <Curtain>Solicita tu</Curtain>{" "}
+            <Curtain>Hablemos sobre tu</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">diagnóstico</span>
+              <span className="jch-accent jch-italic">situación legal o financiera</span>
             </Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>
-              Rellena el formulario y te contactaremos en menos de 24 horas para agendar tu
-              diagnóstico patrimonial inicial.
+              Cuéntanos tu caso. Analizaremos tu situación para ofrecerte una hoja de ruta clara,
+              directa y adaptada a tus necesidades.
             </p>
           </FadeUp>
 
@@ -813,7 +846,7 @@ function Contact() {
               </p>
             </a>
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Altea - Costa Blanca</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Altea, Alicante</p>
               <p className="text-base opacity-80">
                 HiloLegal — Boutique legal y patrimonial
               </p>
@@ -841,29 +874,19 @@ function Contact() {
                 required
               />
             </div>
-            <Field
-              label="Email"
-              type="email"
-              placeholder="tu@email.com"
-              value={form.email}
-              onChange={onChange("email")}
-              required
-            />
             <div className="space-y-2">
               <label className="text-[10px] font-medium uppercase tracking-[0.2em]">
-                ¿Qué necesitas revisar?
+                Especialidad requerida
               </label>
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
                 className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-3 focus:outline-none focus:border-[color:var(--jch-accent)] transition-colors"
               >
-                <option>Diagnóstico patrimonial</option>
-                <option>Asesoramiento legal</option>
-                <option>Hipoteca</option>
-                <option>Seguros y protección</option>
-                <option>Ahorro y jubilación</option>
-                <option>Administración de fincas</option>
+                <option>Defensa Jurídica</option>
+                <option>Asesoramiento Financiero</option>
+                <option>Hipotecas</option>
+                <option>Administración de Fincas</option>
               </select>
             </div>
             <div className="space-y-2">
@@ -970,7 +993,18 @@ function Footer() {
       <div className="footer__inner">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <div>
-            <p className="brand">HiloLegal</p>
+            <p className="brand">
+              <img
+                src="/hilolegal-logo-mark.svg"
+                alt=""
+                className="footer-logo-mark"
+                width={34}
+                height={37}
+                loading="lazy"
+                decoding="async"
+              />
+              HiloLegal
+            </p>
             <p className="mt-2 text-xs uppercase tracking-[0.2em] opacity-60">
               Boutique legal y patrimonial · Altea - Costa Blanca
             </p>
