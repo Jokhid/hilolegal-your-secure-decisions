@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
             "Boutique legal y patrimonial en Altea - Costa Blanca. Abogacía, planificación financiera, hipotecas, seguros y administración de fincas.",
           url: "https://hilolegal.es",
           telephone: "+34647506040",
-          email: "contacto@hilolegal.es",
+          email: "info@hilolegal.es",
           areaServed: [{ "@type": "City", name: "Altea" }],
           founder: [
             { "@type": "Person", name: "Verónica López" },
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
 
 const PHONE_DISPLAY = "647 50 60 40";
 const PHONE_TEL = "+34647506040";
-const EMAIL = "contacto@hilolegal.es";
+const EMAIL = "info@hilolegal.es";
 const WHATSAPP = "https://wa.me/34647506040";
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const;
@@ -443,10 +443,10 @@ function Hero() {
         >
           <motion.img
             style={{ y: imgY, scale: imgScale }}
-            src="/josecarlos_veronica.webp"
+            src="/fotoalteadespacho.webp"
             alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
-            width={1175}
-            height={596}
+            width={1024}
+            height={1024}
             loading="eager"
             decoding="async"
             fetchPriority="high"
