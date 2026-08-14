@@ -124,7 +124,7 @@ const areas = [
       "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
     cta: "Ver servicios legales",
     href: "/veronica#services",
-    art: "/area-legal.svg",
+    art: "/legal.webp",
     artAlt: "Ilustración del área legal de HiloLegal",
   },
   {
@@ -134,7 +134,7 @@ const areas = [
       "Planificación financiera, ahorro, inversión, pensiones, seguros de vida, salud y protección de autónomos. Te ayudamos a ordenar tu economía, proteger tus ingresos y preparar decisiones importantes con una visión realista.",
     cta: "Ver asesoramiento patrimonial",
     href: "/josecarlos",
-    art: "/area-patrimonial-financiero.svg",
+    art: "/patrimonial.webp",
     artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
   },
   {
@@ -144,7 +144,7 @@ const areas = [
       "Estudio hipotecario, viabilidad financiera, comparación de opciones y acompañamiento en la compra de vivienda. No se trata solo de conseguir una hipoteca. Se trata de comprar con seguridad.",
     cta: "Ver hipotecas",
     href: "/josecarlos",
-    art: "/area-hipotecas.svg",
+    art: "/hipotecas.webp",
     artAlt: "Ilustración del área de hipotecas de HiloLegal",
   },
   {
@@ -154,7 +154,7 @@ const areas = [
       "Gestión profesional de comunidades de propietarios con control económico, transparencia y respuesta. Una comunidad bien administrada protege el valor de cada inmueble.",
     cta: "Ver administración de fincas",
     href: "/josecarlos",
-    art: "/area-administracion-fincas.svg",
+    art: "/fincas.webp",
     artAlt: "Ilustración del área de administración de fincas de HiloLegal",
   },
 ];
@@ -526,26 +526,28 @@ function Areas() {
           {areas.map((a, i) => (
             <FadeUp key={a.title} delay={(i % 2) * 0.08}>
               <a href={a.href} className="services-editorial__card services-editorial__card--with-art">
-                <div className="services-editorial__meta">
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <span>{a.tag}</span>
-                </div>
                 <div className="service-card__art">
                   <img
                     src={a.art}
                     alt={a.artAlt}
-                    width={512}
-                    height={512}
+                    width={900}
+                    height={540}
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
-                <h3>{a.title}</h3>
-                <p>{a.text}</p>
-                <span className="services-editorial__cta">
-                  <span aria-hidden="true" />
-                  {a.cta}
-                </span>
+                <div className="services-editorial__body">
+                  <div className="services-editorial__meta">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <span>{a.tag}</span>
+                  </div>
+                  <h3>{a.title}</h3>
+                  <p>{a.text}</p>
+                  <span className="services-editorial__cta">
+                    <span aria-hidden="true" />
+                    {a.cta}
+                  </span>
+                </div>
               </a>
             </FadeUp>
           ))}
