@@ -59,19 +59,21 @@ function Curtain({
   children,
   className = "",
   delay = 0,
+  eager = false,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  eager?: boolean;
 }) {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
+  const trigger = eager ? { animate: "visible" as const } : { whileInView: "visible" as const, viewport: { once: true, amount: 0.3 } };
   return (
     <motion.span
       className={`relative inline-block overflow-hidden align-baseline ${className}`}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      {...trigger}
     >
       <motion.span
         className="inline-block"
@@ -90,18 +92,22 @@ function FadeUp({
   children,
   delay = 0,
   className = "",
+  eager = false,
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  eager?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const trigger = eager
+    ? { animate: { opacity: 1, y: 0 } }
+    : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.25 } };
   return (
     <motion.div
       className={className}
       initial={reduce ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      {...trigger}
       transition={{ ...spring, delay }}
     >
       {children}
@@ -400,20 +406,20 @@ function Hero() {
     <section ref={ref}>
       <div>
         <motion.div style={{ y: textY }} className="space-y-10">
-          <FadeUp>
+          <FadeUp eager>
             <span className="hero-eyebrow">
               HiloLegal · Boutique legal y patrimonial en Altea - Costa Blanca
             </span>
           </FadeUp>
 
           <h1 className="text-balance">
-            <Curtain>Defendemos tus derechos</Curtain>{" "}
-            <Curtain delay={0.1}>
+            <Curtain eager>Defendemos tus derechos</Curtain>{" "}
+            <Curtain eager delay={0.1}>
               <span className="jch-accent jch-italic">y protegemos tu patrimonio financiero.</span>
             </Curtain>
           </h1>
 
-          <FadeUp delay={0.55}>
+          <FadeUp eager delay={0.55}>
             <p>
               Unimos la visión de la planificación financiera estratégica con la defensa jurídica
               integral en derecho civil, familia, penal y administrativo. Respaldamos a particulares,
@@ -422,7 +428,7 @@ function Hero() {
             </p>
           </FadeUp>
 
-          <FadeUp delay={0.7}>
+          <FadeUp eager delay={0.7}>
             <div className="flex flex-wrap gap-3 pt-4">
               <a href="#contact" className="btn-primary">
                 Solicitar consulta previa
