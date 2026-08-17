@@ -1298,11 +1298,11 @@ footer.site-footer .brand {
   }
 }
 
-/* Original Verónica page preservation */
+/* Verónica page — dark theme, unified with the rest of the site */
 .veronica-original,
 .veronica-original main {
-  background: #ffffff !important;
-  color: #1A1A1A !important;
+  background: var(--jch-bg) !important;
+  color: var(--jch-ink) !important;
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
 }
 
@@ -1317,8 +1317,10 @@ footer.site-footer .brand {
   min-height: auto !important;
   padding-top: 5rem !important;
   padding-bottom: 8rem !important;
-  background: #000000 !important;
-  color: #ffffff !important;
+}
+
+.veronica-original main > section[class*="bg-[#1A1A1A]"] {
+  background: #1A1A1A !important;
 }
 
 .veronica-original main h1,
@@ -1339,27 +1341,6 @@ footer.site-footer .brand {
 .veronica-original .tracking-tighter { letter-spacing: -0.05em !important; }
 .veronica-original .tracking-widest { letter-spacing: 0.1em !important; }
 
-.veronica-original [class*="text-[#1A1A1A]"] { color: #1A1A1A !important; }
-.veronica-original [class*="text-[#4A4A4A]"] { color: #4A4A4A !important; }
-.veronica-original [class*="text-[#C5A566]"] { color: #C5A566 !important; }
-.veronica-original .text-white { color: #ffffff !important; }
-.veronica-original .text-black { color: #000000 !important; }
-.veronica-original .text-gray-300 { color: rgb(209 213 219) !important; }
-.veronica-original .text-gray-500 { color: rgb(107 114 128) !important; }
-.veronica-original .text-gray-600 { color: rgb(75 85 99) !important; }
-
-.veronica-original [class*="bg-[#1A1A1A]"] { background-color: #1A1A1A !important; }
-.veronica-original [class*="bg-[#C5A566]"] { background-color: #C5A566 !important; }
-.veronica-original [class*="bg-[#F4EFEA]"] { background-color: #F4EFEA !important; }
-.veronica-original [class*="bg-[#F5F5F5]"] { background-color: #F5F5F5 !important; }
-.veronica-original .bg-white { background-color: #ffffff !important; }
-.veronica-original .bg-black { background-color: #000000 !important; }
-
-.veronica-original [class*="border-[#E5E5E5]"] { border-color: #E5E5E5 !important; }
-.veronica-original [class*="border-[#C5A566]"] { border-color: #C5A566 !important; }
-.veronica-original .border-white { border-color: #ffffff !important; }
-.veronica-original [class*="divide-[#E5E5E5]"] > :not([hidden]) ~ :not([hidden]) { border-color: #E5E5E5 !important; }
-
 .veronica-original main p,
 .veronica-original main li {
   font-weight: inherit;
@@ -1378,13 +1359,13 @@ footer.site-footer .brand {
 .veronica-original textarea,
 .veronica-original select {
   background: transparent !important;
-  color: #1A1A1A !important;
-  border-color: #E5E5E5 !important;
+  color: var(--jch-ink) !important;
+  border-color: rgba(243, 240, 234, 0.2) !important;
 }
 
 .veronica-original select option {
-  background: #ffffff !important;
-  color: #1A1A1A !important;
+  background: #151515 !important;
+  color: var(--jch-ink) !important;
 }
 
 .veronica-original header.sticky {

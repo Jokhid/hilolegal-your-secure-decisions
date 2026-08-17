@@ -124,7 +124,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function Index() {
   return (
-    <div className="veronica-original bg-white text-[#1A1A1A] selection:bg-[#C5A566] selection:text-white">
+    <div className="veronica-original bg-[#0a0a0a] text-[#F3F0EA] selection:bg-[#C5A566] selection:text-black">
       <SmoothScroll />
       <Header />
 
@@ -203,7 +203,7 @@ function Hero() {
   return (
     <section ref={ref} className="relative pt-20 pb-32 overflow-hidden border-b border-white/10 bg-black text-white">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        <motion.div style={{ y: textY }} className="lg:col-span-7 space-y-10">
+        <motion.div style={{ y: textY }} className="lg:col-span-6 space-y-10">
           <FadeUp>
             <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
               <motion.span
@@ -257,19 +257,19 @@ function Hero() {
           </FadeUp>
         </motion.div>
 
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ ...spring, delay: 0.4 }}
             className="relative group"
           >
-            <div className="absolute -inset-4 border border-[#E5E5E5] -z-10 transition-colors duration-500 group-hover:border-[#C5A566]" />
-            <div className="relative overflow-hidden">
+            <div className="absolute -inset-4 border border-white/15 -z-10 transition-colors duration-500 group-hover:border-[#C5A566]" />
+            <div className="relative overflow-hidden aspect-[4/5] lg:min-h-[560px]">
               <motion.img
                 style={{ y: imgY, scale: imgScale }}
                 alt="Verónica López, abogada"
-                className="w-full h-auto object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 src={IMG(1)}
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
@@ -288,9 +288,9 @@ function TrustStats() {
     { i: "school", t: "Docencia en la Facultad de Derecho" },
   ];
   return (
-    <section className="py-16 border-b border-[#E5E5E5]">
+    <section className="py-16 border-b border-white/10">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[#E5E5E5]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-white/10">
           {items.map((s, idx) => (
             <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
               <div className="flex flex-col items-center md:items-start gap-4">
@@ -345,7 +345,7 @@ function Diagnosis() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold">{x.t}</h3>
-                <p className="text-[#4A4A4A] leading-relaxed">{x.d}</p>
+                <p className="text-[#9A9892] leading-relaxed">{x.d}</p>
               </article>
             </FadeUp>
           ))}
@@ -385,20 +385,20 @@ function Services() {
             <Curtain>Áreas de asesoramiento jurídico</Curtain>
           </h2>
           <FadeUp delay={0.15}>
-            <p className="text-xl text-[#4A4A4A] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
+            <p className="text-xl text-[#9A9892] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
           </FadeUp>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#E5E5E5]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
           {services.map((s, idx) => (
             <FadeUp key={s.title} delay={(idx % 2) * 0.08}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={spring}
-                className="h-full bg-white p-12 hover:bg-[#1A1A1A] group transition-colors border border-transparent hover:border-[#1A1A1A]"
+                className="h-full bg-[#0a0a0a] p-12 hover:bg-[#151515] group transition-colors border border-transparent hover:border-[#C5A566]/30"
               >
-                <Icon name={s.icon} className="text-[#C5A566] text-4xl mb-8 group-hover:text-white transition-colors" />
+                <Icon name={s.icon} className="text-[#C5A566] text-4xl mb-8" />
                 <h3 className="text-xl font-bold mb-4 group-hover:text-[#C5A566] transition-colors">{s.title}</h3>
-                <p className="text-[#4A4A4A] mb-10 group-hover:text-white transition-colors leading-relaxed">{s.text}</p>
+                <p className="text-[#9A9892] mb-10 leading-relaxed">{s.text}</p>
                 <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors" href="#contact">
                   Consultar <Icon name="arrow_forward" className="text-sm" />
                 </a>
@@ -413,7 +413,7 @@ function Services() {
 
 function Method() {
   return (
-    <section id="method" className="py-[100px] bg-[#F4EFEA] border-y border-[#E5E5E5]">
+    <section id="method" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-12">
@@ -427,7 +427,7 @@ function Method() {
                     <span className="text-3xl font-black text-[#C5A566]">{m.n}</span>
                     <div>
                       <h4 className="text-xl font-bold mb-2 uppercase tracking-tight">{m.title}</h4>
-                      <p className="text-[#4A4A4A] leading-relaxed">{m.text}</p>
+                      <p className="text-[#9A9892] leading-relaxed">{m.text}</p>
                     </div>
                   </div>
                 </FadeUp>
@@ -495,7 +495,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <div className="space-y-6 text-xl text-[#4A4A4A] leading-relaxed">
+              <div className="space-y-6 text-xl text-[#9A9892] leading-relaxed">
                 <p>Abogada con más de 20 años de experiencia y una trayectoria marcada por el rigor jurídico, la responsabilidad institucional y la vocación docente.</p>
                 <p>He ocupado puestos de alta dirección en la administración local y autonómica, lo que me permite conocer desde dentro el funcionamiento de las instituciones públicas y los procedimientos administrativos.</p>
                 <p>Mi experiencia como profesora en la Facultad de Derecho de Alicante aporta una visión técnica y académica: análisis profundo, explicación clara y estrategia bien fundamentada.</p>
@@ -506,9 +506,9 @@ function About() {
                 {["Administrativo", "Civil", "Institucional", "Empresas"].map((t) => (
                   <motion.span
                     key={t}
-                    whileHover={{ y: -2, backgroundColor: "#1A1A1A", color: "#FFFFFF" }}
+                    whileHover={{ y: -2, backgroundColor: "#C5A566", color: "#0a0a0a" }}
                     transition={spring}
-                    className="border border-[#E5E5E5] px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
+                    className="border border-white/15 px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
                   >
                     {t}
                   </motion.span>
@@ -516,7 +516,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.3}>
-              <div className="flex items-center gap-4 text-[#1A1A1A] font-bold">
+              <div className="flex items-center gap-4 text-white font-bold">
                 <Icon name="location_on" className="text-[#C5A566]" />
                 <span className="text-sm uppercase tracking-widest">Altea · Costa Blanca · Alicante</span>
               </div>
@@ -530,7 +530,7 @@ function About() {
 
 function HiloLegal() {
   return (
-    <section className="py-[100px] bg-[#F4EFEA] border-y border-[#E5E5E5]">
+    <section className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <FadeUp>
@@ -539,7 +539,7 @@ function HiloLegal() {
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                 <Curtain>Una firma, dos especialistas</Curtain>
               </h2>
-              <div className="space-y-6 text-xl text-[#4A4A4A] leading-relaxed">
+              <div className="space-y-6 text-xl text-[#9A9892] leading-relaxed">
                 <p>Soy cofundadora de HiloLegal junto a José Carlos Hidalgo, consultor patrimonial e hipotecario. Unificamos el criterio jurídico y el financiero. Si un caso presenta ambas vertientes, trabajamos de forma coordinada bajo una sola firma, evitando que tengas que duplicar explicaciones con distintos profesionales.</p>
                 <p>Una firma, dos especialistas, sin que tengas que empezar desde cero con cada uno.</p>
               </div>
@@ -549,7 +549,7 @@ function HiloLegal() {
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C5A566] hover:text-[#1A1A1A] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C5A566] hover:text-white transition-colors"
               >
                 Conocer a José Carlos <Icon name="arrow_forward" className="text-sm" />
               </motion.a>
@@ -581,17 +581,17 @@ function HiloLegal() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-[100px] bg-[#F5F5F5]">
+    <section id="faq" className="py-[100px]">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-4xl font-bold tracking-tight text-center mb-20 uppercase">
           <Curtain>Preguntas Frecuentes</Curtain>
         </h2>
-        <div className="space-y-px bg-[#E5E5E5]">
+        <div className="space-y-px bg-white/10">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <FadeUp key={f.q} delay={i * 0.05}>
-                <div className="bg-white">
+                <div className="bg-[#101010]">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex justify-between items-center text-left p-8 text-lg font-bold uppercase tracking-tight"
@@ -611,7 +611,7 @@ function FAQ() {
                     transition={{ duration: 0.5, ease: easeOutExpo }}
                     style={{ overflow: "hidden" }}
                   >
-                    <div className="px-8 pb-8 text-[#4A4A4A] leading-relaxed">{f.a}</div>
+                    <div className="px-8 pb-8 text-[#9A9892] leading-relaxed">{f.a}</div>
                   </motion.div>
                 </div>
               </FadeUp>
@@ -660,11 +660,11 @@ function Contact() {
             <Curtain>Hablemos de tu asunto</Curtain>
           </h2>
           <FadeUp delay={0.1}>
-            <p className="text-xl text-[#4A4A4A] leading-relaxed">
+            <p className="text-xl text-[#9A9892] leading-relaxed">
               Si necesitas asesoramiento jurídico, rellena el formulario y explica brevemente tu situación. Revisaremos la información inicial y contactaremos contigo para valorar los siguientes pasos.
             </p>
           </FadeUp>
-          <div className="space-y-10 pt-10 border-t border-[#E5E5E5]">
+          <div className="space-y-10 pt-10 border-t border-white/10">
             {[
               { i: "call", label: "Teléfono", v: PHONE_DISPLAY, href: `tel:+34${PHONE_DISPLAY.replace(/\s/g, "")}` },
               { i: "mail", label: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
@@ -676,7 +676,7 @@ function Contact() {
                   transition={spring}
                   className="flex items-center gap-8 group"
                 >
-                  <div className="w-16 h-16 bg-[#1A1A1A] flex items-center justify-center text-white group-hover:bg-[#C5A566] transition-colors">
+                  <div className="w-16 h-16 bg-[#151515] flex items-center justify-center text-white group-hover:bg-[#C5A566] transition-colors">
                     <Icon name={c.i} />
                   </div>
                   <div>
@@ -700,7 +700,7 @@ function Contact() {
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
+                className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
               >
                 <option>Consulta jurídica general</option>
                 <option>Derecho administrativo</option>
@@ -717,7 +717,7 @@ function Contact() {
                 placeholder="Explica brevemente tu situación"
                 value={form.message}
                 onChange={onChange("message")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
+                className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-white/30"
               />
             </div>
 
@@ -737,7 +737,7 @@ function Contact() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-[#1A1A1A] font-bold uppercase tracking-widest"
+                className="text-sm text-white font-bold uppercase tracking-widest"
               >
                 Gracias. Hemos recibido tu consulta y contactaremos contigo a la mayor brevedad.
               </motion.p>
@@ -746,7 +746,7 @@ function Contact() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-red-600"
+                className="text-sm text-red-400"
               >
                 {errorMsg || "Algo ha ido mal. Inténtalo de nuevo en unos minutos."}
               </motion.p>
@@ -814,7 +814,7 @@ function Field({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
+        className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-white/30"
       />
     </div>
   );
