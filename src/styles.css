@@ -107,11 +107,23 @@
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-line-strong: rgba(243, 240, 234, 0.28);
   --jch-accent: #C5A566;
+  --jch-accent-2: #1f6f78;
 }
 
 html, body {
   background: var(--jch-bg) !important;
   color: var(--jch-ink) !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 html {
@@ -175,6 +187,23 @@ footer [class*="text-2xl"] {
   font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif !important;
   font-weight: 500 !important;
   text-transform: none !important;
+}
+
+main h2 {
+  position: relative;
+  padding-left: 1.5rem;
+}
+main h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 2px;
+  background: linear-gradient(180deg, var(--jch-accent), var(--jch-accent-2));
+}
+@media (max-width: 640px) {
+  main h2 { padding-left: 1.1rem; }
 }
 
 main h1 {
@@ -368,6 +397,40 @@ main > section:first-child a.btn-ghost:hover {
 
 .trust-block__body p:last-child { margin-bottom: 0; }
 
+.trust-block__stats {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: clamp(1rem, 3vw, 2rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--jch-line);
+}
+
+.trust-block__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.trust-block__stat-value {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--jch-accent-2);
+}
+
+.trust-block__stat-label {
+  max-width: 14rem;
+  color: var(--jch-muted);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
 .trust-block__body::after {
   content: "";
   display: block;
@@ -406,9 +469,13 @@ main > section:first-child a.btn-ghost:hover {
 
 .services-editorial__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--jch-line);
   border-left: 1px solid var(--jch-line);
+}
+
+.services-editorial__grid > *:first-child {
+  grid-column: 1 / -1;
 }
 
 .services-editorial__card {

@@ -116,6 +116,12 @@ function FadeUp({
 }
 
 /* ---------- Data ---------- */
+const trustStats = [
+  { value: "20+", label: "Años de experiencia jurídica y financiera" },
+  { value: "2", label: "Especialidades, un mismo criterio" },
+  { value: "24h", label: "Tiempo de respuesta" },
+];
+
 const areas = [
   {
     tag: "Área 01",
@@ -496,6 +502,15 @@ function TrustBlock() {
             Tratamos cada asunto con visión global, garantizando atención directa, rigor analítico
             y acompañamiento continuo en todas las áreas del derecho y las finanzas.
           </p>
+        </FadeUp>
+
+        <FadeUp delay={0.3} className="trust-block__stats">
+          {trustStats.map((s) => (
+            <div key={s.label} className="trust-block__stat">
+              <span className="trust-block__stat-value">{s.value}</span>
+              <span className="trust-block__stat-label">{s.label}</span>
+            </div>
+          ))}
         </FadeUp>
       </div>
     </section>

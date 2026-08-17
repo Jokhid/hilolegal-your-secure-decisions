@@ -108,15 +108,19 @@ main > section:first-child > div > .group {
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: top center;
-  filter: grayscale(0.16) contrast(1.05);
+  object-position: center;
+  filter: grayscale(0.85) contrast(1.05);
   transform: scale(1.01);
   transition: filter 700ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
 }
 
 .services-editorial__card--with-art:hover .service-card__art img {
-  filter: grayscale(0) contrast(1.08);
+  filter: grayscale(0.1) contrast(1.08);
   transform: scale(1.045);
+}
+
+.services-editorial__grid > *:first-child .service-card__art {
+  aspect-ratio: 21 / 9;
 }
 
 .services-editorial__card--with-art .service-card__art::after {
