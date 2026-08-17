@@ -124,7 +124,6 @@ const trustStats = [
 
 const areas = [
   {
-    tag: "Área 01",
     title: "Legal",
     text:
       "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
@@ -134,7 +133,6 @@ const areas = [
     artAlt: "Ilustración del área legal de HiloLegal",
   },
   {
-    tag: "Área 02",
     title: "Patrimonial y financiero",
     text:
       "Planificación financiera, ahorro, inversión, pensiones, seguros de vida, salud y protección de autónomos. Te ayudamos a ordenar tu economía, proteger tus ingresos y preparar decisiones importantes con una visión realista.",
@@ -144,7 +142,6 @@ const areas = [
     artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
   },
   {
-    tag: "Área 03",
     title: "Hipotecas",
     text:
       "Estudio hipotecario, viabilidad financiera, comparación de opciones y acompañamiento en la compra de vivienda. No se trata solo de conseguir una hipoteca. Se trata de comprar con seguridad.",
@@ -154,7 +151,6 @@ const areas = [
     artAlt: "Ilustración del área de hipotecas de HiloLegal",
   },
   {
-    tag: "Área 04",
     title: "Administración de fincas",
     text:
       "Gestión profesional de comunidades de propietarios con control económico, transparencia y respuesta. Una comunidad bien administrada protege el valor de cada inmueble.",
@@ -322,37 +318,48 @@ function Header() {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
-        className="sticky top-0 z-50 w-full"
+        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white/85 backdrop-blur-xl"
       >
-        <nav className="mx-auto flex w-full items-center justify-between">
-          <a href="/" className="flex items-center gap-3"> 
-            <img src="/logo.png" alt="Logo HiloLegal" 
-              className="h-9 w-9 object-contain" /> 
-            <span>HiloLegal</span> 
+        <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
+          <a href="/" className="group flex items-center gap-3">
+            <motion.img
+              src="/logo.png"
+              alt="Logo HiloLegal"
+              className="h-9 w-9 object-contain"
+              whileHover={{ rotate: -6, scale: 1.05 }}
+              transition={spring}
+            />
+            <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A] md:text-lg">
+              HiloLegal
+            </span>
           </a>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden items-center gap-10 md:flex">
             {navLinks.map(([label, href]) => (
-              <a key={href} href={href} className="transition-opacity hover:opacity-70">
-                {label}
+              <a key={href} href={href} className="group relative text-sm font-medium text-[#1A1A1A]">
+                <span className="transition-colors group-hover:text-[#C5A566]">{label}</span>
+                <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
             ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={spring}
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex uppercase text-[0.65rem] tracking-[0.18em] px-4 py-2 border border-white/20 rounded-full hover:border-white/60 transition-colors"
+              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
             >
               WhatsApp
-            </a>
+            </motion.a>
             <button
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden text-2xl"
+              className="-mr-2 p-2 text-2xl text-[#1A1A1A] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -367,7 +374,7 @@ function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] md:hidden"
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
             role="dialog"
             aria-modal="true"
           >
@@ -375,18 +382,18 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl"
+                className="self-end text-3xl text-[#1A1A1A]"
                 aria-label="Cerrar menú"
               >
                 ×
               </button>
-              <div className="flex flex-col gap-2 mt-8">
+              <div className="mt-8 flex flex-col gap-2">
                 {navLinks.map(([label, href]) => (
                   <a
                     key={href}
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-3"
+                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[#C5A566]"
                   >
                     {label}
                   </a>
@@ -404,12 +411,23 @@ function Header() {
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section ref={ref}>
+    <section ref={ref} className="hero-bg-section">
+      <motion.img
+        style={{ scale: imgScale }}
+        src="/fotoalteadespacho.webp"
+        alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
+        className="hero-bg-image"
+        width={1024}
+        height={1024}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <div className="hero-bg-overlay" aria-hidden="true" />
       <div>
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
@@ -444,24 +462,6 @@ function Hero() {
               </a>
             </div>
           </FadeUp>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ ...spring, delay: 0.4 }}
-          className="group relative"
-        >
-          <motion.img
-            style={{ y: imgY, scale: imgScale }}
-            src="/fotoalteadespacho.webp"
-            alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
-            width={1024}
-            height={1024}
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-          />
         </motion.div>
       </div>
     </section>
@@ -552,10 +552,6 @@ function Areas() {
                   />
                 </div>
                 <div className="services-editorial__body">
-                  <div className="services-editorial__meta">
-                    <span>{String(i + 1).padStart(2, "0")}</span>
-                    <span>{a.tag}</span>
-                  </div>
                   <h3>{a.title}</h3>
                   <p>{a.text}</p>
                   <span className="services-editorial__cta">

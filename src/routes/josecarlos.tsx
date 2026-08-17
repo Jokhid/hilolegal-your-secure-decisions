@@ -686,10 +686,6 @@ function Services() {
           {services.map((service, index) => (
             <FadeUp key={service.title} delay={(index % 3) * 0.08} className="services-editorial__item">
               <article className="services-editorial__card">
-                <div className="services-editorial__meta">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span>Servicio</span>
-                </div>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
                 <a href="#contact" className="services-editorial__cta">
