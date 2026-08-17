@@ -669,7 +669,7 @@ function Method() {
             >
               <span className="method-step__number">{m.n}</span>
               <div>
-                <h4 className="method-step__title">{m.title}</h4>
+                <h3 className="method-step__title">{m.title}</h3>
                 <p className="method-step__text">{m.text}</p>
               </div>
             </motion.article>
@@ -899,10 +899,11 @@ function Contact() {
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-medium uppercase tracking-[0.2em]">
+              <label htmlFor="field-topic" className="text-[10px] font-medium uppercase tracking-[0.2em]">
                 Especialidad requerida
               </label>
               <select
+                id="field-topic"
                 value={form.topic}
                 onChange={onChange("topic")}
                 className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-3 focus:outline-none focus:border-[color:var(--jch-accent)] transition-colors"
@@ -915,8 +916,9 @@ function Contact() {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-medium uppercase tracking-[0.2em]">Mensaje</label>
+              <label htmlFor="field-mensaje" className="text-[10px] font-medium uppercase tracking-[0.2em]">Mensaje</label>
               <textarea
+                id="field-mensaje"
                 rows={4}
                 placeholder="Cuéntanos tu situación"
                 value={form.message}
@@ -996,10 +998,12 @@ function Field({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }) {
+  const id = `field-${label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-medium uppercase tracking-[0.2em]">{label}</label>
+      <label htmlFor={id} className="text-[10px] font-medium uppercase tracking-[0.2em]">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}
