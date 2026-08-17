@@ -117,7 +117,7 @@ const WHATSAPP = "https://wa.me/34647506040";
 
 // Photos in /public
 const IMG = (n: number) => `/${n}.webp`;
-const LOGO = "/logo.png";
+const LOGO = "/logo-black.svg";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>

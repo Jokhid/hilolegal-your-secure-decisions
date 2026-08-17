@@ -722,6 +722,7 @@ main > section:first-child a.btn-ghost:hover {
   border-left: 1px solid var(--jch-line);
 }
 #herramientas .tool-card {
+  height: 100%;
   padding: clamp(2rem, 3vw, 3rem);
   border-right: 1px solid var(--jch-line);
   border-bottom: 1px solid var(--jch-line);
@@ -733,6 +734,7 @@ main > section:first-child a.btn-ghost:hover {
   color: var(--jch-ink);
   text-decoration: none;
   transition: background-color 350ms ease;
+  box-sizing: border-box;
 }
 #herramientas .tool-card:hover { background: var(--jch-surface); }
 #herramientas .tool-card h3 {

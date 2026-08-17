@@ -31,7 +31,7 @@ function BlogIndex() {
       <header className="sticky top-0 z-50 backdrop-blur-xl">
         <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1500px] mx-auto">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain" />
+            <img src="/logo-black.svg" alt="Logo" className="h-9 w-9 object-contain" />
             <span className="text-base md:text-lg font-bold tracking-tight uppercase">
               HiloLegal
             </span>

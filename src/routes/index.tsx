@@ -323,7 +323,7 @@ function Header() {
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a href="/" className="group flex items-center gap-3">
             <motion.img
-              src="/logo.png"
+              src="/logo-black.svg"
               alt="Logo HiloLegal"
               className="h-9 w-9 object-contain"
               whileHover={{ rotate: -6, scale: 1.05 }}
@@ -783,9 +783,9 @@ function Closing() {
           <h2 className="text-balance">
             <Curtain>Si una decisión puede afectar a tu</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">patrimonio</span>
-            </Curtain>
-            <Curtain delay={0.2}>, merece ser analizada con criterio.</Curtain>
+              <span className="jch-accent jch-italic">patrimonio,</span>
+            </Curtain>{" "}
+            <Curtain delay={0.2}>merece ser analizada con criterio.</Curtain>
           </h2>
         </FadeUp>
         <FadeUp delay={0.2}>
@@ -911,6 +911,7 @@ function Contact() {
                 <option>Asesoramiento Financiero</option>
                 <option>Hipotecas</option>
                 <option>Administración de Fincas</option>
+                <option>Otra consulta</option>
               </select>
             </div>
             <div className="space-y-2">
