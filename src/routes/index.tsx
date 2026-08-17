@@ -416,17 +416,20 @@ function Hero() {
 
   return (
     <section ref={ref} className="hero-bg-section">
-      <motion.img
-        style={{ scale: imgScale }}
-        src="/fotoalteadespacho.webp"
-        alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
-        className="hero-bg-image"
-        width={1024}
-        height={1024}
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-      />
+      <picture>
+        <source media="(max-width: 767px)" srcSet="/fotoalteadespachovertical.webp" />
+        <motion.img
+          style={{ scale: imgScale }}
+          src="/fotoalteadespachohorizontal.webp"
+          alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
+          className="hero-bg-image"
+          width={1536}
+          height={1024}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+      </picture>
       <div className="hero-bg-overlay" aria-hidden="true" />
       <div>
         <motion.div style={{ y: textY }} className="space-y-10">
