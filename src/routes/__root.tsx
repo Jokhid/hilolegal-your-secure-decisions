@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "preload", as: "style", href: FONT_PRIMARY },
-      { rel: "stylesheet", href: FONT_PRIMARY, media: "print", onload: "this.media='all'" },
+      { rel: "stylesheet", href: FONT_PRIMARY },
       {
         rel: "preload",
         as: "image",
