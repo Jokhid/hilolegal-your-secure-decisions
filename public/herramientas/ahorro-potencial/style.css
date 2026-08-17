@@ -253,9 +253,8 @@ main > section {
 
 .tool-hero__inner {
   max-width: 1500px;
-  min-height: calc(100vh - 69px);
-  padding: clamp(72px, 9vw, 140px) clamp(20px, 3vw, 44px);
-  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+  padding: clamp(40px, 5vw, 72px) clamp(20px, 3vw, 44px);
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
   align-items: center;
 }
 
@@ -272,9 +271,9 @@ main > section {
 }
 
 .tool-hero h1 {
-  max-width: 920px;
-  font-size: clamp(58px, 9vw, 136px);
-  line-height: .88;
+  max-width: 720px;
+  font-size: clamp(34px, 4.5vw, 56px);
+  line-height: .96;
 }
 
 .lead {
@@ -297,18 +296,18 @@ main > section {
 }
 
 .hero-stats div {
-  min-height: 170px;
+  min-height: 96px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: var(--page);
-  padding: 30px;
+  padding: 16px 20px;
 }
 
 .hero-stats span {
   color: var(--gold);
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(42px, 5vw, 72px);
+  font-size: clamp(26px, 3vw, 36px);
   font-weight: 500;
 }
 
@@ -328,7 +327,7 @@ main > section {
 .savings-section,
 .advice-section,
 .cta-section {
-  padding: clamp(90px, 11vw, 170px) 0;
+  padding: clamp(40px, 5vw, 72px) 0;
 }
 
 .intro-section {
@@ -339,10 +338,10 @@ main > section {
 .section-heading h2,
 .panel h2,
 .cta-box h2 {
-  max-width: 1000px;
+  max-width: 760px;
   color: var(--ink);
-  font-size: clamp(48px, 6vw, 92px);
-  line-height: .96;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.05;
 }
 
 .intro-section p:not(.eyebrow),
@@ -361,11 +360,18 @@ main > section {
   border-color: var(--line);
 }
 
+.gastos-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .gastos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .gasto-card {
-  min-height: 330px;
   background: var(--page);
   color: var(--ink);
-  padding: clamp(26px, 3vw, 42px);
+  padding: clamp(16px, 1.6vw, 22px);
 }
 
 .gasto-card.active {
@@ -380,7 +386,9 @@ main > section {
 
 .gasto-details h5 {
   color: var(--ink);
-  font-size: clamp(24px, 2.5vw, 36px);
+  font-size: clamp(15px, 1.1vw, 17px);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .gasto-details p,
@@ -416,7 +424,12 @@ main > section {
 }
 
 .gasto-toggle.active {
-  background: var(--gold);
+  background: #1f6f78;
+  box-shadow: inset 0 0 0 1px rgba(26,26,26,.06), 0 2px 12px rgba(31,111,120,.35);
+}
+
+.gasto-toggle:focus-visible {
+  outline-color: rgba(31,111,120,.4);
 }
 
 .metric-card,
@@ -427,7 +440,7 @@ main > section {
 }
 
 .metric-card {
-  min-height: 190px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -450,12 +463,12 @@ main > section {
   background: var(--page);
   color: var(--ink);
   border-color: var(--line);
-  padding: clamp(26px, 3vw, 44px);
+  padding: clamp(18px, 2vw, 28px);
 }
 
 .panel h3 {
   color: var(--ink);
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(18px, 1.8vw, 24px);
 }
 
 .panel-title-row p,
