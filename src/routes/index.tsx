@@ -351,7 +351,7 @@ function Header() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1f6f78] transition-colors hover:bg-[#C5A566] sm:inline-block"
             >
               WhatsApp
             </motion.a>
@@ -359,7 +359,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#1A1A1A] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -382,7 +382,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#1A1A1A]"
+                className="self-end text-3xl text-[#1f6f78]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -959,7 +959,7 @@ function Contact() {
               className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
                 background: "var(--jch-accent)",
-                color: "var(--jch-bg)",
+                color: "#1f6f78",
               }}
             >
               {status === "sending"
