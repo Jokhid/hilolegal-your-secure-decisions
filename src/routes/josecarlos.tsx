@@ -442,7 +442,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp

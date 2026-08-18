@@ -351,7 +351,7 @@ function Header() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden bg-[#1A1A1A] px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#1f6f78] transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
             >
               WhatsApp
             </motion.a>
@@ -577,11 +577,11 @@ function Positioning() {
     <section id="posicionamiento" className="position-block">
       <div className="position-block__inner">
         <h2>
-          <Curtain>Una firma para</Curtain>{" "}
+          <Curtain>Nuestra misión es que</Curtain>{" "}
           <Curtain delay={0.1}>
-            <span className="jch-accent jch-italic">proteger decisiones</span>
+            <span className="jch-accent jch-italic">las decisiones importantes</span>
           </Curtain>{" "}
-          <Curtain delay={0.2}>patrimoniales.</Curtain>
+          <Curtain delay={0.2}>de tu vida las tomes con seguridad</Curtain>
         </h2>
         <FadeUp delay={0.2} className="position-block__body">
           <p>
@@ -765,7 +765,7 @@ function Tools() {
                 </span>
                 <h3>{t.title}</h3>
                 <p>{t.text}</p>
-                <span className="tools__cta">
+                <span className={`tools__cta${t.cta === "Solicitar diagnóstico" ? " tools__cta--dark" : ""}`}>
                   <span aria-hidden="true">→</span> {t.cta}
                 </span>
               </a>
@@ -959,7 +959,7 @@ function Contact() {
               className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
                 background: "var(--jch-accent)",
-                color: "#1f6f78",
+                color: "#000000",
               }}
             >
               {status === "sending"

@@ -770,6 +770,9 @@ main > section:first-child a.btn-ghost:hover {
   letter-spacing: .18em !important;
   text-transform: uppercase;
 }
+#herramientas .tool-card .tools__cta.tools__cta--dark {
+  color: #000000 !important;
+}
 @media (max-width: 900px) { #herramientas .tools__grid { grid-template-columns: 1fr; } }
 
 /* Closing CTA */
@@ -791,7 +794,7 @@ main > section:first-child a.btn-ghost:hover {
   align-items: center;
   gap: .75rem;
   background: var(--jch-accent);
-  color: #1f6f78 !important;
+  color: #000000 !important;
   padding: 1.1rem 2rem;
   border-radius: 999px;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
