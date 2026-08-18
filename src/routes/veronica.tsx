@@ -196,14 +196,25 @@ function Header() {
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section ref={ref} className="relative pt-20 pb-32 overflow-hidden border-b border-white/10 bg-black text-white">
-      <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        <motion.div style={{ y: textY }} className="lg:col-span-6 space-y-10">
+    <section ref={ref} className="hero-bg-section">
+      <motion.img
+        style={{ scale: imgScale }}
+        alt="Verónica López, abogada"
+        className="hero-bg-image veronica-hero-image"
+        src={IMG(1)}
+        width={1122}
+        height={1402}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <div className="hero-bg-overlay" aria-hidden="true" />
+      <div className="mx-auto px-6">
+        <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
             <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
               <motion.span
@@ -256,26 +267,6 @@ function Hero() {
             </div>
           </FadeUp>
         </motion.div>
-
-        <div className="lg:col-span-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring, delay: 0.4 }}
-            className="relative group"
-          >
-            <div className="absolute -inset-4 border border-white/15 -z-10 transition-colors duration-500 group-hover:border-[#C5A566]" />
-            <div className="relative overflow-hidden aspect-[4/5] lg:min-h-[560px]">
-              <motion.img
-                style={{ y: imgY, scale: imgScale }}
-                alt="Verónica López, abogada"
-                className="absolute inset-0 w-full h-full object-cover"
-                src={IMG(1)}
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

@@ -189,6 +189,15 @@ main > section:first-child {
     linear-gradient(0deg, rgba(10, 10, 10, 0.6), transparent 45%);
 }
 
+main > section:first-child > div.hero-bg-overlay {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 main > section:first-child > div {
   position: relative;
   z-index: 2;
@@ -1313,14 +1322,12 @@ footer.site-footer .brand {
   overflow: hidden;
 }
 
-.veronica-original main > section:first-child {
-  min-height: auto !important;
-  padding-top: 5rem !important;
-  padding-bottom: 8rem !important;
-}
-
 .veronica-original main > section[class*="bg-[#1A1A1A]"] {
   background: #1A1A1A !important;
+}
+
+.veronica-hero-image {
+  object-position: center 18%;
 }
 
 .veronica-original main h1,
@@ -1388,10 +1395,5 @@ footer.site-footer .brand {
   .veronica-original main > section {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
-  }
-
-  .veronica-original main > section:first-child {
-    padding-top: 4.5rem !important;
-    padding-bottom: 6rem !important;
   }
 }
