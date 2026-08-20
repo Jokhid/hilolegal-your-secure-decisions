@@ -56,14 +56,14 @@ export const Route = createFileRoute("/blog/$slug")({
   component: BlogPostPage,
   notFoundComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
-      <Link to="/blog" className="text-[#C5A566] underline">
+      <Link to="/blog" className="text-[var(--jch-accent-ink)] underline">
         Volver al blog
       </Link>
     </div>
   ),
   errorComponent: () => (
     <div className="min-h-screen flex items-center justify-center">
-      <Link to="/blog" className="text-[#C5A566] underline">
+      <Link to="/blog" className="text-[var(--jch-accent-ink)] underline">
         Volver al blog
       </Link>
     </div>
@@ -183,7 +183,7 @@ function BlogPostPage() {
       <main className="max-w-[760px] mx-auto px-6 py-16">
         <article>
           <div className="space-y-6 mb-12">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C5A566]">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-accent-ink)]">
               {post.category} · {post.readingTime}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
@@ -219,7 +219,7 @@ function BlogPostPage() {
                   params={{ slug: r.slug }}
                   className="block border border-[#E5E5E5] p-6 hover:border-[#C5A566] transition-colors"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C5A566]">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-accent-ink)]">
                     {r.category}
                   </span>
                   <h3 className="mt-3 font-bold leading-snug">{r.title}</h3>

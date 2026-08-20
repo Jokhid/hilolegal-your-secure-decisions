@@ -23,6 +23,7 @@ export const Route = createFileRoute("/")({
           "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio y anticipar riesgos.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://hilolegal.es/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -338,7 +339,7 @@ function Header() {
           <div className="hidden items-center gap-10 md:flex">
             {navLinks.map(([label, href]) => (
               <a key={href} href={href} className="group relative text-sm font-medium text-[#1A1A1A]">
-                <span className="transition-colors group-hover:text-[#C5A566]">{label}</span>
+                <span className="transition-colors group-hover:text-[var(--jch-accent-ink)]">{label}</span>
                 <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
             ))}
@@ -395,7 +396,7 @@ function Header() {
                     key={href}
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[#C5A566]"
+                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[var(--jch-accent-ink)]"
                   >
                     {label}
                   </a>

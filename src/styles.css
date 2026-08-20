@@ -108,6 +108,7 @@
   --jch-line-strong: rgba(243, 240, 234, 0.28);
   --jch-accent: #C5A566;
   --jch-accent-2: #1f6f78;
+  --jch-accent-ink: #C5A566;
   --jch-ink-rgb: 243, 240, 234;
   --jch-bg-rgb: 10, 10, 10;
 }
@@ -124,6 +125,10 @@
   --jch-ink-rgb: 26, 26, 26;
   --jch-bg-rgb: 255, 255, 255;
   /* --jch-accent and --jch-accent-2 intentionally unchanged — identical in both themes */
+  /* --jch-accent-ink: a readable-on-light variant of the ochre accent for use as TEXT
+     (labels, headings, numbers) — #C5A566 only reaches ~2.35:1 on white, well under
+     WCAG AA. This darkened shade reaches ~5:1 while staying in the same hue family. */
+  --jch-accent-ink: #806B42;
 }
 
 html, body {
@@ -306,7 +311,7 @@ header [class*="uppercase"] {
   letter-spacing: 0.14em !important;
 }
 
-.jch-accent { color: var(--jch-accent) !important; }
+.jch-accent { color: var(--jch-accent-ink) !important; }
 .jch-italic { font-style: italic; font-weight: 400; }
 
 /* Header */
@@ -1354,6 +1359,10 @@ footer.site-footer .brand {
 .josecarlos-original,
 .josecarlos-original main {
   background: #ffffff !important;
+  /* josecarlos.tsx is permanently light regardless of the site-wide
+     theme toggle, so pin the readable-ochre variant to its light value
+     unconditionally rather than letting it follow [data-theme]. */
+  --jch-accent-ink: #806B42;
 }
 
 .josecarlos-original main > section {

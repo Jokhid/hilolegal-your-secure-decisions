@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import alteaImageCss from "../altea-image.css?url";
 import servicesArtCss from "../services-art.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieBanner } from "../components/CookieBanner";
 
 const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@500;600;700&display=swap";
 
@@ -98,7 +99,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://hilolegal.es/fotoalteadespachohorizontal.webp" },
     ],
     links: [
-      { rel: "canonical", href: "https://hilolegal.es/" },
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: alteaImageCss },
       { rel: "stylesheet", href: servicesArtCss },
@@ -163,6 +163,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <CookieBanner />
     </QueryClientProvider>
   );
 }

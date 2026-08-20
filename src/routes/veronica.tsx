@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AnimatePresence, motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
@@ -8,20 +8,71 @@ import { submitContact } from "@/lib/contact.functions";
 const banner3Asset = { url: "/veronica-assets/file_00000000b9c07246b0256fc18d8d4888.webp" };
 
 export const Route = createFileRoute("/veronica")({
-  head: () => ({
+  head: () => {
+    const VERONICA_DESCRIPTION = "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades. Consulta en Altea.";
+    const VERONICA_TELEPHONE = "+34" + PHONE_DISPLAY.replace(/\s/g, "");
+    return {
     meta: [
       { title: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
-      { name: "description", content: "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades. Consulta en Altea." },
+      { name: "description", content: VERONICA_DESCRIPTION },
       { property: "og:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
-      { property: "og:description", content: "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades. Consulta en Altea." },
+      { property: "og:description", content: VERONICA_DESCRIPTION },
+      { property: "og:url", content: "https://hilolegal.es/veronica" },
+      { property: "og:type", content: "website" },
     ],
     links: [
+      { rel: "canonical", href: "https://hilolegal.es/veronica" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=account_balance,arrow_forward,balance,call,expand_more,gavel,home,location_on,mail,psychology,school,shield,workspace_premium&display=swap",
       },
     ],
-  }),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              name: "Verónica López Ramón",
+              jobTitle: "Abogada",
+              url: "https://hilolegal.es/veronica",
+              telephone: VERONICA_TELEPHONE,
+              email: EMAIL,
+              worksFor: {
+                "@type": "Organization",
+                name: "HiloLegal",
+                url: "https://hilolegal.es",
+              },
+              knowsAbout: services.map((s) => s.title),
+            },
+            {
+              "@type": "LegalService",
+              name: "Verónica López — Abogada",
+              url: "https://hilolegal.es/veronica",
+              telephone: VERONICA_TELEPHONE,
+              email: EMAIL,
+              description: VERONICA_DESCRIPTION,
+              areaServed: [
+                { "@type": "City", name: "Altea" },
+                { "@type": "AdministrativeArea", name: "Costa Blanca" },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ],
+        }),
+      },
+    ],
+    };
+  },
   component: Index,
 });
 
@@ -166,7 +217,7 @@ function Header() {
         className="sticky top-0 w-full z-50 bg-white backdrop-blur-xl border-b border-[#E5E5E5]"
       >
         <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1200px] mx-auto">
-          <a className="flex items-center gap-3 group" href="https://hilolegal.es" target="_blank" rel="noopener noreferrer">
+          <Link className="flex items-center gap-3 group" to="/">
             <motion.img
               src="/veronica-assets/logo.png"
               alt="Logo Verónica López"
@@ -177,7 +228,7 @@ function Header() {
             <span className="text-base md:text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
               Verónica López
             </span>
-          </a>
+          </Link>
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map(([l, h]) => (
               <a
@@ -185,7 +236,7 @@ function Header() {
                 className="relative text-sm font-medium text-[#1A1A1A] group"
                 href={h}
               >
-                <span className="transition-colors group-hover:text-[#C5A566]">{l}</span>
+                <span className="transition-colors group-hover:text-[var(--jch-accent-ink)]">{l}</span>
                 <span className="absolute left-0 -bottom-1 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
             ))}
@@ -239,7 +290,7 @@ function Header() {
                     key={h}
                     href={h}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[#C5A566]"
+                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[var(--jch-accent-ink)]"
                   >
                     {l}
                   </a>
@@ -287,7 +338,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -356,7 +407,7 @@ function TrustStats() {
           {items.map((s, idx) => (
             <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
               <div className="flex flex-col items-center md:items-start gap-4">
-                <Icon name={s.i} className="text-[#C5A566] text-4xl" />
+                <Icon name={s.i} className="text-[var(--jch-accent-ink)] text-4xl" />
                 <p className="text-sm font-bold uppercase tracking-wider text-center md:text-left">{s.t}</p>
               </div>
             </FadeUp>
@@ -403,7 +454,7 @@ function Diagnosis() {
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
-                    <div className="text-[#C5A566] font-black text-2xl">{x.n}</div>
+                    <div className="text-[var(--jch-accent-ink)] font-black text-2xl">{x.n}</div>
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold">{x.t}</h3>
@@ -458,8 +509,8 @@ function Services() {
                 transition={spring}
                 className="h-full bg-[var(--jch-bg)] p-12 hover:bg-[var(--jch-surface)] group transition-colors border border-transparent hover:border-[#C5A566]/30"
               >
-                <Icon name={s.icon} className="text-[#C5A566] text-4xl mb-8" />
-                <h3 className="text-xl font-bold mb-4 group-hover:text-[#C5A566] transition-colors">{s.title}</h3>
+                <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
+                <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
                 <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
                 <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
                   Consultar <Icon name="arrow_forward" className="text-sm" />
@@ -486,7 +537,7 @@ function Method() {
               {method.map((m, idx) => (
                 <FadeUp key={m.n} delay={idx * 0.1}>
                   <div className="flex gap-8">
-                    <span className="text-3xl font-black text-[#C5A566]">{m.n}</span>
+                    <span className="text-3xl font-black text-[var(--jch-accent-ink)]">{m.n}</span>
                     <div>
                       <h4 className="text-xl font-bold mb-2 uppercase tracking-tight">{m.title}</h4>
                       <p className="text-[var(--jch-muted)] leading-relaxed">{m.text}</p>
@@ -551,9 +602,9 @@ function About() {
           <div className="lg:col-span-7 space-y-10">
             <FadeUp>
               <div className="space-y-4">
-                <span className="text-[#C5A566] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
+                <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
                 <h2 className="text-5xl font-bold tracking-tight">Verónica López</h2>
-                <p className="text-2xl font-medium text-[#C5A566] italic">Conocer la norma importa. Saber aplicarla con estrategia marca la diferencia.</p>
+                <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Conocer la norma importa. Saber aplicarla con estrategia marca la diferencia.</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
@@ -579,7 +630,7 @@ function About() {
             </FadeUp>
             <FadeUp delay={0.3}>
               <div className="flex items-center gap-4 text-[var(--jch-ink)] font-bold">
-                <Icon name="location_on" className="text-[#C5A566]" />
+                <Icon name="location_on" className="text-[var(--jch-accent-ink)]" />
                 <span className="text-sm uppercase tracking-widest">Altea · Costa Blanca · Alicante</span>
               </div>
             </FadeUp>
@@ -597,7 +648,7 @@ function HiloLegal() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <FadeUp>
             <div className="space-y-8">
-              <span className="text-[#C5A566] font-bold text-xs uppercase tracking-widest">PARTE DE HILOLEGAL</span>
+              <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">PARTE DE HILOLEGAL</span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                 <Curtain>Una firma, dos especialistas</Curtain>
               </h2>
@@ -611,7 +662,7 @@ function HiloLegal() {
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--jch-accent-ink)] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a José Carlos <Icon name="arrow_forward" className="text-sm" />
               </motion.a>
@@ -630,7 +681,7 @@ function HiloLegal() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
-                <a href="https://hilolegal.es" target="_blank" rel="noopener noreferrer" className="font-bold uppercase tracking-widest text-xs hover:text-[#C5A566] transition-colors">HiloLegal</a>
+                <a href="https://hilolegal.es" target="_blank" rel="noopener noreferrer" className="font-bold uppercase tracking-widest text-xs hover:text-[var(--jch-accent-ink)] transition-colors">HiloLegal</a>
               </div>
             </div>
           </FadeUp>
@@ -662,7 +713,7 @@ function FAQ() {
                     <motion.span
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={spring}
-                      className="material-symbols-outlined text-[#C5A566]"
+                      className="material-symbols-outlined text-[var(--jch-accent-ink)]"
                     >
                       expand_more
                     </motion.span>
@@ -838,7 +889,7 @@ function Footer() {
               { l: "Términos", href: "/terminos.html" },
             ].map(({ l, href }) => (
               <a key={l} className="relative text-[10px] font-bold uppercase tracking-[0.2em] group" href={href} target="_blank" rel="noopener noreferrer">
-                <span className="transition-colors group-hover:text-[#C5A566]">{l}</span>
+                <span className="transition-colors group-hover:text-[var(--jch-accent-ink)]">{l}</span>
                 <span className="absolute left-0 -bottom-1 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
             ))}
