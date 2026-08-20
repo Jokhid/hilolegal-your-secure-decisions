@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { blogPosts } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/blog/")({
@@ -36,9 +37,12 @@ function BlogIndex() {
               HiloLegal
             </span>
           </Link>
-          <Link to="/" className="blog-editorial__back">
-            ← Volver al inicio
-          </Link>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Link to="/" className="blog-editorial__back">
+              ← Volver al inicio
+            </Link>
+          </div>
         </nav>
       </header>
 

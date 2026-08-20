@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AnimatePresence, motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/josecarlos")({
@@ -362,7 +363,7 @@ function Header() {
                 </button>
               </div>
 
-              <div className="flex flex-1 flex-col gap-3 px-5 py-7">
+              <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-5 py-7">
                 {navLinks.map(([label, href], index) => (
                   <motion.a
                     key={href}
@@ -390,8 +391,11 @@ function Header() {
                 ))}
               </div>
 
-              <div className="border-t border-white/70 bg-white/62 px-6 py-5 text-xs font-medium leading-relaxed text-[#4A4A4A] backdrop-blur-xl">
-                Asesoramiento financiero e hipotecario en Altea, Benidorm y Alicante.
+              <div className="flex items-center justify-between border-t border-white/70 bg-white/62 px-6 py-5 backdrop-blur-xl">
+                <span className="text-xs font-medium leading-relaxed text-[#4A4A4A]">
+                  Asesoramiento financiero e hipotecario en Altea, Benidorm y Alicante.
+                </span>
+                <ThemeToggle />
               </div>
             </div>
           </motion.aside>
@@ -406,7 +410,7 @@ function Header() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
-        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white/85 backdrop-blur-xl"
+        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a className="group flex items-center gap-3" href="https://hilolegal.es" target="_blank" rel="noopener noreferrer">
@@ -438,6 +442,7 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle className="hidden sm:inline-flex" />
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -773,7 +778,7 @@ function About() {
               <div className="relative overflow-hidden">
                 <motion.img
                   alt="José Carlos Hidalgo"
-                  className="w-full h-[600px] object-cover"
+                  className="w-full h-[320px] sm:h-[420px] lg:h-[600px] object-cover"
                   src={IMG(8)}
                   loading="lazy"
                   initial={{ scale: 1.08 }}

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 const banner3Asset = { url: "/veronica-assets/file_00000000b9c07246b0256fc18d8d4888.webp" };
 
@@ -147,49 +148,119 @@ function Index() {
 }
 
 function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const navLinks: [string, string][] = [
+    ["Áreas", "#services"],
+    ["Método", "#method"],
+    ["Sobre mí", "#about"],
+    ["FAQ", "#faq"],
+    ["Contacto", "#contact"],
+  ];
+
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ ...spring, delay: 0.1 }}
-      className="sticky top-0 w-full z-50 bg-white/85 backdrop-blur-xl border-b border-[#E5E5E5]"
-    >
-      <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1200px] mx-auto">
-        <a className="flex items-center gap-3 group" href="https://hilolegal.es" target="_blank" rel="noopener noreferrer">
-          <motion.img
-            src="/veronica-assets/logo.png"
-            alt="Logo Verónica López"
-            className="h-10 w-10 object-contain"
-            whileHover={{ rotate: -6, scale: 1.05 }}
-            transition={spring}
-          />
-          <span className="text-base md:text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
-            Verónica López
-          </span>
-        </a>
-        <div className="hidden md:flex items-center gap-10">
-          {[["Áreas", "#services"], ["Método", "#method"], ["Sobre mí", "#about"], ["FAQ", "#faq"], ["Contacto", "#contact"]].map(([l, h]) => (
-            <a
-              key={h}
-              className="relative text-sm font-medium text-[#1A1A1A] group"
-              href={h}
+    <>
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ...spring, delay: 0.1 }}
+        className="sticky top-0 w-full z-50 bg-white backdrop-blur-xl border-b border-[#E5E5E5]"
+      >
+        <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1200px] mx-auto">
+          <a className="flex items-center gap-3 group" href="https://hilolegal.es" target="_blank" rel="noopener noreferrer">
+            <motion.img
+              src="/veronica-assets/logo.png"
+              alt="Logo Verónica López"
+              className="h-10 w-10 object-contain"
+              whileHover={{ rotate: -6, scale: 1.05 }}
+              transition={spring}
+            />
+            <span className="text-base md:text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
+              Verónica López
+            </span>
+          </a>
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map(([l, h]) => (
+              <a
+                key={h}
+                className="relative text-sm font-medium text-[#1A1A1A] group"
+                href={h}
+              >
+                <span className="transition-colors group-hover:text-[#C5A566]">{l}</span>
+                <span className="absolute left-0 -bottom-1 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle className="hidden sm:inline-flex" />
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={spring}
+              className="hidden sm:inline-block bg-[#1f6f78] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-[#C5A566] transition-colors"
+              href={WHATSAPP}
             >
-              <span className="transition-colors group-hover:text-[#C5A566]">{l}</span>
-              <span className="absolute left-0 -bottom-1 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-            </a>
-          ))}
-        </div>
-        <motion.a
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          transition={spring}
-          className="bg-[#1f6f78] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-[#C5A566] transition-colors"
-          href={WHATSAPP}
-        >
-          WhatsApp
-        </motion.a>
-      </nav>
-    </motion.header>
+              WhatsApp
+            </motion.a>
+            <button
+              type="button"
+              aria-label="Abrir menú"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
+            >
+              {mobileOpen ? "×" : "☰"}
+            </button>
+          </div>
+        </nav>
+      </motion.header>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.aside
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="flex h-full flex-col gap-4 p-8">
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="self-end text-3xl text-[#1f6f78]"
+                aria-label="Cerrar menú"
+              >
+                ×
+              </button>
+              <div className="mt-8 flex flex-col gap-2">
+                {navLinks.map(([l, h]) => (
+                  <a
+                    key={h}
+                    href={h}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[#C5A566]"
+                  >
+                    {l}
+                  </a>
+                ))}
+                <a
+                  href={WHATSAPP}
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-2 inline-block bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
+                >
+                  WhatsApp
+                </a>
+                <div className="flex items-center gap-2 border-t border-[#E5E5E5] pt-4 text-lg font-medium text-[#1A1A1A]">
+                  <ThemeToggle />
+                  <span>Modo claro</span>
+                </div>
+              </div>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -279,9 +350,9 @@ function TrustStats() {
     { i: "school", t: "Docencia en la Facultad de Derecho" },
   ];
   return (
-    <section className="py-16 border-b border-white/10">
+    <section className="py-16 border-b border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[var(--jch-line)]">
           {items.map((s, idx) => (
             <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
               <div className="flex flex-col items-center md:items-start gap-4">
@@ -336,7 +407,7 @@ function Diagnosis() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold">{x.t}</h3>
-                <p className="text-[#9A9892] leading-relaxed">{x.d}</p>
+                <p className="text-[var(--jch-muted)] leading-relaxed">{x.d}</p>
               </article>
             </FadeUp>
           ))}
@@ -376,21 +447,21 @@ function Services() {
             <Curtain>Áreas de asesoramiento jurídico</Curtain>
           </h2>
           <FadeUp delay={0.15}>
-            <p className="text-xl text-[#9A9892] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
+            <p className="text-xl text-[var(--jch-muted)] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
           </FadeUp>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--jch-line)]">
           {services.map((s, idx) => (
             <FadeUp key={s.title} delay={(idx % 2) * 0.08}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={spring}
-                className="h-full bg-[#0a0a0a] p-12 hover:bg-[#151515] group transition-colors border border-transparent hover:border-[#C5A566]/30"
+                className="h-full bg-[var(--jch-bg)] p-12 hover:bg-[var(--jch-surface)] group transition-colors border border-transparent hover:border-[#C5A566]/30"
               >
                 <Icon name={s.icon} className="text-[#C5A566] text-4xl mb-8" />
                 <h3 className="text-xl font-bold mb-4 group-hover:text-[#C5A566] transition-colors">{s.title}</h3>
-                <p className="text-[#9A9892] mb-10 leading-relaxed">{s.text}</p>
-                <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors" href="#contact">
+                <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
+                <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
                   Consultar <Icon name="arrow_forward" className="text-sm" />
                 </a>
               </motion.div>
@@ -418,7 +489,7 @@ function Method() {
                     <span className="text-3xl font-black text-[#C5A566]">{m.n}</span>
                     <div>
                       <h4 className="text-xl font-bold mb-2 uppercase tracking-tight">{m.title}</h4>
-                      <p className="text-[#9A9892] leading-relaxed">{m.text}</p>
+                      <p className="text-[var(--jch-muted)] leading-relaxed">{m.text}</p>
                     </div>
                   </div>
                 </FadeUp>
@@ -466,7 +537,7 @@ function About() {
               <div className="relative overflow-hidden">
                 <motion.img
                   alt="Verónica López"
-                  className="w-full h-[600px] object-cover"
+                  className="w-full h-[320px] sm:h-[420px] lg:h-[600px] object-cover"
                   src={IMG(6)}
                   initial={{ scale: 1.08 }}
                   whileInView={{ scale: 1 }}
@@ -486,7 +557,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <div className="space-y-6 text-xl text-[#9A9892] leading-relaxed">
+              <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
                 <p>Abogada con más de 20 años de experiencia y una trayectoria marcada por el rigor jurídico, la responsabilidad institucional y la vocación docente.</p>
                 <p>He ocupado puestos de alta dirección en la administración local y autonómica, lo que me permite conocer desde dentro el funcionamiento de las instituciones públicas y los procedimientos administrativos.</p>
                 <p>Mi experiencia como profesora en la Facultad de Derecho de Alicante aporta una visión técnica y académica: análisis profundo, explicación clara y estrategia bien fundamentada.</p>
@@ -499,7 +570,7 @@ function About() {
                     key={t}
                     whileHover={{ y: -2, backgroundColor: "#C5A566", color: "#0a0a0a" }}
                     transition={spring}
-                    className="border border-white/15 px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
+                    className="border border-[var(--jch-line-strong)] px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
                   >
                     {t}
                   </motion.span>
@@ -507,7 +578,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.3}>
-              <div className="flex items-center gap-4 text-white font-bold">
+              <div className="flex items-center gap-4 text-[var(--jch-ink)] font-bold">
                 <Icon name="location_on" className="text-[#C5A566]" />
                 <span className="text-sm uppercase tracking-widest">Altea · Costa Blanca · Alicante</span>
               </div>
@@ -530,7 +601,7 @@ function HiloLegal() {
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                 <Curtain>Una firma, dos especialistas</Curtain>
               </h2>
-              <div className="space-y-6 text-xl text-[#9A9892] leading-relaxed">
+              <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
                 <p>Soy cofundadora de HiloLegal junto a José Carlos Hidalgo, consultor patrimonial e hipotecario. Unificamos el criterio jurídico y el financiero. Si un caso presenta ambas vertientes, trabajamos de forma coordinada bajo una sola firma, evitando que tengas que duplicar explicaciones con distintos profesionales.</p>
                 <p>Una firma, dos especialistas, sin que tengas que empezar desde cero con cada uno.</p>
               </div>
@@ -540,7 +611,7 @@ function HiloLegal() {
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C5A566] hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a José Carlos <Icon name="arrow_forward" className="text-sm" />
               </motion.a>
@@ -577,12 +648,12 @@ function FAQ() {
         <h2 className="text-4xl font-bold tracking-tight text-center mb-20 uppercase">
           <Curtain>Preguntas Frecuentes</Curtain>
         </h2>
-        <div className="space-y-px bg-white/10">
+        <div className="space-y-px bg-[var(--jch-line)]">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <FadeUp key={f.q} delay={i * 0.05}>
-                <div className="bg-[#101010]">
+                <div className="bg-[var(--jch-surface)]">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex justify-between items-center text-left p-8 text-lg font-bold uppercase tracking-tight"
@@ -602,7 +673,7 @@ function FAQ() {
                     transition={{ duration: 0.5, ease: easeOutExpo }}
                     style={{ overflow: "hidden" }}
                   >
-                    <div className="px-8 pb-8 text-[#9A9892] leading-relaxed">{f.a}</div>
+                    <div className="px-8 pb-8 text-[var(--jch-muted)] leading-relaxed">{f.a}</div>
                   </motion.div>
                 </div>
               </FadeUp>
@@ -651,11 +722,11 @@ function Contact() {
             <Curtain>Hablemos de tu asunto</Curtain>
           </h2>
           <FadeUp delay={0.1}>
-            <p className="text-xl text-[#9A9892] leading-relaxed">
+            <p className="text-xl text-[var(--jch-muted)] leading-relaxed">
               Si necesitas asesoramiento jurídico, rellena el formulario y explica brevemente tu situación. Revisaremos la información inicial y contactaremos contigo para valorar los siguientes pasos.
             </p>
           </FadeUp>
-          <div className="space-y-10 pt-10 border-t border-white/10">
+          <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">
             {[
               { i: "call", label: "Teléfono", v: PHONE_DISPLAY, href: `tel:+34${PHONE_DISPLAY.replace(/\s/g, "")}` },
               { i: "mail", label: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
@@ -667,7 +738,7 @@ function Contact() {
                   transition={spring}
                   className="flex items-center gap-8 group"
                 >
-                  <div className="w-16 h-16 bg-[#151515] flex items-center justify-center text-white group-hover:bg-[#C5A566] transition-colors">
+                  <div className="w-16 h-16 bg-[var(--jch-surface)] flex items-center justify-center text-[var(--jch-ink)] group-hover:bg-[#C5A566] transition-colors">
                     <Icon name={c.i} />
                   </div>
                   <div>
@@ -691,7 +762,7 @@ function Contact() {
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
-                className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
+                className="w-full bg-transparent border-0 border-b border-[var(--jch-line-strong)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
               >
                 <option>Consulta jurídica general</option>
                 <option>Derecho administrativo</option>
@@ -708,7 +779,7 @@ function Contact() {
                 placeholder="Explica brevemente tu situación"
                 value={form.message}
                 onChange={onChange("message")}
-                className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-white/30"
+                className="w-full bg-transparent border-0 border-b border-[var(--jch-line-strong)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
               />
             </div>
 
@@ -728,7 +799,7 @@ function Contact() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-white font-bold uppercase tracking-widest"
+                className="text-sm text-[var(--jch-ink)] font-bold uppercase tracking-widest"
               >
                 Gracias. Hemos recibido tu consulta y contactaremos contigo a la mayor brevedad.
               </motion.p>
@@ -805,7 +876,7 @@ function Field({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-white/30"
+        className="w-full bg-transparent border-0 border-b border-[var(--jch-line-strong)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
       />
     </div>
   );

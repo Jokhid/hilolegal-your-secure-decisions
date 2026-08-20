@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/")({
@@ -318,7 +319,7 @@ function Header() {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
-        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white/85 backdrop-blur-xl"
+        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a href="/" className="group flex items-center gap-3">
@@ -344,6 +345,7 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle className="hidden sm:inline-flex" />
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -398,6 +400,10 @@ function Header() {
                     {label}
                   </a>
                 ))}
+                <div className="flex items-center gap-2 border-t border-[#E5E5E5] pt-4 text-lg font-medium text-[#1A1A1A]">
+                  <ThemeToggle />
+                  <span>Modo claro</span>
+                </div>
               </div>
             </div>
           </motion.aside>

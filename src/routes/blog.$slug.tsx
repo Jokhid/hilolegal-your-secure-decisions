@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { blogPosts, findPost } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -167,12 +168,15 @@ function BlogPostPage() {
               HiloLegal
             </span>
           </Link>
-          <Link
-            to="/blog"
-            className="blog-post__back"
-          >
-            ← Blog
-          </Link>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Link
+              to="/blog"
+              className="blog-post__back"
+            >
+              ← Blog
+            </Link>
+          </div>
         </nav>
       </header>
 
