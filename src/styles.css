@@ -1368,6 +1368,19 @@ footer.site-footer .brand {
   background: #F5F5F5 !important;
 }
 
+/* .services-editorial__card's `background: var(--jch-bg)` (no
+   !important, unlike the near-identical #herramientas .tool-card
+   rule which updates fine) does not react to the [data-theme="light"]
+   variable swap in testing — pin it directly rather than rely on the
+   var() reference. */
+.josecarlos-original .services-editorial__card {
+  background: #ffffff !important;
+  color: #1A1A1A !important;
+}
+.josecarlos-original .services-editorial__card:hover {
+  background: #F5F5F5 !important;
+}
+
 .veronica-hero-image {
   object-position: center 18%;
 }
