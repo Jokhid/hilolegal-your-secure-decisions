@@ -313,19 +313,25 @@ header [class*="uppercase"] {
 .jch-accent { color: var(--jch-accent-ink) !important; }
 .jch-italic { font-style: italic; font-weight: 400; }
 
-/* Hand-authored theme-reactive utilities. Tailwind's arbitrary-value
-   bracket syntax (bg-[var(--x)], even with the bg-[color:var(--x)]
-   type hint) was found to never generate a working rule for this
-   project's build — the element ends up with no background rule at
-   all, or one that's frozen at build time and never responds to
-   [data-theme] switching. Plain hand-written CSS referencing the same
-   custom properties works correctly (proven by .jch-accent above), so
-   these small utilities exist specifically to replace that pattern
-   wherever a background needed to react to the theme toggle. */
-.jch-divider { background-color: var(--jch-line); }
-.jch-surface-block { background-color: var(--jch-surface); }
-.jch-card { background-color: var(--jch-bg); }
-.jch-card:hover { background-color: var(--jch-surface); }
+/* Hand-authored theme-reactive utilities, used in place of Tailwind's
+   bg-[var(--x)] arbitrary-value syntax (confirmed on live production
+   to never generate a working rule for this project's build). These
+   use LITERAL hex per [data-theme] state rather than var() directly,
+   because even a plain var()-based rule was confirmed frozen at its
+   first-paint value on these specific elements (framer-motion
+   motion.div, likely GPU-composited) and never repainted when
+   [data-theme] changed afterwards, despite the custom property itself
+   correctly updating. A normal selector match on [data-theme] doesn't
+   have that problem. */
+.jch-divider { background-color: rgba(243, 240, 234, 0.14); }
+.jch-surface-block { background-color: #101010; }
+.jch-card { background-color: #0a0a0a; }
+.jch-card:hover { background-color: #151515; }
+
+[data-theme="light"] .jch-divider { background-color: rgba(26, 26, 26, 0.12); }
+[data-theme="light"] .jch-surface-block { background-color: #f7f6f2; }
+[data-theme="light"] .jch-card { background-color: #ffffff; }
+[data-theme="light"] .jch-card:hover { background-color: #f7f6f2; }
 
 /* Header */
 
