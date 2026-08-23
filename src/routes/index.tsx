@@ -119,8 +119,8 @@ function FadeUp({
 
 /* ---------- Data ---------- */
 const trustStats = [
-  { value: "20+", label: "Años de experiencia jurídica y financiera" },
-  { value: "2", label: "Especialidades, un mismo criterio" },
+  { value: "20+", label: "Años de experiencia" },
+  { value: "1200+", label: "Personas ayudadas" },
   { value: "24h", label: "Tiempo de respuesta" },
 ];
 
