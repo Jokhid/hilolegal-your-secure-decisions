@@ -880,11 +880,23 @@ function Contact() {
               </p>
             </a>
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Altea, Alicante</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Dirección</p>
               <p className="text-base opacity-80">
-                HiloLegal — Boutique legal y patrimonial
+                Calle Regata 3, 1º E, 03590 Altea, Alicante
               </p>
             </div>
+          </div>
+
+          <div className="border border-white/10 aspect-[4/3] md:aspect-[16/10]">
+            <iframe
+              title="Ubicación de HiloLegal en Altea"
+              src="https://www.google.com/maps?q=Calle+Regata+3,+03590+Altea,+Alicante,+Espa%C3%B1a&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: "grayscale(1) invert(0.9) contrast(0.9)" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
 
