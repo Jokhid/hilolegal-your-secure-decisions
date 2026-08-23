@@ -501,13 +501,13 @@ function Services() {
             <p className="text-xl text-[var(--jch-muted)] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
           </FadeUp>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--jch-line)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px jch-divider">
           {services.map((s, idx) => (
             <FadeUp key={s.title} delay={(idx % 2) * 0.08}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={spring}
-                className="h-full bg-[var(--jch-bg)] p-12 hover:bg-[var(--jch-surface)] group transition-colors border border-transparent hover:border-[#C5A566]/30"
+                className="h-full jch-card p-12 group transition-colors border border-transparent hover:border-[#C5A566]/30"
               >
                 <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
                 <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
@@ -699,12 +699,12 @@ function FAQ() {
         <h2 className="text-4xl font-bold tracking-tight text-center mb-20 uppercase">
           <Curtain>Preguntas Frecuentes</Curtain>
         </h2>
-        <div className="space-y-px bg-[var(--jch-line)]">
+        <div className="space-y-px jch-divider">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <FadeUp key={f.q} delay={i * 0.05}>
-                <div className="bg-[var(--jch-surface)]">
+                <div className="jch-surface-block">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex justify-between items-center text-left p-8 text-lg font-bold uppercase tracking-tight"
@@ -789,7 +789,7 @@ function Contact() {
                   transition={spring}
                   className="flex items-center gap-8 group"
                 >
-                  <div className="w-16 h-16 bg-[var(--jch-surface)] flex items-center justify-center text-[var(--jch-ink)] group-hover:bg-[#C5A566] transition-colors">
+                  <div className="w-16 h-16 jch-surface-block flex items-center justify-center text-[var(--jch-ink)] group-hover:bg-[#C5A566] transition-colors">
                     <Icon name={c.i} />
                   </div>
                   <div>
@@ -837,10 +837,11 @@ function Contact() {
             <motion.button
               type="submit"
               disabled={status === "sending"}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, color: "#ffffff" }}
               whileTap={{ scale: 0.98 }}
               transition={spring}
-              className="inline-block text-center w-full bg-[#C5A566] text-white py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{ color: "#000000" }}
+              className="inline-block text-center w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : "Enviar consulta"}
             </motion.button>
