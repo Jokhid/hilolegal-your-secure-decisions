@@ -504,17 +504,15 @@ function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px jch-divider">
           {services.map((s, idx) => (
             <FadeUp key={s.title} delay={(idx % 2) * 0.08}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={spring}
-                className="h-full jch-card p-12 group transition-colors border border-transparent hover:border-[#C5A566]/30"
-              >
-                <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
-                <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
-                <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
-                <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
-                  Consultar <Icon name="arrow_forward" className="text-sm" />
-                </a>
+              <motion.div whileHover={{ y: -4 }} transition={spring} className="h-full group">
+                <div className="h-full jch-card p-12 transition-colors border border-transparent hover:border-[#C5A566]/30">
+                  <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
+                  <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
+                  <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
+                    Consultar <Icon name="arrow_forward" className="text-sm" />
+                  </a>
+                </div>
               </motion.div>
             </FadeUp>
           ))}
