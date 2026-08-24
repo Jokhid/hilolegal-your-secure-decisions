@@ -392,6 +392,7 @@ main > section:first-child > div.hero-thread {
   fill: none;
   stroke: url(#hero-thread-gradient);
   stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(197, 165, 102, 0.35));
 }
 
 .hero-thread__line {
