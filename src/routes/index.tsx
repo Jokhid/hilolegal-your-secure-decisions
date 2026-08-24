@@ -414,16 +414,20 @@ function Header() {
   );
 }
 
+const THREAD_VB_W = 1600;
+const THREAD_VB_H = 300;
 const threadPoints = [
-  { label: "Legal", x: 150, y: 75, crest: true },
-  { label: "Hipotecas", x: 550, y: 165, crest: false },
-  { label: "Patrimonio", x: 950, y: 75, crest: true },
-  { label: "Comunidades", x: 1350, y: 165, crest: false },
+  { label: "Legal", x: 150, y: 40, crest: true },
+  { label: "Hipotecas", x: 550, y: 260, crest: false },
+  { label: "Patrimonio", x: 950, y: 40, crest: true },
+  { label: "Comunidades", x: 1350, y: 260, crest: false },
 ];
 const THREAD_D =
-  "M-40,120 C55,120 105,75 150,75 C283,75 417,165 550,165 C683,165 817,75 950,75 C1083,75 1217,165 1350,165 C1483,165 1567,110 1650,110";
+  "M-40,150 C55,150 105,40 150,40 C283,40 417,260 550,260 C683,260 817,40 950,40 C1083,40 1217,260 1350,260 C1483,260 1567,150 1650,150";
 const THREAD_D_VIBRATE =
-  "M-40,120 C55,112 105,83 150,75 C283,67 417,173 550,165 C683,157 817,67 950,75 C1083,83 1217,173 1350,165 C1483,157 1567,102 1650,110";
+  "M-40,150 C55,136 105,54 150,40 C283,26 417,274 550,260 C683,246 817,26 950,40 C1083,54 1217,274 1350,260 C1483,246 1567,164 1650,150";
+const THREAD_DRAW_DELAY = 1.1;
+const THREAD_DRAW_DURATION = 2.4;
 
 /* ---------- Hero ---------- */
 function Hero() {
@@ -487,39 +491,85 @@ function Hero() {
       </div>
 
       <div className="hero-thread" aria-hidden="true">
-        <svg viewBox="0 0 1600 220" className="hero-thread__svg" preserveAspectRatio="none">
+        <motion.svg
+          viewBox={`0 0 ${THREAD_VB_W} ${THREAD_VB_H}`}
+          className="hero-thread__svg"
+          preserveAspectRatio="none"
+          initial={{ filter: "brightness(1)" }}
+          animate={{ filter: ["brightness(1)", "brightness(1)", "brightness(2.2)", "brightness(1)"] }}
+          transition={{ duration: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION + 0.5, times: [0, 0.94, 0.97, 1], ease: "easeOut" }}
+        >
+          <defs>
+            <linearGradient id="hero-thread-gradient" x1="0" y1="0" x2="1" y2="0.3">
+              <stop offset="0%" className="hero-thread__stop-a" />
+              <stop offset="45%" className="hero-thread__stop-b" />
+              <stop offset="100%" className="hero-thread__stop-c" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            className="hero-thread__line-glow"
+            initial={{ pathLength: 0, d: THREAD_D }}
+            animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
+            transition={{
+              pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
+              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
+            }}
+          />
           <motion.path
             className="hero-thread__line"
             initial={{ pathLength: 0, d: THREAD_D }}
             animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
             transition={{
-              pathLength: { duration: 1.9, ease: easeOutExpo, delay: 1.1 },
-              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 3.0 },
+              pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
+              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
             }}
           />
-        </svg>
-        {threadPoints.map((p, i) => (
-          <motion.span
-            key={p.label}
-            className="hero-thread__dot"
-            style={{ left: `${(p.x / 1600) * 100}%`, top: `${(p.y / 220) * 100}%` }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.1 + (i + 1) * 0.4, ease: easeOutExpo }}
-          />
-        ))}
-        {threadPoints.map((p, i) => (
-          <motion.span
-            key={p.label}
-            className={`hero-thread__label hero-thread__label--${p.crest ? "up" : "down"}`}
-            style={{ left: `${(p.x / 1600) * 100}%`, top: `${(p.y / 220) * 100}%` }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.1 + (i + 1) * 0.4 + 0.15, ease: easeOutExpo }}
-          >
-            {p.label}
-          </motion.span>
-        ))}
+        </motion.svg>
+        {threadPoints.map((p) => {
+          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION;
+          return (
+            <motion.span
+              key={`${p.label}-ping`}
+              className="hero-thread__ping"
+              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
+              initial={{ scale: 0.4, opacity: 0.9 }}
+              animate={{ scale: 2.6, opacity: 0 }}
+              transition={{ duration: 0.9, delay, ease: "easeOut" }}
+            />
+          );
+        })}
+        {threadPoints.map((p) => {
+          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION;
+          return (
+            <motion.span
+              key={p.label}
+              className="hero-thread__dot"
+              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 320, damping: 14, delay }}
+            />
+          );
+        })}
+        {threadPoints.map((p) => {
+          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION + 0.12;
+          return (
+            <span
+              key={`${p.label}-label`}
+              className={`hero-thread__label-anchor hero-thread__label-anchor--${p.crest ? "up" : "down"}`}
+              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
+            >
+              <motion.span
+                className="hero-thread__label"
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 260, damping: 16, delay }}
+              >
+                {p.label}
+              </motion.span>
+            </span>
+          );
+        })}
       </div>
     </section>
   );
