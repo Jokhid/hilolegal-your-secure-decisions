@@ -901,7 +901,7 @@ function Tools() {
                 </span>
                 <h3>{t.title}</h3>
                 <p>{t.text}</p>
-                <span className={`tools__cta${t.cta === "Solicitar diagnóstico" ? " tools__cta--dark" : ""}`}>
+                <span className="tools__cta">
                   <span aria-hidden="true">→</span> {t.cta}
                 </span>
               </a>
