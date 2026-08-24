@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AnimatePresence, motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
@@ -255,7 +254,6 @@ function Index() {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   const navLinks: [string, string][] = [
     ["Servicios", "#services"],
@@ -267,139 +265,13 @@ function Header() {
   ];
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
     if (!mobileOpen) return;
-
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    const previousBodyTouchAction = document.body.style.touchAction;
-
+    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.touchAction = "none";
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileOpen(false);
-    };
-
-    window.addEventListener("keydown", closeOnEscape);
-
     return () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
-      document.body.style.touchAction = previousBodyTouchAction;
-      window.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = prev;
     };
   }, [mobileOpen]);
-
-  const mobileMenu = (
-    <AnimatePresence>
-      {mobileOpen && (
-        <motion.div
-          className="fixed inset-0 z-[9999] md:hidden overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-        >
-          <motion.button
-            type="button"
-            aria-label="Cerrar menú"
-            onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 h-full w-full bg-[#1A1A1A]/45 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-          />
-
-          <motion.aside
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menú principal"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.72, ease: easeOutExpo }}
-            className="absolute right-0 top-0 h-[100dvh] w-[min(88vw,430px)] overflow-hidden border-l border-white/70 bg-white/82 shadow-[-28px_0_90px_rgba(26,26,26,0.30)] backdrop-blur-2xl"
-          >
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20 bg-[#C5A566]"
-              initial={{ scaleX: 1 }}
-              animate={{ scaleX: 0 }}
-              exit={{ scaleX: 1 }}
-              transition={{ duration: 0.78, ease: easeOutExpo, delay: 0.05 }}
-              style={{ transformOrigin: "left" }}
-            />
-
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),rgba(255,255,255,0.52)_45%,rgba(255,255,255,0.30))]" />
-
-            <div className="relative z-10 flex h-full flex-col">
-              <div className="flex items-center justify-between border-b border-white/70 bg-white/76 px-6 py-5 backdrop-blur-xl">
-                <Link
-  to="/"
-  className="flex items-center gap-3"
->
-  <img src={LOGO} alt="Logo José Carlos Hidalgo" className="h-9 w-9 object-contain" />
-  <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A]">
-    Menú
-  </span>
-</Link>
-
-                <button
-                  type="button"
-                  onClick={() => setMobileOpen(false)}
-                  aria-label="Cerrar menú"
-                  className="rounded-full border border-white/70 bg-white/72 p-2 text-[#1A1A1A] shadow-[0_10px_30px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-colors hover:bg-[#C5A566] hover:text-white"
-                >
-                  <Icon name="close" className="text-3xl" />
-                </button>
-              </div>
-
-              <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-5 py-7">
-                {navLinks.map(([label, href], index) => (
-                  <motion.a
-                    key={href}
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    initial={{ opacity: 0, x: 54 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 32 }}
-                    transition={{
-                      duration: 0.56,
-                      ease: easeOutExpo,
-                      delay: 0.18 + index * 0.055,
-                    }}
-                    className="group relative overflow-hidden rounded-2xl border border-white/70 bg-white/72 px-5 py-4 text-xl font-bold tracking-tight text-[#1A1A1A] shadow-[0_14px_42px_rgba(26,26,26,0.10)] backdrop-blur-xl transition-transform duration-300 active:scale-[0.98]"
-                  >
-                    <span className="absolute inset-0 origin-right scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-                    <span className="relative z-10 flex items-center justify-between transition-colors group-hover:text-white">
-                      {label}
-                      <Icon
-                        name="arrow_forward"
-                        className="text-xl text-[var(--jch-accent-ink)] transition-colors group-hover:text-white"
-                      />
-                    </span>
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between border-t border-white/70 bg-white/62 px-6 py-5 backdrop-blur-xl">
-                <span className="text-xs font-medium leading-relaxed text-[#4A4A4A]">
-                  Asesoramiento financiero e hipotecario en Altea, Benidorm y Alicante.
-                </span>
-                <ThemeToggle />
-              </div>
-            </div>
-          </motion.aside>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
 
   return (
     <>
@@ -418,7 +290,7 @@ function Header() {
               whileHover={{ rotate: -6, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold uppercase tracking-tight md:text-lg">
+            <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A] md:text-lg">
               José Carlos Hidalgo
             </span>
           </Link>
@@ -452,18 +324,63 @@ function Header() {
 
             <button
               type="button"
-              onClick={() => setMobileOpen(true)}
               aria-label="Abrir menú"
-              aria-expanded={mobileOpen}
-              className="-mr-2 p-2 text-[#1A1A1A] md:hidden"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
             >
-              <Icon name="menu" className="text-3xl" />
+              {mobileOpen ? "×" : "☰"}
             </button>
           </div>
         </nav>
       </motion.header>
 
-      {mounted ? createPortal(mobileMenu, document.body) : null}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.aside
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="flex h-full flex-col gap-4 p-8">
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="self-end text-3xl text-[#1f6f78]"
+                aria-label="Cerrar menú"
+              >
+                ×
+              </button>
+              <div className="mt-8 flex flex-col gap-2">
+                {navLinks.map(([label, href]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[var(--jch-accent-ink)]"
+                  >
+                    {label}
+                  </a>
+                ))}
+                <a
+                  href={WHATSAPP}
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-2 inline-block bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
+                >
+                  WhatsApp
+                </a>
+                <div className="flex items-center gap-2 border-t border-[#E5E5E5] pt-4 text-lg font-medium text-[#1A1A1A]">
+                  <ThemeToggle />
+                  <span>Modo claro</span>
+                </div>
+              </div>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
     </>
   );
 }

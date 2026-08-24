@@ -432,31 +432,34 @@ main > section:first-child a.btn-ghost:hover {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(2rem, 5vw, 4rem);
+  justify-content: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
   margin-top: clamp(1rem, 3vw, 2rem);
   padding-top: clamp(2rem, 4vw, 3rem);
   border-top: 1px solid var(--jch-line);
+  text-align: center;
 }
 
 .trust-block__stat {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .trust-block__stat-value {
   font-family: "Familjen Grotesk", ui-sans-serif, sans-serif;
-  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-size: clamp(3.4rem, 7vw, 5.4rem);
   font-weight: 500;
   line-height: 1;
   color: var(--jch-accent-2);
 }
 
 .trust-block__stat-label {
-  max-width: 14rem;
+  max-width: 16rem;
   color: var(--jch-muted);
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1.5;
@@ -1451,6 +1454,17 @@ footer.site-footer .brand {
   --jch-dim: #66645f;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-ink-rgb: 243, 240, 234;
+}
+
+.josecarlos-original header.sticky {
+  background: #ffffff !important;
+  color: #1A1A1A !important;
+  border-bottom: 1px solid #E5E5E5 !important;
+}
+
+.josecarlos-original header.sticky a,
+.josecarlos-original header.sticky button {
+  color: inherit !important;
 }
 
 .josecarlos-original main > section[class*="bg-[#F5F5F5]"] {
