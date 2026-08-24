@@ -388,14 +388,23 @@ function Header() {
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section ref={ref} className="relative pt-20 pb-32 overflow-hidden border-b border-[#E5E5E5]">
-      <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        <motion.div style={{ y: textY }} className="lg:col-span-7 space-y-10">
+    <section ref={ref} className="hero-bg-section">
+      <motion.img
+        style={{ scale: imgScale }}
+        alt="Asesoramiento financiero e hipotecario"
+        className="hero-bg-image"
+        src={IMG(1)}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <div className="hero-bg-overlay" aria-hidden="true" />
+      <div className="mx-auto px-6">
+        <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
             <div className="inline-flex items-center gap-3 text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">
               <motion.span
@@ -416,9 +425,8 @@ function Hero() {
             ))}
           </h1>
 
-
           <FadeUp delay={0.6}>
-            <p className="text-xl text-[#4A4A4A] max-w-xl leading-relaxed">
+            <p className="text-xl text-white/70 max-w-xl leading-relaxed">
               Analizo tu situación, detecto riesgos y te propongo un plan claro para proteger tus ingresos, financiar tu vivienda o preparar tu futuro con criterio.
             </p>
           </FadeUp>
@@ -429,7 +437,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] hover:text-white transition-colors shadow-xl shadow-[#C5A566]/10"
+                className="bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
@@ -438,7 +446,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="border border-[#1A1A1A] text-[#1A1A1A] px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] hover:text-white transition-colors"
+                className="border border-white text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-colors"
                 href="#services"
               >
                 Conocer cómo trabajo
@@ -446,29 +454,6 @@ function Hero() {
             </div>
           </FadeUp>
         </motion.div>
-
-        <div className="lg:col-span-5 hero-editorial__image">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...spring, delay: 0.4 }}
-            className="relative group"
-          >
-            <div className="absolute -inset-4 border border-[#E5E5E5] -z-10 transition-colors duration-500 group-hover:border-[#C5A566]" />
-            <div className="relative overflow-hidden">
-              <motion.img
-                style={{ y: imgY, scale: imgScale }}
-                alt="Asesoramiento financiero e hipotecario"
-                className="w-full h-auto object-cover"
-                src={IMG(1)}
-                loading="eager"
-                fetchPriority="high"
-              />
-              {/* Functional bottom-to-top dark gradient for text legibility */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

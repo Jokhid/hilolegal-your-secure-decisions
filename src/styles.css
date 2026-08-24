@@ -209,6 +209,27 @@ main > section:first-child {
     linear-gradient(0deg, rgba(10, 10, 10, 0.6), transparent 45%);
 }
 
+/* In light mode the hero photo should read in full color instead of
+   through a dark scrim — legibility falls back to the text-shadow rule
+   below. josecarlos.tsx is permanently light-themed (no [data-theme]
+   toggle applies there), so it gets the same treatment unconditionally. */
+[data-theme="light"] .hero-bg-overlay,
+.josecarlos-original .hero-bg-overlay {
+  background: none;
+}
+
+/* josecarlos.tsx pins --jch-ink etc. to dark (light-page) values
+   everywhere else on the page, but its hero now sits on a photo like
+   hilolegal's/veronica's — flip ink back to light just for that section
+   so the heading/body text stays legible, matching those two pages. */
+.josecarlos-original .hero-bg-section {
+  --jch-ink: #ffffff;
+  --jch-muted: rgba(255, 255, 255, 0.75);
+  --jch-dim: rgba(255, 255, 255, 0.55);
+  --jch-ink-rgb: 255, 255, 255;
+  --jch-accent-ink: #C5A566;
+}
+
 main > section:first-child > div.hero-bg-overlay {
   position: absolute !important;
   width: 100% !important;
@@ -368,8 +389,15 @@ main > section:first-child .hero-eyebrow {
 .hero-bg-section h1,
 .hero-bg-section p,
 .hero-bg-section .hero-eyebrow,
-.hero-bg-section [class*="uppercase"] {
+.hero-bg-section [class*="uppercase"],
+.hero-bg-section a.btn-ghost {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* The ghost button's thin line border can disappear against a busy,
+   unfiltered photo — give it the same dark halo as the text above. */
+.hero-bg-section a.btn-ghost {
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5));
 }
 
 main > section:first-child > div.hero-thread {
