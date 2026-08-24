@@ -336,14 +336,14 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#1f6f78] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.4 }}
                 className="h-[2px] bg-[#C5A566] block"
               />
-              ABOGADA · VISIÓN INSTITUCIONAL
+              ABOGADA EN ALTEA · BENIDORM · COSTABLANCA
             </div>
           </FadeUp>
 

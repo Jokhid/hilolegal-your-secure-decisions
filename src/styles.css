@@ -322,7 +322,7 @@ main p, main li {
 }
 
 main > section:first-child p {
-  color: rgba(var(--jch-ink-rgb), 0.72) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 main label, main strong, main button, main select, main input, main textarea {
