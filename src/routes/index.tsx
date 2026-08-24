@@ -416,6 +416,15 @@ function Header() {
 
 const THREAD_VB_W = 1600;
 const THREAD_VB_H = 300;
+// Every half-wave below is an identical 400-unit-wide S-curve (control
+// points sit at the same y as their own endpoint, so the tangent is
+// exactly flat at each anchor) — this guarantees the anchors ARE the
+// curve's true crest/trough, and that every hump is geometrically
+// identical. Two extra half-waves run off-screen (-250 and 1750) purely
+// so the visible portion always looks like a continuous strand instead
+// of starting/ending on a stunted quarter-wave.
+const THREAD_X_START = -250;
+const THREAD_X_END = 1750;
 const threadPoints = [
   { label: "Legal", x: 150, y: 40, crest: true },
   { label: "Hipotecas", x: 550, y: 260, crest: false },
@@ -423,18 +432,36 @@ const threadPoints = [
   { label: "Comunidades", x: 1350, y: 260, crest: false },
 ];
 const THREAD_D =
-  "M-40,150 C55,150 105,40 150,40 C283,40 417,260 550,260 C683,260 817,40 950,40 C1083,40 1217,260 1350,260 C1483,260 1567,150 1650,150";
+  "M-250,260 C-116.67,260 16.67,40 150,40 C283.33,40 416.67,260 550,260 C683.33,260 816.67,40 950,40 C1083.33,40 1216.67,260 1350,260 C1483.33,260 1616.67,40 1750,40";
 const THREAD_D_VIBRATE =
-  "M-40,150 C55,136 105,54 150,40 C283,26 417,274 550,260 C683,246 817,26 950,40 C1083,54 1217,274 1350,260 C1483,246 1567,164 1650,150";
+  "M-250,260 C-116.67,248 16.67,52 150,40 C283.33,28 416.67,272 550,260 C683.33,248 816.67,52 950,40 C1083.33,28 1216.67,272 1350,260 C1483.33,248 1616.67,52 1750,40";
 const THREAD_DRAW_DELAY = 1.1;
-const THREAD_DRAW_DURATION = 2.4;
+const THREAD_DRAW_DURATION = 9.6;
 
 /* ---------- Hero ---------- */
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [threadTop, setThreadTop] = useState<number | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+
+  useEffect(() => {
+    function measure() {
+      if (!ref.current || !ctaRef.current) return;
+      const sectionTop = ref.current.getBoundingClientRect().top;
+      const ctaBottom = ctaRef.current.getBoundingClientRect().bottom;
+      setThreadTop(ctaBottom - sectionTop + 28);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    const id = window.setTimeout(measure, 400); // re-check after webfonts settle
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.clearTimeout(id);
+    };
+  }, []);
 
   return (
     <section ref={ref} className="hero-bg-section">
@@ -478,7 +505,7 @@ function Hero() {
           </FadeUp>
 
           <FadeUp eager delay={0.7}>
-            <div className="flex flex-wrap gap-3 pt-4">
+            <div ref={ctaRef} className="flex flex-wrap gap-3 pt-4">
               <a href="#contact" className="btn-primary">
                 Solicitar consulta previa
               </a>
@@ -487,10 +514,13 @@ function Hero() {
               </a>
             </div>
           </FadeUp>
+
+          <div className="hero-thread-reserve" aria-hidden="true" />
         </motion.div>
       </div>
 
-      <div className="hero-thread" aria-hidden="true">
+      {threadTop !== null && (
+      <div className="hero-thread" style={{ top: threadTop }} aria-hidden="true">
         <motion.svg
           viewBox={`0 0 ${THREAD_VB_W} ${THREAD_VB_H}`}
           className="hero-thread__svg"
@@ -512,7 +542,7 @@ function Hero() {
             animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
             transition={{
               pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
-              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
+              d: { duration: 10.4, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
             }}
           />
           <motion.path
@@ -521,12 +551,12 @@ function Hero() {
             animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
             transition={{
               pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
-              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
+              d: { duration: 10.4, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
             }}
           />
         </motion.svg>
         {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION;
+          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION;
           return (
             <motion.span
               key={`${p.label}-ping`}
@@ -539,7 +569,7 @@ function Hero() {
           );
         })}
         {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION;
+          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION;
           return (
             <motion.span
               key={p.label}
@@ -552,7 +582,7 @@ function Hero() {
           );
         })}
         {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x + 40) / 1690) * THREAD_DRAW_DURATION + 0.12;
+          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION + 0.15;
           return (
             <span
               key={`${p.label}-label`}
@@ -571,6 +601,7 @@ function Hero() {
           );
         })}
       </div>
+      )}
     </section>
   );
 }

@@ -368,11 +368,21 @@ main > section:first-child .hero-eyebrow {
 
 main > section:first-child > div.hero-thread {
   position: absolute !important;
-  inset: auto 0 2% 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 3;
   pointer-events: none;
   max-width: none !important;
   width: 100% !important;
+}
+
+.hero-thread-reserve {
+  height: clamp(170px, 24vw, 330px);
+}
+
+@media (max-width: 640px) {
+  .hero-thread-reserve { height: clamp(140px, 30vw, 220px); }
 }
 
 .hero-thread__svg {
@@ -380,6 +390,7 @@ main > section:first-child > div.hero-thread {
   width: 100%;
   height: auto;
   aspect-ratio: 1600 / 300;
+  max-height: 240px;
   overflow: visible;
 }
 
@@ -462,12 +473,11 @@ main > section:first-child > div.hero-thread {
 }
 
 @media (max-width: 640px) {
-  main > section:first-child > div.hero-thread { inset: auto 0 3% 0; }
-  .hero-thread__svg { aspect-ratio: 1600 / 175; }
+  .hero-thread__svg { aspect-ratio: 1600 / 175; max-height: 150px; }
   .hero-thread__dot,
   .hero-thread__ping { width: 14px; height: 14px; margin: -7px 0 0 -7px; }
   .hero-thread__label { font-size: 0.6rem; }
-  .hero-thread__label-anchor--up { margin-top: -1.35rem; }
+  .hero-thread__label-anchor--up { margin-top: -1.2rem; }
   .hero-thread__label-anchor--down { margin-top: 0.55rem; }
   .hero-thread__label-anchor:last-child { transform: translateX(-85%); }
 }
