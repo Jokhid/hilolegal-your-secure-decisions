@@ -270,7 +270,7 @@ const tools = [
 /* ---------- Page ---------- */
 function Index() {
   return (
-    <div>
+    <div className="hilolegal-original">
       <SmoothScroll />
       <Header />
 

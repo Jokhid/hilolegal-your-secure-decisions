@@ -406,7 +406,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#1f6f78] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -441,15 +441,6 @@ function Hero() {
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                transition={spring}
-                className="border border-white text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-colors"
-                href="#services"
-              >
-                Conocer cómo trabajo
               </motion.a>
             </div>
           </FadeUp>

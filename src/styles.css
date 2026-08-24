@@ -394,6 +394,13 @@ main > section:first-child .hero-eyebrow {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* In light mode --jch-ink resolves dark, which reads as near-black on
+   this now-unfiltered, often-light photo — force the hilolegal H1 back
+   to white so the existing dark text-shadow above can do its job. */
+[data-theme="light"] .hilolegal-original .hero-bg-section h1 {
+  color: #ffffff;
+}
+
 /* The ghost button's thin line border can disappear against a busy,
    unfiltered photo — give it the same dark halo as the text above. */
 .hero-bg-section a.btn-ghost {
@@ -489,8 +496,12 @@ main > section:first-child > div.hero-thread {
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 4px 18px rgba(0, 0, 0, 0.7);
+  color: #2a95a1;
+  text-shadow:
+    1px 1px 0 #113d42,
+    2px 2px 0 #113d42,
+    3px 3px 0 #113d42,
+    4px 5px 10px rgba(0, 0, 0, 0.55);
 }
 
 .hero-thread__label-anchor--up { margin-top: -2.35rem; }
