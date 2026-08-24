@@ -614,7 +614,7 @@ function About() {
             </FadeUp>
             <FadeUp delay={0.2}>
               <div className="flex flex-wrap gap-3 pt-2">
-                {["Administrativo", "Civil", "Institucional", "Empresas"].map((t) => (
+                {["Administrativo", "Civil", "Penal", "Institucional", "Empresas"].map((t) => (
                   <motion.span
                     key={t}
                     whileHover={{ y: -2, backgroundColor: "#C5A566", color: "#0a0a0a" }}
