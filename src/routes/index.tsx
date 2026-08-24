@@ -414,7 +414,16 @@ function Header() {
   );
 }
 
-const heroAreas = ["Legal", "Hipotecas", "Patrimonio", "Comunidades"];
+const threadPoints = [
+  { label: "Legal", x: 150, y: 75, crest: true },
+  { label: "Hipotecas", x: 550, y: 165, crest: false },
+  { label: "Patrimonio", x: 950, y: 75, crest: true },
+  { label: "Comunidades", x: 1350, y: 165, crest: false },
+];
+const THREAD_D =
+  "M-40,120 C55,120 105,75 150,75 C283,75 417,165 550,165 C683,165 817,75 950,75 C1083,75 1217,165 1350,165 C1483,165 1567,110 1650,110";
+const THREAD_D_VIBRATE =
+  "M-40,120 C55,112 105,83 150,75 C283,67 417,173 550,165 C683,157 817,67 950,75 C1083,83 1217,173 1350,165 C1483,157 1567,102 1650,110";
 
 /* ---------- Hero ---------- */
 function Hero() {
@@ -474,35 +483,43 @@ function Hero() {
               </a>
             </div>
           </FadeUp>
-
-          <FadeUp eager delay={0.9} className="hero-areas">
-            <div className="hero-areas__rule" />
-            <div className="hero-areas__row">
-              {heroAreas.map((label) => (
-                <div key={label} className="hero-areas__item">
-                  <span className="hero-areas__dot" />
-                  <span className="hero-areas__label">{label}</span>
-                </div>
-              ))}
-            </div>
-            <svg
-              className="hero-areas__wave"
-              viewBox="0 0 1200 90"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <motion.path
-                d="M0,45 C100,10 200,80 300,45 C400,10 500,80 600,45 C700,10 800,80 900,45 C1000,10 1100,80 1200,45"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{
-                  pathLength: { duration: 1.8, ease: easeOutExpo, delay: 1.15 },
-                  opacity: { duration: 0.4, delay: 1.15 },
-                }}
-              />
-            </svg>
-          </FadeUp>
         </motion.div>
+      </div>
+
+      <div className="hero-thread" aria-hidden="true">
+        <svg viewBox="0 0 1600 220" className="hero-thread__svg" preserveAspectRatio="none">
+          <motion.path
+            className="hero-thread__line"
+            initial={{ pathLength: 0, d: THREAD_D }}
+            animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
+            transition={{
+              pathLength: { duration: 1.9, ease: easeOutExpo, delay: 1.1 },
+              d: { duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 3.0 },
+            }}
+          />
+        </svg>
+        {threadPoints.map((p, i) => (
+          <motion.span
+            key={p.label}
+            className="hero-thread__dot"
+            style={{ left: `${(p.x / 1600) * 100}%`, top: `${(p.y / 220) * 100}%` }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.1 + (i + 1) * 0.4, ease: easeOutExpo }}
+          />
+        ))}
+        {threadPoints.map((p, i) => (
+          <motion.span
+            key={p.label}
+            className={`hero-thread__label hero-thread__label--${p.crest ? "up" : "down"}`}
+            style={{ left: `${(p.x / 1600) * 100}%`, top: `${(p.y / 220) * 100}%` }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.1 + (i + 1) * 0.4 + 0.15, ease: easeOutExpo }}
+          >
+            {p.label}
+          </motion.span>
+        ))}
       </div>
     </section>
   );
