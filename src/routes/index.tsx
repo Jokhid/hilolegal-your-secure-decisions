@@ -484,6 +484,7 @@ function Hero() {
                   <span className="hero-areas__label">{label}</span>
                 </div>
               ))}
+              <span className="hero-areas__spacer" aria-hidden="true" />
             </div>
             <svg
               className="hero-areas__wave"
@@ -492,16 +493,22 @@ function Hero() {
               aria-hidden="true"
             >
               <motion.path
-                d="M0,45 C100,10 200,80 300,45 C400,10 500,80 600,45 C700,10 800,80 900,45 C1000,10 1100,80 1200,45"
+                className="hero-areas__wave-path"
+                d="M0,45 C75,10 150,80 225,45 C300,10 375,80 450,45 C525,10 600,80 675,45 C750,10 825,80 900,45 C975,10 1050,80 1125,45 C1160,28 1180,38 1200,45"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
+                animate={{ pathLength: [0, 1, 1], opacity: [0, 1, 1] }}
                 transition={{
-                  pathLength: { duration: 1.8, ease: easeOutExpo, delay: 1.15 },
-                  opacity: { duration: 0.4, delay: 1.15 },
+                  duration: 4.6,
+                  times: [0, 0.55, 1],
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatDelay: 0.4,
+                  delay: 1.15,
                 }}
               />
             </svg>
           </FadeUp>
+
         </motion.div>
       </div>
     </section>
