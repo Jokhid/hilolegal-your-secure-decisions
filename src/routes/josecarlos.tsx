@@ -397,7 +397,7 @@ function Hero() {
         style={{ scale: imgScale }}
         alt="Asesoramiento financiero e hipotecario"
         className="hero-bg-image"
-        src={IMG(1)}
+        src="/yoderecha.webp"
         loading="eager"
         decoding="async"
         fetchPriority="high"
