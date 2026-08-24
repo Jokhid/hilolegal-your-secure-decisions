@@ -327,9 +327,7 @@ function Hero() {
         style={{ scale: imgScale }}
         alt="Verónica López, abogada"
         className="hero-bg-image veronica-hero-image"
-        src={IMG(1)}
-        width={1122}
-        height={1402}
+        src="/VERODERECHA.webp"
         loading="eager"
         decoding="async"
         fetchPriority="high"
@@ -350,14 +348,12 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight text-balance">
-            {[
-              "Derecho con criterio.",
-              "La experiencia desde dentro.",
-            ].map((line, i) => (
-              <Curtain key={i} delay={0.15 + i * 0.1} className="block">
-                <span className="block">{line}</span>
-              </Curtain>
-            ))}
+            <Curtain delay={0.15} className="block">
+              <span className="block veronica-hero-ochre">Derecho con criterio.</span>
+            </Curtain>
+            <Curtain delay={0.25} className="block">
+              <span className="block">La experiencia desde dentro.</span>
+            </Curtain>
           </h1>
 
           <FadeUp delay={0.6}>

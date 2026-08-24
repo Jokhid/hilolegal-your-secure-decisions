@@ -371,7 +371,7 @@ main > section:first-child > div {
 main > section:first-child [class*="space-y-10"] { gap: 0; }
 
 main > section:first-child .hero-eyebrow {
-  color: var(--jch-accent) !important;
+  color: #1f6f78 !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 0.6rem !important;
   font-weight: 400 !important;
@@ -496,11 +496,11 @@ main > section:first-child > div.hero-thread {
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #2a95a1;
+  color: #d8b877;
   text-shadow:
-    1px 1px 0 #113d42,
-    2px 2px 0 #113d42,
-    3px 3px 0 #113d42,
+    1px 1px 0 #6c5b38,
+    2px 2px 0 #6c5b38,
+    3px 3px 0 #6c5b38,
     4px 5px 10px rgba(0, 0, 0, 0.55);
 }
 
@@ -1643,7 +1643,18 @@ footer.site-footer .brand {
 }
 
 .veronica-hero-image {
-  object-position: center 18%;
+  object-position: center;
+}
+
+/* Hero heading stays white-with-shadow regardless of the theme toggle —
+   ambient --jch-ink would otherwise turn it dark in light mode, same
+   issue already fixed for hilolegal's hero h1. */
+.veronica-original .hero-bg-section h1 {
+  color: #ffffff;
+}
+
+.veronica-hero-ochre {
+  color: #C5A566 !important;
 }
 
 .veronica-original main h1,
