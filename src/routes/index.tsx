@@ -414,6 +414,8 @@ function Header() {
   );
 }
 
+const heroAreas = ["Legal", "Hipotecas", "Patrimonio", "Comunidades"];
+
 /* ---------- Hero ---------- */
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -449,16 +451,16 @@ function Hero() {
           <h1 className="text-balance">
             <Curtain eager>Defendemos tus derechos</Curtain>{" "}
             <Curtain eager delay={0.1}>
-              <span className="jch-accent jch-italic">y protegemos tu patrimonio financiero.</span>
+              <span className="jch-accent jch-italic">y protegemos tu patrimonio.</span>
             </Curtain>
           </h1>
 
           <FadeUp eager delay={0.55}>
             <p>
-              Unimos la visión de la planificación financiera estratégica con la defensa jurídica
-              integral en derecho civil, familia, penal y administrativo. Respaldamos a particulares,
-              autónomos y comunidades de propietarios para asegurar sus activos y resolver cualquier
-              conflicto legal.
+              Unimos la defensa jurídica en derecho civil, familia, penal y administrativo con la
+              visión de la planificación financiera estratégica. Respaldamos a particulares, empresas
+              y comunidades de propietarios para resolver cualquier conflicto legal y proteger sus
+              activos.
             </p>
           </FadeUp>
 
@@ -471,6 +473,34 @@ function Hero() {
                 Conocer áreas de servicios
               </a>
             </div>
+          </FadeUp>
+
+          <FadeUp eager delay={0.9} className="hero-areas">
+            <div className="hero-areas__rule" />
+            <div className="hero-areas__row">
+              {heroAreas.map((label) => (
+                <div key={label} className="hero-areas__item">
+                  <span className="hero-areas__dot" />
+                  <span className="hero-areas__label">{label}</span>
+                </div>
+              ))}
+            </div>
+            <svg
+              className="hero-areas__wave"
+              viewBox="0 0 1200 90"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <motion.path
+                d="M0,45 C100,10 200,80 300,45 C400,10 500,80 600,45 C700,10 800,80 900,45 C1000,10 1100,80 1200,45"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{
+                  pathLength: { duration: 1.8, ease: easeOutExpo, delay: 1.15 },
+                  opacity: { duration: 0.4, delay: 1.15 },
+                }}
+              />
+            </svg>
           </FadeUp>
         </motion.div>
       </div>
@@ -592,8 +622,8 @@ function Positioning() {
         </h2>
         <FadeUp delay={0.2} className="position-block__body">
           <p>
-            HiloLegal nace para acompañar a personas, familias, autónomos, propietarios y
-            comunidades en decisiones con impacto real.
+            HiloLegal nace para acompañar a particulares, familias, empresas y comunidades de
+            propietarios en decisiones con impacto directo en sus vidas.
           </p>
           <p>
             No trabajamos desde compartimentos separados. Un problema jurídico puede tener
