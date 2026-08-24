@@ -368,9 +368,10 @@ main > section:first-child .hero-eyebrow {
 
 .hero-areas {
   margin-top: clamp(2.5rem, 5vw, 3.75rem);
-  width: 100%;
-  max-width: none;
+  width: calc(100vw - 2 * clamp(1.25rem, 3vw, 2.75rem));
+  max-width: calc(100vw - 2 * clamp(1.25rem, 3vw, 2.75rem));
 }
+
 
 .hero-areas__rule {
   height: 1px;
