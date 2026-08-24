@@ -426,7 +426,7 @@ const THREAD_VB_H = 300;
 const THREAD_X_START = -250;
 const THREAD_X_END = 1750;
 const threadPoints = [
-  { label: "Legal", x: 150, y: 40, crest: true },
+  { label: "Abogados", x: 150, y: 40, crest: true },
   { label: "Hipotecas", x: 550, y: 260, crest: false },
   { label: "Patrimonio", x: 950, y: 40, crest: true },
   { label: "Comunidades", x: 1350, y: 260, crest: false },
@@ -438,32 +438,11 @@ const THREAD_D_VIBRATE =
 const THREAD_DRAW_DELAY = 1.1;
 const THREAD_DRAW_DURATION = 9.6;
 
-// A calm, ambient spiral for the Hero background — drawn from the outside
-// in (so it visually "coils up" as it appears), then left to rotate
-// slowly forever. Sampled densely enough that straight segments read as
-// a smooth curve.
-function buildSpiralPath(turns: number, cx: number, cy: number, rOuter: number, rInner: number, pointsPerTurn = 44) {
-  const total = Math.round(turns * pointsPerTurn);
-  const pts: string[] = [];
-  for (let i = 0; i <= total; i++) {
-    const t = i / total;
-    const angle = t * turns * Math.PI * 2;
-    const r = rOuter + (rInner - rOuter) * t;
-    const x = cx + r * Math.cos(angle);
-    const y = cy + r * Math.sin(angle);
-    pts.push(`${x.toFixed(2)},${y.toFixed(2)}`);
-  }
-  return `M${pts.join(" L")}`;
-}
-const SPIRAL_VB = 600;
-const SPIRAL_D = buildSpiralPath(3.4, SPIRAL_VB / 2, SPIRAL_VB / 2, 270, 10);
-
 /* ---------- Hero ---------- */
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const [threadTop, setThreadTop] = useState<number | null>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
@@ -501,23 +480,6 @@ function Hero() {
         />
       </picture>
       <div className="hero-bg-overlay" aria-hidden="true" />
-
-      <motion.div
-        className="hero-spiral"
-        aria-hidden="true"
-        animate={reduceMotion ? undefined : { rotate: 360 }}
-        transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
-      >
-        <svg viewBox={`0 0 ${SPIRAL_VB} ${SPIRAL_VB}`} className="hero-spiral__svg">
-          <motion.path
-            className="hero-spiral__path"
-            d={SPIRAL_D}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.6 }}
-            transition={{ pathLength: { duration: 7, ease: "easeInOut", delay: 0.6 }, opacity: { duration: 1.5, delay: 0.6 } }}
-          />
-        </svg>
-      </motion.div>
 
       <div>
         <motion.div style={{ y: textY }} className="space-y-10">

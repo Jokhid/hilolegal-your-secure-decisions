@@ -273,6 +273,12 @@ main h1 > .overflow-hidden,
 main h2 > .overflow-hidden {
   padding-bottom: .14em;
   margin-bottom: -.08em;
+  /* Small right-edge buffer so the reveal mask's overflow:hidden never
+     clips the last character's ink — italic/bold glyphs commonly render
+     slightly past their logical advance width, and without this the
+     trailing letter can look cut off depending on the font/browser. */
+  padding-right: .08em;
+  margin-right: -.08em;
 }
 
 main h2 {
@@ -311,7 +317,7 @@ header [class*="uppercase"] {
 }
 
 .jch-accent { color: var(--jch-accent-ink) !important; }
-.jch-italic { font-style: italic; font-weight: 400; }
+.jch-italic { font-style: italic; font-weight: 400; padding-right: .05em; }
 
 /* Hand-authored theme-reactive utilities, used in place of Tailwind's
    bg-[var(--x)] arbitrary-value syntax (confirmed on live production
@@ -364,42 +370,6 @@ main > section:first-child .hero-eyebrow {
 .hero-bg-section .hero-eyebrow,
 .hero-bg-section [class*="uppercase"] {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-main > section:first-child > div.hero-spiral {
-  position: absolute !important;
-  top: 42%;
-  right: 2%;
-  width: min(46vw, 520px);
-  aspect-ratio: 1 / 1;
-  margin: 0 !important;
-  max-width: none !important;
-  transform: translateY(-50%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero-spiral__svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.hero-spiral__path {
-  fill: none;
-  stroke: var(--jch-accent-2);
-  stroke-width: 2;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 8px rgba(120, 200, 210, 0.6)) drop-shadow(0 0 22px rgba(31, 111, 120, 0.55));
-}
-
-@media (max-width: 900px) {
-  main > section:first-child > div.hero-spiral {
-    width: min(78vw, 420px);
-    right: -8%;
-    top: 38%;
-  }
 }
 
 main > section:first-child > div.hero-thread {
