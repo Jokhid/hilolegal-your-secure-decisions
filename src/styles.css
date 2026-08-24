@@ -688,20 +688,20 @@ main > section:first-child a.btn-ghost:hover {
   gap: .75rem;
   color: #1f6f78 !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 10px !important;
+  font-size: 12.5px !important;
   font-weight: 500 !important;
   letter-spacing: .18em !important;
   text-transform: uppercase;
 }
 .services-editorial__cta > span {
-  width: 1.4rem;
+  width: 1.75rem;
   height: 1px;
   display: block;
   flex: 0 0 auto;
   background: var(--jch-accent);
   transition: width 350ms ease;
 }
-.services-editorial__card:hover .services-editorial__cta > span { width: 2.5rem; }
+.services-editorial__card:hover .services-editorial__cta > span { width: 3.1rem; }
 
 @media (max-width: 900px) {
   .services-editorial__grid { grid-template-columns: 1fr; }
@@ -879,7 +879,7 @@ main > section:first-child a.btn-ghost:hover {
   margin-top: 1.5rem;
   color: #1f6f78 !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 10px !important;
+  font-size: 12.5px !important;
   letter-spacing: .18em !important;
   text-transform: uppercase;
   border-bottom: 1px solid var(--jch-line-strong);
@@ -941,7 +941,7 @@ main > section:first-child a.btn-ghost:hover {
   gap: .75rem;
   color: #1f6f78 !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 10px !important;
+  font-size: 12.5px !important;
   letter-spacing: .18em !important;
   text-transform: uppercase;
 }
@@ -1148,16 +1148,16 @@ footer.site-footer .brand {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: var(--jch-ink) !important;
+  color: #1f6f78 !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 10px !important;
+  font-size: 12.5px !important;
   font-weight: 500 !important;
   letter-spacing: .18em !important;
   text-transform: uppercase;
 }
 
 .blog-editorial__cta > span {
-  width: 1.4rem;
+  width: 1.75rem;
   height: 1px;
   display: block;
   flex: 0 0 auto;
@@ -1166,7 +1166,7 @@ footer.site-footer .brand {
 }
 
 .blog-editorial__card:hover .blog-editorial__cta > span {
-  width: 2.5rem;
+  width: 3.1rem;
 }
 
 .blog-editorial__footer {

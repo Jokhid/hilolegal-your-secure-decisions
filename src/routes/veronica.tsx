@@ -509,8 +509,8 @@ function Services() {
                   <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
                   <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
                   <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
-                  <a className="text-xs font-black uppercase tracking-widest flex items-center gap-2 group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
-                    Consultar <Icon name="arrow_forward" className="text-sm" />
+                  <a className="text-[15px] font-black uppercase tracking-widest flex items-center gap-2 text-[#1f6f78] group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
+                    Consultar <Icon name="arrow_forward" className="text-base" />
                   </a>
                 </div>
               </motion.div>
@@ -660,9 +660,9 @@ function HiloLegal() {
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--jch-accent-ink)] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#1f6f78] hover:text-[var(--jch-ink)] transition-colors"
               >
-                Conocer a José Carlos <Icon name="arrow_forward" className="text-sm" />
+                Conocer a José Carlos <Icon name="arrow_forward" className="text-base" />
               </motion.a>
             </div>
           </FadeUp>
