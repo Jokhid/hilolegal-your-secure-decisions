@@ -340,6 +340,32 @@ header [class*="uppercase"] {
 [data-theme="light"] .jch-card:hover { background-color: #f7f6f2; }
 
 /* Header */
+header.sticky {
+  position: relative;
+}
+
+/* A soft warm glow in the top-left corner, like sunlight coming in
+   through a window. Sits behind the logo/nav via normal paint order
+   (a ::before paints before its element's other content). */
+header.sticky::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 340px;
+  transform: translate(-48%, -58%);
+  background: radial-gradient(circle, rgba(255, 247, 227, 0.95) 0%, rgba(197, 165, 102, 0.32) 42%, rgba(197, 165, 102, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 640px) {
+  header.sticky::before {
+    width: 220px;
+    height: 220px;
+  }
+}
 
 /* Hero */
 main > section:first-child > div {
