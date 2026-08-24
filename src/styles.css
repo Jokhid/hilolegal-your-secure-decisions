@@ -366,6 +366,42 @@ main > section:first-child .hero-eyebrow {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+main > section:first-child > div.hero-spiral {
+  position: absolute !important;
+  top: 42%;
+  right: 2%;
+  width: min(46vw, 520px);
+  aspect-ratio: 1 / 1;
+  margin: 0 !important;
+  max-width: none !important;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-spiral__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-spiral__path {
+  fill: none;
+  stroke: var(--jch-accent-2);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(120, 200, 210, 0.6)) drop-shadow(0 0 22px rgba(31, 111, 120, 0.55));
+}
+
+@media (max-width: 900px) {
+  main > section:first-child > div.hero-spiral {
+    width: min(78vw, 420px);
+    right: -8%;
+    top: 38%;
+  }
+}
+
 main > section:first-child > div.hero-thread {
   position: absolute !important;
   top: 0;
