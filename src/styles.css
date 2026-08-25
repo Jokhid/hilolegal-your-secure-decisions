@@ -125,10 +125,10 @@
   --jch-ink-rgb: 26, 26, 26;
   --jch-bg-rgb: 255, 255, 255;
   /* --jch-accent and --jch-accent-2 intentionally unchanged — identical in both themes */
-  /* --jch-accent-ink: a readable-on-light variant of the ochre accent for use as TEXT
-     (labels, headings, numbers) — #C5A566 only reaches ~2.35:1 on white, well under
-     WCAG AA. This darkened shade reaches ~5:1 while staying in the same hue family. */
-  --jch-accent-ink: #806B42;
+  /* Kept identical to the dark-mode value on purpose: the site standardizes on a
+     single ochre tone (#C5A566) everywhere, including light-mode text on white,
+     even though that only reaches ~2.35:1 contrast there (below WCAG AA). */
+  --jch-accent-ink: #C5A566;
 }
 
 html, body {
@@ -543,10 +543,10 @@ main > section:first-child a.btn-ghost {
 }
 
 main > section:first-child a.btn-primary {
-  background: var(--jch-accent) !important;
-  color: var(--jch-bg) !important;
+  background: #1f6f78 !important;
+  color: #ffffff !important;
 }
-main > section:first-child a.btn-primary:hover { background: #d6b678 !important; }
+main > section:first-child a.btn-primary:hover { background: #C5A566 !important; }
 
 main > section:first-child a.btn-ghost {
   background: transparent !important;
@@ -1004,8 +1004,8 @@ main > section:first-child a.btn-ghost:hover {
   display: inline-flex;
   align-items: center;
   gap: .75rem;
-  background: var(--jch-accent);
-  color: #000000 !important;
+  background: #1f6f78;
+  color: #ffffff !important;
   padding: 1.1rem 2rem;
   border-radius: 999px;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
@@ -1015,7 +1015,7 @@ main > section:first-child a.btn-ghost:hover {
   text-transform: uppercase;
   transition: background-color 300ms ease;
 }
-.closing__cta:hover { background: #d6b678; }
+.closing__cta:hover { background: #C5A566; color: #000000 !important; }
 
 /* Footer */
 footer.site-footer {
@@ -1586,7 +1586,7 @@ footer.site-footer .brand {
   --jch-line-strong: rgba(26, 26, 26, 0.24);
   --jch-ink-rgb: 26, 26, 26;
   --jch-bg-rgb: 255, 255, 255;
-  --jch-accent-ink: #806B42;
+  --jch-accent-ink: #C5A566;
 }
 
 .josecarlos-original main > section {

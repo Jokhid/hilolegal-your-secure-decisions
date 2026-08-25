@@ -354,7 +354,7 @@ function Header() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden rounded-full bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
             >
               WhatsApp
             </motion.a>
@@ -506,12 +506,9 @@ function Hero() {
           </FadeUp>
 
           <FadeUp eager delay={0.7}>
-            <div ref={ctaRef} className="flex flex-wrap gap-3 pt-4">
+            <div ref={ctaRef} className="flex flex-wrap justify-center gap-3 pt-4">
               <a href="#contact" className="btn-primary">
                 Solicitar consulta previa
-              </a>
-              <a href="#areas" className="btn-ghost">
-                Conocer áreas de servicios
               </a>
             </div>
           </FadeUp>
@@ -1106,8 +1103,8 @@ function Contact() {
               disabled={status === "sending"}
               className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
-                background: "var(--jch-accent)",
-                color: "#000000",
+                background: "#1f6f78",
+                color: "#ffffff",
               }}
             >
               {status === "sending"

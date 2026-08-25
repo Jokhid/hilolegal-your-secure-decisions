@@ -199,7 +199,7 @@ function BlogPostPage() {
             <Link
               to="/"
               hash="contact"
-              className="inline-block bg-[#C5A566] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors"
+              className="inline-block bg-[#1f6f78] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors"
             >
               Quiero mi diagnóstico gratuito
             </Link>

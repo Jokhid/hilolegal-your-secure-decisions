@@ -316,7 +316,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden rounded-full bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -368,7 +368,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
+                  className="mt-2 inline-block rounded-full bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
                 >
                   WhatsApp
                 </a>
@@ -437,7 +437,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
