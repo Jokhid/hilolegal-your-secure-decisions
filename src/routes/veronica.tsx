@@ -247,7 +247,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#C5A566] hover:text-black transition-colors"
+              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#C5A566] transition-colors"
               href={WHATSAPP}
             >
               WhatsApp
@@ -363,24 +363,15 @@ function Hero() {
           </FadeUp>
 
           <FadeUp delay={0.75}>
-            <div className="flex flex-wrap gap-6 pt-2">
+            <div className="flex flex-wrap justify-center gap-6 pt-2">
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Primera consulta
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                transition={spring}
-                className="border border-white text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-colors"
-                href="#about"
-              >
-                Conocer trayectoria
               </motion.a>
             </div>
           </FadeUp>

@@ -1625,6 +1625,10 @@ footer.site-footer .brand {
   color: inherit !important;
 }
 
+.josecarlos-original header.sticky a.header-whatsapp-btn {
+  color: #ffffff !important;
+}
+
 .josecarlos-original main > section[class*="bg-[#F5F5F5]"] {
   background: #F5F5F5 !important;
 }
@@ -1711,6 +1715,10 @@ footer.site-footer .brand {
 .veronica-original header.sticky a,
 .veronica-original header.sticky button {
   color: inherit !important;
+}
+
+.veronica-original header.sticky a.header-whatsapp-btn {
+  color: #ffffff !important;
 }
 
 .veronica-original footer {
