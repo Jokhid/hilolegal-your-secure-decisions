@@ -1558,41 +1558,10 @@ footer.site-footer .brand {
   --jch-ink-rgb: 243, 240, 234;
 }
 
-/* José Carlos page is permanently light-themed; the global dark
-   `main > section { background: var(--jch-bg) !important }` rule was
-   silently winning over each section's own bg-white/bg-[#1A1A1A]/
-   bg-[#F5F5F5] class (same specificity bug pattern already fixed for
-   the hero overlay), making every section render dark regardless of
-   theme. Pin it back to its intended light palette. */
-.josecarlos-original,
-.josecarlos-original main {
-  background: #ffffff !important;
-  /* josecarlos.tsx is permanently light regardless of the site-wide
-     theme toggle. Every --jch-* variable is used by global,
-     unscoped rules (main p, main h1, html/body, etc.) that follow
-     whatever [data-theme] is set on <html> — without pinning the
-     full set here, dark-mode text colors (e.g. cream ink at 72%
-     opacity) render on top of this page's forced-white background
-     whenever a visitor is in dark mode (the default), making most
-     body text nearly invisible. Pin the entire light palette
-     unconditionally, matching [data-theme="light"]'s values. */
-  --jch-bg: #ffffff;
-  --jch-surface: #f7f6f2;
-  --jch-surface-2: #efece4;
-  --jch-ink: #1a1a1a;
-  --jch-muted: #4a4a4a;
-  --jch-dim: #78766f;
-  --jch-line: rgba(26, 26, 26, 0.12);
-  --jch-line-strong: rgba(26, 26, 26, 0.24);
-  --jch-ink-rgb: 26, 26, 26;
-  --jch-bg-rgb: 255, 255, 255;
-  --jch-accent-ink: #C5A566;
-}
-
-.josecarlos-original main > section {
-  background: #ffffff !important;
-}
-
+/* josecarlos.tsx now alternates between light and dark like the rest
+   of the site — it no longer pins a permanent light palette. The
+   header, mobile drawer, and footer stay fixed (see their own rules
+   below); everything else follows the normal --jch-* cascade. */
 .josecarlos-original main > section[class*="bg-[#1A1A1A]"] {
   background: #1A1A1A !important;
   /* Inside this intentionally-dark panel, flip the ink/muted variables
@@ -1627,23 +1596,6 @@ footer.site-footer .brand {
 
 .josecarlos-original header.sticky a.header-whatsapp-btn {
   color: #ffffff !important;
-}
-
-.josecarlos-original main > section[class*="bg-[#F5F5F5]"] {
-  background: #F5F5F5 !important;
-}
-
-/* .services-editorial__card's `background: var(--jch-bg)` (no
-   !important, unlike the near-identical #herramientas .tool-card
-   rule which updates fine) does not react to the [data-theme="light"]
-   variable swap in testing — pin it directly rather than rely on the
-   var() reference. */
-.josecarlos-original .services-editorial__card {
-  background: #ffffff !important;
-  color: #1A1A1A !important;
-}
-.josecarlos-original .services-editorial__card:hover {
-  background: #F5F5F5 !important;
 }
 
 .veronica-hero-image {

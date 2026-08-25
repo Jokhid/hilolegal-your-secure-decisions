@@ -229,7 +229,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function Index() {
   return (
-    <div className="josecarlos-original bg-white text-[#1A1A1A] selection:bg-[#C5A566] selection:text-white">
+    <div className="josecarlos-original bg-[var(--jch-bg)] text-[var(--jch-ink)] selection:bg-[#C5A566] selection:text-white">
       <SmoothScroll />
       <Header />
 
@@ -457,9 +457,9 @@ function TrustStats() {
     { i: "medical_services", t: "0€ diagnóstico inicial" },
   ];
   return (
-    <section className="py-16 border-b border-[#E5E5E5]">
+    <section className="py-16 border-b border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[#E5E5E5]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[var(--jch-line)]">
           {items.map((s, idx) => (
             <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
               <div className="flex flex-col items-center md:items-start gap-4">
@@ -518,7 +518,7 @@ function Diagnosis() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold">{x.t}</h3>
-                <p className="text-[#4A4A4A] leading-relaxed">{x.d}</p>
+                <p className="text-[var(--jch-muted)] leading-relaxed">{x.d}</p>
               </article>
             </FadeUp>
           ))}
@@ -600,7 +600,7 @@ function Method() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="method" className="py-[100px] border-y border-[#E5E5E5]">
+    <section id="method" className="py-[100px] border-y border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="space-y-12">
@@ -689,7 +689,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <div className="space-y-6 text-xl text-[#4A4A4A] leading-relaxed">
+              <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
                 <p>Hay una frase que escucho con frecuencia en mi trabajo: «Ojalá hubiera hablado con alguien antes de firmar esto.»</p>
                 <p>Mi objetivo es que tú nunca tengas que decirla.</p>
                 <p>Llevo años acompañando a familias y autónomos de la Costa Blanca en las decisiones financieras que más pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilación con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
@@ -706,7 +706,7 @@ function About() {
                     key={t}
                     whileHover={{ y: -2, backgroundColor: "#1A1A1A", color: "#FFFFFF" }}
                     transition={spring}
-                    className="border border-[#E5E5E5] px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
+                    className="border border-[var(--jch-line)] px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
                   >
                     {t}
                   </motion.span>
@@ -714,7 +714,7 @@ function About() {
               </div>
             </FadeUp>
             <FadeUp delay={0.3}>
-              <div className="flex items-center gap-4 text-[#1A1A1A] font-bold">
+              <div className="flex items-center gap-4 text-[var(--jch-ink)] font-bold">
                 <Icon name="location_on" className="text-[var(--jch-accent-ink)]" />
                 <span className="text-sm uppercase tracking-widest text-[var(--jch-accent-ink)]">Altea · Benidorm · Costa Blanca · Alicante · Online</span>
               </div>
@@ -724,7 +724,7 @@ function About() {
                 href="https://share.google/GlqwXv7lO958pDPDS"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--jch-accent-ink)] hover:text-[#1A1A1A] transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--jch-accent-ink)] hover:text-[var(--jch-ink)] transition-colors"
               >
                 <Icon name="travel_explore" className="text-base" />
                 Ver mi perfil en Google
@@ -740,17 +740,17 @@ function About() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-[100px] bg-[#F5F5F5]">
+    <section id="faq" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-4xl font-bold tracking-tight text-center mb-20 uppercase">
           <Curtain>Dudas normales antes de decidir</Curtain>
         </h2>
-        <div className="space-y-px bg-[#E5E5E5]">
+        <div className="space-y-px bg-[var(--jch-line)]">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <FadeUp key={f.q} delay={i * 0.05}>
-                <div className="bg-white">
+                <div className="bg-[var(--jch-bg)]">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex justify-between items-center text-left p-8 text-lg font-bold uppercase tracking-tight"
@@ -770,7 +770,7 @@ function FAQ() {
                     transition={{ duration: 0.5, ease: easeOutExpo }}
                     style={{ overflow: "hidden" }}
                   >
-                    <div className="px-8 pb-8 text-[#4A4A4A] leading-relaxed">{f.a}</div>
+                    <div className="px-8 pb-8 text-[var(--jch-muted)] leading-relaxed">{f.a}</div>
                   </motion.div>
                 </div>
               </FadeUp>
@@ -830,7 +830,7 @@ function Contact() {
               Rellena el formulario y me pondré en contacto contigo en menos de 24 horas para agendar tu diagnóstico gratuito.
             </p>
           </FadeUp>
-          <div className="space-y-10 pt-10 border-t border-[#E5E5E5]">
+          <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">
             {[
               { i: "call", label: "Llámanos", v: PHONE_DISPLAY, href: `tel:+34647506040` },
               { i: "mail", label: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
@@ -842,7 +842,7 @@ function Contact() {
                   transition={spring}
                   className="flex items-center gap-8 group"
                 >
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[#1A1A1A] flex items-center justify-center text-white group-hover:bg-[#C5A566] transition-colors shrink-0">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-[var(--jch-ink)] flex items-center justify-center text-[var(--jch-bg)] group-hover:bg-[#C5A566] transition-colors shrink-0">
                     <Icon name={c.i} className="text-lg md:text-2xl" />
                   </div>
                   <div>
@@ -854,12 +854,12 @@ function Contact() {
             ))}
           </div>
           <FadeUp>
-            <div className="pt-10 border-t border-[#E5E5E5] space-y-4">
+            <div className="pt-10 border-t border-[var(--jch-line)] space-y-4">
               <div className="flex items-center gap-3">
                 <Icon name="location_on" className="text-[var(--jch-accent-ink)] text-xl" />
                 <p className="text-sm font-bold uppercase tracking-widest">Calle Calitx 9, 03590 Altea</p>
               </div>
-              <div className="w-full aspect-[4/3] overflow-hidden border border-[#E5E5E5]">
+              <div className="w-full aspect-[4/3] overflow-hidden border border-[var(--jch-line)]">
                 <iframe
                   title="Mapa Calle Calitx 9, Altea"
                   src="https://www.google.com/maps?q=Calle+Calitx+9,+03590+Altea,+Alicante&output=embed"
@@ -883,7 +883,7 @@ function Contact() {
               <select
                 value={form.topic}
                 onChange={onChange("topic")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
+                className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
               >
                 <option>Diagnóstico General</option>
                 <option>Nueva Hipoteca</option>
@@ -899,11 +899,11 @@ function Contact() {
                 placeholder="Cuéntanos tu situación"
                 value={form.message}
                 onChange={onChange("message")}
-                className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
+                className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
               />
             </div>
 
-            <label className="flex items-start gap-3 text-sm text-[#4A4A4A] leading-relaxed cursor-pointer">
+            <label className="flex items-start gap-3 text-sm text-[var(--jch-muted)] leading-relaxed cursor-pointer">
               <input
                 type="checkbox"
                 checked={accepted}
@@ -937,7 +937,7 @@ function Contact() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-[#1A1A1A] font-bold uppercase tracking-widest"
+                className="text-sm text-[var(--jch-ink)] font-bold uppercase tracking-widest"
               >
                 Gracias. Te contactaré en menos de 24h.
               </motion.p>
@@ -1043,7 +1043,7 @@ function Field({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-transparent border-0 border-b border-[#E5E5E5] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-gray-300"
+        className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
       />
     </div>
   );
@@ -1100,7 +1100,7 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section id="testimonios" className="py-[100px] bg-white border-t border-[#E5E5E5]">
+    <section id="testimonios" className="py-[100px] bg-[var(--jch-bg)] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-20 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
@@ -1110,14 +1110,14 @@ function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <FadeUp key={t.name} delay={i * 0.1}>
-              <article className="relative h-full bg-white border border-[#E5E5E5] p-10 hover:border-[#C5A566] transition-colors">
+              <article className="relative h-full bg-[var(--jch-bg)] border border-[var(--jch-line)] p-10 hover:border-[#C5A566] transition-colors">
                 <span aria-hidden="true" className="absolute top-2 left-6 text-7xl leading-none font-black text-[var(--jch-accent-ink)] select-none">
                   “
                 </span>
-                <p className="relative text-[#4A4A4A] leading-relaxed pt-8">{t.text}</p>
-                <div className="mt-8 pt-6 border-t border-[#EEEEEE]">
-                  <p className="font-bold text-[#1A1A1A]">{t.name}</p>
-                  <p className="text-xs text-[#9A9A9A] mt-1">{t.detail}</p>
+                <p className="relative text-[var(--jch-muted)] leading-relaxed pt-8">{t.text}</p>
+                <div className="mt-8 pt-6 border-t border-[var(--jch-line)]">
+                  <p className="font-bold text-[var(--jch-ink)]">{t.name}</p>
+                  <p className="text-xs text-[var(--jch-dim)] mt-1">{t.detail}</p>
                 </div>
               </article>
             </FadeUp>
