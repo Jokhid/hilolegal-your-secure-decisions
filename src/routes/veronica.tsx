@@ -58,6 +58,10 @@ export const Route = createFileRoute("/veronica")({
                 { "@type": "City", name: "Altea" },
                 { "@type": "AdministrativeArea", name: "Costa Blanca" },
               ],
+              makesOffer: services.map((s) => ({
+                "@type": "Offer",
+                itemOffered: { "@type": "Service", name: s.title },
+              })),
             },
             {
               "@type": "FAQPage",
@@ -434,6 +438,7 @@ function Diagnosis() {
                   <motion.img
                     src={IMG(x.img)}
                     alt={x.t}
+                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover"
                     initial={{ scale: 1 }}
                     whileHover={{ scale: 1.06 }}
@@ -537,6 +542,7 @@ function Method() {
               <motion.img
                 src={IMG(5)}
                 alt="Método de trabajo jurídico"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 whileInView={{ scale: 1 }}
@@ -575,6 +581,7 @@ function About() {
                   alt="Verónica López"
                   className="w-full h-[320px] sm:h-[420px] lg:h-[600px] object-cover"
                   src={IMG(6)}
+                  loading="lazy"
                   initial={{ scale: 1.08 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -642,9 +649,7 @@ function HiloLegal() {
                 <p>Una firma, dos especialistas, sin que tengas que empezar desde cero con cada uno.</p>
               </div>
               <motion.a
-                href="/josecarlos/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/josecarlos"
                 whileHover={{ x: 4 }}
                 transition={spring}
                 className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#1f6f78] hover:text-[var(--jch-ink)] transition-colors"
@@ -658,6 +663,7 @@ function HiloLegal() {
               <motion.img
                 src={banner3Asset.url}
                 alt="HiloLegal"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 whileInView={{ scale: 1 }}
@@ -863,7 +869,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-16">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <img src="/veronica-assets/logo-white.png" alt="Logo Verónica López" className="h-12 w-12 object-contain" />
+            <img src="/veronica-assets/logo-white.png" alt="Logo Verónica López" loading="lazy" className="h-12 w-12 object-contain" />
             <div className="space-y-2">
               <div className="text-2xl font-black tracking-tighter uppercase">Verónica López</div>
               <p className="text-gray-500 text-xs tracking-widest uppercase">Abogada · Administrativo · Civil · Institucional</p>

@@ -25,7 +25,7 @@ export const Route = createFileRoute("/josecarlos")({
       { rel: "canonical", href: "https://hilolegal.es/josecarlos/" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=analytics,assured_workload,balance,call,close,domain,expand_more,family_restroom,location_on,mail,map,medical_services,menu,real_estate_agent,travel_explore,trending_up,visibility&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=analytics,arrow_forward,assured_workload,balance,call,close,domain,expand_more,family_restroom,location_on,mail,map,medical_services,menu,real_estate_agent,travel_explore,trending_up,visibility&display=swap",
       },
     ],
     scripts: [
@@ -242,6 +242,7 @@ function Index() {
         <Method />
         <Partners />
         <About />
+        <HiloLegal />
         <Testimonials />
         <FAQ />
         <Contact />
@@ -731,6 +732,55 @@ function About() {
               </a>
             </FadeUp>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HiloLegal() {
+  return (
+    <section className="py-[100px]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <FadeUp>
+            <div className="space-y-8">
+              <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">PARTE DE HILOLEGAL</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                <Curtain>Un mismo equipo, dos especialistas</Curtain>
+              </h2>
+              <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
+                <p>Soy cofundador de HiloLegal junto a Verónica López, abogada especializada en derecho civil, administrativo y de familia. Cuando un caso tiene una vertiente legal además de financiera, trabajamos coordinados bajo una sola firma, para que no tengas que repetir tu situación a nadie.</p>
+                <p>Un mismo equipo, dos especialistas, sin que tengas que empezar de cero con cada uno.</p>
+              </div>
+              <motion.a
+                href="/veronica"
+                whileHover={{ x: 4 }}
+                transition={spring}
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#1f6f78] hover:text-[var(--jch-ink)] transition-colors"
+              >
+                Conocer a Verónica López <Icon name="arrow_forward" className="text-base" />
+              </motion.a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <div className="relative overflow-hidden aspect-[4/3]">
+              <motion.img
+                src="/VERODERECHA.webp"
+                alt="Verónica López — HiloLegal"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ scale: 1.1 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.4, ease: easeOutExpo }}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
+                <span className="font-bold uppercase tracking-widest text-xs">HiloLegal</span>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </div>
     </section>

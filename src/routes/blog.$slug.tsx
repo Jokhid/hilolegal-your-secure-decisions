@@ -197,7 +197,7 @@ function BlogPostPage() {
 
           <div className="mt-16 pt-10 border-t border-[#E5E5E5]">
             <Link
-              to="/"
+              to="/josecarlos"
               hash="contact"
               className="inline-block bg-[#1f6f78] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors"
             >

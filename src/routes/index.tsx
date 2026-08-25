@@ -41,6 +41,12 @@ export const Route = createFileRoute("/")({
             { "@type": "Person", name: "Verónica López" },
             { "@type": "Person", name: "José Carlos Hidalgo" },
           ],
+          makesOffer: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Asesoramiento jurídico civil, familiar, penal y administrativo" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planificación financiera y patrimonial" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas y financiación de vivienda" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Administración de fincas y comunidades de propietarios" } },
+          ],
         }),
       },
     ],
