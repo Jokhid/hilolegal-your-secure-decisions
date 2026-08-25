@@ -383,6 +383,14 @@ main > section:first-child .hero-eyebrow {
   margin-bottom: 2rem;
 }
 
+main > section:first-child .hero-subtitle {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  max-width: 34rem;
+  opacity: 1 !important;
+}
+
 /* The hero photo no longer has a darkening filter — compensate with a
    shadow on the overlaid text so it stays legible against lighter areas
    of the photo. */

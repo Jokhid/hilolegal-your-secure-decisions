@@ -489,10 +489,16 @@ function Hero() {
             </span>
           </FadeUp>
 
+          <FadeUp eager delay={0.15}>
+            <p className="hero-subtitle">
+              Un mismo equipo para resolver tu problema legal y proteger lo que hay detrás: tu dinero, tu vivienda, tu familia.
+            </p>
+          </FadeUp>
+
           <h1 className="text-balance">
-            <Curtain eager>Defendemos tus derechos</Curtain>{" "}
+            <Curtain eager>Un problema legal casi siempre tiene una cara financiera.</Curtain>{" "}
             <Curtain eager delay={0.1}>
-              <span className="jch-accent jch-italic">y protegemos tu patrimonio.</span>
+              <span className="jch-accent jch-italic">Nosotros resolvemos las dos.</span>
             </Curtain>
           </h1>
 
@@ -624,19 +630,12 @@ function TrustBlock() {
 
         <FadeUp delay={0.2} className="trust-block__body">
           <p>
-            Resolver un conflicto legal, comprar una vivienda, proteger a tu familia, planificar
-            tu jubilación, asegurar tus ingresos o gestionar una comunidad no son trámites aislados.
-          </p>
-          <p>Son decisiones que afectan a tu patrimonio, tu tranquilidad y tu futuro.</p>
-          <p>
-            HiloLegal coordina la respuesta a tus necesidades legales y financieras desde una única
-            estructura. Preservar el patrimonio y la tranquilidad personal exige controlar los
-            riesgos jurídicos, afrontar procesos judiciales con garantías y planificar los recursos
-            económicos con criterio técnico.
+            Un conflicto legal, una hipoteca o la jubilación no son trámites sueltos: son
+            decisiones que marcan tu patrimonio y tu tranquilidad.
           </p>
           <p>
-            Tratamos cada asunto con visión global, garantizando atención directa, rigor analítico
-            y acompañamiento continuo en todas las áreas del derecho y las finanzas.
+            En HiloLegal las abordamos juntas, con criterio jurídico y financiero, desde un mismo
+            equipo. Sin repetir tu caso a nadie.
           </p>
         </FadeUp>
 

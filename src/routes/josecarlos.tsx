@@ -96,7 +96,7 @@ export const Route = createFileRoute("/josecarlos")({
               "@type": "FAQPage",
               mainEntity: [
                 { "@type": "Question", name: "¿Realmente es gratuito el primer diagnóstico?", acceptedAnswer: { "@type": "Answer", text: "Sí, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. Tú obtienes claridad sobre tu situación y yo entiendo el reto. Sin compromisos." } },
-                { "@type": "Question", name: "¿Trabajas con todos los bancos para las hipotecas?", acceptedAnswer: { "@type": "Answer", text: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiación." } },
+                { "@type": "Question", name: "¿Trabajas con todos los bancos para las hipotecas?", acceptedAnswer: { "@type": "Answer", text: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar entre las tres entidades y negociar en tu nombre, no defender los intereses de un solo banco." } },
                 { "@type": "Question", name: "¿Puedes ayudarme a conseguir una hipoteca?", acceptedAnswer: { "@type": "Answer", text: "Sí. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operación. Después vemos qué opciones hipotecarias pueden encajar mejor con tu caso." } },
                 { "@type": "Question", name: "¿Atiendes presencialmente en Alicante?", acceptedAnswer: { "@type": "Answer", text: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estás fuera, realizo consultas por videollamada con la misma eficacia." } },
                 { "@type": "Question", name: "¿Por qué es importante para un autónomo revisar su protección financiera?", acceptedAnswer: { "@type": "Answer", text: "Porque muchos autónomos tienen ingresos variables y una cobertura pública limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificación puede afectar directamente a su familia, su negocio y su patrimonio." } },
@@ -152,7 +152,7 @@ const faqs = [
   },
   {
     q: "¿Trabajas con todos los bancos para las hipotecas?",
-    a: "Trabajo con ING y ABANCA, dos bancos muy competitivos con los que puedes llegar a conseguir hasta el 100% de financiación.",
+    a: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar entre las tres entidades y negociar en tu nombre, no defender los intereses de un solo banco.",
   },
   {
     q: "¿Puedes ayudarme a conseguir una hipoteca?",
@@ -413,7 +413,7 @@ function Hero() {
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.4 }}
                 className="h-[2px] bg-[#C5A566] block"
               />
-              HIPOTECAS, AHORRO, PENSIONES, SEGUROS Y ADMINISTRACIÓN DE FINCAS EN ALTEA
+              ASESOR PATRIMONIAL E HIPOTECARIO EN ALTEA
             </div>
           </FadeUp>
 
