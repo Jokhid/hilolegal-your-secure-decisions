@@ -1,7 +1,6 @@
 .trust-block__body::after {
   background-image: url("/josecarlos_veronica.webp");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #0a0a0a;
 }
