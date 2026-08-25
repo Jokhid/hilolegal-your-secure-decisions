@@ -437,7 +437,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
@@ -921,13 +921,13 @@ function Contact() {
             </label>
 
             <motion.button
-              whileHover={{ scale: status === "sending" ? 1 : 1.02, color: "#ffffff" }}
+              whileHover={{ scale: status === "sending" ? 1 : 1.02, color: "#000000" }}
               whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
               transition={spring}
               type="submit"
               disabled={status === "sending"}
-              style={{ color: "#000000" }}
-              className="w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{ color: "#ffffff" }}
+              className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#C5A566] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
             </motion.button>

@@ -368,7 +368,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Primera consulta
@@ -822,11 +822,11 @@ function Contact() {
             <motion.button
               type="submit"
               disabled={status === "sending"}
-              whileHover={{ scale: 1.02, color: "#ffffff" }}
+              whileHover={{ scale: 1.02, color: "#000000" }}
               whileTap={{ scale: 0.98 }}
               transition={spring}
-              style={{ color: "#000000" }}
-              className="inline-block text-center w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#1A1A1A] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{ color: "#ffffff" }}
+              className="rounded-full inline-block text-center w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#C5A566] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : "Enviar consulta"}
             </motion.button>
