@@ -316,7 +316,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden rounded-full bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -368,7 +368,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block rounded-full bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
+                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black"
                 >
                   WhatsApp
                 </a>

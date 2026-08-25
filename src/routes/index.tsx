@@ -354,7 +354,7 @@ function Header() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden rounded-full bg-[#1f6f78] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black sm:inline-block"
             >
               WhatsApp
             </motion.a>

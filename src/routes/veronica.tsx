@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
-const banner3Asset = { url: "/veronica-assets/file_00000000b9c07246b0256fc18d8d4888.webp" };
+const banner3Asset = { url: "/9.webp" };
 
 export const Route = createFileRoute("/veronica")({
   head: () => {
@@ -247,7 +247,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-[#C5A566] transition-colors"
+              className="hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#C5A566] hover:text-black transition-colors"
               href={WHATSAPP}
             >
               WhatsApp
@@ -298,7 +298,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block rounded-full bg-[#1f6f78] px-6 py-3 text-center text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#C5A566]"
+                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black"
                 >
                   WhatsApp
                 </a>
