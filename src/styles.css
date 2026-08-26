@@ -691,6 +691,12 @@ main > section:first-child a.btn-ghost:hover {
   grid-column: 1 / -1;
 }
 
+/* José Carlos: after the full-width first item, "Hipotecas" (the next
+   card) takes a double-wide cell so it leads the row visually. */
+.josecarlos-original .services-editorial__grid > *:nth-child(2) {
+  grid-column: span 2;
+}
+
 .services-editorial__card {
   min-height: 360px;
   height: 100%;

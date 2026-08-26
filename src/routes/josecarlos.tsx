@@ -145,10 +145,10 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 const services = [
   { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera" },
   { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiación para tu vivienda en la zona.", cta: "Estudiar mi hipoteca" },
+  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades" },
   { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos" },
   { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación" },
   { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud" },
-  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades" },
 ];
 
 const errors = [
