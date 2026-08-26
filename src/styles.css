@@ -808,10 +808,10 @@ main > section:first-child a.btn-ghost:hover {
   opacity: 0.85;
 }
 .josecarlos-original .services-editorial__card--photo .services-editorial__cta {
-  color: #ffffff !important;
+  color: #1f6f78 !important;
 }
 .josecarlos-original .services-editorial__card--photo .services-editorial__cta > span {
-  background: #ffffff;
+  background: #1f6f78;
 }
 
 @media (max-width: 900px) {
