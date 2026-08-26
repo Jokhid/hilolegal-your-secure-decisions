@@ -96,6 +96,57 @@ function Curtain({
   );
 }
 
+function WordReveal({
+  text,
+  className = "",
+  delay = 0,
+  stagger = 0.045,
+  eager = false,
+  block = false,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+  eager?: boolean;
+  block?: boolean;
+}) {
+  const reduce = useReducedMotion();
+  const words = text.split(" ");
+  const trigger = eager
+    ? { animate: "visible" as const }
+    : { whileInView: "visible" as const, viewport: { once: true, amount: 0.3 } };
+
+  if (reduce) {
+    return <span className={`${block ? "block " : ""}${className}`}>{text}</span>;
+  }
+
+  const wordSpans = words.map((word, i) => (
+    <span
+      key={i}
+      className={`word-reveal-mask relative inline-block overflow-hidden align-baseline ${className}`}
+    >
+      <motion.span
+        className="inline-block"
+        initial="hidden"
+        {...trigger}
+        variants={{
+          hidden: { y: "110%" },
+          visible: { y: "0%", transition: { duration: 0.85, ease: easeOutExpo, delay: delay + i * stagger } },
+        }}
+      >
+        {word}
+      </motion.span>
+    </span>
+  ));
+
+  return (
+    <span className={block ? "block" : undefined}>
+      {wordSpans.flatMap((el, i) => (i > 0 ? [" ", el] : [el]))}
+    </span>
+  );
+}
+
 function FadeUp({
   children,
   delay = 0,
@@ -502,10 +553,8 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-balance">
-            <Curtain eager>Un problema legal casi siempre tiene una cara financiera.</Curtain>{" "}
-            <Curtain eager delay={0.1}>
-              <span className="jch-accent jch-italic">Nosotros resolvemos las dos.</span>
-            </Curtain>
+            <WordReveal eager delay={0.1} text="Un problema legal casi siempre tiene una cara financiera." />{" "}
+            <WordReveal eager delay={0.5} className="jch-accent jch-italic" text="Nosotros resolvemos las dos." />
           </h1>
 
           <FadeUp eager delay={0.55}>

@@ -302,6 +302,16 @@ main h2 > .overflow-hidden {
   margin-right: -.08em;
 }
 
+/* Same safety buffer as above, for per-word reveal masks (word-reveal-mask
+   spans sit one level deeper than the direct-child selector above reaches). */
+main h1 .word-reveal-mask,
+main h2 .word-reveal-mask {
+  padding-bottom: .14em;
+  margin-bottom: -.08em;
+  padding-right: .06em;
+  margin-right: -.06em;
+}
+
 main h2 {
   max-width: 1050px;
   font-size: clamp(3rem, 6vw, 6rem) !important;

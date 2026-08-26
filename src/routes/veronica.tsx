@@ -163,6 +163,57 @@ function Curtain({ children, className = "", delay = 0 }: { children: React.Reac
   );
 }
 
+function WordReveal({
+  text,
+  className = "",
+  delay = 0,
+  stagger = 0.045,
+  eager = false,
+  block = false,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+  eager?: boolean;
+  block?: boolean;
+}) {
+  const reduce = useReducedMotion();
+  const words = text.split(" ");
+  const trigger = eager
+    ? { animate: "visible" as const }
+    : { whileInView: "visible" as const, viewport: { once: true, amount: 0.3 } };
+
+  if (reduce) {
+    return <span className={`${block ? "block " : ""}${className}`}>{text}</span>;
+  }
+
+  const wordSpans = words.map((word, i) => (
+    <span
+      key={i}
+      className={`word-reveal-mask relative inline-block overflow-hidden align-baseline ${className}`}
+    >
+      <motion.span
+        className="inline-block"
+        initial="hidden"
+        {...trigger}
+        variants={{
+          hidden: { y: "110%" },
+          visible: { y: "0%", transition: { duration: 0.85, ease: easeOutExpo, delay: delay + i * stagger } },
+        }}
+      >
+        {word}
+      </motion.span>
+    </span>
+  ));
+
+  return (
+    <span className={block ? "block" : undefined}>
+      {wordSpans.flatMap((el, i) => (i > 0 ? [" ", el] : [el]))}
+    </span>
+  );
+}
+
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const reduce = useReducedMotion();
   return (
@@ -352,12 +403,8 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight text-balance">
-            <Curtain delay={0.15} className="block">
-              <span className="block veronica-hero-ochre">Derecho con criterio.</span>
-            </Curtain>
-            <Curtain delay={0.25} className="block">
-              <span className="block">La experiencia desde dentro.</span>
-            </Curtain>
+            <WordReveal eager block delay={0.1} className="veronica-hero-ochre" text="Derecho con criterio." />
+            <WordReveal eager block delay={0.235} text="La experiencia desde dentro." />
           </h1>
 
           <FadeUp delay={0.6}>
