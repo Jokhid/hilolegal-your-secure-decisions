@@ -3,4 +3,4 @@ Allow: /
 Disallow: /privacidad.html
 Disallow: /terminos.html
 
-Sitemap: https://hilolegal.es/sitemap.xml
+Sitemap: https://www.hilolegal.es/sitemap.xml

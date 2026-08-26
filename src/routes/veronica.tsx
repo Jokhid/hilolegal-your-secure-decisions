@@ -54,6 +54,14 @@ export const Route = createFileRoute("/veronica")({
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Calle Regata 3, 1º E",
+                addressLocality: "Altea",
+                postalCode: "03590",
+                addressRegion: "Alicante",
+                addressCountry: "ES",
+              },
               areaServed: [
                 { "@type": "City", name: "Altea" },
                 { "@type": "AdministrativeArea", name: "Costa Blanca" },

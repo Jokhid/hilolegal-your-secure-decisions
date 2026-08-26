@@ -36,6 +36,14 @@ export const Route = createFileRoute("/")({
           url: "https://hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Calle Regata 3, 1º E",
+            addressLocality: "Altea",
+            postalCode: "03590",
+            addressRegion: "Alicante",
+            addressCountry: "ES",
+          },
           areaServed: [{ "@type": "City", name: "Altea" }],
           founder: [
             { "@type": "Person", name: "Verónica López" },

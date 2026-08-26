@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { blogPosts } from "@/lib/blogPosts";
 
-const BASE_URL = "https://hilolegal.es";
+const BASE_URL = "https://www.hilolegal.es";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -13,10 +14,14 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/josecarlos/", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/veronica/", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/blog", changefreq: "weekly", priority: "0.7", lastmod: today },
+          ...blogPosts.map((p) => ({
+            path: `/blog/${p.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.6",
+            lastmod: today,
+          })),
           { path: "/herramientas/ahorro-potencial/index.html", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/test-salud-financiera.html", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/privacidad.html", changefreq: "yearly", priority: "0.3", lastmod: today },
-          { path: "/terminos.html", changefreq: "yearly", priority: "0.3", lastmod: today },
         ];
 
         const urls = entries

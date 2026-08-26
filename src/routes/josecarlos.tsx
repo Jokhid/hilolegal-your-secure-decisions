@@ -8,8 +8,8 @@ import { submitContact } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/josecarlos")({
   head: () => ({
-    title: "José Carlos Hidalgo | Asesoramiento Financiero e Hipotecario",
     meta: [
+      { title: "José Carlos Hidalgo | Asesoramiento Financiero e Hipotecario" },
       {
         name: "description",
         content:
@@ -20,6 +20,17 @@ export const Route = createFileRoute("/josecarlos")({
         property: "og:description",
         content: "Protege tus ingresos, tu familia y tu futuro financiero.",
       },
+      { property: "og:url", content: "https://hilolegal.es/josecarlos" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_ES" },
+      { property: "og:site_name", content: "HiloLegal" },
+      { property: "og:image", content: "https://hilolegal.es/yoderecha.webp" },
+      { property: "og:image:width", content: "1672" },
+      { property: "og:image:height", content: "941" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "José Carlos Hidalgo | Asesor Financiero" },
+      { name: "twitter:description", content: "Protege tus ingresos, tu familia y tu futuro financiero." },
+      { name: "twitter:image", content: "https://hilolegal.es/yoderecha.webp" },
     ],
     links: [
       { rel: "canonical", href: "https://hilolegal.es/josecarlos/" },
@@ -75,6 +86,14 @@ export const Route = createFileRoute("/josecarlos")({
               priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
               hasMap: "https://share.google/GlqwXv7lO958pDPDS",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Calle Regata 3, 1º E",
+                addressLocality: "Altea",
+                postalCode: "03590",
+                addressRegion: "Alicante",
+                addressCountry: "ES",
+              },
               currenciesAccepted: "EUR",
               areaServed: [
                 { "@type": "City", name: "Altea" },
@@ -956,12 +975,12 @@ function Contact() {
             <div className="pt-10 border-t border-[var(--jch-line)] space-y-4">
               <div className="flex items-center gap-3">
                 <Icon name="location_on" className="text-[var(--jch-accent-ink)] text-xl" />
-                <p className="text-sm font-bold uppercase tracking-widest">Calle Calitx 9, 03590 Altea</p>
+                <p className="text-sm font-bold uppercase tracking-widest">Calle Regata 3, 1º E, 03590 Altea</p>
               </div>
               <div className="w-full aspect-[4/3] overflow-hidden border border-[var(--jch-line)]">
                 <iframe
-                  title="Mapa Calle Calitx 9, Altea"
-                  src="https://www.google.com/maps?q=Calle+Calitx+9,+03590+Altea,+Alicante&output=embed"
+                  title="Mapa Calle Regata 3, Altea"
+                  src="https://www.google.com/maps?q=Calle+Regata+3,+03590+Altea,+Alicante&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full border-0"
