@@ -143,12 +143,12 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiación para tu vivienda en la zona.", cta: "Estudiar mi hipoteca" },
-  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades" },
-  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos" },
-  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación" },
-  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera" },
-  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud" },
+  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiación para tu vivienda en la zona.", cta: "Estudiar mi hipoteca", img: "/jc-service-hipotecas.webp" },
+  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades", img: "/jc-service-fincas.webp" },
+  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos", img: "/jc-service-proteccion.webp" },
+  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación", img: "/jc-service-ahorro.webp" },
+  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera", img: "/jc-service-planificacion.webp" },
+  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud", img: "/jc-service-salud.webp" },
 ];
 
 const errors = [
@@ -649,13 +649,17 @@ function Services() {
         <div className="services-editorial__grid">
           {services.map((service, index) => (
             <FadeUp key={service.title} delay={(index % 3) * 0.08} className="services-editorial__item">
-              <article className="services-editorial__card">
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <a href="#contact" className="services-editorial__cta">
-                  <span aria-hidden="true" />
-                  {service.cta}
-                </a>
+              <article className="services-editorial__card services-editorial__card--photo">
+                <img src={service.img} alt="" loading="lazy" className="services-editorial__card-bg" />
+                <div className="services-editorial__card-scrim" aria-hidden="true" />
+                <div className="services-editorial__card-content">
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                  <a href="#contact" className="services-editorial__cta">
+                    <span aria-hidden="true" />
+                    {service.cta}
+                  </a>
+                </div>
               </article>
             </FadeUp>
           ))}
