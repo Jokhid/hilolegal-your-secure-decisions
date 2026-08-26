@@ -691,10 +691,10 @@ main > section:first-child a.btn-ghost:hover {
   grid-column: 1 / -1;
 }
 
-/* José Carlos: after the full-width first item, "Hipotecas" (the next
-   card) takes a double-wide cell so it leads the row visually. */
-.josecarlos-original .services-editorial__grid > *:nth-child(2) {
-  grid-column: span 2;
+/* José Carlos: plain even 3x2 grid, no full-width lead card like the
+   shared rule above does elsewhere. */
+.josecarlos-original .services-editorial__grid > *:first-child {
+  grid-column: auto;
 }
 
 .services-editorial__card {
