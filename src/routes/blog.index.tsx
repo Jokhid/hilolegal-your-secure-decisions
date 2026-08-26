@@ -26,6 +26,8 @@ export const Route = createFileRoute("/blog/")({
 });
 
 
+const WHATSAPP = "https://wa.me/34647506040";
+
 function BlogIndex() {
   return (
     <div className="blog-editorial min-h-screen">
@@ -42,6 +44,14 @@ function BlogIndex() {
             <Link to="/" className="blog-editorial__back">
               ← Volver al inicio
             </Link>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black sm:inline-block"
+            >
+              WhatsApp
+            </a>
           </div>
         </nav>
       </header>

@@ -5,7 +5,7 @@ export type Theme = "dark" | "light";
 const STORAGE_KEY = "hilolegal-theme";
 
 export function useTheme() {
-  const [theme, setTheme] = React.useState<Theme>("dark");
+  const [theme, setTheme] = React.useState<Theme>("light");
 
   React.useEffect(() => {
     const current = document.documentElement.getAttribute("data-theme");

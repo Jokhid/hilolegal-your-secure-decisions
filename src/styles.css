@@ -1691,6 +1691,11 @@ footer.site-footer .brand {
   color: #ffffff !important;
 }
 
+.blog-editorial > header a.header-whatsapp-btn,
+.blog-post > header a.header-whatsapp-btn {
+  color: #ffffff !important;
+}
+
 .veronica-original footer {
   background: #1A1A1A !important;
   color: #ffffff !important;

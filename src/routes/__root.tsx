@@ -137,7 +137,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 const THEME_INIT_SCRIPT = `
 try {
   var t = localStorage.getItem('hilolegal-theme');
-  if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  if (t === 'dark') document.documentElement.removeAttribute('data-theme');
 } catch (e) {}
 `;
 
@@ -156,7 +156,7 @@ gtag('config', '${GA4_ID}');`;
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning data-theme="light">
       <head>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: GA4_INLINE_SCRIPT }} />
