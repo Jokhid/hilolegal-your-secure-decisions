@@ -702,7 +702,7 @@ function Method() {
           <FadeUp delay={0.1}>
             <div className="relative overflow-hidden aspect-square lg:sticky lg:top-28">
               <motion.img
-                src={IMG(9)}
+                src="/JCESCRIBIENDO.webp"
                 loading="lazy"
                 alt="Método de asesoramiento"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -764,7 +764,7 @@ function About() {
             <FadeUp delay={0.1}>
               <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
                 <p>Hay una frase que escucho con frecuencia en mi trabajo: «Ojalá hubiera hablado con alguien antes de firmar esto.»</p>
-                <p>Mi objetivo es que tú nunca tengas que decirla.</p>
+                <p>Mi meta es que lo peor no rompa el estilo de vida de los que más quieres y consigas claridad, previsión y paz mental.</p>
                 <p>Llevo años acompañando a familias y autónomos de la Costa Blanca en las decisiones financieras que más pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilación con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
                 <p>No soy el asesor que te recomienda el producto del mes. Soy el que se sienta contigo, revisa tu situación real y te dice lo que necesitas escuchar, aunque no siempre sea lo más fácil.</p>
                 <p>Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar y negociar en tu nombre, no defender los intereses de un banco concreto.</p>

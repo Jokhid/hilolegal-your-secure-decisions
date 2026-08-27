@@ -237,7 +237,7 @@ const audiences = [
   {
     title: "Autónomos",
     text:
-      "Para profesionales que necesitan proteger sus ingresos, planificar su jubilación, cubrir riesgos personales y tomar decisiones financieras con criterio.",
+      "Para profesionales que necesitan proteger sus ingresos, planificar su jubilación. Tu protección no puede depender solo de tu facturación.",
   },
   {
     title: "Empresas",
