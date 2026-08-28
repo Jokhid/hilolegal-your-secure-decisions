@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
+import { trackEvent } from "@/lib/analytics";
 const banner3Asset = { url: "/9.webp" };
 
 export const Route = createFileRoute("/veronica")({
@@ -17,11 +18,20 @@ export const Route = createFileRoute("/veronica")({
       { name: "description", content: VERONICA_DESCRIPTION },
       { property: "og:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
       { property: "og:description", content: VERONICA_DESCRIPTION },
-      { property: "og:url", content: "https://hilolegal.es/veronica" },
+      { property: "og:url", content: "https://www.hilolegal.es/veronica" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_ES" },
+      { property: "og:site_name", content: "HiloLegal" },
+      { property: "og:image", content: "https://www.hilolegal.es/VERODERECHA.webp" },
+      { property: "og:image:width", content: "1672" },
+      { property: "og:image:height", content: "941" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
+      { name: "twitter:description", content: VERONICA_DESCRIPTION },
+      { name: "twitter:image", content: "https://www.hilolegal.es/VERODERECHA.webp" },
     ],
     links: [
-      { rel: "canonical", href: "https://hilolegal.es/veronica" },
+      { rel: "canonical", href: "https://www.hilolegal.es/veronica" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=account_balance,arrow_forward,balance,call,expand_more,gavel,home,location_on,mail,psychology,school,shield,workspace_premium&display=swap",
@@ -37,20 +47,20 @@ export const Route = createFileRoute("/veronica")({
               "@type": "Person",
               name: "Verónica López Ramón",
               jobTitle: "Abogada",
-              url: "https://hilolegal.es/veronica",
+              url: "https://www.hilolegal.es/veronica",
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               worksFor: {
                 "@type": "Organization",
                 name: "HiloLegal",
-                url: "https://hilolegal.es",
+                url: "https://www.hilolegal.es",
               },
               knowsAbout: services.map((s) => s.title),
             },
             {
               "@type": "LegalService",
               name: "Verónica López — Abogada",
-              url: "https://hilolegal.es/veronica",
+              url: "https://www.hilolegal.es/veronica",
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
@@ -69,6 +79,12 @@ export const Route = createFileRoute("/veronica")({
               makesOffer: services.map((s) => ({
                 "@type": "Offer",
                 itemOffered: { "@type": "Service", name: s.title },
+              })),
+              review: testimonials.map((t) => ({
+                "@type": "Review",
+                author: { "@type": "Person", name: t.name },
+                reviewRating: { "@type": "Rating", ratingValue: t.rating, bestRating: 5 },
+                reviewBody: t.text,
               })),
             },
             {
@@ -252,6 +268,7 @@ function Index() {
         <Method />
         <About />
         <HiloLegal />
+        <Testimonials />
         <FAQ />
         <Contact />
       </main>
@@ -310,7 +327,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#C5A566] transition-colors"
+              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#C5A566] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#9c7d4a] transition-colors"
               href={WHATSAPP}
             >
               WhatsApp
@@ -319,7 +336,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -342,7 +359,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#1f6f78]"
+                className="self-end text-3xl text-[#C5A566]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -361,7 +378,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black"
+                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black"
                 >
                   WhatsApp
                 </a>
@@ -399,7 +416,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#1f6f78] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -427,7 +444,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#C5A566] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#9c7d4a] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Primera consulta
@@ -537,6 +554,7 @@ function Differentiation() {
 }
 
 function Services() {
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <section id="services" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -548,21 +566,60 @@ function Services() {
             <p className="text-xl text-[var(--jch-muted)] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
           </FadeUp>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px jch-divider">
-          {services.map((s, idx) => (
-            <FadeUp key={s.title} delay={(idx % 2) * 0.08}>
-              <motion.div whileHover={{ y: -4 }} transition={spring} className="h-full group">
-                <div className="h-full jch-card p-12 transition-colors border border-transparent hover:border-[#C5A566]/30">
-                  <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-4xl mb-8" />
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--jch-accent-ink)] transition-colors">{s.title}</h3>
-                  <p className="text-[var(--jch-muted)] mb-10 leading-relaxed">{s.text}</p>
-                  <a className="text-[15px] font-black uppercase tracking-widest flex items-center gap-2 text-[#1f6f78] group-hover:text-[var(--jch-ink)] transition-colors" href="#contact">
-                    Consultar <Icon name="arrow_forward" className="text-base" />
-                  </a>
+        <div className="divide-y divide-[var(--jch-line)] border-t border-b border-[var(--jch-line)]">
+          {services.map((s, idx) => {
+            const paragraphs = s.text.split(/\n\s*\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+            const [intro, ...rest] = paragraphs;
+            const isOpen = open === idx;
+            const panelId = `service-panel-${idx}`;
+            const buttonId = `service-button-${idx}`;
+            return (
+              <FadeUp key={s.title} delay={(idx % 2) * 0.05}>
+                <div className="py-10 md:py-12">
+                  <div className="flex items-start gap-6">
+                    <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-3xl shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-3">{s.title}</h3>
+                      <p className="text-[var(--jch-muted)] leading-relaxed">{intro}</p>
+                      {rest.length > 0 && (
+                        <>
+                          <button
+                            type="button"
+                            id={buttonId}
+                            aria-expanded={isOpen}
+                            aria-controls={panelId}
+                            onClick={() => setOpen(isOpen ? null : idx)}
+                            className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                          >
+                            {isOpen ? "Leer menos" : "Leer más"}
+                            <Icon name="expand_more" className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                          </button>
+                          <div
+                            id={panelId}
+                            role="region"
+                            aria-labelledby={buttonId}
+                            hidden={!isOpen}
+                            className="mt-4 space-y-4 text-[var(--jch-muted)] leading-relaxed"
+                          >
+                            {rest.map((p, i) => (
+                              <p key={i}>{p}</p>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                      <a
+                        className="mt-6 inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                        href="#contact"
+                        onClick={() => trackEvent("cta_legal")}
+                      >
+                        Cuéntanos tu caso <Icon name="arrow_forward" className="text-base" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            </FadeUp>
-          ))}
+              </FadeUp>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -707,7 +764,7 @@ function HiloLegal() {
                 href="/josecarlos"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#1f6f78] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a José Carlos <Icon name="arrow_forward" className="text-base" />
               </motion.a>
@@ -727,10 +784,59 @@ function HiloLegal() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
-                <a href="https://hilolegal.es" target="_blank" rel="noopener noreferrer" className="font-bold uppercase tracking-widest text-xs hover:text-[var(--jch-accent-ink)] transition-colors">HiloLegal</a>
+                <a href="https://www.hilolegal.es" target="_blank" rel="noopener noreferrer" className="font-bold uppercase tracking-widest text-xs hover:text-[var(--jch-accent-ink)] transition-colors">HiloLegal</a>
               </div>
             </div>
           </FadeUp>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Reseñas reales de Google (My Business), pasadas directamente por el
+// cliente — no generadas ni parafraseadas. La primera está en valenciano,
+// tal como la dejó quien la escribió.
+const testimonials = [
+  {
+    name: "Cristian Llopis",
+    rating: 5,
+    text: "Vaig contactar amb ella arran d'un accident de trànsit amb un vehicle d'empresa. Des del primer moment, el tracte va ser molt proper. Ens va atendre ràpidament i de seguida ens va explicar com havíem de procedir davant la situació plantejada. Verònica ha estat molt professional, sempre atenta i disposada a explicar tot el procés, tant per telèfon com en persona, així com a gestionar el tràmit i la resolució del cas.",
+  },
+  {
+    name: "SRG",
+    rating: 5,
+    text: "Muy contenta con el trato recibido y del resultado de su trabajo. La defensa que hizo Verónica en mi caso fue increíble. Gracias por todo.",
+  },
+];
+
+function Testimonials() {
+  return (
+    <section id="testimonios" className="py-[100px] border-t border-[var(--jch-line)]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="mb-20 max-w-3xl space-y-4">
+          <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">Reseñas verificadas en Google</span>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <Curtain>Lo que dicen quienes ya han trabajado conmigo</Curtain>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {testimonials.map((t, i) => (
+            <FadeUp key={t.name} delay={i * 0.1}>
+              <article className="relative h-full border border-[var(--jch-line)] p-10 hover:border-[#C5A566] transition-colors">
+                <div className="flex gap-1 mb-6" aria-label={`${t.rating} de 5 estrellas`}>
+                  {Array.from({ length: t.rating }).map((_, idx) => (
+                    <span key={idx} aria-hidden="true" className="text-[#C5A566]">★</span>
+                  ))}
+                </div>
+                <p className="text-[var(--jch-muted)] leading-relaxed">{t.text}</p>
+                <div className="mt-8 pt-6 border-t border-[var(--jch-line)]">
+                  <p className="font-bold text-[var(--jch-ink)]">{t.name}</p>
+                  <p className="text-xs text-[var(--jch-dim)] mt-1">Reseña de Google</p>
+                </div>
+              </article>
+            </FadeUp>
+          ))}
         </div>
       </div>
     </section>
@@ -794,8 +900,14 @@ function Contact() {
     message: "",
   });
 
-  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+  const startedRef = useRef(false);
+  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent("contact_start");
+    }
     setForm((f) => ({ ...f, [k]: e.target.value }));
+  };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -804,6 +916,7 @@ function Contact() {
     try {
       await submit({ data: form });
       setStatus("ok");
+      trackEvent("contact_submit");
       setForm({ name: "", phone: "", email: "", topic: "Consulta jurídica general", message: "" });
     } catch (err) {
       setStatus("error");
@@ -853,7 +966,7 @@ function Contact() {
               <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
               <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
             </div>
-            <Field label="Email" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} required />
+            <Field label="Email (opcional)" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} />
             <div className="space-y-2">
               <label className="text-[10px] font-black uppercase tracking-[0.2em]">Tipo de asunto</label>
               <select
@@ -870,7 +983,7 @@ function Contact() {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje</label>
+              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
               <textarea
                 rows={4}
                 placeholder="Explica brevemente tu situación"
@@ -887,7 +1000,7 @@ function Contact() {
               whileTap={{ scale: 0.98 }}
               transition={spring}
               style={{ color: "#ffffff" }}
-              className="rounded-full inline-block text-center w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#C5A566] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="rounded-full inline-block text-center w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#9c7d4a] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : "Enviar consulta"}
             </motion.button>

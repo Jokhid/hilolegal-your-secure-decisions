@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useScroll, useTransform, useReducedMotion } fr
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/josecarlos")({
   head: () => ({
@@ -20,20 +21,20 @@ export const Route = createFileRoute("/josecarlos")({
         property: "og:description",
         content: "Protege tus ingresos, tu familia y tu futuro financiero.",
       },
-      { property: "og:url", content: "https://hilolegal.es/josecarlos" },
+      { property: "og:url", content: "https://www.hilolegal.es/josecarlos" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "es_ES" },
       { property: "og:site_name", content: "HiloLegal" },
-      { property: "og:image", content: "https://hilolegal.es/yoderecha.webp" },
+      { property: "og:image", content: "https://www.hilolegal.es/yoderecha.webp" },
       { property: "og:image:width", content: "1672" },
       { property: "og:image:height", content: "941" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "José Carlos Hidalgo | Asesor Financiero" },
       { name: "twitter:description", content: "Protege tus ingresos, tu familia y tu futuro financiero." },
-      { name: "twitter:image", content: "https://hilolegal.es/yoderecha.webp" },
+      { name: "twitter:image", content: "https://www.hilolegal.es/yoderecha.webp" },
     ],
     links: [
-      { rel: "canonical", href: "https://hilolegal.es/josecarlos/" },
+      { rel: "canonical", href: "https://www.hilolegal.es/josecarlos" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=analytics,arrow_forward,assured_workload,balance,call,close,domain,expand_more,family_restroom,location_on,mail,map,medical_services,menu,real_estate_agent,travel_explore,trending_up,visibility&display=swap",
@@ -49,10 +50,10 @@ export const Route = createFileRoute("/josecarlos")({
               "@type": "Person",
               name: "José Carlos Hidalgo Ortega",
               jobTitle: "Asesor Financiero e Hipotecario",
-              url: "https://hilolegal.es/josecarlos",
+              url: "https://www.hilolegal.es/josecarlos",
               telephone: "+34647506040",
               email: "josecarlos@hilolegal.es",
-              image: "https://hilolegal.es/8.webp",
+              image: "https://www.hilolegal.es/8.webp",
               sameAs: [
                 "https://www.linkedin.com/in/jos%C3%A9carloshidalgo/",
                 "https://www.instagram.com/jokhid/",
@@ -62,7 +63,7 @@ export const Route = createFileRoute("/josecarlos")({
               worksFor: {
                 "@type": "Organization",
                 name: "HiloLegal",
-                url: "https://hilolegal.es",
+                url: "https://www.hilolegal.es",
               },
               knowsAbout: [
                 "Hipotecas",
@@ -77,12 +78,12 @@ export const Route = createFileRoute("/josecarlos")({
             {
               "@type": "FinancialService",
               name: "José Carlos Hidalgo — Asesoría Financiera e Hipotecaria",
-              url: "https://hilolegal.es/josecarlos",
+              url: "https://www.hilolegal.es/josecarlos",
               telephone: "+34647506040",
               email: "josecarlos@hilolegal.es",
-              image: "https://hilolegal.es/8.webp",
+              image: "https://www.hilolegal.es/8.webp",
               description:
-                "Asesoramiento financiero e hipotecario para autónomos y familias en Altea, Benidorm y Alicante. Hipotecas hasta el 100%, seguros, pensiones y administración de fincas en la Costa Blanca.",
+                "Asesoramiento financiero e hipotecario para autónomos y familias en Altea, Benidorm y Alicante. Hipotecas, seguros, pensiones y administración de fincas en la Costa Blanca.",
               priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
               hasMap: "https://share.google/GlqwXv7lO958pDPDS",
@@ -104,7 +105,7 @@ export const Route = createFileRoute("/josecarlos")({
               ],
               founder: { "@type": "Person", name: "José Carlos Hidalgo Ortega" },
               makesOffer: [
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas hasta el 100% de financiación" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas y financiación de vivienda" } },
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Seguros de vida y salud" } },
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planificación financiera personal" } },
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ahorro, pensión e inversión" } },
@@ -143,12 +144,11 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Consigue hasta el 100% de financiación para tu vivienda en la zona.", cta: "Estudiar mi hipoteca", img: "/jc-service-hipotecas.webp" },
-  { icon: "domain", title: "Administración de fincas", text: "Gestión profesional de comunidades, optimizando costes, con claridad y transparencia, utilizando herramientas innovadoras.", cta: "Administración de comunidades", img: "/jc-service-fincas.webp" },
-  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos", img: "/jc-service-proteccion.webp" },
-  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación", img: "/jc-service-ahorro.webp" },
-  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera", img: "/jc-service-planificacion.webp" },
-  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud", img: "/jc-service-salud.webp" },
+  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Estudiamos tu situación y comparamos entre entidades para financiar tu vivienda en la zona.", cta: "Estudiar mi hipoteca", img: "/jc-service-hipotecas.webp", event: "cta_mortgage" as const },
+  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos", img: "/jc-service-proteccion.webp", event: "cta_wealth" as const },
+  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación", img: "/jc-service-ahorro.webp", event: "cta_wealth" as const },
+  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera", img: "/jc-service-planificacion.webp", event: "cta_wealth" as const },
+  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud", img: "/jc-service-salud.webp", event: "cta_wealth" as const },
 ];
 
 const errors = [
@@ -308,14 +308,15 @@ function Index() {
         <TrustStats />
         <Diagnosis />
         <Problem />
+        <About />
         <Services />
         <Method />
+        <ToolsPreview />
         <Partners />
-        <About />
         <HiloLegal />
-        <Testimonials />
         <FAQ />
         <Contact />
+        <AdminFincas />
       </main>
 
       <Footer />
@@ -387,7 +388,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -397,7 +398,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -420,7 +421,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#1f6f78]"
+                className="self-end text-3xl text-[#C5A566]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -439,7 +440,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black"
+                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black"
                 >
                   WhatsApp
                 </a>
@@ -477,7 +478,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#1f6f78] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -506,7 +507,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#C5A566] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#C5A566] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#9c7d4a] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
@@ -545,9 +546,9 @@ function TrustStats() {
 
 function Diagnosis() {
   const items = [
-    { n: "01", t: "Ingresos y estabilidad", d: "¿Qué pasaría si mañana no pudieras facturar? Aseguramos tu motor financiero principal. No se trata de miedo, se trata de amor y responsabilidad.", img: 3 },
-    { n: "02", t: "Hipoteca y endeudamiento", d: "Analizo las ofertas disponibles, tu capacidad de endeudamiento y la viabilidad real de la operación antes de que firmes. El objetivo es que tu vivienda sea una decisión segura y sostenible, no una carga para tu economía.", img: 2 },
-    { n: "03", t: "Ahorro, pensión y protección", d: "Estrategias de medio y largo plazo para que tu nivel de vida no dependa solo de tu trabajo actual.", img: 4 },
+    { n: "PROTEGER", t: "Ingresos y estabilidad", d: "¿Qué pasaría si mañana no pudieras facturar? Aseguramos tu motor financiero principal. No se trata de miedo, se trata de amor y responsabilidad.", img: 3 },
+    { n: "FINANCIAR", t: "Hipoteca y endeudamiento", d: "Analizo las ofertas disponibles, tu capacidad de endeudamiento y la viabilidad real de la operación antes de que firmes. El objetivo es que tu vivienda sea una decisión segura y sostenible, no una carga para tu economía.", img: 2 },
+    { n: "PLANIFICAR", t: "Ahorro, pensión y protección", d: "Estrategias de medio y largo plazo para que tu nivel de vida no dependa solo de tu trabajo actual.", img: 4 },
   ];
   return (
     <section className="py-[100px]">
@@ -655,7 +656,7 @@ function Services() {
                 <div className="services-editorial__card-content">
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
-                  <a href="#contact" className="services-editorial__cta">
+                  <a href="#contact" className="services-editorial__cta" onClick={() => trackEvent(service.event)}>
                     <span aria-hidden="true" />
                     {service.cta}
                   </a>
@@ -829,7 +830,7 @@ function HiloLegal() {
                 href="/veronica"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#1f6f78] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a Verónica López <Icon name="arrow_forward" className="text-base" />
               </motion.a>
@@ -916,9 +917,31 @@ function Contact() {
     topic: "Diagnóstico General",
     message: "",
   });
+  // Extra fields only asked when the visitor is specifically inquiring about
+  // a mortgage (progressive disclosure, per brief section 23). These fold
+  // into `message` at submit time rather than becoming new top-level keys —
+  // the lead webhook (contact.functions.ts) posts to an external Google
+  // Apps Script whose column mapping I can't verify, so new JSON keys risk
+  // being silently dropped. `message` is a plain string the sheet already
+  // captures reliably.
+  const [mortgage, setMortgage] = useState({
+    housePrice: "",
+    financing: "",
+    income: "",
+    employment: "",
+  });
+  const isMortgage = form.topic === "Nueva Hipoteca";
 
-  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+  const startedRef = useRef(false);
+  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent("contact_start");
+    }
     setForm((f) => ({ ...f, [k]: e.target.value }));
+  };
+  const onMortgageChange = (k: keyof typeof mortgage) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setMortgage((m) => ({ ...m, [k]: e.target.value }));
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -929,10 +952,26 @@ function Contact() {
     }
     setStatus("sending");
     setErrorMsg("");
+    const mortgageNote = isMortgage
+      ? [
+          mortgage.housePrice && `Precio vivienda: ${mortgage.housePrice}`,
+          mortgage.financing && `Financiación aproximada: ${mortgage.financing}`,
+          mortgage.income && `Ingresos: ${mortgage.income}`,
+          mortgage.employment && `Situación laboral: ${mortgage.employment}`,
+        ]
+          .filter(Boolean)
+          .join(" · ")
+      : "";
+    const payload = {
+      ...form,
+      message: mortgageNote ? `${mortgageNote}${form.message ? " · " + form.message : ""}` : form.message,
+    };
     try {
-      await submit({ data: form });
+      await submit({ data: payload });
       setStatus("ok");
+      trackEvent("contact_submit");
       setForm({ name: "", phone: "", email: "", topic: "Diagnóstico General", message: "" });
+      setMortgage({ housePrice: "", financing: "", income: "", employment: "" });
       setAccepted(false);
     } catch (err) {
       setStatus("error");
@@ -999,7 +1038,7 @@ function Contact() {
               <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
               <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
             </div>
-            <Field label="Email" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} required />
+            <Field label="Email (opcional)" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} />
             <div className="space-y-2">
               <label className="text-[10px] font-black uppercase tracking-[0.2em]">¿Qué necesitas revisar?</label>
               <select
@@ -1014,8 +1053,16 @@ function Contact() {
                 <option>Administración de Fincas</option>
               </select>
             </div>
+            {isMortgage && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-[var(--jch-line)] pt-10">
+                <Field label="Precio vivienda (opcional)" type="text" placeholder="Ej. 220.000 €" value={mortgage.housePrice} onChange={onMortgageChange("housePrice")} />
+                <Field label="Financiación aproximada (opcional)" type="text" placeholder="Ej. 80%" value={mortgage.financing} onChange={onMortgageChange("financing")} />
+                <Field label="Ingresos (opcional)" type="text" placeholder="Ej. 2.400 €/mes" value={mortgage.income} onChange={onMortgageChange("income")} />
+                <Field label="Situación laboral (opcional)" type="text" placeholder="Ej. asalariado, autónomo..." value={mortgage.employment} onChange={onMortgageChange("employment")} />
+              </div>
+            )}
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje</label>
+              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
               <textarea
                 rows={4}
                 placeholder="Cuéntanos tu situación"
@@ -1049,7 +1096,7 @@ function Contact() {
               type="submit"
               disabled={status === "sending"}
               style={{ color: "#ffffff" }}
-              className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#C5A566] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="rounded-full w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#9c7d4a] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
             </motion.button>
@@ -1179,6 +1226,57 @@ const partners = [
   { name: "Caser", className: "font-bold tracking-wide" },
 ];
 
+function ToolsPreview() {
+  const items = [
+    { title: "Calculadora de ahorro potencial", text: "Calcula cuánto dinero se te escapa en pequeños gastos recurrentes.", cta: "Abrir calculadora", href: "/herramientas/ahorro-potencial/index.html", event: "tool_wealth_audit" as const },
+    { title: "Test de salud financiera", text: "Evalúa tu nivel de protección, ahorro y endeudamiento.", cta: "Hacer test", href: "/test-salud-financiera.html", event: "tool_financial_health" as const },
+  ];
+  return (
+    <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="mb-16 max-w-2xl space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. Más información.</h2>
+          <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {items.map((t) => (
+            <FadeUp key={t.title}>
+              <a href={t.href} className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors" onClick={() => trackEvent(t.event)}>
+                <h3 className="text-xl font-bold mb-2">{t.title}</h3>
+                <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
+                <span className="text-[#C5A566] text-xs font-bold uppercase tracking-widest">{t.cta} →</span>
+              </a>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdminFincas() {
+  return (
+    <section id="fincas" className="fincas-block">
+      <div className="fincas-block__inner">
+        <span className="fincas-block__eyebrow">Servicio diferenciado</span>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Administración de fincas</h2>
+        <p className="fincas-block__lead">
+          Además del asesoramiento financiero, gestiono comunidades de propietarios con
+          control económico, comunicación cercana y seguimiento real de cada incidencia.
+        </p>
+        <ul className="fincas-block__list">
+          <li>Control económico y cuentas claras cada mes</li>
+          <li>Comunicación directa con la presidencia y los propietarios</li>
+          <li>Seguimiento de incidencias hasta su resolución</li>
+        </ul>
+        <Link to="/administracion-fincas" className="fincas-block__cta" onClick={() => trackEvent("cta_property")}>
+          Ver administración de fincas <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 function Partners() {
   return (
     <section aria-label="Entidades colaboradoras" className="partners-editorial">
@@ -1202,51 +1300,9 @@ function Partners() {
   );
 }
 
-const testimonials = [
-  {
-    name: "Ana M.",
-    text: "Gracias a José Carlos conseguimos financiación al 100% para nuestra primera vivienda. El proceso fue mucho más sencillo de lo que esperábamos.",
-    detail: "Primera vivienda, Benidorm",
-  },
-  {
-    name: "Marcos R.",
-    text: "Como autónomo nunca había pensado en lo expuesto que estaba. Me ayudó a ver riesgos que no veía y a poner solución sin complicarme la vida.",
-    detail: "Autónomo, Altea",
-  },
-  {
-    name: "Familia López",
-    text: "La administración de nuestra comunidad ha mejorado radicalmente. Transparente, puntual y siempre disponible.",
-    detail: "Comunidad de propietarios, Alicante",
-  },
-];
-
-function Testimonials() {
-  return (
-    <section id="testimonios" className="py-[100px] bg-[var(--jch-bg)] border-t border-[var(--jch-line)]">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="mb-20 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <Curtain>Lo que dicen quienes ya trabajan conmigo</Curtain>
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <FadeUp key={t.name} delay={i * 0.1}>
-              <article className="relative h-full bg-[var(--jch-bg)] border border-[var(--jch-line)] p-10 hover:border-[#C5A566] transition-colors">
-                <span aria-hidden="true" className="absolute top-2 left-6 text-7xl leading-none font-black text-[var(--jch-accent-ink)] select-none">
-                  “
-                </span>
-                <p className="relative text-[var(--jch-muted)] leading-relaxed pt-8">{t.text}</p>
-                <div className="mt-8 pt-6 border-t border-[var(--jch-line)]">
-                  <p className="font-bold text-[var(--jch-ink)]">{t.name}</p>
-                  <p className="text-xs text-[var(--jch-dim)] mt-1">{t.detail}</p>
-                </div>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+// Testimonials() removed — the 3 entries here were placeholder/fabricated
+// content (no verified source), which the transformation brief explicitly
+// prohibits. No real Google reviews specific to José Carlos exist yet;
+// once they do, reintroduce this component with real data instead of
+// restoring the old placeholders.
 

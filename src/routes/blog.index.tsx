@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { blogPosts } from "@/lib/blogPosts";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -17,10 +18,10 @@ export const Route = createFileRoute("/blog/")({
         content:
           "Hipotecas, protección, ahorro, pensiones y planificación financiera. Artículos prácticos sin tecnicismos.",
       },
-      { property: "og:url", content: "https://hilolegal.es/blog" },
+      { property: "og:url", content: "https://www.hilolegal.es/blog" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://hilolegal.es/blog" }],
+    links: [{ rel: "canonical", href: "https://www.hilolegal.es/blog" }],
   }),
   component: BlogIndex,
 });
@@ -48,7 +49,7 @@ function BlogIndex() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black sm:inline-block"
             >
               WhatsApp
             </a>
@@ -73,6 +74,7 @@ function BlogIndex() {
               to="/blog/$slug"
               params={{ slug: post.slug }}
               className="blog-editorial__card"
+              onClick={() => trackEvent("blog_article_click", { slug: post.slug })}
             >
               <div className="blog-editorial__meta">
                 <span>{String(index + 1).padStart(2, "0")}</span>

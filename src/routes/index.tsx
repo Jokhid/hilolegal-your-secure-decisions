@@ -6,6 +6,8 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
+import { blogPosts } from "@/lib/blogPosts";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,7 +25,7 @@ export const Route = createFileRoute("/")({
           "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio y anticipar riesgos.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://hilolegal.es/" }],
+    links: [{ rel: "canonical", href: "https://www.hilolegal.es/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -33,7 +35,7 @@ export const Route = createFileRoute("/")({
           name: "HiloLegal",
           description:
             "Boutique legal y patrimonial en Altea - Costa Blanca. Abogacía, planificación financiera, hipotecas, seguros y administración de fincas.",
-          url: "https://hilolegal.es",
+          url: "https://www.hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
           address: {
@@ -183,123 +185,94 @@ function FadeUp({
 }
 
 /* ---------- Data ---------- */
-const trustStats = [
-  { value: "20+", label: "Años de experiencia" },
-  { value: "1200+", label: "Personas ayudadas" },
-  { value: "24h", label: "Tiempo de respuesta" },
-];
-
 const areas = [
   {
+    n: "01",
     title: "Legal",
-    text:
-      "Asesoramiento jurídico para asuntos civiles, familiares, penales, inmobiliarios, administrativos y patrimoniales. Cuando un problema legal tiene impacto personal o económico, necesitas estrategia, experiencia y claridad.",
-    cta: "Ver servicios legales",
+    kicker: "Defender lo que importa.",
+    text: "Asesoramiento y defensa jurídica para particulares, familias y empresas.",
+    tags: "Civil · Familia · Penal · Administrativo · Inmobiliario",
+    cta: "Cuéntanos tu caso",
     href: "/veronica#services",
     art: "/legal.webp",
     artAlt: "Ilustración del área legal de HiloLegal",
+    event: "nav_service_legal" as const,
   },
   {
-    title: "Patrimonial y financiero",
-    text:
-      "Planificación financiera, ahorro, inversión, pensiones, seguros de vida, salud y protección de autónomos. Te ayudamos a ordenar tu economía, proteger tus ingresos y preparar decisiones importantes con una visión realista.",
-    cta: "Ver asesoramiento patrimonial",
-    href: "/josecarlos",
-    art: "/patrimonial.webp",
-    artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
-  },
-  {
+    n: "02",
     title: "Hipotecas",
-    text:
-      "Estudio hipotecario, viabilidad financiera, comparación de opciones y acompañamiento en la compra de vivienda. No se trata solo de conseguir una hipoteca. Se trata de comprar con seguridad.",
-    cta: "Ver hipotecas",
+    kicker: "Comprar con seguridad.",
+    text: "Estudiamos tu situación, analizamos la viabilidad y te acompañamos durante el proceso hipotecario.",
+    tags: "Hipotecas ING y ABANCA",
+    cta: "Estudiar mi hipoteca",
     href: "/josecarlos",
     art: "/hipotecas.webp",
     artAlt: "Ilustración del área de hipotecas de HiloLegal",
+    event: "nav_service_mortgage" as const,
   },
   {
+    n: "03",
+    title: "Patrimonio",
+    kicker: "Proteger hoy. Planificar mañana.",
+    text: "Analizamos ingresos, ahorro, protección y objetivos para construir una estrategia financiera adaptada a tu vida.",
+    tags: "Ahorro · Inversión · Pensiones · Protección",
+    cta: "Analizar mi situación",
+    href: "/josecarlos",
+    art: "/patrimonial.webp",
+    artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
+    event: "nav_service_wealth" as const,
+  },
+  {
+    n: "04",
     title: "Administración de fincas",
-    text:
-      "Gestión profesional de comunidades de propietarios con control económico, transparencia y respuesta. Una comunidad bien administrada protege el valor de cada inmueble.",
-    cta: "Ver administración de fincas",
+    kicker: "Tu comunidad, bien gestionada.",
+    text: "Administración cercana, transparente y profesional.",
+    tags: "",
+    cta: "Solicitar una propuesta",
     href: "/josecarlos",
     art: "/fincas.webp",
     artAlt: "Ilustración del área de administración de fincas de HiloLegal",
-  },
-];
-
-const audiences = [
-  {
-    title: "Familias",
-    text:
-      "Para quienes quieren resolver sus asuntos legales con seguridad, comprar vivienda, proteger a sus hijos, organizar su economía o planificar ahorro.",
-  },
-  {
-    title: "Autónomos",
-    text:
-      "Para profesionales que necesitan proteger sus ingresos, planificar su jubilación. Tu protección no puede depender solo de tu facturación.",
-  },
-  {
-    title: "Empresas",
-    text:
-      "Para empresas que licitan con el sector público y necesitan preparar decisiones jurídicas, económicas y documentales con orden, solvencia y seguridad.",
-  },
-  {
-    title: "Propietarios",
-    text:
-      "Para quienes necesitan resolver problemas inmobiliarios, gestionar patrimonio, afrontar conflictos legales o tomar decisiones sobre vivienda, alquiler o comunidad.",
+    event: "nav_service_property" as const,
   },
 ];
 
 const methodSteps = [
   {
-    n: "01.",
-    title: "Escuchamos tu situación",
-    text:
-      "Antes de recomendar nada, entendemos tu punto de partida, tus objetivos y los riesgos que te preocupan.",
+    n: "01",
+    title: "Analizamos tu punto de partida",
+    text: "Qué tienes, qué necesitas y qué te preocupa.",
   },
   {
-    n: "02.",
-    title: "Analizamos el problema completo",
-    text:
-      "No miramos solo el trámite. Revisamos el impacto jurídico, económico y patrimonial de cada decisión.",
+    n: "02",
+    title: "Detectamos riesgos y oportunidades",
+    text: "Identificamos aquello que puede perjudicarte y aquello que puedes mejorar.",
   },
   {
-    n: "03.",
-    title: "Diseñamos una estrategia clara",
-    text:
-      "Te explicamos opciones, riesgos, costes y siguientes pasos de forma comprensible.",
+    n: "03",
+    title: "Diseñamos una estrategia",
+    text: "Convertimos el análisis en decisiones concretas y comprensibles.",
   },
   {
-    n: "04.",
-    title: "Te acompañamos en la ejecución",
-    text:
-      "Coordinamos el proceso para que no tengas que tomar decisiones importantes a ciegas.",
+    n: "04",
+    title: "Te acompañamos",
+    text: "Porque muchas decisiones importantes no terminan el día que firmas.",
   },
 ];
 
 const professionals = [
   {
     img: "/vero_jurista.webp",
-    eyebrow: "Socia",
     name: "Verónica López",
-    role: "Abogada",
-    bio: [
-      "Más de 20 años de experiencia jurídica, trayectoria en puestos de alta responsabilidad en la Administración de Justicia y actividad docente como profesora asociada en la Facultad de Derecho de Alicante.",
-      "Su perfil aporta visión estratégica, rigor técnico y experiencia institucional en asuntos legales complejos.",
-    ],
+    area: "Área jurídica",
+    bio: "Más de 20 años de experiencia profesional combinando ejercicio jurídico, experiencia institucional y docencia universitaria.",
     cta: "Conocer a Verónica",
     href: "/veronica",
   },
   {
     img: "/9.webp",
-    eyebrow: "Socio",
     name: "José Carlos Hidalgo",
-    role: "Gestor patrimonial e hipotecario.",
-    bio: [
-      "Más de 25 años de experiencia en asesoría y administración. Administrador de fincas y gestor de Nationale Nederlanden, ING y Abanca. Especialista en planificación financiera, hipotecas, seguros y ahorro.",
-      "Su trabajo se centra en ayudar a familias, autónomos y propietarios a ordenar sus decisiones económicas y proteger su futuro.",
-    ],
+    area: "Área patrimonial e hipotecaria",
+    bio: "Más de 25 años de experiencia en financiación, protección, ahorro y patrimonio.",
     cta: "Conocer a José Carlos",
     href: "/josecarlos",
   },
@@ -311,24 +284,14 @@ const tools = [
     text: "Calcula cuánto dinero se escapa en pequeños gastos recurrentes y visualiza tu ahorro anual recuperable.",
     cta: "Abrir calculadora",
     href: "/herramientas/ahorro-potencial/index.html",
+    event: "tool_wealth_audit" as const,
   },
   {
     title: "Test de salud financiera",
     text: "Evalúa tu nivel de protección, ahorro, endeudamiento y previsión.",
     cta: "Hacer test",
     href: "/test-salud-financiera.html",
-  },
-  {
-    title: "Blog financiero",
-    text: "Lee artículos prácticos sobre hipotecas, ahorro, protección, pensiones y planificación financiera.",
-    cta: "Leer blog",
-    href: "/blog",
-  },
-  {
-    title: "Diagnóstico patrimonial",
-    text: "Solicita una revisión inicial de tu situación legal, financiera o hipotecaria.",
-    cta: "Solicitar diagnóstico",
-    href: "https://calendly.com/jchidalgo/plan",
+    event: "tool_financial_health" as const,
   },
 ];
 
@@ -341,13 +304,13 @@ function Index() {
 
       <main>
         <Hero />
-        <TrustBlock />
         <Areas />
         <Positioning />
-        <Audience />
-        <Method />
         <Professionals />
+        <Authority />
+        <Method />
         <Tools />
+        <Content />
         <Closing />
         <Contact />
       </main>
@@ -362,9 +325,8 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks: [string, string][] = [
-    ["Áreas", "#areas"],
-    ["Método", "#method"],
-    ["Equipo", "#equipo"],
+    ["Servicios", "#areas"],
+    ["Profesionales", "#equipo"],
     ["Herramientas", "#herramientas"],
     ["Blog", "/blog"],
     ["Contacto", "#contact"],
@@ -416,18 +378,16 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#C5A566] hover:text-black sm:inline-block"
+              href="#contact"
+              className="hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black sm:inline-block"
             >
-              WhatsApp
+              Cuéntanos qué necesitas
             </motion.a>
             <button
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#1f6f78] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -450,7 +410,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#1f6f78]"
+                className="self-end text-3xl text-[#C5A566]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -550,34 +510,31 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              HiloLegal · Boutique legal y patrimonial en Altea - Costa Blanca
+              Legal · Hipotecas · Patrimonio · Fincas
             </span>
           </FadeUp>
 
-          <FadeUp eager delay={0.15}>
-            <p className="hero-subtitle">
-              Un mismo equipo para resolver tu problema legal y proteger lo que hay detrás: tu dinero, tu vivienda, tu familia.
-            </p>
-          </FadeUp>
-
           <h1 className="text-balance">
-            <WordReveal eager delay={0.1} text="Un problema legal casi siempre tiene una cara financiera." />{" "}
-            <WordReveal eager delay={0.5} className="jch-accent jch-italic" text="Nosotros resolvemos las dos." />
+            <WordReveal eager delay={0.1} text="Hay decisiones que afectan a mucho más de" />{" "}
+            <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="una cosa." />
           </h1>
 
-          <FadeUp eager delay={0.55}>
-            <p>
-              Unimos la defensa jurídica en derecho civil, familia, penal y administrativo con la
-              visión de la planificación financiera estratégica. Respaldamos a particulares, empresas
-              y comunidades de propietarios para resolver cualquier conflicto legal y proteger sus
-              activos.
+          <FadeUp eager delay={0.5}>
+            <p className="hero-subtitle">
+              Un problema legal puede afectar a tu patrimonio. Una hipoteca condiciona tus finanzas
+              durante años. Una mala planificación puede comprometer el futuro de tu familia. En
+              HiloLegal conectamos las piezas para ayudarte a tomar mejores decisiones y proteger lo
+              que has construido.
             </p>
           </FadeUp>
 
-          <FadeUp eager delay={0.7}>
+          <FadeUp eager delay={0.65}>
             <div ref={ctaRef} className="flex flex-wrap justify-center gap-3 pt-4">
               <a href="#contact" className="btn-primary">
-                Solicitar consulta previa
+                Cuéntanos qué necesitas
+              </a>
+              <a href="#areas" className="btn-ghost">
+                Ver servicios
               </a>
             </div>
           </FadeUp>
@@ -673,73 +630,31 @@ function Hero() {
   );
 }
 
-/* ---------- Trust block ---------- */
-function TrustBlock() {
-  return (
-    <section id="trust">
-      <div className="trust-block__inner">
-        <FadeUp>
-          <div>
-            <span className="trust-block__eyebrow">Nuestra visión</span>
-            <h2 className="text-balance">
-              <Curtain>Decisiones importantes</Curtain>{" "}
-              <Curtain delay={0.1}>
-                <span className="jch-accent jch-italic">necesitan más</span>
-              </Curtain>{" "}
-              <Curtain delay={0.2}>que una respuesta rápida.</Curtain>
-            </h2>
-          </div>
-        </FadeUp>
-
-        <FadeUp delay={0.2} className="trust-block__body">
-          <p>
-            Un conflicto legal, una hipoteca o la jubilación no son trámites sueltos: son
-            decisiones que marcan tu patrimonio y tu tranquilidad.
-          </p>
-          <p>
-            En HiloLegal las abordamos juntas, con criterio jurídico y financiero, desde un mismo
-            equipo. Sin repetir tu caso a nadie.
-          </p>
-        </FadeUp>
-
-        <FadeUp delay={0.3} className="trust-block__stats">
-          {trustStats.map((s) => (
-            <div key={s.label} className="trust-block__stat">
-              <span className="trust-block__stat-value">{s.value}</span>
-              <span className="trust-block__stat-label">{s.label}</span>
-            </div>
-          ))}
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- Áreas principales ---------- */
 function Areas() {
   return (
-    <section id="areas" className="services-editorial">
-      <div className="services-editorial__inner">
-        <div className="services-editorial__heading">
+    <section id="areas" className="portal-block">
+      <div className="portal-block__inner">
+        <div className="portal-block__heading">
           <h2>
-            <Curtain>Áreas</Curtain>{" "}
+            <Curtain>¿Qué necesitas</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">principales</span>
+              <span className="jch-accent jch-italic">resolver?</span>
             </Curtain>
           </h2>
           <FadeUp delay={0.2}>
             <p>
-              Cuatro disciplinas conectadas para acompañarte antes, durante y después de cada
-              decisión patrimonial.
+              Cuatro áreas. Un mismo criterio: entender tu situación antes de recomendarte una
+              solución.
             </p>
           </FadeUp>
         </div>
 
-        <div className="services-editorial__grid">
+        <div className="portal-grid">
           {areas.map((a, i) => (
-            <FadeUp key={a.title} delay={(i % 2) * 0.08}>
-              <a href={a.href} className="services-editorial__card services-editorial__card--with-art">
-                <div className="service-card__art">
+            <FadeUp key={a.title} delay={(i % 2) * 0.08} className="portal-card__wrap">
+              <a href={a.href} className="portal-card" onClick={() => trackEvent(a.event)}>
+                <div className="portal-card__art">
                   <img
                     src={a.art}
                     alt={a.artAlt}
@@ -749,10 +664,13 @@ function Areas() {
                     decoding="async"
                   />
                 </div>
-                <div className="services-editorial__body">
+                <div className="portal-card__body">
+                  <span className="portal-card__number">{a.n}</span>
                   <h3>{a.title}</h3>
-                  <p>{a.text}</p>
-                  <span className="services-editorial__cta">
+                  <p className="portal-card__kicker">{a.kicker}</p>
+                  <p className="portal-card__text">{a.text}</p>
+                  {a.tags && <p className="portal-card__tags">{a.tags}</p>}
+                  <span className="portal-card__cta">
                     <span aria-hidden="true" />
                     {a.cta}
                   </span>
@@ -766,30 +684,27 @@ function Areas() {
   );
 }
 
-/* ---------- Posicionamiento ---------- */
+/* ---------- Concepto ---------- */
 function Positioning() {
   return (
     <section id="posicionamiento" className="position-block">
       <div className="position-block__inner">
         <h2>
-          <Curtain>Nuestra misión es que</Curtain>{" "}
+          <Curtain>Una decisión rara vez es solo</Curtain>{" "}
           <Curtain delay={0.1}>
-            <span className="jch-accent jch-italic">las decisiones importantes</span>
-          </Curtain>{" "}
-          <Curtain delay={0.2}>de tu vida las tomes con seguridad</Curtain>
+            <span className="jch-accent jch-italic">legal o financiera.</span>
+          </Curtain>
         </h2>
         <FadeUp delay={0.2} className="position-block__body">
           <p>
-            HiloLegal nace para acompañar a particulares, familias, empresas y comunidades de
-            propietarios en decisiones con impacto directo en sus vidas.
+            Una herencia tiene consecuencias patrimoniales. Una separación afecta a la economía
+            familiar. Comprar vivienda implica financiación, impuestos y planificación. Preparar
+            la jubilación exige analizar todo el patrimonio.
           </p>
-          <p>
-            No trabajamos desde compartimentos separados. Un problema jurídico puede tener
-            consecuencias económicas. Una mala hipoteca puede condicionar a una familia durante
-            décadas. Una falta de protección puede dejar expuesto a un autónomo. Una comunidad mal
-            gestionada puede deteriorar el valor de una propiedad.
-          </p>
-          <p>Por eso abordamos cada caso con una mirada legal, financiera y patrimonial.</p>
+          <p>Por eso creamos HiloLegal.</p>
+        </FadeUp>
+        <FadeUp delay={0.3} className="position-block__highlight">
+          Miramos el problema completo antes de buscar la solución.
         </FadeUp>
         <div className="position-block__media">
           <img
@@ -806,33 +721,6 @@ function Positioning() {
   );
 }
 
-/* ---------- Para quién trabajamos ---------- */
-function Audience() {
-  return (
-    <section id="audiencia">
-      <div className="audience__inner">
-        <h2>
-          <Curtain>Para quién</Curtain>{" "}
-          <Curtain delay={0.1}>
-            <span className="jch-accent jch-italic">trabajamos</span>
-          </Curtain>
-        </h2>
-
-        <div className="audience__grid">
-          {audiences.map((a, i) => (
-            <FadeUp key={a.title} delay={(i % 4) * 0.08}>
-              <article className="audience__card">
-                <span className="audience__number">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{a.title}</h3>
-                <p>{a.text}</p>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- Método ---------- */
 function Method() {
@@ -842,17 +730,11 @@ function Method() {
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2>
-            <Curtain>Nuestro</Curtain>{" "}
+            <Curtain>Antes de decidir,</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">método</span>
+              <span className="jch-accent jch-italic">entendemos.</span>
             </Curtain>
           </h2>
-          <FadeUp delay={0.15}>
-            <p>
-              Cuatro pasos para pasar de una situación difusa a una decisión con criterio, sin
-              perder tiempo ni tranquilidad por el camino.
-            </p>
-          </FadeUp>
         </div>
 
         <div className="method-steps">
@@ -881,47 +763,60 @@ function Method() {
 /* ---------- Profesionales ---------- */
 function Professionals() {
   return (
-    <section id="equipo">
-      <div className="pros__inner">
-        <div className="pros__intro">
+    <section id="equipo" className="duo-block">
+      <div className="duo-block__inner">
+        <div className="duo-block__intro">
           <h2>
-            <Curtain>Dirección experta,</Curtain>{" "}
+            <Curtain>Dos especialistas.</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">trato cercano</span>
+              <span className="jch-accent jch-italic">Una misma visión.</span>
             </Curtain>
           </h2>
-          <FadeUp delay={0.15}>
-            <p>
-              HiloLegal combina experiencia jurídica, financiera y patrimonial a través de perfiles
-              profesionales complementarios.
-            </p>
-          </FadeUp>
+          <span className="duo-block__mark" aria-hidden="true">Jurídico × Patrimonial</span>
         </div>
 
-        <div className="pros__grid">
+        <div className="duo-block__split">
           {professionals.map((p, i) => (
-            <FadeUp key={p.name} delay={i * 0.1}>
-              <article className="pros__card">
-                <div className="pros__image">
-                  <img src={p.img} alt={p.name} loading="lazy" />
-                </div>
-                <div>
-                  <span className="pros__eyebrow">{p.eyebrow}</span>
-                  <h3>{p.name}</h3>
-                  <p className="pros__role">{p.role}</p>
-                  <div className="pros__bio">
-                    {p.bio.map((b, idx) => (
-                      <p key={idx}>{b}</p>
-                    ))}
-                  </div>
-                  <a href={p.href} className="pros__cta">
-                    <span aria-hidden="true">→</span> {p.cta}
-                  </a>
-                </div>
-              </article>
+            <FadeUp key={p.name} delay={i * 0.1} className="duo-block__col">
+              <div className="duo-block__image">
+                <img src={p.img} alt={p.name} loading="lazy" />
+              </div>
+              <h3>{p.name}</h3>
+              <p className="duo-block__area">{p.area}</p>
+              <p className="duo-block__bio">{p.bio}</p>
+              <a href={p.href} className="duo-block__cta">
+                <span aria-hidden="true">→</span> {p.cta}
+              </a>
             </FadeUp>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Prueba y autoridad ---------- */
+function Authority() {
+  return (
+    <section id="autoridad" className="authority-block">
+      <div className="authority-block__inner">
+        <FadeUp className="authority-block__grid">
+          {/* Cifras verificables únicamente. "1200+ personas ayudadas" se retiró
+              del hero histórico de esta sección por no poder confirmarse — no
+              mostrar sin validar con el cliente primero. */}
+          <div className="authority-block__stat">
+            <span className="authority-block__value">20+</span>
+            <span className="authority-block__label">Años de experiencia profesional combinada</span>
+          </div>
+          <div className="authority-block__stat">
+            <span className="authority-block__value">4</span>
+            <span className="authority-block__label">Áreas de asesoramiento bajo un mismo criterio</span>
+          </div>
+          <div className="authority-block__stat">
+            <span className="authority-block__value">Altea</span>
+            <span className="authority-block__label">Costa Blanca · Marina Baixa · Alicante</span>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
@@ -934,15 +829,14 @@ function Tools() {
       <div className="tools__inner">
         <div className="tools__heading">
           <h2>
-            <Curtain>Herramientas para</Curtain>{" "}
+            <Curtain>Menos intuición.</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">decidir mejor</span>
+              <span className="jch-accent jch-italic">Más información.</span>
             </Curtain>
           </h2>
           <FadeUp delay={0.15}>
             <p>
-              Ponemos a tu disposición herramientas prácticas para analizar tu economía, tu
-              hipoteca y tus riesgos principales.
+              Antes de tomar una decisión financiera importante, conviene hacer números.
             </p>
           </FadeUp>
         </div>
@@ -953,6 +847,7 @@ function Tools() {
               <a
                 href={t.href}
                 className="tool-card"
+                onClick={() => trackEvent(t.event)}
                 {...(t.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 <span className="audience__number">
@@ -972,6 +867,57 @@ function Tools() {
   );
 }
 
+/* ---------- Contenido ---------- */
+function Content() {
+  const recent = blogPosts.slice(0, 3);
+  return (
+    <section id="contenido" className="content-block">
+      <div className="content-block__inner">
+        <div className="content-block__heading">
+          <h2>
+            <Curtain>Ideas para</Curtain>{" "}
+            <Curtain delay={0.1}>
+              <span className="jch-accent jch-italic">decidir mejor.</span>
+            </Curtain>
+          </h2>
+          <FadeUp delay={0.15}>
+            <p>
+              Información jurídica y financiera explicada para personas que quieren entender antes
+              de decidir.
+            </p>
+          </FadeUp>
+        </div>
+
+        <div className="content-block__grid">
+          {recent.map((post, i) => (
+            <FadeUp key={post.slug} delay={i * 0.08}>
+              <a
+                href={`/blog/${post.slug}`}
+                className="content-card"
+                onClick={() => trackEvent("blog_article_click", { slug: post.slug })}
+              >
+                <span className="content-card__category">{post.category}</span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span className="content-card__cta">
+                  <span aria-hidden="true" />
+                  Leer artículo
+                </span>
+              </a>
+            </FadeUp>
+          ))}
+        </div>
+
+        <FadeUp delay={0.2} className="content-block__footer">
+          <a href="/blog" className="btn-ghost">
+            Ver todos los artículos
+          </a>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Cierre ---------- */
 function Closing() {
   return (
@@ -979,20 +925,25 @@ function Closing() {
       <div className="closing__inner">
         <FadeUp>
           <h2 className="text-balance">
-            <Curtain>Si una decisión puede afectar a tu</Curtain>{" "}
+            <Curtain>Hay decisiones que merecen ser</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">patrimonio,</span>
-            </Curtain>{" "}
-            <Curtain delay={0.2}>merece ser analizada con criterio.</Curtain>
+              <span className="jch-accent jch-italic">estudiadas con calma.</span>
+            </Curtain>
           </h2>
         </FadeUp>
         <FadeUp delay={0.2}>
-          <p>Cuéntanos tu situación y te ayudaremos a identificar el mejor camino.</p>
+          <p>
+            Cuéntanos qué necesitas. Analizaremos tu situación y te indicaremos cómo podemos
+            ayudarte.
+          </p>
         </FadeUp>
         <FadeUp delay={0.3}>
           <a href="#contact" className="closing__cta">
-            Solicitar diagnóstico <span aria-hidden="true">→</span>
+            Hablar con HiloLegal <span aria-hidden="true">→</span>
           </a>
+        </FadeUp>
+        <FadeUp delay={0.4}>
+          <span className="closing__location">Altea · Marina Baixa · Alicante</span>
         </FadeUp>
       </div>
     </section>
@@ -1011,11 +962,17 @@ function Contact() {
     topic: "Defensa Jurídica",
     message: "",
   });
+  const startedRef = useRef(false);
 
   const onChange =
     (k: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      if (!startedRef.current) {
+        startedRef.current = true;
+        trackEvent("contact_start");
+      }
       setForm((f) => ({ ...f, [k]: e.target.value }));
+    };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -1029,6 +986,7 @@ function Contact() {
     try {
       await submit({ data: form });
       setStatus("ok");
+      trackEvent("contact_submit");
       setForm({ name: "", phone: "", topic: "Defensa Jurídica", message: "" });
       setAccepted(false);
     } catch (err) {
@@ -1059,6 +1017,12 @@ function Contact() {
               <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">Teléfono</p>
               <p className="text-2xl font-medium group-hover:text-[color:var(--jch-accent)] transition-colors">
                 {PHONE_DISPLAY}
+              </p>
+            </a>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="block group">
+              <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-1">WhatsApp</p>
+              <p className="text-2xl font-medium group-hover:text-[color:var(--jch-accent)] transition-colors">
+                Escríbenos directamente
               </p>
             </a>
             <a href={`mailto:${EMAIL}`} className="block group">
@@ -1126,7 +1090,7 @@ function Contact() {
               </select>
             </div>
             <div className="space-y-2">
-              <label htmlFor="field-mensaje" className="text-[10px] font-medium uppercase tracking-[0.2em]">Mensaje</label>
+              <label htmlFor="field-mensaje" className="text-[10px] font-medium uppercase tracking-[0.2em]">Mensaje (opcional)</label>
               <textarea
                 id="field-mensaje"
                 rows={4}
@@ -1165,7 +1129,7 @@ function Contact() {
               disabled={status === "sending"}
               className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
-                background: "#1f6f78",
+                background: "#C5A566",
                 color: "#ffffff",
               }}
             >
@@ -1226,12 +1190,39 @@ function Field({
 }
 
 /* ---------- Footer ---------- */
+const footerColumns = [
+  {
+    title: "Servicios",
+    links: [
+      ["Legal", "/veronica#services"],
+      ["Hipotecas", "/josecarlos"],
+      ["Patrimonio", "/josecarlos"],
+      ["Administración de fincas", "/josecarlos"],
+    ] as [string, string][],
+  },
+  {
+    title: "Profesionales",
+    links: [
+      ["Verónica López", "/veronica"],
+      ["José Carlos Hidalgo", "/josecarlos"],
+    ] as [string, string][],
+  },
+  {
+    title: "Recursos",
+    links: [
+      ["Herramientas", "#herramientas"],
+      ["Blog", "/blog"],
+      ["Diagnóstico patrimonial", "#contact"],
+    ] as [string, string][],
+  },
+];
+
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer__inner">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-          <div>
+        <div className="footer__grid">
+          <div className="footer__brand">
             <p className="brand">
               <img
                 src="/hilolegal-logo-mark.svg"
@@ -1244,13 +1235,31 @@ function Footer() {
               />
               HiloLegal
             </p>
-            <p className="mt-2 text-xs uppercase tracking-[0.2em] opacity-60">
+            <p className="footer__tagline">
               Boutique legal y patrimonial · Altea - Costa Blanca
             </p>
           </div>
-          <div className="flex flex-col md:items-end gap-2 text-sm">
-            <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
-            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+
+          {footerColumns.map((col) => (
+            <div key={col.title} className="footer__col">
+              <span className="footer__col-title">{col.title}</span>
+              <ul>
+                {col.links.map(([label, href]) => (
+                  <li key={label}>
+                    <a href={href}>{label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <div className="footer__col">
+            <span className="footer__col-title">Contacto</span>
+            <ul>
+              <li className="footer__col-static">Calle Regata 3, 1º E, Altea</li>
+              <li><a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a></li>
+              <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+            </ul>
           </div>
         </div>
 
