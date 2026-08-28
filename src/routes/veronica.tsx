@@ -664,7 +664,7 @@ function Method() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
                 <Icon name="balance" className="text-white text-5xl" />
-                <p className="font-bold uppercase tracking-widest text-xs">Rigor y Estrategia</p>
+                <span className="block font-bold uppercase tracking-widest text-xs text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">Rigor y Estrategia</span>
               </div>
             </div>
           </FadeUp>

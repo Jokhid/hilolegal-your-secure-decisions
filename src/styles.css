@@ -913,12 +913,17 @@ main > section:first-child a.btn-ghost:hover {
   margin: 0 0 1rem;
   font-style: italic;
   font-size: 1.05rem;
-  color: var(--jch-accent);
+  /* !important: without it, the global `main p { color: var(--jch-muted)
+     !important }` rule wins (both are !important, but that one has higher
+     specificity) and this renders as dark grey text on top of the photo. */
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 .portal-card__text {
   margin: 0 0 1rem;
   max-width: 30rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   font-size: 0.98rem;
   line-height: 1.6;
 }
@@ -928,7 +933,8 @@ main > section:first-child a.btn-ghost:hover {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 .portal-card__cta {
   margin-top: auto;
