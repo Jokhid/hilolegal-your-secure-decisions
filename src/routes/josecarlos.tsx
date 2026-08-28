@@ -388,7 +388,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -440,7 +440,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black"
+                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]"
                 >
                   WhatsApp
                 </a>
@@ -507,7 +507,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#C5A566] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#9c7d4a] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
               >
                 Quiero mi diagnóstico gratuito
@@ -830,7 +830,7 @@ function HiloLegal() {
                 href="/veronica"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[var(--jch-cta)] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a Verónica López <Icon name="arrow_forward" className="text-base" />
               </motion.a>
@@ -1090,13 +1090,13 @@ function Contact() {
             </label>
 
             <motion.button
-              whileHover={{ scale: status === "sending" ? 1 : 1.02, color: "#000000" }}
+              whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
               whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
               transition={spring}
               type="submit"
               disabled={status === "sending"}
               style={{ color: "#ffffff" }}
-              className="rounded-full w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#9c7d4a] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
             </motion.button>
@@ -1244,7 +1244,7 @@ function ToolsPreview() {
               <a href={t.href} className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors" onClick={() => trackEvent(t.event)}>
                 <h3 className="text-xl font-bold mb-2">{t.title}</h3>
                 <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
-                <span className="text-[#C5A566] text-xs font-bold uppercase tracking-widest">{t.cta} →</span>
+                <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">{t.cta} →</span>
               </a>
             </FadeUp>
           ))}

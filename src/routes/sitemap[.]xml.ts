@@ -14,6 +14,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/josecarlos/", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/veronica/", changefreq: "monthly", priority: "0.8", lastmod: today },
           { path: "/administracion-fincas", changefreq: "monthly", priority: "0.8", lastmod: today },
+          { path: "/administracion-fincas/presidentes", changefreq: "monthly", priority: "0.7", lastmod: today },
+          { path: "/administracion-fincas/cambio-administrador", changefreq: "monthly", priority: "0.7", lastmod: today },
+          { path: "/administracion-fincas/nueva-comunidad", changefreq: "monthly", priority: "0.7", lastmod: today },
+          { path: "/administracion-fincas/gestion-economica-impagos", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/blog", changefreq: "weekly", priority: "0.7", lastmod: today },
           ...blogPosts.map((p) => ({
             path: `/blog/${p.slug}`,

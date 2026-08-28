@@ -327,7 +327,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#C5A566] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#9c7d4a] transition-colors"
+              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#17535a] transition-colors"
               href={WHATSAPP}
             >
               WhatsApp
@@ -378,7 +378,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black"
+                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]"
                 >
                   WhatsApp
                 </a>
@@ -444,7 +444,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#C5A566] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#9c7d4a] hover:text-black transition-colors shadow-xl shadow-[#C5A566]/20"
+                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
               >
                 Primera consulta
@@ -589,7 +589,7 @@ function Services() {
                             aria-expanded={isOpen}
                             aria-controls={panelId}
                             onClick={() => setOpen(isOpen ? null : idx)}
-                            className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                            className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[var(--jch-cta)] hover:text-[var(--jch-ink)] transition-colors"
                           >
                             {isOpen ? "Leer menos" : "Leer más"}
                             <Icon name="expand_more" className={`text-base transition-transform ${isOpen ? "rotate-180" : ""}`} />
@@ -608,7 +608,7 @@ function Services() {
                         </>
                       )}
                       <a
-                        className="mt-6 inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                        className="mt-6 inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[var(--jch-cta)] hover:text-[var(--jch-ink)] transition-colors"
                         href="#contact"
                         onClick={() => trackEvent("cta_legal")}
                       >
@@ -764,7 +764,7 @@ function HiloLegal() {
                 href="/josecarlos"
                 whileHover={{ x: 4 }}
                 transition={spring}
-                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[#C5A566] hover:text-[var(--jch-ink)] transition-colors"
+                className="inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[var(--jch-cta)] hover:text-[var(--jch-ink)] transition-colors"
               >
                 Conocer a José Carlos <Icon name="arrow_forward" className="text-base" />
               </motion.a>
@@ -996,11 +996,11 @@ function Contact() {
             <motion.button
               type="submit"
               disabled={status === "sending"}
-              whileHover={{ scale: 1.02, color: "#000000" }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={spring}
               style={{ color: "#ffffff" }}
-              className="rounded-full inline-block text-center w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#9c7d4a] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="rounded-full inline-block text-center w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : "Enviar consulta"}
             </motion.button>

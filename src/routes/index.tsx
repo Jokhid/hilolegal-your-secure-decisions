@@ -229,7 +229,7 @@ const areas = [
     text: "Administración cercana, transparente y profesional.",
     tags: "",
     cta: "Solicitar una propuesta",
-    href: "/josecarlos",
+    href: "/administracion-fincas",
     art: "/fincas.webp",
     artAlt: "Ilustración del área de administración de fincas de HiloLegal",
     event: "nav_service_property" as const,
@@ -379,7 +379,7 @@ function Header() {
               whileTap={{ scale: 0.97 }}
               transition={spring}
               href="#contact"
-              className="hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black sm:inline-block"
+              className="hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
             >
               Cuéntanos qué necesitas
             </motion.a>
@@ -1127,9 +1127,8 @@ function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed bg-[#1f6f78] hover:bg-[#17535a]"
               style={{
-                background: "#C5A566",
                 color: "#ffffff",
               }}
             >
@@ -1197,7 +1196,7 @@ const footerColumns = [
       ["Legal", "/veronica#services"],
       ["Hipotecas", "/josecarlos"],
       ["Patrimonio", "/josecarlos"],
-      ["Administración de fincas", "/josecarlos"],
+      ["Administración de fincas", "/administracion-fincas"],
     ] as [string, string][],
   },
   {

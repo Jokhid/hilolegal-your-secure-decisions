@@ -109,6 +109,11 @@
   --jch-accent: #C5A566;
   --jch-accent-2: #C5A566;
   --jch-accent-ink: #C5A566;
+  /* Action color: reserved for CTAs/buttons specifically, kept distinct
+     from the ochre brand accent above (headings, dividers, decorative
+     elements stay ochre). Identical in both themes on purpose. */
+  --jch-cta: #1f6f78;
+  --jch-cta-hover: #17535a;
   --jch-ink-rgb: 243, 240, 234;
   --jch-bg-rgb: 10, 10, 10;
 }
@@ -570,10 +575,10 @@ main > section:first-child a.btn-ghost {
 }
 
 main > section:first-child a.btn-primary {
-  background: #C5A566 !important;
+  background: var(--jch-cta) !important;
   color: #ffffff !important;
 }
-main > section:first-child a.btn-primary:hover { background: #9c7d4a !important; }
+main > section:first-child a.btn-primary:hover { background: var(--jch-cta-hover) !important; }
 
 main > section:first-child a.btn-ghost {
   background: transparent !important;
@@ -673,7 +678,7 @@ main > section:first-child a.btn-ghost:hover {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   font-weight: 500 !important;
@@ -685,7 +690,7 @@ main > section:first-child a.btn-ghost:hover {
   height: 1px;
   display: block;
   flex: 0 0 auto;
-  background: var(--jch-accent);
+  background: var(--jch-cta);
   transition: width 350ms ease;
 }
 .services-editorial__card:hover .services-editorial__cta > span { width: 3.1rem; }
@@ -731,11 +736,15 @@ main > section:first-child a.btn-ghost:hover {
 .josecarlos-original .services-editorial__card--photo p {
   opacity: 0.85;
 }
+/* Green text at ~3.4:1 fails AA on these dark photo scrims (ochre's
+   higher luminance made it work); keep the label white for contrast and
+   carry the CTA green in the accent bar only, same pattern as
+   .portal-card__cta. */
 .josecarlos-original .services-editorial__card--photo .services-editorial__cta {
-  color: #C5A566 !important;
+  color: #ffffff !important;
 }
 .josecarlos-original .services-editorial__card--photo .services-editorial__cta > span {
-  background: #C5A566;
+  background: var(--jch-cta);
 }
 
 @media (max-width: 900px) {
@@ -791,7 +800,7 @@ main > section:first-child a.btn-ghost:hover {
   display: inline-flex;
   align-items: center;
   gap: .75rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   font-weight: 500;
@@ -919,7 +928,7 @@ main > section:first-child a.btn-ghost:hover {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: #ffffff;
 }
 .portal-card__cta {
   margin-top: auto;
@@ -938,7 +947,7 @@ main > section:first-child a.btn-ghost:hover {
   height: 1px;
   display: block;
   flex: 0 0 auto;
-  background: var(--jch-accent);
+  background: var(--jch-cta);
   transition: width 350ms ease;
 }
 .portal-card:hover .portal-card__cta > span { width: 3.1rem; }
@@ -1008,7 +1017,7 @@ main > section:first-child a.btn-ghost:hover {
   display: inline-flex;
   align-items: center;
   gap: .75rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   letter-spacing: .18em !important;
@@ -1104,13 +1113,13 @@ main > section:first-child a.btn-ghost:hover {
   display: flex;
   align-items: center;
   gap: .6rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 11px !important;
   letter-spacing: .16em !important;
   text-transform: uppercase;
 }
-.content-card__cta > span { width: 1.4rem; height: 1px; background: var(--jch-accent); }
+.content-card__cta > span { width: 1.4rem; height: 1px; background: var(--jch-cta); }
 .content-block__footer { margin-top: clamp(3rem, 5vw, 4rem); text-align: center; }
 @media (max-width: 900px) { .content-block__grid { grid-template-columns: 1fr; } }
 
@@ -1268,7 +1277,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
   align-items: center;
   gap: .75rem;
   margin-top: 1.5rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   letter-spacing: .18em !important;
@@ -1330,7 +1339,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
   display: inline-flex;
   align-items: center;
   gap: .75rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   letter-spacing: .18em !important;
@@ -1356,7 +1365,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
   display: inline-flex;
   align-items: center;
   gap: .75rem;
-  background: #C5A566;
+  background: var(--jch-cta);
   color: #ffffff !important;
   padding: 1.1rem 2rem;
   border-radius: 999px;
@@ -1367,7 +1376,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
   text-transform: uppercase;
   transition: background-color 300ms ease;
 }
-.closing__cta:hover { background: #9c7d4a; color: #000000 !important; }
+.closing__cta:hover { background: var(--jch-cta-hover); }
 
 /* Footer */
 footer.site-footer {
@@ -1539,7 +1548,7 @@ footer.site-footer .brand {
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: #C5A566 !important;
+  color: var(--jch-cta) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 12.5px !important;
   font-weight: 500 !important;
@@ -1552,7 +1561,7 @@ footer.site-footer .brand {
   height: 1px;
   display: block;
   flex: 0 0 auto;
-  background: var(--jch-accent);
+  background: var(--jch-cta);
   transition: width 350ms ease;
 }
 

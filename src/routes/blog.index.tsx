@@ -49,7 +49,7 @@ function BlogIndex() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#9c7d4a] hover:text-black sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
             >
               WhatsApp
             </a>
