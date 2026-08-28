@@ -6,13 +6,9 @@ Cada entrada: página/archivo, frase exacta, por qué está aquí, y qué decidi
 
 ---
 
-## 1. "Rentabilidad con garantías y beneficios fiscales."
+## 1. ~~"Rentabilidad con garantías y beneficios fiscales."~~ — RESUELTO
 
-**Dónde**: `src/routes/josecarlos.tsx` — tarjeta de servicio "Pensión, ahorro e inversión".
-
-**Por qué**: es una afirmación general sobre TODOS los productos de ahorro/inversión que ofreces, sin especificar cuál. "Garantías" y "beneficios fiscales" son ciertos para algunos productos concretos (SIALP, ciertos seguros de ahorro) pero no necesariamente para todos los que entran bajo "ahorro e inversión". Tal como está, es una promesa genérica que un cliente podría interpretar como aplicable a cualquier producto que le ofrezcas.
-
-**Qué decidir**: ¿mantener el texto tal cual (asumiendo que hablas en términos generales y lo matizas en la conversación real), o concretar a qué producto en particular se refiere "con garantías"?
+Eliminada al reestructurar `josecarlos.tsx` (petición explícita del cliente, brief "REESTRUCTURACIÓN COMPLETA DE LA PÁGINA DE JOSÉ CARLOS", sección 5). La sección "Pensión, ahorro e inversión" donde vivía esta frase ya no existe como catálogo de producto; el contenido de ahorro/inversión ahora vive dentro de "Planificar" sin prometer rentabilidad ni fiscalidad genérica.
 
 ---
 
@@ -62,6 +58,22 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 - "¿Qué pasa con los propietarios que no pagan sus cuotas?" — describe un "protocolo de seguimiento y reclamación ordenada" sin detallar el procedimiento legal de reclamación de impagos (monitorio, recargos, etc.).
 
 **Qué decidir**: confirmar que estas descripciones generales son correctas y no prometen nada que no se pueda cumplir en la práctica. Si en algún momento se quiere citar una mayoría, plazo o artículo concreto de la LPH, debe confirmarse contra la normativa vigente antes de publicarlo — no lo he hecho aquí precisamente para evitar ese riesgo.
+
+---
+
+## 7. Reestructuración de `josecarlos.tsx` — claims corregidos y cifra de experiencia
+
+**Dónde**: `src/routes/josecarlos.tsx` (reestructuración completa, brief "REESTRUCTURACIÓN COMPLETA DE LA PÁGINA DE JOSÉ CARLOS").
+
+**Claims reescritos por instrucción explícita del cliente** (no son afirmaciones inventadas por mí — el propio brief pidió eliminar o suavizar este tipo de frases):
+- "Comparo y negocio en tu nombre, no defender los intereses de un banco concreto" → ahora: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar entre estas tres entidades" (en la bio, en la sección Financiar, en Entidades y en el FAQ). Ya no se afirma que se negocia en nombre del cliente ni que se compara todo el mercado bancario.
+- "No vendo productos. Ordeno decisiones" (título de la sección eliminada `Diagnosis`) → desaparece junto con el componente.
+
+**Por qué están aquí igualmente**: aunque el cambio lo pidió el cliente, sigue siendo lenguaje sobre condiciones/relación bancaria — si en el futuro se quiere volver a un tono más comercial, debe revisarse con el mismo cuidado.
+
+**Cifra "más de 25 años" de experiencia** (subtítulo de la sección "Sobre mí"): viene dada literalmente por José Carlos en su propio brief, no la he verificado de forma independiente (no tengo forma de hacerlo). Si el número no es exacto, debe corregirlo él.
+
+**Qué decidir**: nada pendiente salvo confirmar la cifra de "25 años" si no es exacta.
 
 ---
 

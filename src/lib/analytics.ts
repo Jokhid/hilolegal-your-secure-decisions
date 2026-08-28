@@ -32,7 +32,16 @@ export type AnalyticsEvent =
   | "property_president_click"
   | "property_new_community_click"
   | "property_financial_management_click"
-  | "property_form_submit";
+  | "property_form_submit"
+  | "josecarlos_finance_click"
+  | "josecarlos_protection_click"
+  | "josecarlos_planning_click"
+  | "josecarlos_mortgage_start"
+  | "josecarlos_wealth_start"
+  | "josecarlos_retirement_click"
+  | "josecarlos_autonomos_click"
+  | "josecarlos_property_management_click"
+  | "josecarlos_contact_submit";
 
 export function trackEvent(event: AnalyticsEvent, params: Record<string, string | number | boolean> = {}) {
   if (typeof window === "undefined") return;

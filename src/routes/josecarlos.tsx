@@ -6,20 +6,21 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
+import { blogPosts, findPost } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/josecarlos")({
   head: () => ({
     meta: [
-      { title: "José Carlos Hidalgo | Asesoramiento Financiero e Hipotecario" },
+      { title: "José Carlos Hidalgo | Hipotecas y planificación patrimonial" },
       {
         name: "description",
         content:
-          "Asesoramiento financiero e hipotecario para autónomos y familias. Protege tus ingresos, tu familia y tu futuro financiero. Diagnóstico gratuito en Altea, Benidorm y Alicante.",
+          "Hipotecas y planificación patrimonial para familias y autónomos. Analiza financiación, protección, ahorro y jubilación con José Carlos Hidalgo en HiloLegal.",
       },
-      { property: "og:title", content: "José Carlos Hidalgo | Asesor Financiero" },
+      { property: "og:title", content: "José Carlos Hidalgo | Hipotecas y planificación patrimonial" },
       {
         property: "og:description",
-        content: "Protege tus ingresos, tu familia y tu futuro financiero.",
+        content: "Analiza financiación, protección, ahorro y jubilación con José Carlos Hidalgo en HiloLegal.",
       },
       { property: "og:url", content: "https://www.hilolegal.es/josecarlos" },
       { property: "og:type", content: "website" },
@@ -29,15 +30,15 @@ export const Route = createFileRoute("/josecarlos")({
       { property: "og:image:width", content: "1672" },
       { property: "og:image:height", content: "941" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "José Carlos Hidalgo | Asesor Financiero" },
-      { name: "twitter:description", content: "Protege tus ingresos, tu familia y tu futuro financiero." },
+      { name: "twitter:title", content: "José Carlos Hidalgo | Hipotecas y planificación patrimonial" },
+      { name: "twitter:description", content: "Analiza financiación, protección, ahorro y jubilación con José Carlos Hidalgo." },
       { name: "twitter:image", content: "https://www.hilolegal.es/yoderecha.webp" },
     ],
     links: [
       { rel: "canonical", href: "https://www.hilolegal.es/josecarlos" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=analytics,arrow_forward,assured_workload,balance,call,close,domain,expand_more,family_restroom,location_on,mail,map,medical_services,menu,real_estate_agent,travel_explore,trending_up,visibility&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=call,mail,location_on,expand_more,arrow_forward,balance,travel_explore&display=swap",
       },
     ],
     scripts: [
@@ -49,7 +50,7 @@ export const Route = createFileRoute("/josecarlos")({
             {
               "@type": "Person",
               name: "José Carlos Hidalgo Ortega",
-              jobTitle: "Asesor Financiero e Hipotecario",
+              jobTitle: "Asesor de Hipotecas y Planificación Patrimonial",
               url: "https://www.hilolegal.es/josecarlos",
               telephone: "+34647506040",
               email: "josecarlos@hilolegal.es",
@@ -67,23 +68,23 @@ export const Route = createFileRoute("/josecarlos")({
               },
               knowsAbout: [
                 "Hipotecas",
-                "Seguros de vida",
-                "Seguros de salud",
-                "Planificación financiera",
+                "Planificación patrimonial",
+                "Protección de ingresos",
                 "Ahorro e inversión",
+                "Jubilación",
+                "Finanzas para autónomos",
                 "Administración de fincas",
-                "Protección patrimonial",
               ],
             },
             {
               "@type": "FinancialService",
-              name: "José Carlos Hidalgo — Asesoría Financiera e Hipotecaria",
+              name: "José Carlos Hidalgo — Hipotecas y Planificación Patrimonial",
               url: "https://www.hilolegal.es/josecarlos",
               telephone: "+34647506040",
               email: "josecarlos@hilolegal.es",
               image: "https://www.hilolegal.es/8.webp",
               description:
-                "Asesoramiento financiero e hipotecario para autónomos y familias en Altea, Benidorm y Alicante. Hipotecas, seguros, pensiones y administración de fincas en la Costa Blanca.",
+                "Hipotecas y planificación patrimonial para familias y autónomos en Altea, Benidorm y Alicante. Financiación, protección, ahorro y jubilación con criterio, antes de elegir producto.",
               priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
               hasMap: "https://share.google/GlqwXv7lO958pDPDS",
@@ -106,22 +107,25 @@ export const Route = createFileRoute("/josecarlos")({
               founder: { "@type": "Person", name: "José Carlos Hidalgo Ortega" },
               makesOffer: [
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas y financiación de vivienda" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Seguros de vida y salud" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Planificación financiera personal" } },
-                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ahorro, pensión e inversión" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Protección de ingresos y patrimonio" } },
+                { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ahorro, inversión y jubilación" } },
                 { "@type": "Offer", itemOffered: { "@type": "Service", name: "Administración de fincas" } },
               ],
             },
             {
-              "@type": "FAQPage",
-              mainEntity: [
-                { "@type": "Question", name: "¿Realmente es gratuito el primer diagnóstico?", acceptedAnswer: { "@type": "Answer", text: "Sí, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. Tú obtienes claridad sobre tu situación y yo entiendo el reto. Sin compromisos." } },
-                { "@type": "Question", name: "¿Trabajas con todos los bancos para las hipotecas?", acceptedAnswer: { "@type": "Answer", text: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar entre las tres entidades y negociar en tu nombre, no defender los intereses de un solo banco." } },
-                { "@type": "Question", name: "¿Puedes ayudarme a conseguir una hipoteca?", acceptedAnswer: { "@type": "Answer", text: "Sí. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operación. Después vemos qué opciones hipotecarias pueden encajar mejor con tu caso." } },
-                { "@type": "Question", name: "¿Atiendes presencialmente en Alicante?", acceptedAnswer: { "@type": "Answer", text: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estás fuera, realizo consultas por videollamada con la misma eficacia." } },
-                { "@type": "Question", name: "¿Por qué es importante para un autónomo revisar su protección financiera?", acceptedAnswer: { "@type": "Answer", text: "Porque muchos autónomos tienen ingresos variables y una cobertura pública limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificación puede afectar directamente a su familia, su negocio y su patrimonio." } },
-                { "@type": "Question", name: "¿También trabajas ahorro e inversión?", acceptedAnswer: { "@type": "Answer", text: "Sí. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahí, podemos valorar soluciones de ahorro, inversión, previsión social o jubilación adaptadas a tu perfil." } },
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.hilolegal.es/" },
+                { "@type": "ListItem", position: 2, name: "José Carlos Hidalgo", item: "https://www.hilolegal.es/josecarlos" },
               ],
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
             },
           ],
         }),
@@ -143,25 +147,65 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>
 );
 
-const services = [
-  { icon: "real_estate_agent", title: "Hipotecas en Altea, Benidorm y Alicante", text: "Estudiamos tu situación y comparamos entre entidades para financiar tu vivienda en la zona.", cta: "Estudiar mi hipoteca", img: "/jc-service-hipotecas.webp", event: "cta_mortgage" as const },
-  { icon: "assured_workload", title: "Servicios de protección inteligente", text: "Especializado en blindar tu patrimonio y asegurar que el futuro de tu familia esté siempre bajo control.", cta: "Proteger mis ingresos", img: "/jc-service-proteccion.webp", event: "cta_wealth" as const },
-  { icon: "trending_up", title: "Pensión, ahorro e inversión", text: "Vehículos eficientes para que tus ahorros batan a la inflación con el riesgo bajo control. Rentabilidad con garantías y beneficios fiscales.", cta: "Planificar mi jubilación", img: "/jc-service-ahorro.webp", event: "cta_wealth" as const },
-  { icon: "analytics", title: "Planificación financiera personal", text: "Análisis completo de objetivos vitales para diseñar una hoja de ruta a medida.", cta: "Planificación financiera", img: "/jc-service-planificacion.webp", event: "cta_wealth" as const },
-  { icon: "family_restroom", title: "Salud Premium", text: "Acceso preferente a la mejor medicina privada sin esperas ni colas. Seguro médico total. Adaptado a ti. Especialistas top.", cta: "Ver opciones de salud", img: "/jc-service-salud.webp", event: "cta_wealth" as const },
+const pilares = [
+  {
+    n: "01",
+    title: "Financiar",
+    kicker: "Antes de elegir una hipoteca, hacemos números.",
+    text: "Viabilidad, aportación y cuota, antes de mirar ninguna oferta.",
+    img: 2,
+    href: "#financiar",
+    topic: "Nueva Hipoteca",
+    event: "josecarlos_finance_click" as const,
+  },
+  {
+    n: "02",
+    title: "Proteger",
+    kicker: "Antes de protegerte, calculamos qué ocurriría si tus ingresos se reducen.",
+    text: "Ingresos, familia, vivienda y salud, sin catálogo de seguros de por medio.",
+    img: 3,
+    href: "#proteger",
+    topic: "Protección",
+    event: "josecarlos_protection_click" as const,
+  },
+  {
+    n: "03",
+    title: "Planificar",
+    kicker: "Tu dinero necesita un propósito antes que un producto.",
+    text: "Liquidez, deuda, ahorro, inversión y jubilación, en el orden correcto.",
+    img: 4,
+    href: "#planificar",
+    topic: "Diagnóstico General",
+    event: "josecarlos_planning_click" as const,
+  },
 ];
 
-const errors = [
-  { n: "01", title: "Piden la hipoteca sin preparar su perfil", text: "Llegan al banco con prisas y sin saber que una preparación previa ahorra miles de euros en intereses." },
-  { n: "02", title: "Confían todo a sus ingresos actuales", text: "Especialmente autónomos. El bienestar de hoy no garantiza la seguridad de mañana sin un plan B real." },
-  { n: "03", title: "Preparan la jubilación demasiado tarde", text: "El interés compuesto necesita tiempo. Cada año que esperas, el coste de oportunidad es mayor." },
+const proteger = [
+  { t: "Ingresos", d: "Qué pasa con tus gastos fijos si dejas de facturar o de recibir tu nómina." },
+  { t: "Familia", d: "Que un imprevisto no comprometa el nivel de vida de quienes dependen de ti." },
+  { t: "Vivienda", d: "Que la hipoteca siga pagándose aunque cambien tus circunstancias." },
+  { t: "Salud", d: "Acceso a atención médica sin que la espera agrave un problema." },
+  { t: "Autónomos", d: "Cobertura pública limitada si dejas de trabajar por enfermedad o accidente." },
 ];
+
+const journey = [
+  { n: "01", t: "Liquidez", d: "Tener margen para imprevistos antes de comprometer el dinero en otra cosa." },
+  { n: "02", t: "Protección", d: "Que un imprevisto no dependa de la suerte." },
+  { n: "03", t: "Deuda", d: "Que las cuotas actuales no limiten las decisiones futuras." },
+  { n: "04", t: "Objetivos", d: "Saber para qué ahorras, no solo cuánto." },
+  { n: "05", t: "Ahorro", d: "Un colchón que crece con constancia, no con urgencia." },
+  { n: "06", t: "Inversión", d: "Que el dinero parado trabaje, con el riesgo que puedas asumir." },
+  { n: "07", t: "Jubilación", d: "Construir hoy los ingresos que quieres tener entonces." },
+];
+
+const autonomosConexiones = ["Ingresos", "Protección", "Hipoteca", "Ahorro", "Jubilación", "Patrimonio"];
 
 const method = [
   { n: "01.", title: "Analizo tu punto de partida", text: "Sin juicios. Recopilamos datos reales de tu economía actual para tener una base sólida sobre la que construir." },
-  { n: "02.", title: "Detecto riesgos y debilidades", text: "Puntos ciegos donde estás asumiendo un riesgo que no conocías." },
-  { n: "03.", title: "Diseño un plan accionable", text: "Recibirás recomendaciones claras y pasos a seguir que tú decides si ejecutar o no." },
-  { n: "04.", title: "Estoy a tu lado en el camino", text: "No te dejo solo con un informe. Te acompaño en cada decisión importante, revisamos el plan cuando tu vida cambia y ajustamos los siguientes pasos para que avances con seguridad." },
+  { n: "02.", title: "Detecto riesgos y oportunidades", text: "Puntos ciegos donde estás asumiendo un riesgo que no conocías, y margen de mejora que no habías visto." },
+  { n: "03.", title: "Ordenamos prioridades", text: "No todo se decide a la vez. Definimos qué conviene resolver primero y qué puede esperar." },
+  { n: "04.", title: "Elegimos las soluciones", text: "Con las prioridades claras, vemos qué opciones concretas encajan con tu caso." },
+  { n: "05.", title: "Hacemos seguimiento", text: "Revisamos el plan cuando tu vida cambia y ajustamos los siguientes pasos." },
 ];
 
 const faqs = [
@@ -171,7 +215,7 @@ const faqs = [
   },
   {
     q: "¿Trabajas con todos los bancos para las hipotecas?",
-    a: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar entre las tres entidades y negociar en tu nombre, no defender los intereses de un solo banco.",
+    a: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar entre estas tres entidades para tu hipoteca. No cubro la totalidad del mercado bancario, pero sí puedo ofrecerte una comparativa real entre las opciones con las que trabajo.",
   },
   {
     q: "¿Puedes ayudarme a conseguir una hipoteca?",
@@ -297,26 +341,32 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+type SetTopic = (topic: string) => void;
+
 function Index() {
+  const [preferredTopic, setPreferredTopic] = useState("Diagnóstico General");
+
   return (
     <div className="josecarlos-original bg-[var(--jch-bg)] text-[var(--jch-ink)] selection:bg-[#C5A566] selection:text-white">
       <SmoothScroll />
       <Header />
 
       <main>
-        <Hero />
-        <TrustStats />
-        <Diagnosis />
-        <Problem />
-        <About />
-        <Services />
-        <Method />
-        <ToolsPreview />
-        <Partners />
-        <HiloLegal />
+        <Hero onSelectTopic={setPreferredTopic} />
+        <TresPilares onSelectTopic={setPreferredTopic} />
+        <Financiar onSelectTopic={setPreferredTopic} />
+        <Proteger onSelectTopic={setPreferredTopic} />
+        <Planificar onSelectTopic={setPreferredTopic} />
+        <Autonomos onSelectTopic={setPreferredTopic} />
+        <Metodo />
+        <Herramientas />
+        <PerfilProfesional />
+        <Entidades />
+        <SociosHiloLegal />
+        <AdminFincasTeaser />
+        <ContenidoAutoridad />
         <FAQ />
-        <Contact />
-        <AdminFincas />
+        <CtaFinal preferredTopic={preferredTopic} onSelectTopic={setPreferredTopic} />
       </main>
 
       <Footer />
@@ -328,11 +378,12 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks: [string, string][] = [
-    ["Servicios", "#services"],
-    ["Método", "#method"],
+    ["Financiar", "#financiar"],
+    ["Proteger", "#proteger"],
+    ["Planificar", "#planificar"],
+    ["Método", "#metodo"],
     ["Sobre mí", "#about"],
     ["Blog", "/blog"],
-    ["FAQ", "#faq"],
     ["Contacto", "#contact"],
   ];
 
@@ -367,7 +418,7 @@ function Header() {
             </span>
           </Link>
 
-          <div className="hidden items-center gap-10 md:flex">
+          <div className="hidden items-center gap-9 md:flex">
             {navLinks.map(([label, href]) => (
               <a
                 key={href}
@@ -417,7 +468,7 @@ function Header() {
             role="dialog"
             aria-modal="true"
           >
-            <div className="flex h-full flex-col gap-4 p-8">
+            <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
@@ -457,7 +508,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
@@ -467,7 +518,7 @@ function Hero() {
     <section ref={ref} className="hero-bg-section">
       <motion.img
         style={{ scale: imgScale }}
-        alt="Asesoramiento financiero e hipotecario"
+        alt="José Carlos Hidalgo"
         className="hero-bg-image"
         src="/yoderecha.webp"
         loading="eager"
@@ -478,27 +529,32 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
+            <div className="hero-eyebrow inline-flex items-center gap-3">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.4 }}
                 className="h-[2px] bg-[#C5A566] block"
               />
-              ASESOR PATRIMONIAL E HIPOTECARIO EN ALTEA
+              JOSÉ CARLOS HIDALGO
             </div>
           </FadeUp>
 
           <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.08] tracking-tight text-balance">
-            <WordReveal eager block delay={0.1} text="Tu hipoteca, tus seguros y" />
-            <WordReveal eager block delay={0.325} className="text-[var(--jch-accent-ink)]" text="tu futuro financiero" />
-            <WordReveal eager block delay={0.46} text="no deberían decidirse por intuición." />
+            <WordReveal eager block delay={0.1} text="Hipotecas y planificación" />
+            <WordReveal eager block delay={0.325} className="text-[var(--jch-accent-ink)]" text="patrimonial" />
+            <WordReveal eager block delay={0.46} text="para familias y autónomos." />
           </h1>
 
           <FadeUp delay={0.6}>
-            <p className="text-xl text-white/70 max-w-xl leading-relaxed">
-              Analizo tu situación, detecto riesgos y te propongo un plan claro para proteger tus ingresos, financiar tu vivienda o preparar tu futuro con criterio.
-            </p>
+            <div className="space-y-4 max-w-xl">
+              <p className="hero-subtitle">
+                Antes de contratar, invertir o financiar, conviene entender qué necesitas, qué puedes asumir y qué quieres conseguir.
+              </p>
+              <p className="hero-subtitle">
+                Analizo contigo las cifras, los riesgos y los objetivos para ordenar las decisiones antes de elegir las soluciones.
+              </p>
+            </div>
           </FadeUp>
 
           <FadeUp delay={0.75}>
@@ -509,9 +565,20 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
+                onClick={() => onSelectTopic("Diagnóstico General")}
               >
-                Quiero mi diagnóstico gratuito
+                Analizar mi situación
               </motion.a>
+              <a
+                href="#contact"
+                className="btn-ghost"
+                onClick={() => {
+                  onSelectTopic("Nueva Hipoteca");
+                  trackEvent("josecarlos_mortgage_start");
+                }}
+              >
+                Estudiar mi hipoteca
+              </a>
             </div>
           </FadeUp>
         </motion.div>
@@ -520,204 +587,224 @@ function Hero() {
   );
 }
 
-function TrustStats() {
-  const items = [
-    { i: "visibility", t: "360º visión financiera y patrimonial" },
-    { i: "map", t: "1 plan claro antes de contratar" },
-    { i: "medical_services", t: "0€ diagnóstico inicial" },
-  ];
+function TresPilares({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   return (
-    <section className="py-16 border-b border-[var(--jch-line)]">
+    <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
+      <div className="portal-block__inner">
+        <div className="portal-block__heading">
+          <h2>
+            <Curtain>Financiar · Proteger · Planificar</Curtain>
+          </h2>
+          <FadeUp delay={0.1}>
+            <p>Tres decisiones que están más relacionadas de lo que parecen.</p>
+          </FadeUp>
+        </div>
+        <div className="portal-grid">
+          {pilares.map((p, idx) => (
+            <FadeUp key={p.n} delay={idx * 0.08} className="portal-card__wrap">
+              <a
+                href={p.href}
+                className="portal-card"
+                onClick={() => {
+                  onSelectTopic(p.topic);
+                  trackEvent(p.event);
+                }}
+              >
+                <div className="portal-card__art">
+                  <img src={IMG(p.img)} alt="" loading="lazy" />
+                </div>
+                <div className="portal-card__body">
+                  <span className="portal-card__number">{p.n}</span>
+                  <h3>{p.title}</h3>
+                  <p className="portal-card__kicker">{p.kicker}</p>
+                  <p className="portal-card__text">{p.text}</p>
+                  <span className="portal-card__cta">
+                    Ver más <span aria-hidden="true" />
+                  </span>
+                </div>
+              </a>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Financiar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+  return (
+    <section id="financiar" className="py-[100px] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[var(--jch-line)]">
-          {items.map((s, idx) => (
-            <FadeUp key={s.i} delay={idx * 0.1} className={idx === 0 ? "" : "md:pl-12"}>
-              <div className="flex flex-col items-center md:items-start gap-4">
-                <Icon name={s.i} className="text-[var(--jch-accent-ink)] text-4xl" />
-                <p className="text-sm font-bold uppercase tracking-wider text-center md:text-left">{s.t}</p>
+        <div className="max-w-3xl">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <Curtain>Antes de elegir una hipoteca, <span className="text-[var(--jch-accent-ink)]">hacemos números.</span></Curtain>
+          </h2>
+          <FadeUp delay={0.1}>
+            <p className="text-xl text-[var(--jch-muted)] mt-6 leading-relaxed">
+              Antes de firmar, conviene saber si la operación es viable, cuánto tendrás que aportar
+              y qué cuota puedes asumir sin ahogar tu economía. Eso es lo que hacemos antes de mirar
+              ninguna oferta.
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.15}>
+            <div className="term-row">
+              {["Precio", "Ahorro", "Financiación", "Ingresos", "Deudas", "Cuota", "Gastos"].map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+          </FadeUp>
+        </div>
+
+        <FadeUp delay={0.2} className="mt-16">
+          <div className="three-questions">
+            {[
+              { q: "¿La operación parece viable?", a: "Cruzamos precio, ahorro disponible y financiación necesaria antes de dar ningún paso." },
+              { q: "¿Cuánto necesitas aportar?", a: "Calculamos con qué ahorro cuentas realmente y qué parte tendrás que aportar tú." },
+              { q: "¿Qué cuota puedes asumir razonablemente?", a: "Analizamos tus ingresos y deudas actuales para que la cuota no comprometa tu día a día." },
+            ].map((item, idx) => (
+              <div key={item.q} className="three-questions__item">
+                <span className="three-questions__number">{String(idx + 1).padStart(2, "0")}</span>
+                <h3 className="three-questions__q">{item.q}</h3>
+                <p className="three-questions__a">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={0.25} className="mt-16 max-w-2xl">
+          <p className="text-[var(--jch-muted)] leading-relaxed">
+            Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar
+            entre estas tres entidades para tu hipoteca.
+          </p>
+        </FadeUp>
+
+        <FadeUp delay={0.3} className="mt-10">
+          <a
+            href="#contact"
+            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            onClick={() => {
+              onSelectTopic("Nueva Hipoteca");
+              trackEvent("josecarlos_mortgage_start");
+            }}
+          >
+            Solicitar estudio hipotecario
+          </a>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+function Proteger({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+  return (
+    <section id="proteger" className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+      <div className="content-block__inner">
+        <div className="content-block__heading">
+          <h2>
+            <Curtain>¿Qué ocurriría si mañana uno de los ingresos de casa desapareciera durante varios meses?</Curtain>
+          </h2>
+        </div>
+        <div className="content-block__grid">
+          {proteger.map((p, idx) => (
+            <FadeUp key={p.t} delay={idx * 0.06}>
+              <div className="content-card">
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
               </div>
             </FadeUp>
           ))}
         </div>
+        <FadeUp delay={0.2} className="content-block__footer">
+          <a
+            href="#contact"
+            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            onClick={() => {
+              onSelectTopic("Protección");
+              trackEvent("josecarlos_protection_click");
+            }}
+          >
+            Revisar mi protección
+          </a>
+        </FadeUp>
       </div>
     </section>
   );
 }
 
-function Diagnosis() {
-  const items = [
-    { n: "PROTEGER", t: "Ingresos y estabilidad", d: "¿Qué pasaría si mañana no pudieras facturar? Aseguramos tu motor financiero principal. No se trata de miedo, se trata de amor y responsabilidad.", img: 3 },
-    { n: "FINANCIAR", t: "Hipoteca y endeudamiento", d: "Analizo las ofertas disponibles, tu capacidad de endeudamiento y la viabilidad real de la operación antes de que firmes. El objetivo es que tu vivienda sea una decisión segura y sostenible, no una carga para tu economía.", img: 2 },
-    { n: "PLANIFICAR", t: "Ahorro, pensión y protección", d: "Estrategias de medio y largo plazo para que tu nivel de vida no dependa solo de tu trabajo actual.", img: 4 },
-  ];
+function Planificar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   return (
-    <section className="py-[100px]">
+    <section id="planificar" className="py-[100px] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="mb-24 space-y-6 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
-            <Curtain>
-              <span className="block">No vendo productos.</span>
-              <span className="block text-[var(--jch-accent-ink)]">Ordeno decisiones</span>
-            </Curtain>
-          </h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: easeOutExpo }}
-            className="w-20 h-2 bg-[#C5A566] origin-left"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {items.map((x, idx) => (
-            <FadeUp key={x.n} delay={idx * 0.1}>
-              <article className="space-y-6 group">
-                <div className="relative overflow-hidden aspect-[4/5]">
-                  <motion.img
-                    src={IMG(x.img)}
-                    loading="lazy"
-                    alt={x.t}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.06 }}
-                    transition={{ duration: 1.2, ease: easeOutExpo }}
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 to-transparent" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <div className="text-[var(--jch-accent-ink)] font-black text-2xl">{x.n}</div>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold">{x.t}</h3>
-                <p className="text-[var(--jch-muted)] leading-relaxed">{x.d}</p>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Problem() {
-  return (
-    <section className="py-[100px] bg-[#1A1A1A] text-white">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-          <div className="lg:sticky lg:top-32 space-y-8">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>La mayoría toma <span className="text-[var(--jch-accent-ink)]">decisiones financieras</span> demasiado tarde</Curtain>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28 self-start">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              <Curtain>Tu dinero necesita un <span className="text-[var(--jch-accent-ink)]">propósito</span> antes que un producto.</Curtain>
             </h2>
+            <FadeUp delay={0.1}>
+              <p className="position-block__highlight">
+                No se trata de contratar todo. Se trata de decidir qué necesitas y en qué orden.
+              </p>
+            </FadeUp>
             <FadeUp delay={0.2}>
-              <p className="text-xl text-gray-400">Evitar los errores comunes es el primer paso para una economía sana. Mi trabajo es anticiparme a ellos.</p>
+              <a
+                href="#contact"
+                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+                onClick={() => {
+                  onSelectTopic("Diagnóstico General");
+                  trackEvent("josecarlos_wealth_start");
+                }}
+              >
+                Analizar mi situación
+              </a>
             </FadeUp>
           </div>
-          <div className="space-y-12">
-            {errors.map((e, idx) => (
-              <FadeUp key={e.n} delay={idx * 0.1}>
-                <motion.div
-                  whileHover={{ x: 8 }}
-                  transition={spring}
-                  className="p-10 border border-white/10 hover:border-[#C5A566] transition-colors"
-                >
-                  <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-[0.2em] mb-6 block">Error Común {e.n}</span>
-                  <h4 className="text-2xl font-bold mb-4">{e.title}</h4>
-                  <p className="text-gray-400 leading-relaxed">{e.text}</p>
-                </motion.div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-
-function Services() {
-  return (
-    <section id="services" className="services-editorial">
-      <div className="services-editorial__inner">
-        <div className="services-editorial__heading">
-          <h2>
-            <Curtain><span className="text-[var(--jch-accent-ink)]">Soluciones</span> para proteger tu economía</Curtain>
-          </h2>
-          <FadeUp delay={0.15}>
-            <p>Un enfoque integral para que todas las piezas de tu puzzle financiero encajen a la perfección.</p>
-          </FadeUp>
-        </div>
-
-        <div className="services-editorial__grid">
-          {services.map((service, index) => (
-            <FadeUp key={service.title} delay={(index % 3) * 0.08} className="services-editorial__item">
-              <article className="services-editorial__card services-editorial__card--photo">
-                <img src={service.img} alt="" loading="lazy" className="services-editorial__card-bg" />
-                <div className="services-editorial__card-scrim" aria-hidden="true" />
-                <div className="services-editorial__card-content">
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                  <a href="#contact" className="services-editorial__cta" onClick={() => trackEvent(service.event)}>
-                    <span aria-hidden="true" />
-                    {service.cta}
-                  </a>
-                </div>
-              </article>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Method() {
-  const reduce = useReducedMotion();
-
-  return (
-    <section id="method" className="py-[100px] border-y border-[var(--jch-line)]">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-          <div className="space-y-12">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>No se trata de contratar más. Se trata de <span className="text-[var(--jch-accent-ink)]">decidir mejor</span></Curtain>
-            </h2>
-            <div className="method-steps">
-              {method.map((m) => (
-                <motion.article
-                  key={m.n}
-                  className="method-step"
-                  initial={reduce ? false : { opacity: 0, y: 64 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.65 }}
-                  transition={{ duration: 0.85, ease: easeOutExpo }}
-                >
-                  <span className="method-step__number">{m.n}</span>
-                  <div>
-                    <h4 className="method-step__title">{m.title}</h4>
-                    <p className="method-step__text">{m.text}</p>
+          <div className="lg:col-span-7 priority-journey">
+            <div className="priority-journey__list">
+              {journey.map((j, idx) => (
+                <FadeUp key={j.n} delay={idx * 0.05}>
+                  <div className="priority-journey__item">
+                    <span className="priority-journey__marker">{j.n}</span>
+                    <div>
+                      <h3 className="priority-journey__title">{j.t}</h3>
+                      <p className="priority-journey__text">{j.d}</p>
+                    </div>
                   </div>
-                </motion.article>
+                </FadeUp>
               ))}
             </div>
           </div>
-          <FadeUp delay={0.1}>
-            <div className="relative overflow-hidden aspect-square lg:sticky lg:top-28">
-              <motion.img
-                src="/JCESCRIBIENDO.webp"
-                loading="lazy"
-                alt="Método de asesoramiento"
-                className="absolute inset-0 w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.4, ease: easeOutExpo }}
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-              <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
-                <Icon name="balance" className="text-white text-5xl" />
-                <p className="font-bold uppercase tracking-widest text-xs">Equilibrio Financiero</p>
-              </div>
+        </div>
+
+        <div id="jubilacion" className="mt-24 pt-16 border-t border-[var(--jch-line)] max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <Curtain>La pregunta no es solo cuándo quieres jubilarte. Es cómo quieres vivir cuando lo hagas.</Curtain>
+          </h2>
+          <FadeUp delay={0.1} className="mt-12">
+            <div className="three-questions">
+              {[
+                { q: "¿Cuánto podrías necesitar?", a: "Para mantener tu nivel de vida cuando dejes de trabajar." },
+                { q: "¿Qué ingresos puedes esperar tener?", a: "Contando pensión pública, ahorro propio y otras fuentes." },
+                { q: "¿Qué patrimonio necesitas construir?", a: "El patrimonio que tendría que generar esos ingresos." },
+              ].map((item, idx) => (
+                <div key={item.q} className="three-questions__item">
+                  <span className="three-questions__number">{String(idx + 1).padStart(2, "0")}</span>
+                  <h3 className="three-questions__q">{item.q}</h3>
+                  <p className="three-questions__a">{item.a}</p>
+                </div>
+              ))}
             </div>
+          </FadeUp>
+          <FadeUp delay={0.15} className="mt-10">
+            <a
+              href="#contact"
+              className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+              onClick={() => {
+                onSelectTopic("Plan de Jubilación");
+                trackEvent("josecarlos_retirement_click");
+              }}
+            >
+              Estudiar mi jubilación
+            </a>
           </FadeUp>
         </div>
       </div>
@@ -725,12 +812,121 @@ function Method() {
   );
 }
 
-function About() {
+function Autonomos({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+  return (
+    <section id="autonomos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+      <div className="max-w-[1200px] mx-auto px-6 max-w-3xl">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <Curtain>Si tus ingresos dependen de ti, conviene saber qué ocurre cuando tú paras.</Curtain>
+        </h2>
+        <FadeUp delay={0.1} className="mt-10 flex flex-wrap gap-3">
+          {autonomosConexiones.map((t) => (
+            <span
+              key={t}
+              className="border border-[var(--jch-line-strong)] px-6 py-2 text-xs font-bold uppercase tracking-widest"
+            >
+              {t}
+            </span>
+          ))}
+        </FadeUp>
+        <FadeUp delay={0.2} className="mt-10">
+          <a
+            href="#contact"
+            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            onClick={() => {
+              onSelectTopic("Autónomo");
+              trackEvent("josecarlos_autonomos_click");
+            }}
+          >
+            Analizar mi situación como autónomo
+          </a>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+function Metodo() {
+  const reduce = useReducedMotion();
+
+  return (
+    <section id="metodo" className="py-[100px] border-t border-[var(--jch-line)]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-2xl mb-16 space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <Curtain>Primero ordenamos la decisión. <span className="text-[var(--jch-accent-ink)]">Después elegimos la solución.</span></Curtain>
+          </h2>
+        </div>
+        <div className="method-steps">
+          {method.map((m) => (
+            <motion.article
+              key={m.n}
+              className="method-step"
+              initial={reduce ? false : { opacity: 0, y: 64 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.65 }}
+              transition={{ duration: 0.85, ease: easeOutExpo }}
+            >
+              <span className="method-step__number">{m.n}</span>
+              <div>
+                <h3 className="method-step__title">{m.title}</h3>
+                <p className="method-step__text">{m.text}</p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Herramientas() {
+  const items = [
+    { title: "Calculadora hipotecaria", text: "Estima cuota, plazo e intereses de tu futura hipoteca.", soon: true },
+    { title: "Estudio hipotecario", text: "Análisis completo de viabilidad, aportación y cuota.", soon: true },
+    { title: "Test de salud financiera", text: "Evalúa tu nivel de protección, ahorro y endeudamiento.", href: "/test-salud-financiera.html", event: "tool_financial_health" as const },
+    { title: "Diagnóstico patrimonial", text: "Visión completa de tu situación antes de decidir.", soon: true },
+    { title: "Calculadora de ahorro potencial", text: "Calcula cuánto dinero se te escapa en pequeños gastos recurrentes.", href: "/herramientas/ahorro-potencial/index.html", event: "tool_wealth_audit" as const },
+  ];
+  return (
+    <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="mb-16 max-w-2xl space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. Más información.</h2>
+          <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {items.map((t) =>
+            t.soon ? (
+              <FadeUp key={t.title}>
+                <div className="block border border-[var(--jch-line)] p-8 tool-card--soon">
+                  <h3 className="text-xl font-bold mb-2">{t.title}</h3>
+                  <p className="text-[var(--jch-muted)] mb-2">{t.text}</p>
+                  <span className="tool-card--soon__badge">Próximamente</span>
+                </div>
+              </FadeUp>
+            ) : (
+              <FadeUp key={t.title}>
+                <a href={t.href} className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors" onClick={() => trackEvent(t.event!)}>
+                  <h3 className="text-xl font-bold mb-2">{t.title}</h3>
+                  <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
+                  <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">Abrir →</span>
+                </a>
+              </FadeUp>
+            ),
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PerfilProfesional() {
   return (
     <section id="about" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-          <FadeUp className="lg:col-span-5 lg:-mt-130">
+          <FadeUp className="lg:col-span-5">
             <div className="relative group">
               <motion.div
                 initial={{ x: 24, y: 24 }}
@@ -758,8 +954,8 @@ function About() {
             <FadeUp>
               <div className="space-y-4">
                 <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
-                <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo Ortega</h2>
-                <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Especialista en protección patrimonial e hipotecas en Altea · Costa Blanca · Alicante</p>
+                <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo</h2>
+                <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Más de 25 años trabajando con decisiones que afectan al patrimonio de las personas.</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
@@ -768,7 +964,7 @@ function About() {
                 <p>Mi meta es que lo peor no rompa el estilo de vida de los que más quieres y consigas claridad, previsión y paz mental.</p>
                 <p>Llevo años acompañando a familias y autónomos de la Costa Blanca en las decisiones financieras que más pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilación con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
                 <p>No soy el asesor que te recomienda el producto del mes. Soy el que se sienta contigo, revisa tu situación real y te dice lo que necesitas escuchar, aunque no siempre sea lo más fácil.</p>
-                <p>Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA. Eso me permite comparar y negociar en tu nombre, no defender los intereses de un banco concreto.</p>
+                <p>Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar entre estas tres entidades a la hora de buscar tu hipoteca.</p>
                 <p>Además, soy cofundador de HiloLegal, una firma legal y de administración de fincas que nació de la misma convicción: que la gente merece profesionales que hablen claro y cumplan lo que dicen.</p>
                 <p>Si estás en Altea, Benidorm, la Marina Baixa o la provincia de Alicante y quieres un diagnóstico honesto de tu situación financiera, el primer paso no cuesta nada.</p>
               </div>
@@ -811,9 +1007,45 @@ function About() {
   );
 }
 
-function HiloLegal() {
+const partners = [
+  { name: "Nationale-Nederlanden", className: "font-serif italic" },
+  { name: "ING", className: "font-extrabold tracking-tight" },
+  { name: "ABANCA", className: "font-bold tracking-[0.15em]" },
+  { name: "Sanitas", className: "font-semibold" },
+  { name: "Caser", className: "font-bold tracking-wide" },
+];
+
+function Entidades() {
   return (
-    <section className="py-[100px]">
+    <section aria-label="Entidades colaboradoras" className="partners-editorial">
+      <div className="partners-editorial__inner">
+        <FadeUp>
+          <p className="partners-editorial__label">
+            Colaboro con estas entidades
+          </p>
+        </FadeUp>
+        <div className="partners-editorial__list">
+          {partners.map((p, idx) => (
+            <FadeUp key={p.name} delay={idx * 0.06}>
+              <span className={`partners-editorial__name ${p.className}`}>
+                {p.name}
+              </span>
+            </FadeUp>
+          ))}
+        </div>
+        <FadeUp delay={0.3}>
+          <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
+            Trabajo como gestor en estas entidades, lo que me permite comparar entre ellas — no soy asesor independiente de todo el mercado.
+          </p>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+function SociosHiloLegal() {
+  return (
+    <section className="py-[100px] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <FadeUp>
@@ -860,6 +1092,88 @@ function HiloLegal() {
   );
 }
 
+function AdminFincasTeaser() {
+  return (
+    <section id="fincas" className="fincas-block">
+      <div className="fincas-block__inner">
+        <span className="fincas-block__eyebrow">Además</span>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">También administro comunidades.</h2>
+        <p className="fincas-block__lead">
+          Gestión económica de comunidades de propietarios, con seguimiento real de cada incidencia.
+        </p>
+        <ul className="fincas-block__list">
+          <li>Gestión económica e incidencias con seguimiento real</li>
+          <li>Coordinación de proveedores y juntas de propietarios</li>
+          <li>Portal y app para consultar todo desde el móvil</li>
+        </ul>
+        <Link
+          to="/administracion-fincas"
+          className="fincas-block__cta"
+          onClick={() => trackEvent("josecarlos_property_management_click")}
+        >
+          Ir a administración de fincas <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+const articulosDestacados = [
+  { slug: "preparar-perfil-financiero-hipoteca-2026", label: "Hipotecas" },
+  { slug: "flujo-caja-vs-riqueza-real-autonomo", label: "Autónomos" },
+  { slug: "sialp-2026-ahorro-sin-impuestos", label: "Ahorro" },
+  { slug: "que-pasaria-con-tu-familia-si-no-pudieras-trabajar", label: "Protección" },
+  { slug: "jubilacion-en-espana", label: "Jubilación" },
+  { slug: "prevision-financiera-vision", label: "Planificación" },
+];
+
+function ContenidoAutoridad() {
+  const posts = articulosDestacados
+    .map((a) => ({ ...a, post: findPost(a.slug) }))
+    .filter((a) => a.post);
+
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+      <div className="content-block__inner">
+        <div className="content-block__heading">
+          <h2>
+            <Curtain>Artículos para entender antes de decidir</Curtain>
+          </h2>
+          <FadeUp delay={0.1}>
+            <p>Contenido propio sobre hipotecas, autónomos, ahorro, protección, jubilación y planificación.</p>
+          </FadeUp>
+        </div>
+        <div className="content-block__grid">
+          {posts.map(({ slug, label, post }, idx) => (
+            <FadeUp key={slug} delay={idx * 0.06}>
+              <Link
+                to="/blog/$slug"
+                params={{ slug }}
+                className="content-card"
+                onClick={() => trackEvent("blog_article_click", { slug })}
+              >
+                <span className="content-card__category">{label}</span>
+                <h3>{post!.title}</h3>
+                <p>{post!.excerpt}</p>
+                <span className="content-card__cta">
+                  Leer artículo <span aria-hidden="true" />
+                </span>
+              </Link>
+            </FadeUp>
+          ))}
+        </div>
+        <FadeUp delay={0.2} className="content-block__footer">
+          <Link to="/blog" className="duo-block__cta">
+            Ver todos los artículos <span aria-hidden="true">→</span>
+          </Link>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -877,6 +1191,7 @@ function FAQ() {
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex justify-between items-center text-left p-8 text-lg font-bold uppercase tracking-tight"
+                    aria-expanded={isOpen}
                   >
                     <span>{f.q}</span>
                     <motion.span
@@ -905,90 +1220,48 @@ function FAQ() {
   );
 }
 
-function Contact() {
-  const submit = useServerFn(submitContact);
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [accepted, setAccepted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    topic: "Diagnóstico General",
-    message: "",
-  });
-  // Extra fields only asked when the visitor is specifically inquiring about
-  // a mortgage (progressive disclosure, per brief section 23). These fold
-  // into `message` at submit time rather than becoming new top-level keys —
-  // the lead webhook (contact.functions.ts) posts to an external Google
-  // Apps Script whose column mapping I can't verify, so new JSON keys risk
-  // being silently dropped. `message` is a plain string the sheet already
-  // captures reliably.
-  const [mortgage, setMortgage] = useState({
-    housePrice: "",
-    financing: "",
-    income: "",
-    employment: "",
-  });
-  const isMortgage = form.topic === "Nueva Hipoteca";
-
-  const startedRef = useRef(false);
-  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    if (!startedRef.current) {
-      startedRef.current = true;
-      trackEvent("contact_start");
-    }
-    setForm((f) => ({ ...f, [k]: e.target.value }));
-  };
-  const onMortgageChange = (k: keyof typeof mortgage) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setMortgage((m) => ({ ...m, [k]: e.target.value }));
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!accepted) {
-      setStatus("error");
-      setErrorMsg("Debes aceptar la política de privacidad para continuar.");
-      return;
-    }
-    setStatus("sending");
-    setErrorMsg("");
-    const mortgageNote = isMortgage
-      ? [
-          mortgage.housePrice && `Precio vivienda: ${mortgage.housePrice}`,
-          mortgage.financing && `Financiación aproximada: ${mortgage.financing}`,
-          mortgage.income && `Ingresos: ${mortgage.income}`,
-          mortgage.employment && `Situación laboral: ${mortgage.employment}`,
-        ]
-          .filter(Boolean)
-          .join(" · ")
-      : "";
-    const payload = {
-      ...form,
-      message: mortgageNote ? `${mortgageNote}${form.message ? " · " + form.message : ""}` : form.message,
-    };
-    try {
-      await submit({ data: payload });
-      setStatus("ok");
-      trackEvent("contact_submit");
-      setForm({ name: "", phone: "", email: "", topic: "Diagnóstico General", message: "" });
-      setMortgage({ housePrice: "", financing: "", income: "", employment: "" });
-      setAccepted(false);
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "No se ha podido enviar el formulario.");
-    }
-  }
+function CtaFinal({ preferredTopic, onSelectTopic }: { preferredTopic: string; onSelectTopic: SetTopic }) {
+  const caminos = [
+    { q: "Quiero comprar una vivienda.", cta: "Estudiar mi hipoteca", topic: "Nueva Hipoteca", event: "josecarlos_mortgage_start" as const },
+    { q: "Quiero ordenar mis finanzas.", cta: "Analizar mi situación", topic: "Diagnóstico General", event: "josecarlos_planning_click" as const },
+    { q: "Quiero preparar mi jubilación.", cta: "Estudiar mi jubilación", topic: "Plan de Jubilación", event: "josecarlos_retirement_click" as const },
+    { q: "Soy autónomo.", cta: "Analizar mi situación", topic: "Autónomo", event: "josecarlos_autonomos_click" as const },
+  ];
 
   return (
-    <section id="contact" className="py-[100px]">
+    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)]">
+      <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-3xl mb-20">
+          <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">¿Por dónde empezamos?</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {caminos.map((c, idx) => (
+              <FadeUp key={c.q} delay={idx * 0.05}>
+                <a
+                  href="#contact-form"
+                  className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
+                  onClick={() => {
+                    onSelectTopic(c.topic);
+                    trackEvent(c.event);
+                  }}
+                >
+                  <p className="text-lg font-bold mb-3">{c.q}</p>
+                  <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">{c.cta} →</span>
+                </a>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">
-            <Curtain>Hablemos de tu <span className="text-[var(--jch-accent-ink)]">tranquilidad financiera</span></Curtain>
+            <Curtain>No necesitas saber qué <span className="text-[var(--jch-accent-ink)]">producto necesitas</span></Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
-              Rellena el formulario y me pondré en contacto contigo en menos de 24 horas para agendar tu diagnóstico gratuito.
+              Necesitas saber qué quieres resolver. Cuéntame tu situación. Empezaremos por entender
+              dónde estás, qué quieres conseguir y qué decisiones tienen sentido analizar.
             </p>
           </FadeUp>
           <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">
@@ -1033,97 +1306,195 @@ function Contact() {
           </FadeUp>
         </div>
         <FadeUp>
-          <form id="contact-form" className="contact-form-card space-y-10 scroll-mt-28" onSubmit={onSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
-              <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
-            </div>
-            <Field label="Email (opcional)" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} />
-            <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">¿Qué necesitas revisar?</label>
-              <select
-                value={form.topic}
-                onChange={onChange("topic")}
-                className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
-              >
-                <option>Diagnóstico General</option>
-                <option>Nueva Hipoteca</option>
-                <option>Protección (Autónomos)</option>
-                <option>Plan de Jubilación</option>
-                <option>Administración de Fincas</option>
-              </select>
-            </div>
-            {isMortgage && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-[var(--jch-line)] pt-10">
-                <Field label="Precio vivienda (opcional)" type="text" placeholder="Ej. 220.000 €" value={mortgage.housePrice} onChange={onMortgageChange("housePrice")} />
-                <Field label="Financiación aproximada (opcional)" type="text" placeholder="Ej. 80%" value={mortgage.financing} onChange={onMortgageChange("financing")} />
-                <Field label="Ingresos (opcional)" type="text" placeholder="Ej. 2.400 €/mes" value={mortgage.income} onChange={onMortgageChange("income")} />
-                <Field label="Situación laboral (opcional)" type="text" placeholder="Ej. asalariado, autónomo..." value={mortgage.employment} onChange={onMortgageChange("employment")} />
-              </div>
-            )}
-            <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
-              <textarea
-                rows={4}
-                placeholder="Cuéntanos tu situación"
-                value={form.message}
-                onChange={onChange("message")}
-                className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
-              />
-            </div>
-
-            <label className="flex items-start gap-3 text-sm text-[var(--jch-muted)] leading-relaxed cursor-pointer">
-              <input
-                type="checkbox"
-                checked={accepted}
-                onChange={(e) => setAccepted(e.target.checked)}
-                required
-                className="mt-1 w-4 h-4 accent-[#C5A566] shrink-0"
-              />
-              <span>
-                He leído y acepto la{" "}
-                <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="text-[var(--jch-accent-ink)] underline hover:no-underline">
-                  política de privacidad
-                </a>
-                .
-              </span>
-            </label>
-
-            <motion.button
-              whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
-              whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
-              transition={spring}
-              type="submit"
-              disabled={status === "sending"}
-              style={{ color: "#ffffff" }}
-              className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar Solicitud"}
-            </motion.button>
-
-
-            {status === "ok" && (
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-[var(--jch-ink)] font-bold uppercase tracking-widest"
-              >
-                Gracias. Te contactaré en menos de 24h.
-              </motion.p>
-            )}
-            {status === "error" && (
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-red-600"
-              >
-                {errorMsg || "Algo ha ido mal. Inténtalo de nuevo en unos minutos."}
-              </motion.p>
-            )}
-          </form>
+          <ContactForm preferredTopic={preferredTopic} />
         </FadeUp>
       </div>
     </section>
+  );
+}
+
+function ContactForm({ preferredTopic }: { preferredTopic: string }) {
+  const submit = useServerFn(submitContact);
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [accepted, setAccepted] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    topic: "Diagnóstico General",
+    message: "",
+  });
+
+  useEffect(() => {
+    setForm((f) => ({ ...f, topic: preferredTopic }));
+  }, [preferredTopic]);
+
+  // Campos extra solo para hipoteca y autónomo (progressive disclosure).
+  // Se pliegan dentro de `message` en vez de añadirse como claves nuevas —
+  // el webhook (contact.functions.ts) posta a un Apps Script cuyo mapeo de
+  // columnas no está verificado, y `message` es el campo que la hoja ya
+  // captura de forma fiable.
+  const [mortgage, setMortgage] = useState({
+    housePrice: "",
+    financing: "",
+    income: "",
+    employment: "",
+  });
+  const [autonomo, setAutonomo] = useState({ interestArea: "" });
+  const isMortgage = form.topic === "Nueva Hipoteca";
+  const isAutonomo = form.topic === "Autónomo";
+
+  const startedRef = useRef(false);
+  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent("contact_start");
+    }
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+  };
+  const onMortgageChange = (k: keyof typeof mortgage) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setMortgage((m) => ({ ...m, [k]: e.target.value }));
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!accepted) {
+      setStatus("error");
+      setErrorMsg("Debes aceptar la política de privacidad para continuar.");
+      return;
+    }
+    setStatus("sending");
+    setErrorMsg("");
+    const extraNote = isMortgage
+      ? [
+          mortgage.housePrice && `Precio vivienda: ${mortgage.housePrice}`,
+          mortgage.financing && `Financiación aproximada: ${mortgage.financing}`,
+          mortgage.income && `Ingresos: ${mortgage.income}`,
+          mortgage.employment && `Situación laboral: ${mortgage.employment}`,
+        ]
+          .filter(Boolean)
+          .join(" · ")
+      : isAutonomo
+        ? autonomo.interestArea && `Área de interés: ${autonomo.interestArea}`
+        : "";
+    const payload = {
+      ...form,
+      message: extraNote ? `${extraNote}${form.message ? " · " + form.message : ""}` : form.message,
+    };
+    try {
+      await submit({ data: payload });
+      setStatus("ok");
+      trackEvent("contact_submit");
+      trackEvent("josecarlos_contact_submit");
+      setForm({ name: "", phone: "", email: "", topic: "Diagnóstico General", message: "" });
+      setMortgage({ housePrice: "", financing: "", income: "", employment: "" });
+      setAutonomo({ interestArea: "" });
+      setAccepted(false);
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "No se ha podido enviar el formulario.");
+    }
+  }
+
+  return (
+    <form id="contact-form" className="contact-form-card space-y-10 scroll-mt-28" onSubmit={onSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
+        <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
+      </div>
+      <Field label="Email (opcional)" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} />
+      <div className="space-y-2">
+        <label className="text-[10px] font-black uppercase tracking-[0.2em]">¿Qué quieres resolver?</label>
+        <select
+          value={form.topic}
+          onChange={onChange("topic")}
+          className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
+        >
+          <option>Diagnóstico General</option>
+          <option>Nueva Hipoteca</option>
+          <option>Protección</option>
+          <option>Plan de Jubilación</option>
+          <option>Autónomo</option>
+        </select>
+      </div>
+      {isMortgage && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-[var(--jch-line)] pt-10">
+          <Field label="Precio vivienda (opcional)" type="text" placeholder="Ej. 220.000 €" value={mortgage.housePrice} onChange={onMortgageChange("housePrice")} />
+          <Field label="Financiación aproximada (opcional)" type="text" placeholder="Ej. 80%" value={mortgage.financing} onChange={onMortgageChange("financing")} />
+          <Field label="Ingresos (opcional)" type="text" placeholder="Ej. 2.400 €/mes" value={mortgage.income} onChange={onMortgageChange("income")} />
+          <Field label="Situación laboral (opcional)" type="text" placeholder="Ej. asalariado, autónomo..." value={mortgage.employment} onChange={onMortgageChange("employment")} />
+        </div>
+      )}
+      {isAutonomo && (
+        <div className="border-t border-[var(--jch-line)] pt-10">
+          <Field
+            label="Área de interés (opcional)"
+            type="text"
+            placeholder="Ej. protección, ahorro, hipoteca..."
+            value={autonomo.interestArea}
+            onChange={(e) => setAutonomo({ interestArea: e.target.value })}
+          />
+        </div>
+      )}
+      <div className="space-y-2">
+        <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
+        <textarea
+          rows={4}
+          placeholder="Cuéntanos tu situación"
+          value={form.message}
+          onChange={onChange("message")}
+          className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none placeholder:text-[var(--jch-dim)]"
+        />
+      </div>
+
+      <label className="flex items-start gap-3 text-sm text-[var(--jch-muted)] leading-relaxed cursor-pointer">
+        <input
+          type="checkbox"
+          checked={accepted}
+          onChange={(e) => setAccepted(e.target.checked)}
+          required
+          className="mt-1 w-4 h-4 accent-[#C5A566] shrink-0"
+        />
+        <span>
+          He leído y acepto la{" "}
+          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="text-[var(--jch-accent-ink)] underline hover:no-underline">
+            política de privacidad
+          </a>
+          .
+        </span>
+      </label>
+
+      <motion.button
+        whileHover={{ scale: status === "sending" ? 1 : 1.02 }}
+        whileTap={{ scale: status === "sending" ? 1 : 0.98 }}
+        transition={spring}
+        type="submit"
+        disabled={status === "sending"}
+        style={{ color: "#ffffff" }}
+        className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar solicitud"}
+      </motion.button>
+
+      {status === "ok" && (
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-sm text-[var(--jch-ink)] font-bold uppercase tracking-widest"
+        >
+          Gracias. Te contactaré en menos de 24h.
+        </motion.p>
+      )}
+      {status === "error" && (
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-sm text-red-600"
+        >
+          {errorMsg || "Algo ha ido mal. Inténtalo de nuevo en unos minutos."}
+        </motion.p>
+      )}
+    </form>
   );
 }
 
@@ -1151,7 +1522,7 @@ function Footer() {
             <img src="/logo-white.png" alt="Logo" loading="lazy" className="h-10 w-10 object-contain" />
             <div className="space-y-2">
               <div className="text-2xl font-black tracking-tighter uppercase">José Carlos Hidalgo</div>
-              <p className="text-gray-500 text-xs tracking-widest uppercase">Gestión patrimonial e hipotecaria</p>
+              <p className="text-gray-500 text-xs tracking-widest uppercase">Hipotecas y planificación patrimonial</p>
             </div>
           </div>
           <div className="flex items-center gap-6">
@@ -1216,93 +1587,4 @@ function Field({
       />
     </div>
   );
-              }
-
-const partners = [
-  { name: "Nationale-Nederlanden", className: "font-serif italic" },
-  { name: "ING", className: "font-extrabold tracking-tight" },
-  { name: "ABANCA", className: "font-bold tracking-[0.15em]" },
-  { name: "Sanitas", className: "font-semibold" },
-  { name: "Caser", className: "font-bold tracking-wide" },
-];
-
-function ToolsPreview() {
-  const items = [
-    { title: "Calculadora de ahorro potencial", text: "Calcula cuánto dinero se te escapa en pequeños gastos recurrentes.", cta: "Abrir calculadora", href: "/herramientas/ahorro-potencial/index.html", event: "tool_wealth_audit" as const },
-    { title: "Test de salud financiera", text: "Evalúa tu nivel de protección, ahorro y endeudamiento.", cta: "Hacer test", href: "/test-salud-financiera.html", event: "tool_financial_health" as const },
-  ];
-  return (
-    <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)]">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="mb-16 max-w-2xl space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. Más información.</h2>
-          <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {items.map((t) => (
-            <FadeUp key={t.title}>
-              <a href={t.href} className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors" onClick={() => trackEvent(t.event)}>
-                <h3 className="text-xl font-bold mb-2">{t.title}</h3>
-                <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
-                <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">{t.cta} →</span>
-              </a>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
 }
-
-function AdminFincas() {
-  return (
-    <section id="fincas" className="fincas-block">
-      <div className="fincas-block__inner">
-        <span className="fincas-block__eyebrow">Servicio diferenciado</span>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Administración de fincas</h2>
-        <p className="fincas-block__lead">
-          Además del asesoramiento financiero, gestiono comunidades de propietarios con
-          control económico, comunicación cercana y seguimiento real de cada incidencia.
-        </p>
-        <ul className="fincas-block__list">
-          <li>Control económico y cuentas claras cada mes</li>
-          <li>Comunicación directa con la presidencia y los propietarios</li>
-          <li>Seguimiento de incidencias hasta su resolución</li>
-        </ul>
-        <Link to="/administracion-fincas" className="fincas-block__cta" onClick={() => trackEvent("cta_property")}>
-          Ver administración de fincas <span aria-hidden="true">→</span>
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-function Partners() {
-  return (
-    <section aria-label="Entidades colaboradoras" className="partners-editorial">
-      <div className="partners-editorial__inner">
-        <FadeUp>
-          <p className="partners-editorial__label">
-            Colaboro con entidades líderes del sector
-          </p>
-        </FadeUp>
-        <div className="partners-editorial__list">
-          {partners.map((p, idx) => (
-            <FadeUp key={p.name} delay={idx * 0.06}>
-              <span className={`partners-editorial__name ${p.className}`}>
-                {p.name}
-              </span>
-            </FadeUp>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Testimonials() removed — the 3 entries here were placeholder/fabricated
-// content (no verified source), which the transformation brief explicitly
-// prohibits. No real Google reviews specific to José Carlos exist yet;
-// once they do, reintroduce this component with real data instead of
-// restoring the old placeholders.
-
