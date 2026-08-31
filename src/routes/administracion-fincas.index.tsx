@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
+import { blogPosts } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/administracion-fincas/")({
   head: () => ({
@@ -223,6 +224,7 @@ function AdministracionFincasPage() {
         <Filosofia />
         <AmbitoGeografico />
         <CtaFinal />
+        <ContenidoAutoridad />
         <FAQ />
       </main>
 
@@ -1089,6 +1091,51 @@ const faqs = [
     a: "El cambio se acuerda en junta de propietarios. Se explica el procedimiento y los plazos concretos según la situación de cada comunidad antes de dar cualquier paso.",
   },
 ];
+
+function ContenidoAutoridad() {
+  const posts = blogPosts.filter((p) => p.service === "fincas");
+
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+      <div className="content-block__inner">
+        <div className="content-block__heading">
+          <h2>
+            <Curtain>Artículos para entender antes de decidir</Curtain>
+          </h2>
+          <FadeUp delay={0.1}>
+            <p>Contenido propio sobre convivencia, normativa y gestión de comunidades.</p>
+          </FadeUp>
+        </div>
+        <div className="content-block__grid">
+          {posts.map((post, idx) => (
+            <FadeUp key={post.slug} delay={idx * 0.06}>
+              <Link
+                to="/blog/$slug"
+                params={{ slug: post.slug }}
+                className="content-card"
+                onClick={() => trackEvent("blog_article_click", { slug: post.slug })}
+              >
+                <span className="content-card__category">{post.category}</span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span className="content-card__cta">
+                  Leer artículo <span aria-hidden="true" />
+                </span>
+              </Link>
+            </FadeUp>
+          ))}
+        </div>
+        <FadeUp delay={0.2} className="content-block__footer">
+          <Link to="/blog" className="duo-block__cta">
+            Ver todos los artículos <span aria-hidden="true">→</span>
+          </Link>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
 
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);

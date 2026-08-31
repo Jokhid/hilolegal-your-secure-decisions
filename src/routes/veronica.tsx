@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
+import { blogPosts } from "@/lib/blogPosts";
 const banner3Asset = { url: "/9.webp" };
 
 export const Route = createFileRoute("/veronica")({
@@ -269,6 +270,7 @@ function Index() {
         <About />
         <HiloLegal />
         <Testimonials />
+        <ContenidoAutoridad />
         <FAQ />
         <Contact />
       </main>
@@ -838,6 +840,62 @@ function Testimonials() {
             </FadeUp>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+const articulosDestacados = [
+  "separacion-o-divorcio-diferencias",
+  "custodia-compartida-que-valora-un-juez",
+  "herencia-entre-hermanos-sin-acuerdo",
+  "desahucios-cuanto-tarda-y-errores",
+  "cancelacion-antecedentes-penales",
+  "reclamar-indemnizacion-por-danos",
+];
+
+function ContenidoAutoridad() {
+  const posts = articulosDestacados
+    .map((slug) => blogPosts.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="content-block py-[100px] border-t border-[var(--jch-line)]">
+      <div className="content-block__inner">
+        <div className="content-block__heading">
+          <h2>
+            <Curtain>Artículos para entender antes de decidir</Curtain>
+          </h2>
+          <FadeUp delay={0.1}>
+            <p>Contenido propio sobre familia, herencias, arrendamientos, penal y civil.</p>
+          </FadeUp>
+        </div>
+        <div className="content-block__grid">
+          {posts.map((post, idx) => (
+            <FadeUp key={post.slug} delay={idx * 0.06}>
+              <Link
+                to="/blog/$slug"
+                params={{ slug: post.slug }}
+                className="content-card"
+                onClick={() => trackEvent("blog_article_click", { slug: post.slug })}
+              >
+                <span className="content-card__category">{post.category}</span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span className="content-card__cta">
+                  Leer artículo <span aria-hidden="true" />
+                </span>
+              </Link>
+            </FadeUp>
+          ))}
+        </div>
+        <FadeUp delay={0.2} className="content-block__footer">
+          <Link to="/blog" className="duo-block__cta">
+            Ver todos los artículos <span aria-hidden="true">→</span>
+          </Link>
+        </FadeUp>
       </div>
     </section>
   );

@@ -77,6 +77,20 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 
 ---
 
+## 8. Los 13 artículos nuevos del blog (contenido que nos diste tú)
+
+**Dónde**: `src/lib/blogPosts.ts` — los 13 artículos incorporados el 31/08/2026, repartidos en `legalPosts` (8, Verónica), `fincasPosts` (3, Administración de fincas) y `mortgagePosts` (2, José Carlos).
+
+**Por qué**: es contenido que nos diste tú ya redactado, no algo que yo haya generado — lo he incorporado tal cual, sin cambiar ninguna cifra, plazo ni afirmación legal. Aun así, como el resto de este documento, señalo las afirmaciones más específicas y verificables para que quede constancia de qué merece un último vistazo antes o después de publicar, sobre todo si alguna normativa cambia con el tiempo:
+
+- Plazos y cifras concretas: "15 días" para que el banco reaccione a una subrogación hipotecaria; "6 a 12 meses" de duración media de un desahucio; plazos de cancelación de antecedentes penales de "6 meses a 10 años" según el artículo 136 del Código Penal; "tres meses" de plazo máximo para resolver la cancelación.
+- Referencias jurisprudenciales: la doctrina del Tribunal Supremo sobre custodia compartida "desde 2013" y sobre que el nacimiento de nuevos hijos del pagador no reduce por sí solo la pensión de alimentos.
+- El ejemplo numérico de ahorro parado ("40.000 € durante 10 años... varios miles de euros") es una ilustración, no una cifra de rentabilidad garantizada — mismo criterio que ya aplicamos al ejemplo similar del artículo `prevision-financiera-vision` (punto 5 de este documento).
+
+**Qué decidir**: nada urgente — son afirmaciones jurídicas y financieras generales, no promesas de resultado. Si algún plazo o artículo cambia con la normativa, conviene actualizarlo en su momento.
+
+---
+
 ## Cómo usar este documento
 
 Cuando confirmes o corrijas cada punto, dímelo y lo actualizo en el código. No voy a tocar ninguna de estas frases por mi cuenta — son afirmaciones de producto/negocio, no de diseño o código.

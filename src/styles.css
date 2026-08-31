@@ -1480,6 +1480,34 @@ footer.site-footer .brand {
   line-height: 1.7;
 }
 
+.blog-editorial__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+.blog-editorial__filter {
+  padding: .65rem 1.4rem;
+  border: 1px solid var(--jch-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--jch-muted);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 250ms ease, color 250ms ease, background-color 250ms ease;
+}
+.blog-editorial__filter:hover { border-color: var(--jch-accent); color: var(--jch-ink); }
+.blog-editorial__filter--active {
+  background: var(--jch-cta);
+  border-color: var(--jch-cta);
+  color: #ffffff !important;
+}
+.blog-editorial__filter--active:hover { border-color: var(--jch-cta-hover); background: var(--jch-cta-hover); }
+
 .blog-editorial__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

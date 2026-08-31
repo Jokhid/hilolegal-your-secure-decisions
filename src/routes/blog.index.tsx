@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { blogPosts } from "@/lib/blogPosts";
+import { blogPosts, SERVICE_META, type BlogService } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/blog/")({
@@ -10,13 +11,13 @@ export const Route = createFileRoute("/blog/")({
       {
         name: "description",
         content:
-          "Artículos sobre hipotecas, protección, ahorro, pensiones y planificación financiera para autónomos y familias en Altea, Benidorm y la Costa Blanca.",
+          "Artículos sobre hipotecas, protección financiera, derecho de familia, civil y penal, y administración de fincas para familias y autónomos en Altea, Benidorm y la Costa Blanca.",
       },
       { property: "og:title", content: "Blog | HiloLegal" },
       {
         property: "og:description",
         content:
-          "Hipotecas, protección, ahorro, pensiones y planificación financiera. Artículos prácticos sin tecnicismos.",
+          "Financiero e hipotecas, legal y administración de fincas. Artículos prácticos sin tecnicismos.",
       },
       { property: "og:url", content: "https://www.hilolegal.es/blog" },
       { property: "og:type", content: "website" },
@@ -26,10 +27,20 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
 });
 
+const FILTERS: { key: BlogService | "all"; label: string }[] = [
+  { key: "all", label: "Todos" },
+  { key: "josecarlos", label: SERVICE_META.josecarlos.label },
+  { key: "veronica", label: SERVICE_META.veronica.label },
+  { key: "fincas", label: SERVICE_META.fincas.label },
+];
+
 
 const WHATSAPP = "https://wa.me/34647506040";
 
 function BlogIndex() {
+  const [filter, setFilter] = useState<BlogService | "all">("all");
+  const posts = filter === "all" ? blogPosts : blogPosts.filter((p) => p.service === filter);
+
   return (
     <div className="blog-editorial min-h-screen">
       <header className="sticky top-0 z-50 backdrop-blur-xl">
@@ -60,15 +71,32 @@ function BlogIndex() {
       <main className="blog-editorial__main">
         <div className="blog-editorial__heading">
           <span>Blog</span>
-          <h1>Decisiones financieras claras, sin tecnicismos.</h1>
+          <h1>Decisiones claras, sin tecnicismos.</h1>
           <p>
-            Artículos sobre hipotecas, protección, ahorro, pensiones y planificación
-            financiera para autónomos y familias.
+            Artículos sobre hipotecas y finanzas, derecho civil, familia y penal, y
+            administración de fincas para familias y autónomos.
           </p>
         </div>
 
+        <div className="blog-editorial__filters" role="group" aria-label="Filtrar por servicio">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              onClick={() => {
+                setFilter(f.key);
+                trackEvent("blog_article_click", { filter: f.key });
+              }}
+              aria-pressed={filter === f.key}
+              className={`blog-editorial__filter ${filter === f.key ? "blog-editorial__filter--active" : ""}`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
         <div className="blog-editorial__grid">
-          {blogPosts.map((post, index) => (
+          {posts.map((post, index) => (
             <Link
               key={post.slug}
               to="/blog/$slug"

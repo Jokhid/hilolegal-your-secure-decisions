@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { blogPosts, findPost } from "@/lib/blogPosts";
+import { blogPosts, findPost, SERVICE_META } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -13,6 +13,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const title = post ? `${post.title} | Blog HiloLegal` : "Artículo";
     const desc = post?.metaDescription ?? "";
     const url = `https://www.hilolegal.es/blog/${params.slug}`;
+    const author = post ? SERVICE_META[post.service] : null;
     return {
       meta: [
         { title },
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
       ],
       links: [{ rel: "canonical", href: url }],
-      scripts: post
+      scripts: post && author
         ? [
             {
               type: "application/ld+json",
@@ -35,8 +36,8 @@ export const Route = createFileRoute("/blog/$slug")({
                 articleSection: post.category,
                 author: {
                   "@type": "Person",
-                  name: "José Carlos Hidalgo Ortega",
-                  url: "https://hilolegal.es/josecarlos/",
+                  name: author.authorName,
+                  url: author.authorUrl,
                 },
                 publisher: {
                   "@type": "Organization",
@@ -156,7 +157,11 @@ function renderMarkdown(md: string) {
 
 function BlogPostPage() {
   const { post } = Route.useLoaderData();
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const others = blogPosts.filter((p) => p.slug !== post.slug);
+  const sameService = others.filter((p) => p.service === post.service);
+  const rest = others.filter((p) => p.service !== post.service);
+  const related = [...sameService, ...rest].slice(0, 3);
+  const author = SERVICE_META[post.service];
 
   return (
     <div className="blog-post min-h-screen">
@@ -205,7 +210,7 @@ function BlogPostPage() {
 
           <div className="mt-16 pt-10 border-t border-[#E5E5E5]">
             <Link
-              to="/josecarlos"
+              to={author.contactPath}
               hash="contact"
               className="inline-block rounded-full bg-[#1f6f78] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors"
             >
