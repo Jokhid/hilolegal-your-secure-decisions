@@ -25,6 +25,8 @@ export const Route = createFileRoute("/administracion-fincas/cambio-administrado
       { property: "og:image", content: "https://www.hilolegal.es/fincas.webp" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Cambio de Administrador de Fincas | HiloLegal" },
+      { name: "twitter:description", content: "Un cambio de administrador ordenado, sin roturas ni sorpresas." },
+      { name: "twitter:image", content: "https://www.hilolegal.es/fincas.webp" },
     ],
     links: [{ rel: "canonical", href: "https://www.hilolegal.es/administracion-fincas/cambio-administrador" }],
     scripts: [
@@ -43,11 +45,11 @@ export const Route = createFileRoute("/administracion-fincas/cambio-administrado
             },
             {
               "@type": "FAQPage",
-              mainEntity: [
-                { "@type": "Question", name: "¿Cómo se gestiona el cambio de administrador?", acceptedAnswer: { "@type": "Answer", text: "Se coordina con el administrador saliente el traspaso de documentación, cuentas y contratos en curso, para que la comunidad no note ninguna interrupción en el servicio." } },
-                { "@type": "Question", name: "¿Podemos cambiar de administrador en cualquier momento?", acceptedAnswer: { "@type": "Answer", text: "El cambio se acuerda en junta de propietarios. Se explica el procedimiento y los plazos concretos según la situación de cada comunidad antes de dar cualquier paso." } },
-                { "@type": "Question", name: "¿Qué necesita la comunidad para empezar el cambio?", acceptedAnswer: { "@type": "Answer", text: "Basta con el acuerdo de la junta y los datos de contacto del administrador actual. El resto del traspaso se coordina directamente entre administradores." } },
-              ],
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
             },
           ],
         }),
@@ -124,7 +126,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function CambioAdministradorPage() {
   useEffect(() => {
-    trackEvent("property_change_admin_click");
+    trackEvent("property_change_admin_click", { section: "page_view", page: "cambio-administrador" });
   }, []);
 
   return (
@@ -267,7 +269,9 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => trackEvent("property_management_proposal_start")}
+                onClick={() =>
+                  trackEvent("property_management_proposal_start", { section: "hero", cta: "solicitar_propuesta" })
+                }
               >
                 Solicitar propuesta
               </motion.a>
@@ -435,14 +439,13 @@ function LeadForm() {
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("property_management_proposal_start");
+      trackEvent("property_management_proposal_start", { section: "formulario" });
     }
     setForm((f) => ({ ...f, [k]: e.target.value }));
   };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent("property_form_submit");
     if (!accepted) {
       setStatus("error");
       setErrorMsg("Debes aceptar la política de privacidad para continuar.");
@@ -453,7 +456,8 @@ function LeadForm() {
     try {
       await submit({ data: { ...form, topic: "Buscamos nuevo administrador" } });
       setStatus("ok");
-      trackEvent("property_management_proposal_submit");
+      trackEvent("property_form_submit", { section: "formulario", topic: "Buscamos nuevo administrador" });
+      trackEvent("property_management_proposal_submit", { section: "formulario", topic: "Buscamos nuevo administrador" });
       setForm({ name: "", phone: "", email: "", message: "" });
       setAccepted(false);
     } catch (err) {

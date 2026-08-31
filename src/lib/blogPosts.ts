@@ -105,7 +105,7 @@ const financialPosts: Omit<BlogPost, "service">[] = [
     readingTime: "5 min",
     keyword: "dinero parado en el banco",
     excerpt: "Si tienes dinero en cuenta corriente, crees que estás ahorrando. La inflación dice lo contrario. Te explico cuánto pierdes cada año.",
-    metaDescription: "¿Tienes dinero en una cuenta corriente y crees que estás ahorrando? En 2026 la inflación acumulada en España supera el 20%. Te explico cuánto estás perdiendo y qué hacer.",
+    metaDescription: "¿Tienes dinero en cuenta corriente y crees que ahorras? En 2026 la inflación acumulada en España supera el 20%. Te explico cuánto estás perdiendo.",
     content: `## El dinero que no se mueve, retrocede
 
 Imagina que en enero de 2020 ingresas 10.000 € en una cuenta corriente. Sin tocarlos. Sin gastarlos. Siendo, en apariencia, completamente responsable con tu economía.
@@ -244,7 +244,7 @@ Quien empieza a ahorrar 200 € al mes a los 35 años con rentabilidad media del
     readingTime: "5 min",
     keyword: "seguro para mayores de 55 años España",
     excerpt: "Una solución de salud y apoyo para personas de entre 55 y 80 años. Qué cubre y para quién tiene sentido.",
-    metaDescription: "Contigo Senior de Nationale-Nederlanden es una solución de salud y apoyo para personas de entre 55 y 80 años. Te explico qué cubre, cuánto cuesta y para quién tiene sentido.",
+    metaDescription: "Contigo Senior de Nationale-Nederlanden: salud y apoyo para personas de 55 a 80 años. Te explico qué cubre y para quién tiene sentido.",
     content: `## La paradoja de los 55
 
 Muchas personas que superan los 55 años llegan a esta etapa con una situación que pocos verbalizan: han construido patrimonio, tienen experiencia. Pero sienten que si algo falla, no tienen a nadie detrás.
@@ -284,6 +284,8 @@ Si la persona sufre un percance que le impide realizar las tareas cotidianas, Co
 Un seguro médico estándar cubre la enfermedad. Contigo Senior cubre la etapa. No solo te da acceso al médico, sino que te acompaña cuando las necesidades son más complejas.
 
 > Si tienes más de 55 años y quieres analizar si Contigo Senior tiene sentido para ti, escríbeme. Te lo explico sin compromiso.`,
+    sources: [{ label: "Nationale-Nederlanden España", url: "https://www.nnespana.es" }, { label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "autonomo-ahorros-cuenta-corriente",
@@ -292,7 +294,7 @@ Un seguro médico estándar cubre la enfermedad. Contigo Senior cubre la etapa. 
     readingTime: "4 min",
     keyword: "ahorro para autónomos España",
     excerpt: "Si eres autónomo y tienes dinero en cuenta sin estrategia, estás perdiendo rentabilidad real cada año.",
-    metaDescription: "Si eres autónomo y tienes dinero en cuenta corriente sin ninguna estrategia de ahorro, estás perdiendo rentabilidad real cada año. Te explico qué alternativas existen.",
+    metaDescription: "Si eres autónomo y tienes dinero en cuenta corriente sin estrategia de ahorro, pierdes rentabilidad real cada año. Te explico qué alternativas existen.",
     content: `## El mito del dinero «controlado»
 
 Cuando hablo con autónomos sobre sus finanzas, escucho con frecuencia la misma frase: «Es que yo no soy de invertir. Prefiero tenerlo controlado.»
@@ -329,7 +331,7 @@ Un autónomo que ha cotizado por la base mínima tiene derecho a una pensión p�
     readingTime: "6 min",
     keyword: "qué es un SIALP",
     excerpt: "Un seguro de ahorro a largo plazo con un régimen fiscal específico: puede permitir la exención de los rendimientos si se cumplen los requisitos legales. Cómo funciona y por qué interesa.",
-    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con un régimen fiscal específico, sujeto al cumplimiento de los requisitos legales vigentes. El Gobierno planea relanzarlo en 2026.",
+    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con un régimen fiscal específico, sujeto a los requisitos legales vigentes. El Gobierno planea relanzarlo en 2026.",
     content: `## ¿Qué es un SIALP?
 
 El SIALP —Seguro Individual de Ahorro a Largo Plazo— es una modalidad de ahorro que puede permitir la exención fiscal de los rendimientos positivos cuando se cumplen los requisitos establecidos legalmente, entre ellos mantener el dinero invertido un mínimo de cinco años. La fiscalidad depende del cumplimiento de esos requisitos y de la normativa vigente en cada momento (puedes consultarla en la Agencia Tributaria).
@@ -427,7 +429,7 @@ No necesitas un máster. Necesitas tres o cuatro conceptos claros y alguien que 
     readingTime: "6 min",
     keyword: "plan de pensiones vs SIALP",
     excerpt: "No hay respuesta universal: depende de tus ingresos, tu perfil fiscal y cuándo necesitas el dinero.",
-    metaDescription: "¿Plan de pensiones o SIALP? No hay una respuesta universal: depende de tus ingresos, tu perfil fiscal y cuándo necesitas el dinero. Te lo explico con números reales.",
+    metaDescription: "¿Plan de pensiones o SIALP? No hay respuesta universal: depende de tus ingresos, tu perfil fiscal y cuándo necesitas el dinero. Te lo explico con números.",
     content: `## La pregunta que más me hacen
 
 «José Carlos, ¿me conviene más un plan de pensiones o un SIALP?» La respuesta depende de tu situación concreta.
@@ -613,10 +615,10 @@ No es imposible. Pero requiere empezar hoy, no a los 60.
     slug: "preparar-perfil-financiero-hipoteca-2026",
     title: "Cómo preparar tu perfil financiero antes de pedir una hipoteca: la guía paso a paso (2026)",
     category: "Hipotecas",
-    readingTime: "7 min",
+    readingTime: "15 min",
     keyword: "cómo preparar perfil financiero hipoteca",
     excerpt: "Antes de buscar piso, necesitas preparar tu perfil financiero. Los bancos usan algoritmos estrictos que van mucho más allá del sueldo.",
-    metaDescription: "Antes de buscar piso, necesitas preparar tu perfil financiero. Los bancos usan algoritmos estrictos que van mucho más allá del sueldo. Te explico qué revisan exactamente y cómo llegar en las mejores condiciones.",
+    metaDescription: "Antes de buscar piso, prepara tu perfil financiero. Los bancos usan algoritmos que van más allá del sueldo. Te explico qué revisan exactamente.",
     content: `## El error que comete la mayoría antes de pedir una hipoteca
 
 Abrir Idealista o Fotocasa. Enamorarse de un piso. Llamar para visitar. Negociar el precio. Y después, sentarse con el banco.
@@ -718,7 +720,7 @@ const fincasPosts: Omit<BlogPost, "service">[] = [
     readingTime: "6 min",
     keyword: "conflictos comunidad de propietarios",
     excerpt: "El ruido de las 23:00, la sombrilla que siempre ocupa la misma tumbona, el vecino que lleva meses sin pagar. Los cinco conflictos que más se repiten en las comunidades, y por qué casi todos tienen solución antes de llegar a un juzgado.",
-    metaDescription: "Los cinco conflictos que más destruyen la convivencia en una comunidad de propietarios: ruidos, zonas comunes, impagos, conflictos personales y falta de mantenimiento. Cómo se cortan a tiempo.",
+    metaDescription: "Los cinco conflictos que más deterioran la convivencia en tu comunidad: ruidos, zonas comunes, impagos, roces y falta de mantenimiento. Cómo cortarlos a tiempo.",
     content: `## El ruido de las 23:00, la sombrilla de siempre, la cuota que no llega
 
 Ninguno de estos problemas empieza siendo grave. Todos pueden acabar siéndolo si nadie los gestiona a tiempo.
@@ -768,7 +770,7 @@ Ningún edificio con varias familias está libre de tensiones. La diferencia ent
     readingTime: "6 min",
     keyword: "estatutos comunidad de propietarios",
     excerpt: "Casi nadie los lee hasta que hay un problema. Y para entonces ya es tarde para decidir las reglas: solo queda cumplirlas o pelearlas. Qué son los estatutos y por qué muchas comunidades ni siquiera los tienen.",
-    metaDescription: "Los estatutos deciden, antes de que surja cualquier conflicto, quién puede usar qué, quién paga qué y cómo se toman las decisiones en tu comunidad. Qué son, qué regulan y cómo se actualizan.",
+    metaDescription: "Los estatutos deciden, antes de cualquier conflicto, quién usa qué, quién paga qué y cómo se decide en tu comunidad. Qué son, qué regulan y cómo se actualizan.",
     content: `## El documento que casi nadie lee hasta que hay un problema
 
 Los estatutos son el documento que decide, antes de que surja cualquier conflicto, quién puede usar qué, quién paga qué y cómo se toman las decisiones en tu edificio. Entender cómo funcionan no es un tecnicismo para abogados: es la diferencia entre anticiparte a un problema o sufrirlo.
@@ -829,7 +831,7 @@ Los estatutos no son papeleo de trámite. Son el acuerdo que evita que la conviv
     readingTime: "5 min",
     keyword: "cambiar administrador de fincas",
     excerpt: "Preguntas que se quedan sin respuesta, incidencias que se acumulan, cuentas que nadie termina de entender. Las cinco señales que más se repiten antes de un cambio de administrador.",
-    metaDescription: "Las cinco señales que indican que una comunidad de propietarios necesita cambiar de administrador de fincas: comunicación, incidencias, tecnología, transparencia y estancamiento.",
+    metaDescription: "Las cinco señales de que tu comunidad necesita cambiar de administrador: comunicación, incidencias, tecnología, transparencia y estancamiento.",
     content: `## Ninguna señal por separado, pero las cinco juntas
 
 Llevas semanas esperando una respuesta a una incidencia sencilla. Nadie te explica en qué se ha ido el dinero de la última derrama. Y cada junta se parece sospechosamente a la anterior, sin que nada mejore de verdad.
@@ -878,7 +880,7 @@ const legalPosts: Omit<BlogPost, "service">[] = [
     readingTime: "5 min",
     keyword: "diferencia entre separación y divorcio",
     excerpt: "\"Nos vamos a separar\" y \"nos vamos a divorciar\" se usan como si fueran lo mismo. Legalmente, no lo son. Y confundirlos puede llevarte a elegir un camino que no es el que realmente buscas.",
-    metaDescription: "Separación y divorcio no son sinónimos legales. Qué diferencia a cada uno, qué efectos tienen sobre el matrimonio y la reconciliación, y cómo elegir el camino correcto.",
+    metaDescription: "Separación y divorcio no son lo mismo legalmente. Qué los diferencia, sus efectos sobre matrimonio y reconciliación, y cómo elegir el camino correcto.",
     content: `## Dos palabras que se usan igual y no lo son
 
 "Nos vamos a separar" y "nos vamos a divorciar" se usan como si fueran lo mismo. Legalmente, no lo son. Y confundirlos puede llevarte a elegir un camino que no es el que realmente buscas.
@@ -930,7 +932,7 @@ Separación y divorcio no son sinónimos legales, son dos decisiones distintas c
     readingTime: "5 min",
     keyword: "reclamar indemnización por daños",
     excerpt: "En un juzgado no gana quien tiene razón, gana quien puede demostrarla. Lo que realmente determina si una reclamación por daños y perjuicios prospera o se queda por el camino.",
-    metaDescription: "Reclamar una indemnización por daños y perjuicios exige algo más que tener razón: prueba sólida, estrategia procesal y una cuantificación del daño hecha con rigor. Cómo funciona en la práctica.",
+    metaDescription: "Reclamar una indemnización por daños y perjuicios exige algo más que tener razón: prueba sólida, estrategia procesal y una cuantificación del daño con rigor.",
     content: `## Tener razón es el punto de partida, no la garantía
 
 Mucha gente llega a una reclamación de daños convencida de que con contar lo que pasó es suficiente. La realidad es más exigente: en un juzgado no gana quien tiene razón, gana quien puede demostrarla.
@@ -974,7 +976,7 @@ Tener razón es el punto de partida, no la garantía de nada. Lo que realmente d
     readingTime: "6 min",
     keyword: "custodia compartida requisitos",
     excerpt: "\"Pedimos custodia compartida al 50%, así que nos la tienen que dar.\" Es una de las ideas más extendidas en una primera consulta de familia, y casi siempre equivocada.",
-    metaDescription: "La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%. Qué valora realmente un juez, y los dos mitos que más confunden a los progenitores.",
+    metaDescription: "La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%. Qué valora un juez y los dos mitos que más confunden a los progenitores.",
     content: `## "Nos tienen que dar la compartida": el mito más extendido
 
 "Pedimos custodia compartida al 50%, así que nos la tienen que dar." Es una de las frases que más veces se oye en una primera consulta de familia. Y es, casi siempre, una idea equivocada.
@@ -1005,6 +1007,8 @@ El régimen de custodia fijado en una sentencia no es inamovible. Si se produce 
 La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%. Se decide en función de hechos concretos: quién se ha implicado, dónde vive cada uno, cómo se comunican los progenitores y qué necesita realmente el menor. Plantear el proceso desde esa realidad, y no desde lo que "debería tocar", es lo que marca la diferencia en la sentencia.
 
 **En HiloLegal preparamos cada caso de familia analizando qué criterios juegan a tu favor y cuáles hay que reforzar antes de llegar a la vista.**`,
+    sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "pension-de-alimentos-como-se-calcula",
@@ -1013,7 +1017,7 @@ La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%
     readingTime: "6 min",
     keyword: "cómo se calcula la pensión de alimentos",
     excerpt: "\"¿Cuánto me va a tocar pagar?\" Es la pregunta que más rápido llega en cualquier consulta de divorcio con hijos. Y la respuesta incómoda es: no hay una tabla fija que lo diga con exactitud.",
-    metaDescription: "La pensión de alimentos no se calcula con una fórmula fija: depende de las necesidades de los hijos y la capacidad económica de cada progenitor. Cuándo se puede modificar y qué no puedes hacer nunca.",
+    metaDescription: "La pensión de alimentos no tiene fórmula fija: depende de las necesidades de los hijos y la capacidad económica de cada progenitor. Cuándo se puede modificar.",
     content: `## No hay una fórmula automática
 
 "¿Cuánto me va a tocar pagar?" Es la pregunta que más rápido llega en cualquier consulta de divorcio con hijos. Y la respuesta incómoda es: no hay una tabla fija que lo diga con exactitud. Hay un análisis.
@@ -1050,6 +1054,8 @@ Lo correcto es presentar cuanto antes una demanda de modificación de medidas, a
 La pensión de alimentos no se calcula "a ojo" ni se cambia por decisión unilateral de quien paga. Se fija con criterios objetivos y se modifica solo con un cambio real y acreditado de circunstancias, siempre por la vía judicial correcta.
 
 **En HiloLegal analizamos si tu situación actual justifica una modificación de medidas y te acompañamos en todo el proceso para que la nueva pensión refleje tu realidad económica real.**`,
+    sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "herencia-entre-hermanos-sin-acuerdo",
@@ -1058,7 +1064,7 @@ La pensión de alimentos no se calcula "a ojo" ni se cambia por decisión unilat
     readingTime: "5 min",
     keyword: "herencia entre hermanos sin acuerdo",
     excerpt: "Un piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Las vías que conviene agotar antes de pensar en un juicio.",
-    metaDescription: "Un desacuerdo entre herederos no tiene que acabar en los tribunales. Partición de mutuo acuerdo, contador-partidor, mediación familiar y división judicial: las opciones, en orden.",
+    metaDescription: "Un desacuerdo entre herederos no tiene que acabar en los tribunales. Partición de mutuo acuerdo, contador-partidor, mediación y división judicial: las opciones.",
     content: `## Cuando el reparto se atasca
 
 Un piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Es una de las situaciones más comunes en derecho de sucesiones, y también una de las que más tiempo, dinero y relaciones familiares puede destruir si se gestiona mal desde el principio.
@@ -1104,7 +1110,7 @@ Un desacuerdo entre herederos no tiene que acabar automáticamente en los tribun
     readingTime: "6 min",
     keyword: "cuánto tarda un desahucio",
     excerpt: "\"En un mes lo tengo fuera.\" Es lo que muchos propietarios esperan cuando un inquilino deja de pagar. La realidad, en la mayoría de los juzgados españoles, es muy distinta.",
-    metaDescription: "Un desahucio por impago suele tardar entre 6 y 12 meses. Cómo funciona el proceso paso a paso y los errores más comunes, tanto del propietario como del inquilino, que lo alargan aún más.",
+    metaDescription: "Un desahucio por impago suele tardar entre 6 y 12 meses. Cómo funciona el proceso y los errores más comunes, del propietario y del inquilino, que lo alargan.",
     content: `## "En un mes lo tengo fuera": la expectativa que no coincide con la realidad
 
 "En un mes lo tengo fuera." Es lo que muchos propietarios esperan cuando un inquilino deja de pagar. La realidad, en la mayoría de los juzgados españoles, es muy distinta: la duración media de un desahucio por impago se mueve entre 6 y 12 meses, y en algunos partidos judiciales puede prolongarse bastante más.
@@ -1137,6 +1143,8 @@ Conocer los plazos reales, y los errores que los alargan, es lo que marca la dif
 Un desahucio no se gana ni se pierde en el último mes, se define en las primeras semanas: cómo se formaliza el requerimiento, cuándo se actúa, y qué documentación se aporta desde el principio. Tanto para el propietario que quiere recuperar su vivienda cuanto antes, como para el inquilino que necesita tiempo o quiere regularizar su situación, la diferencia está en moverse pronto y con la estrategia correcta.
 
 **En HiloLegal gestionamos desahucios tanto desde la posición del propietario como del inquilino, buscando siempre la vía más rápida y menos costosa para cada caso.**`,
+    sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "cancelacion-antecedentes-penales",
@@ -1145,7 +1153,7 @@ Un desahucio no se gana ni se pierde en el último mes, se define en las primera
     readingTime: "5 min",
     keyword: "cancelación de antecedentes penales",
     excerpt: "\"Ya cumplí mi condena hace años, ¿por qué me lo siguen pidiendo?\" Los antecedentes penales no desaparecen automáticamente por el simple paso del tiempo. Hay que solicitarlo.",
-    metaDescription: "Los antecedentes penales no se cancelan solos: hay plazos según la gravedad de la pena, un requisito de no reincidencia y una solicitud formal ante el Ministerio de Justicia. Cómo funciona el proceso.",
+    metaDescription: "Los antecedentes penales no se cancelan solos: hay plazos según la gravedad de la pena, requisito de no reincidencia y solicitud ante el Ministerio de Justicia.",
     content: `## "Ya cumplí mi condena, ¿por qué me lo siguen pidiendo?"
 
 "Ya cumplí mi condena hace años, ¿por qué me lo siguen pidiendo?" Es una pregunta habitual, y la respuesta sorprende a mucha gente: los antecedentes penales no desaparecen automáticamente por el simple paso del tiempo. Hay que solicitarlo.
@@ -1182,6 +1190,8 @@ A efectos prácticos, y salvo excepciones muy concretas, es como si la condena n
 Cumplir la condena es solo el primer paso. Sin la solicitud de cancelación, esos antecedentes pueden seguir apareciendo indefinidamente y condicionando oportunidades laborales o trámites administrativos, incluso años después de haber pagado ya por completo con la justicia.
 
 **En HiloLegal revisamos si ya cumples los plazos y requisitos para solicitar la cancelación, y tramitamos todo el procedimiento para evitar retrasos por errores de documentación.**`,
+    sources: [{ label: "BOE", url: "https://www.boe.es" }, { label: "Ministerio de Justicia", url: "https://www.mjusticia.gob.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "antes-de-firmar-un-documento-legal",
@@ -1190,7 +1200,7 @@ Cumplir la condena es solo el primer paso. Sin la solicitud de cancelación, eso
     readingTime: "4 min",
     keyword: "qué mirar antes de firmar un contrato",
     excerpt: "La mayoría de problemas legales no nacen de una mala intención de nadie. Nacen de una firma puesta con prisa, sin hacerse antes las preguntas correctas.",
-    metaDescription: "Tres preguntas que deberías hacerte siempre antes de firmar un documento legal: si entiendes lo que aceptas, qué pasa si algo sale mal, y si puedes salir de esto y a qué precio.",
+    metaDescription: "Tres preguntas que hacerte siempre antes de firmar un documento legal: si entiendes lo que aceptas, qué pasa si sale mal, y a qué precio puedes salir.",
     content: `## Los problemas legales casi nunca empiezan con mala intención
 
 La mayoría de problemas legales que llegan a un despacho no nacen de una mala intención de nadie. Nacen de una firma puesta con prisa, sin hacerse antes las preguntas correctas.
@@ -1231,7 +1241,7 @@ const mortgagePosts: Omit<BlogPost, "service">[] = [
     readingTime: "3 min",
     keyword: "subrogación hipotecaria",
     excerpt: "Llevas años pagando la misma hipoteca y no has vuelto a mirar el mercado ni una sola vez. Muy pocas familias saben que pueden cambiar de banco sin pedir permiso al suyo.",
-    metaDescription: "La subrogación hipotecaria te permite cambiar tu hipoteca a otro banco sin pedir permiso al tuyo. Cómo funciona, quién hace el papeleo y qué plazo tiene tu banco para reaccionar.",
+    metaDescription: "La subrogación hipotecaria te permite cambiar de banco sin pedir permiso al tuyo. Cómo funciona y qué plazo tiene tu banco para reaccionar.",
     content: `## Llevas años pagando la misma hipoteca y no la has vuelto a mirar
 
 Llevas 6 años pagando la misma hipoteca. Y no has vuelto a mirar el mercado ni una sola vez.
@@ -1267,7 +1277,7 @@ Revisamos el seguro del coche cada año buscando algo mejor. La hipoteca, que su
     readingTime: "3 min",
     keyword: "ahorro parado en el banco autónomos",
     excerpt: "\"Prefiero tenerlo todo en el banco, por si acaso.\" Es la frase que más veces escucho en una primera auditoría con un autónomo. Y es, casi siempre, la decisión que más dinero le está costando.",
-    metaDescription: "Tener todo el ahorro parado en cuenta corriente tiene un coste real: pierde poder adquisitivo cada año frente a la inflación. Por qué la liquidez para imprevistos no es lo mismo que tenerlo todo parado.",
+    metaDescription: "Tener todo el ahorro parado en cuenta corriente tiene un coste real: pierde poder adquisitivo cada año. La liquidez para imprevistos no es tenerlo todo parado.",
     content: `## "Prefiero tenerlo todo en el banco, por si acaso"
 
 "Prefiero tenerlo todo en el banco, por si acaso." Es la frase que más veces escucho en una primera auditoría con un autónomo. Y es, casi siempre, la decisión que más dinero le está costando sin que se dé cuenta.

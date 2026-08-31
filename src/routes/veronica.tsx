@@ -629,7 +629,7 @@ function Services() {
                       <a
                         className="mt-6 inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[var(--jch-cta)] hover:text-[var(--jch-ink)] transition-colors"
                         href="#contact"
-                        onClick={() => trackEvent("cta_legal")}
+                        onClick={() => trackEvent("cta_legal", { section: "services", cta: s.title })}
                       >
                         Cuéntanos tu caso <Icon name="arrow_forward" className="text-base" />
                       </a>
@@ -660,7 +660,7 @@ function Method() {
                   <div className="flex gap-8">
                     <span className="text-3xl font-black text-[var(--jch-accent-ink)]">{m.n}</span>
                     <div>
-                      <h4 className="text-xl font-bold mb-2 uppercase tracking-tight">{m.title}</h4>
+                      <h3 className="text-xl font-bold mb-2 uppercase tracking-tight">{m.title}</h3>
                       <p className="text-[var(--jch-muted)] leading-relaxed">{m.text}</p>
                     </div>
                   </div>

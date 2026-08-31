@@ -25,6 +25,8 @@ export const Route = createFileRoute("/administracion-fincas/presidentes")({
       { property: "og:image", content: "https://www.hilolegal.es/nosotros_cliente.webp" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Soy Presidente de una Comunidad | HiloLegal" },
+      { name: "twitter:description", content: "El apoyo que necesita cualquier presidente de comunidad." },
+      { name: "twitter:image", content: "https://www.hilolegal.es/nosotros_cliente.webp" },
     ],
     links: [{ rel: "canonical", href: "https://www.hilolegal.es/administracion-fincas/presidentes" }],
     scripts: [
@@ -43,11 +45,11 @@ export const Route = createFileRoute("/administracion-fincas/presidentes")({
             },
             {
               "@type": "FAQPage",
-              mainEntity: [
-                { "@type": "Question", name: "¿Tengo que seguir ocupándome yo de las incidencias?", acceptedAnswer: { "@type": "Answer", text: "No. Las incidencias se registran, se asignan a un responsable y se hace seguimiento hasta el cierre. Tú decides, no gestionas el día a día." } },
-                { "@type": "Question", name: "¿Quién prepara las juntas?", acceptedAnswer: { "@type": "Answer", text: "El administrador prepara el orden del día, la documentación y la convocatoria con antelación. Tú presides; el trabajo previo ya está hecho." } },
-                { "@type": "Question", name: "¿Y si soy presidente por primera vez y no sé cómo funciona esto?", acceptedAnswer: { "@type": "Answer", text: "No hace falta experiencia previa. Se explica cada paso antes de tomarlo y se acompaña en cada decisión, especialmente en los primeros meses." } },
-              ],
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
             },
           ],
         }),
@@ -124,7 +126,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function PresidentesPage() {
   useEffect(() => {
-    trackEvent("property_president_click");
+    trackEvent("property_president_click", { section: "page_view", page: "presidentes" });
   }, []);
 
   return (
@@ -267,7 +269,9 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => trackEvent("property_management_proposal_start")}
+                onClick={() =>
+                  trackEvent("property_management_proposal_start", { section: "hero", cta: "solicitar_propuesta" })
+                }
               >
                 Solicitar propuesta
               </motion.a>
@@ -437,14 +441,13 @@ function LeadForm() {
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("property_management_proposal_start");
+      trackEvent("property_management_proposal_start", { section: "formulario" });
     }
     setForm((f) => ({ ...f, [k]: e.target.value }));
   };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent("property_form_submit");
     if (!accepted) {
       setStatus("error");
       setErrorMsg("Debes aceptar la política de privacidad para continuar.");
@@ -455,7 +458,8 @@ function LeadForm() {
     try {
       await submit({ data: { ...form, topic: "Soy presidente" } });
       setStatus("ok");
-      trackEvent("property_management_proposal_submit");
+      trackEvent("property_form_submit", { section: "formulario", topic: "Soy presidente" });
+      trackEvent("property_management_proposal_submit", { section: "formulario", topic: "Soy presidente" });
       setForm({ name: "", phone: "", email: "", message: "" });
       setAccepted(false);
     } catch (err) {

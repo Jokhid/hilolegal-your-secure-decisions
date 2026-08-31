@@ -25,6 +25,8 @@ export const Route = createFileRoute("/administracion-fincas/gestion-economica-i
       { property: "og:image", content: "https://www.hilolegal.es/patrimonial.webp" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Gestión Económica e Impagos en Comunidades | HiloLegal" },
+      { name: "twitter:description", content: "Cuentas claras cada mes y un protocolo definido para los impagos." },
+      { name: "twitter:image", content: "https://www.hilolegal.es/patrimonial.webp" },
     ],
     links: [{ rel: "canonical", href: "https://www.hilolegal.es/administracion-fincas/gestion-economica-impagos" }],
     scripts: [
@@ -43,11 +45,11 @@ export const Route = createFileRoute("/administracion-fincas/gestion-economica-i
             },
             {
               "@type": "FAQPage",
-              mainEntity: [
-                { "@type": "Question", name: "¿Qué pasa con los propietarios que no pagan sus cuotas?", acceptedAnswer: { "@type": "Answer", text: "Se aplica un protocolo de seguimiento y reclamación ordenada, con comunicación constante a la presidencia y, cuando es necesario, coordinación con asesoría legal." } },
-                { "@type": "Question", name: "¿Puedo consultar las cuentas cuando quiera?", acceptedAnswer: { "@type": "Answer", text: "Sí. Las cuentas están disponibles en el portal del propietario, no solo en la junta anual." } },
-                { "@type": "Question", name: "¿Cómo se prepara el presupuesto anual?", acceptedAnswer: { "@type": "Answer", text: "Se prepara con antelación suficiente para que la junta pueda revisarlo con calma antes de aprobarlo, no el mismo día de la reunión." } },
-              ],
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
             },
           ],
         }),
@@ -124,7 +126,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function GestionEconomicaPage() {
   useEffect(() => {
-    trackEvent("property_financial_management_click");
+    trackEvent("property_financial_management_click", { section: "page_view", page: "gestion-economica-impagos" });
   }, []);
 
   return (
@@ -266,7 +268,9 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => trackEvent("property_management_proposal_start")}
+                onClick={() =>
+                  trackEvent("property_management_proposal_start", { section: "hero", cta: "solicitar_propuesta" })
+                }
               >
                 Solicitar propuesta
               </motion.a>
@@ -434,14 +438,13 @@ function LeadForm() {
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("property_management_proposal_start");
+      trackEvent("property_management_proposal_start", { section: "formulario" });
     }
     setForm((f) => ({ ...f, [k]: e.target.value }));
   };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent("property_form_submit");
     if (!accepted) {
       setStatus("error");
       setErrorMsg("Debes aceptar la política de privacidad para continuar.");
@@ -452,7 +455,8 @@ function LeadForm() {
     try {
       await submit({ data: { ...form, topic: "Gestión económica-impagos" } });
       setStatus("ok");
-      trackEvent("property_management_proposal_submit");
+      trackEvent("property_form_submit", { section: "formulario", topic: "Gestión económica-impagos" });
+      trackEvent("property_management_proposal_submit", { section: "formulario", topic: "Gestión económica-impagos" });
       setForm({ name: "", phone: "", email: "", message: "" });
       setAccepted(false);
     } catch (err) {

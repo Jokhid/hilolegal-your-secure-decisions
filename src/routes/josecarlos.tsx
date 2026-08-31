@@ -643,7 +643,7 @@ function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
                 }}
               >
                 <div className="portal-card__art">
-                  <img src={IMG(p.img)} alt="" loading="lazy" />
+                  <img src={IMG(p.img)} alt={p.title} loading="lazy" />
                 </div>
                 <div className="portal-card__body">
                   <span className="portal-card__number">{p.n}</span>

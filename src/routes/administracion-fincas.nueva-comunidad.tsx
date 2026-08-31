@@ -25,6 +25,8 @@ export const Route = createFileRoute("/administracion-fincas/nueva-comunidad")({
       { property: "og:image", content: "https://www.hilolegal.es/jc-service-fincas.webp" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Administración de Fincas para Nuevas Comunidades | HiloLegal" },
+      { name: "twitter:description", content: "Desde la primera junta: constitución, presupuestos y puesta en marcha." },
+      { name: "twitter:image", content: "https://www.hilolegal.es/jc-service-fincas.webp" },
     ],
     links: [{ rel: "canonical", href: "https://www.hilolegal.es/administracion-fincas/nueva-comunidad" }],
     scripts: [
@@ -43,11 +45,11 @@ export const Route = createFileRoute("/administracion-fincas/nueva-comunidad")({
             },
             {
               "@type": "FAQPage",
-              mainEntity: [
-                { "@type": "Question", name: "¿Cuándo hay que contactar con un administrador si la promoción es nueva?", acceptedAnswer: { "@type": "Answer", text: "Cuanto antes, idealmente antes de la primera junta constitutiva, para llegar con el proceso ya preparado y evitar decisiones improvisadas." } },
-                { "@type": "Question", name: "¿Qué hace falta para constituir la comunidad?", acceptedAnswer: { "@type": "Answer", text: "Celebrar la junta constitutiva, aprobar los estatutos si los hay, nombrar presidente y aprobar un primer presupuesto. Se acompaña en cada uno de estos pasos." } },
-                { "@type": "Question", name: "¿Se puede empezar con pocos propietarios instalados?", acceptedAnswer: { "@type": "Answer", text: "Sí. Es habitual constituir la comunidad con parte de las viviendas aún sin entregar. El presupuesto y las cuotas se ajustan según van entrando los propietarios." } },
-              ],
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
             },
           ],
         }),
@@ -124,7 +126,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function NuevaComunidadPage() {
   useEffect(() => {
-    trackEvent("property_new_community_click");
+    trackEvent("property_new_community_click", { section: "page_view", page: "nueva-comunidad" });
   }, []);
 
   return (
@@ -267,7 +269,9 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => trackEvent("property_management_proposal_start")}
+                onClick={() =>
+                  trackEvent("property_management_proposal_start", { section: "hero", cta: "solicitar_propuesta" })
+                }
               >
                 Solicitar propuesta
               </motion.a>
@@ -435,14 +439,13 @@ function LeadForm() {
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("property_management_proposal_start");
+      trackEvent("property_management_proposal_start", { section: "formulario" });
     }
     setForm((f) => ({ ...f, [k]: e.target.value }));
   };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent("property_form_submit");
     if (!accepted) {
       setStatus("error");
       setErrorMsg("Debes aceptar la política de privacidad para continuar.");
@@ -453,7 +456,8 @@ function LeadForm() {
     try {
       await submit({ data: { ...form, topic: "Nueva comunidad" } });
       setStatus("ok");
-      trackEvent("property_management_proposal_submit");
+      trackEvent("property_form_submit", { section: "formulario", topic: "Nueva comunidad" });
+      trackEvent("property_management_proposal_submit", { section: "formulario", topic: "Nueva comunidad" });
       setForm({ name: "", phone: "", email: "", message: "" });
       setAccepted(false);
     } catch (err) {

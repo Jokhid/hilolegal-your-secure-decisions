@@ -27,6 +27,8 @@ export const Route = createFileRoute("/administracion-fincas/")({
       { property: "og:locale", content: "es_ES" },
       { property: "og:site_name", content: "HiloLegal" },
       { property: "og:image", content: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp" },
+      { property: "og:image:width", content: "1536" },
+      { property: "og:image:height", content: "1024" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Administración de Fincas en Altea y Marina Baixa | HiloLegal" },
       { name: "twitter:description", content: "Gestión económica, incidencias, juntas y comunicación directa con la presidencia." },
@@ -203,7 +205,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 
 function AdministracionFincasPage() {
   useEffect(() => {
-    trackEvent("property_management_view");
+    trackEvent("property_management_view", { page: "administracion-fincas" });
   }, []);
 
   return (
@@ -420,7 +422,9 @@ function Hero() {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => trackEvent("property_management_proposal_start")}
+                onClick={() =>
+                  trackEvent("property_management_proposal_start", { section: "hero", cta: "solicitar_propuesta" })
+                }
               >
                 Solicitar propuesta
               </motion.a>
@@ -502,7 +506,13 @@ function BloquePresidente() {
             <Link
               to="/administracion-fincas/presidentes"
               className="duo-block__cta"
-              onClick={() => trackEvent("property_president_click")}
+              onClick={() =>
+                trackEvent("property_president_click", {
+                  section: "bloque_presidente",
+                  cta: "soy_presidente_de_una_comunidad",
+                  destination: "/administracion-fincas/presidentes",
+                })
+              }
             >
               Soy presidente de una comunidad <span aria-hidden="true">→</span>
             </Link>
@@ -623,7 +633,13 @@ function GestionEconomica() {
           <Link
             to="/administracion-fincas/gestion-economica-impagos"
             className="fincas-block__cta"
-            onClick={() => trackEvent("property_financial_management_click")}
+            onClick={() =>
+              trackEvent("property_financial_management_click", {
+                section: "gestion_economica",
+                cta: "ver_gestion_economica_e_impagos",
+                destination: "/administracion-fincas/gestion-economica-impagos",
+              })
+            }
           >
             Ver gestión económica e impagos <span aria-hidden="true">→</span>
           </Link>
@@ -748,10 +764,16 @@ function CuatroNecesidades() {
               <Link
                 to={item.href}
                 className="portal-card"
-                onClick={() => trackEvent(item.event)}
+                onClick={() =>
+                  trackEvent(item.event, {
+                    section: "cuatro_necesidades",
+                    cta: item.title,
+                    destination: item.href,
+                  })
+                }
               >
                 <div className="portal-card__art">
-                  <img src={item.img} alt="" loading="lazy" />
+                  <img src={item.img} alt={item.title} loading="lazy" />
                 </div>
                 <div className="portal-card__body">
                   <span className="portal-card__number">{item.n}</span>
@@ -902,14 +924,13 @@ function PropertyLeadForm() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       if (!startedRef.current) {
         startedRef.current = true;
-        trackEvent("property_management_proposal_start");
+        trackEvent("property_management_proposal_start", { section: "formulario" });
       }
       setForm((f) => ({ ...f, [k]: e.target.value }));
     };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    trackEvent("property_form_submit");
     if (!accepted) {
       setStatus("error");
       setErrorMsg("Debes aceptar la política de privacidad para continuar.");
@@ -933,7 +954,8 @@ function PropertyLeadForm() {
     try {
       await submit({ data: payload });
       setStatus("ok");
-      trackEvent("property_management_proposal_submit");
+      trackEvent("property_form_submit", { section: "formulario", topic: form.topic });
+      trackEvent("property_management_proposal_submit", { section: "formulario", topic: form.topic });
       setForm({ name: "", phone: "", email: "", locality: "", units: "", topic: "Buscamos nuevo administrador", message: "" });
       setAccepted(false);
     } catch (err) {

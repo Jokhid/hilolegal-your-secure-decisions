@@ -45,7 +45,7 @@ export const Route = createFileRoute("/blog/$slug")({
                   name: "HiloLegal",
                   logo: {
                     "@type": "ImageObject",
-                    url: "https://hilolegal.es/logo.png",
+                    url: "https://www.hilolegal.es/logo.png",
                   },
                 },
                 mainEntityOfPage: url,

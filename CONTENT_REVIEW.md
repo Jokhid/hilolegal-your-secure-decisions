@@ -111,6 +111,37 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 
 ---
 
+## 10. Auditoría completa del sitio (31/08/2026) — corrección de los 15 hallazgos
+
+**Contexto**: auditoría técnica y editorial de todo el dominio (home + 8 rutas + 25 posts + páginas legales estáticas), realizada con 3 agentes de exploración en paralelo más revisión directa. Los 15 hallazgos se corrigieron en la misma sesión.
+
+**Críticos**:
+- `public/privacidad.html`: el email de ejercicio de derechos RGPD tenía un typo (`info@hilogal.es`, sin la "e") — corregido a `info@hilolegal.es`. Estaba enlazado desde el footer de las 8 páginas, el banner de cookies y los 6 formularios.
+- `public/privacidad.html` y `public/terminos.html`: reescritas — dirección actualizada (Calle Calitx 9 → Calle Regata 3, 1º E, Altea), responsable ampliado a José Carlos Hidalgo Ortega **y** Verónica López Ramón (antes solo mencionaba a José Carlos), alcance ampliado a los 3 servicios (antes solo "planificación financiera"), restilizadas para no desentonar visualmente con el resto del sitio. Fecha de actualización: 31/08/2026.
+
+**SEO técnico**:
+- FAQPage del JSON-LD en las 4 subpáginas de fincas: generado ahora desde `faqs.map(...)` (como el resto del sitio) en vez de estar tecleado a mano — ya no falta ninguna pregunta.
+- `blog.$slug.tsx`: `publisher.logo.url` corregido a `https://www.hilolegal.es/...` (antes sin www).
+- `blog.index.tsx`: añadidos og:image/og:locale/og:site_name/twitter:*/BreadcrumbList — antes no tenía ninguno.
+- `sitemap[.]xml.ts`: `/josecarlos/` y `/veronica/` corregidos a sin barra final (antes redirigían con 307).
+- `administracion-fincas.index.tsx`: añadidas dimensiones de `og:image`. Las 4 subpáginas: añadidos `twitter:description`/`twitter:image` que faltaban.
+- 19 de 25 `metaDescription` del blog recortadas a ≤160 caracteres (destacaba `preparar-perfil-financiero-hipoteca-2026` con 211).
+
+**Analítica**:
+- Los 5 formularios de Administración de Fincas: `property_form_submit` ya no se dispara antes de validar — ahora se dispara junto a `property_management_proposal_submit`, solo tras éxito real, igual que el resto del sitio.
+- Añadidos parámetros de contexto (`section`/`cta`/`page`) a todos los `trackEvent` de los 5 archivos de fincas y al `cta_legal` de los 6 acordeones de Verónica — antes eventos idénticos disparados desde botones distintos eran indistinguibles en analítica.
+
+**Accesibilidad**:
+- `veronica.tsx`: salto de encabezado h2→h4 corregido a h2→h3 en `Method()`.
+- `josecarlos.tsx` (TresPilares) y `administracion-fincas.index.tsx` (CuatroNecesidades): `alt=""` sustituido por texto descriptivo en imágenes de tarjetas de servicio.
+- `preparar-perfil-financiero-hipoteca-2026`: `readingTime` corregido de "7 min" a "15 min" (1.329 palabras reales al ritmo del resto del sitio).
+
+**Contenido editorial**: añadidas fuentes reales (Consejo General del Poder Judicial, Ministerio de Justicia, BOE, Agencia Tributaria, Nationale-Nederlanden España) y `updatedAt` a los 5 posts que las tenían pendientes: `custodia-compartida-que-valora-un-juez`, `pension-de-alimentos-como-se-calcula`, `cancelacion-antecedentes-penales`, `desahucios-cuanto-tarda-y-errores`, `contigo-senior-nationale-nederlanden`.
+
+**Nada inventado**: ninguna cifra, fuente o dato nuevo se ha creado — todas las fuentes citadas son organismos oficiales reales (enlazando a su home pública) o el sitio oficial del propio producto (Nationale-Nederlanden).
+
+---
+
 ## Cómo usar este documento
 
 Cuando confirmes o corrijas cada punto, dímelo y lo actualizo en el código. No voy a tocar ninguna de estas frases por mi cuenta — son afirmaciones de producto/negocio, no de diseño o código.
