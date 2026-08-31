@@ -635,7 +635,7 @@ function GestionEconomica() {
 
 function Incidencias() {
   const items = [
-    { v: "24–48h", l: "Tiempo de respuesta ante un aviso" },
+    { v: "Cada aviso registrado", l: "Con responsable y seguimiento desde el primer momento" },
     { v: "Un responsable", l: "Asignado a cada incidencia abierta" },
     { v: "Hasta el cierre", l: "Seguimiento hasta la resolución" },
   ];
@@ -695,7 +695,7 @@ const necesidades = [
   {
     n: "01",
     title: "Cambio de administrador",
-    kicker: "Sin roturas ni sorpresas",
+    kicker: "Un cambio ordenado, sin interrupciones innecesarias",
     text: "Si la comunidad no está contenta con el administrador actual, el cambio se puede hacer de forma ordenada y sin interrupciones en el servicio.",
     img: "/fincas.webp",
     href: "/administracion-fincas/cambio-administrador" as const,

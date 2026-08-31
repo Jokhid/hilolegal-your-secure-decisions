@@ -4,6 +4,12 @@
 // las secciones de contenido destacado en cada página.
 export type BlogService = "josecarlos" | "veronica" | "fincas";
 
+// Fuente oficial citada al final de un artículo (BOE, Banco de España, Seguridad
+// Social, AEAT, INE...). Solo se añade cuando el contenido usa realmente esa
+// fuente — no se rellena por defecto ni se inventan enlaces profundos, se enlaza
+// siempre a la home oficial del organismo.
+export type ArticleSource = { label: string; url: string };
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -14,6 +20,10 @@ export type BlogPost = {
   keyword: string;
   content: string;
   service: BlogService;
+  sources?: ArticleSource[];
+  // Fecha real de última revisión de contenido (no la fecha de publicación).
+  // Solo se rellena cuando el artículo ha sido efectivamente revisado.
+  updatedAt?: string;
 };
 
 // Metadatos compartidos por servicio — usados por el filtro de /blog, el
@@ -42,6 +52,50 @@ export const SERVICE_META: Record<
     contactPath: "/administracion-fincas",
   },
 };
+
+// Taxonomía visible del blog — más granular que "service" (que solo decide
+// autor/página de contacto). Se deriva del campo `category`, ya existente
+// en cada post, así que no hace falta anotar los 25 posts uno a uno ni
+// cambiar sus slugs. Añade aquí la entrada correspondiente si se crea un
+// post con una `category` nueva que no encaje en el mapa.
+export type BlogTopic = "legal" | "hipotecas" | "patrimonio" | "autonomos" | "comunidades";
+
+export const TOPIC_LABEL: Record<BlogTopic, string> = {
+  legal: "Legal",
+  hipotecas: "Hipotecas",
+  patrimonio: "Patrimonio",
+  autonomos: "Autónomos",
+  comunidades: "Comunidades",
+};
+
+const CATEGORY_TOPIC_MAP: Record<string, BlogTopic> = {
+  "Derecho de familia": "legal",
+  "Responsabilidad civil": "legal",
+  "Sucesiones y herencias": "legal",
+  "Arrendamientos": "legal",
+  "Derecho penal": "legal",
+  "Derecho civil": "legal",
+  "Hipotecas": "hipotecas",
+  "Ahorro e inversión": "patrimonio",
+  "Planificación financiera": "patrimonio",
+  "Planificación de jubilación": "patrimonio",
+  "Educación financiera": "patrimonio",
+  "Seguros": "patrimonio",
+  "Protección y seguros": "autonomos",
+  "Ahorro para autónomos": "autonomos",
+  "Finanzas para autónomos": "autonomos",
+  "Protección para autónomos": "autonomos",
+  "Convivencia y gestión": "comunidades",
+  "Normativa de comunidades": "comunidades",
+  "Administración de fincas": "comunidades",
+};
+
+export function topicOf(post: Pick<BlogPost, "category" | "service">): BlogTopic {
+  return (
+    CATEGORY_TOPIC_MAP[post.category] ??
+    (post.service === "veronica" ? "legal" : post.service === "fincas" ? "comunidades" : "patrimonio")
+  );
+}
 
 const financialPosts: Omit<BlogPost, "service">[] = [
   {
@@ -82,7 +136,8 @@ Los bancos remuneran muchas cuentas entre el 0 % y el 1 % anual. La inflación m
 
 ## Qué alternativas existen
 
-- Seguros de ahorro con rentabilidad garantizada (como el SIALP), hasta el 110 % del capital aportado.
+- Seguros de ahorro a largo plazo con garantía creciente (como el SIALP), que puede llegar al 85 % del valor más alto alcanzado por la inversión, según el producto y sus condiciones concretas.
+- Planes garantizados de inversión con garantía entre el 95 % y el 110 % del capital aportado, disponibles en productos específicos y sujetos a las condiciones de cada entidad.
 - Fondos de inversión con diferentes perfiles de riesgo.
 - Planes de pensiones con ventajas fiscales para tipos altos.
 - Carteras gestionadas con criterios ASG.
@@ -92,6 +147,8 @@ Los bancos remuneran muchas cuentas entre el 0 % y el 1 % anual. La inflación m
 No es si puedes ahorrar. La pregunta correcta es: ¿lo que estás haciendo hoy realmente es ahorrar?
 
 **¿Quieres saber exactamente cuánto te está costando tener tu dinero parado? Escríbeme y lo calculamos juntos. El diagnóstico es gratuito.**`,
+    sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "que-pasaria-con-tu-familia-si-no-pudieras-trabajar",
@@ -107,9 +164,11 @@ No es si puedes ahorrar. La pregunta correcta es: ¿lo que estás haciendo hoy r
 
 No hablo de muerte —aunque también hay que planificarlo. Hablo de algo más probable: una baja médica larga, un accidente, una incapacidad temporal o permanente.
 
-## Lo que el sistema público no te cubre
+## Qué cobraría un autónomo durante una incapacidad temporal por contingencias comunes
 
-En España, la cobertura pública para un autónomo con base de cotización media funciona así:
+Esto aplica a una baja por enfermedad común o accidente no laboral, que es el escenario más habitual. Si tienes cubiertas las contingencias profesionales (accidente de trabajo o enfermedad profesional), el cálculo y los plazos son distintos y conviene revisarlos aparte con tu mutua.
+
+En contingencias comunes, la cobertura pública para un autónomo con base de cotización media funciona, según la Seguridad Social, así:
 
 - Días 1 al 3: cobras 0 €.
 - Días 4 al 20: cobras el 60 % de tu base de cotización (no de tus ingresos reales).
@@ -139,6 +198,8 @@ El objetivo no es contratar más productos. Es tener respuesta a esa pregunta in
 > La mayoría de las personas no planean fracasar. Simplemente fracasan en planear.
 
 **Si quieres revisar juntos si tienes esa respuesta clara, escríbeme. La primera conversación no cuesta nada.**`,
+    sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "prevision-financiera-vision",
@@ -162,7 +223,7 @@ Las facturas, los hijos, el trabajo. El día a día consume toda la energía y e
 
 Aseguramos la casa, el coche y el móvil. Pero muy pocos aseguran su activo más valioso: su capacidad de generar ingresos.
 
-Para la mayoría de autónomos en España, la respuesta honesta a "¿cuánto aguantarías sin ingresos?" es: menos de tres meses.
+Para muchos autónomos, la respuesta honesta a "¿cuánto aguantarías sin ingresos?" es bastante menos tiempo del que les gustaría admitir.
 
 ## Los pilares de una previsión bien construida
 
@@ -246,7 +307,7 @@ Si tienes 6 meses de gastos en cuenta como reserva, tiene sentido. Si tienes 50.
 
 ## Las alternativas no son solo para grandes patrimonios
 
-- **SIALP**: aportación mínima desde cantidades pequeñas, exención fiscal total a partir de 5 años y garantía de capital.
+- **SIALP**: aportación desde cantidades pequeñas, con posible exención fiscal de los rendimientos a partir de 5 años si se cumplen los requisitos legales, y garantía de capital según el producto.
 - **Fondos de inversión**: empiezas con poco capital, son líquidos y tienen perfiles desde conservador a más agresivo.
 - **PPES (Plan de Pensiones de Empleo Simplificado)**: hasta 4.250 € adicionales con desgravación fiscal directa en IRPF.
 - **Carteras gestionadas**: diversificación sin gestión activa por tu parte.
@@ -258,18 +319,20 @@ Un autónomo que ha cotizado por la base mínima tiene derecho a una pensión p�
 ## ¿Cuánto dinero tienes parado ahora mismo sin trabajar para ti?
 
 > Soy especialista en ahorro para autónomos en Altea, Benidorm y la Costa Blanca. Escríbeme y analizamos tu situación real.`,
+    sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "sialp-2026-ahorro-sin-impuestos",
-    title: "SIALP 2026: el producto de ahorro sin impuestos que el Gobierno quiere relanzar",
+    title: "SIALP 2026: el producto de ahorro a largo plazo que el Gobierno quiere relanzar",
     category: "Ahorro e inversión",
     readingTime: "6 min",
     keyword: "qué es un SIALP",
-    excerpt: "Un seguro de ahorro a largo plazo con exención fiscal total si mantienes el dinero 5 años. Cómo funciona y por qué interesa.",
-    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con exención fiscal total si mantienes el dinero 5 años. El Gobierno planea relanzarlo en 2026.",
+    excerpt: "Un seguro de ahorro a largo plazo con un régimen fiscal específico: puede permitir la exención de los rendimientos si se cumplen los requisitos legales. Cómo funciona y por qué interesa.",
+    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con un régimen fiscal específico, sujeto al cumplimiento de los requisitos legales vigentes. El Gobierno planea relanzarlo en 2026.",
     content: `## ¿Qué es un SIALP?
 
-El SIALP —Seguro Individual de Ahorro a Largo Plazo— es un producto de ahorro con una característica fiscal única en España: si mantienes el dinero invertido durante al menos cinco años, los rendimientos están completamente exentos de tributación.
+El SIALP —Seguro Individual de Ahorro a Largo Plazo— es una modalidad de ahorro que puede permitir la exención fiscal de los rendimientos positivos cuando se cumplen los requisitos establecidos legalmente, entre ellos mantener el dinero invertido un mínimo de cinco años. La fiscalidad depende del cumplimiento de esos requisitos y de la normativa vigente en cada momento (puedes consultarla en la Agencia Tributaria).
 
 ## Por qué el SIALP vuelve al foco en 2026
 
@@ -310,6 +373,8 @@ Pionero en invertir con criterios ambientales, sociales y de buen gobierno.
 - Personas que buscan rentabilidad neta real sin riesgo elevado.
 
 **¿Tienes dudas sobre si el SIALP encaja en tu situación? Escríbeme y te lo explico en menos de 15 minutos.**`,
+    sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }, { label: "BOE", url: "https://www.boe.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "educacion-financiera-lo-que-el-colegio-no-te-enseno",
@@ -345,7 +410,7 @@ Si tu dinero no crece al menos al ritmo de la inflación, cada año vale menos. 
 
 ## Lo que pasa cuando no sabes cómo funciona el dinero
 
-> Si no sabes cómo funciona el dinero, alguien más estará ganándolo con el tuyo.
+> Cuanto menos entiendes cómo funciona el dinero, más difícil es distinguir qué producto encaja contigo y cuál solo conviene a quien te lo vende.
 
 El banco te ofrece el producto que más le conviene a él. El gestor te vende el fondo con mayor comisión. La hipoteca tiene condiciones que no comparaste porque no sabías qué comparar.
 
@@ -380,9 +445,9 @@ Reduces tu base imponible del IRPF hoy, pero pagas impuestos cuando rescatas. La
 
 Al rescatar el plan, tributarás por el 100 % del capital acumulado como rendimiento del trabajo. Y está bloqueado: solo lo rescatas en jubilación, incapacidad, enfermedad grave, desempleo de larga duración o cuando hayan pasado más de 10 años desde la aportación.
 
-## El SIALP: el libre de impuestos
+## El SIALP: un régimen fiscal específico
 
-No desgravas al aportar, pero si mantienes el dinero al menos 5 años, los rendimientos quedan exentos.
+No desgravas al aportar, pero si mantienes el dinero al menos 5 años y se cumplen los requisitos legales, los rendimientos pueden quedar exentos según la normativa vigente.
 
 ### Límites 2026
 
@@ -409,6 +474,8 @@ No desgravas al aportar, pero si mantienes el dinero al menos 5 años, los rendi
 No hay un producto universalmente mejor. Hay una estrategia correcta para cada situación.
 
 **Escríbeme y en 5 minutos te digo cuál te conviene realmente en tu situación. Sin jerga financiera.**`,
+    sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "flujo-caja-vs-riqueza-real-autonomo",
@@ -432,7 +499,7 @@ La **riqueza real** es la diferencia entre lo que tienes (activos) y lo que debe
 
 Un autónomo puede tener flujo excelente y al mismo tiempo riqueza real muy baja si el dinero entra y sale a la misma velocidad sin acumular patrimonio.
 
-> Si el dinero entra y sale a la misma velocidad, no tienes un negocio consolidado. Tienes un empleo mal pagado con más riesgo y sin jefe que te cubra la baja.
+> Si el dinero entra y sale a la misma velocidad, no tienes un negocio consolidado. Tienes ingresos por tu trabajo, sin el colchón que da tener patrimonio detrás.
 
 ## La pregunta incómoda
 
@@ -444,9 +511,9 @@ Un autónomo puede tener flujo excelente y al mismo tiempo riqueza real muy baja
 2. **Acumular patrimonio sistemáticamente**: un porcentaje fijo de ingresos a un vehículo de ahorro, independientemente del mes.
 3. **Planificar la jubilación desde hoy**: cuanto antes empieces, más trabaja el interés compuesto a tu favor.
 
-## El momento de actuar es ahora
+## Conviene revisarlo antes de que se convierta en un problema
 
-No cuando el negocio vaya mejor. No cuando tengas más tiempo. Ahora.
+Cuanto antes se ordena esta diferencia entre flujo de caja y patrimonio real, menos cuesta corregirla.
 
 **Si quieres revisar tu arquitectura financiera como autónomo, escríbeme. La primera consulta es gratuita.**`,
   },
@@ -466,7 +533,9 @@ Muchos profesionales autónomos vivimos con ingresos medios o altos pero cuota b
 
 Supongamos rendimiento neto mensual de 5.000 €. Según las tablas 2026, te corresponde el tramo de 4.050 € – 6.000 €. Tu base mínima obligatoria: ~1.732 €. Cuota mensual: ~545 €.
 
-Si sufres un accidente o enfermedad que te deja fuera un mes:
+Este cálculo corresponde a una baja por **contingencias comunes** (enfermedad común o accidente no laboral), según las reglas de la Seguridad Social. Si la baja es por accidente de trabajo o enfermedad profesional, el cálculo y los plazos son distintos.
+
+Si sufres una enfermedad común que te deja fuera un mes:
 
 - **Días 1 a 3**: 0 €. Período de carencia.
 - **Días 4 a 20**: ~34 €/día (60 % base). Unos 578 € en 17 días.
@@ -493,6 +562,8 @@ Pasarías de vivir con 5.000 € al mes a recibir una pensión de aproximadament
 Lo que sí puedes controlar es tu patrimonio privado, tu cobertura complementaria y tu estrategia de ahorro. Eso nadie te lo quita.
 
 **Si quieres calcular cuánto cobrarías de baja y cuánto perderías en la jubilación con tu situación actual, escríbeme.**`,
+    sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "jubilacion-en-espana",
@@ -512,7 +583,7 @@ No es metáfora. Es una noticia publicada en *El Economista* en abril de 2025.
 
 Susana no hizo nada mal. El problema es estructural:
 
-- El sistema público de pensiones en España está diseñado para no dejarte en la calle, no para mantener tu nivel de vida.
+- La pensión pública no garantiza necesariamente mantener el mismo nivel de ingresos que tenías antes de jubilarte.
 - La pensión media en 2025 ronda los 1.300 € mensuales. Para quienes cotizaron por bases bajas, mucho menos.
 - La inflación erosiona el poder adquisitivo año a año, pese a revalorizaciones.
 - Las personas que no construyeron patrimonio privado dependen al 100 % del Estado.
@@ -535,6 +606,8 @@ Si hoy vives con 3.000 € al mes y quieres mantener ese nivel durante 20 años,
 No es imposible. Pero requiere empezar hoy, no a los 60.
 
 **Si quieres calcular tu brecha de jubilación y construir un plan real para cubrirla, escríbeme. Lo hacemos juntos.**`,
+    sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
   {
     slug: "preparar-perfil-financiero-hipoteca-2026",
@@ -560,7 +633,7 @@ Hoy los bancos no aprueban hipotecas por empatía ni por la relación con el dir
 
 Este es el punto que más sorprende a mis clientes. Creen que un buen sueldo compensa cualquier imperfección en su historial. No es así.
 
-El sistema de scoring bancario analiza tu comportamiento de pago con una precisión que va más allá de lo que la mayoría imagina. Un retraso puntual en el pago de un recibo de luz, una letra que se devolvió aunque fuera por un error bancario, un préstamo pequeño pagado con retraso hace años... cualquiera de estos elementos puede activar una señal de alerta que bloquee tu expediente de forma automática.
+Los sistemas de scoring bancario analizan tu comportamiento de pago con una precisión que va más allá de lo que la mayoría imagina. Un retraso puntual en el pago de un recibo de luz, una letra que se devolvió aunque fuera por un error bancario, un préstamo pequeño pagado con retraso hace años... cualquiera de estos elementos puede generar una señal de alerta que complique la aprobación del expediente, dependiendo de la entidad y del resto de tu perfil.
 
 Para el algoritmo, pagar mal o tarde tiene solo dos interpretaciones posibles: que tu economía está ajustada o que tienes mala disciplina financiera. Ninguna de las dos es una buena carta de presentación ante un banco que va a prestarte cientos de miles de euros.
 
@@ -573,7 +646,7 @@ Los analistas de riesgos no se limitan a mirar el neto que cobras a final de mes
 Dos elementos concretos que disparan alarmas inmediatas:
 
 - **Anticipos de sueldo:** si has pedido un anticipo a tu empresa, el banco lo interpreta como que vas económicamente muy ajustado ante cualquier imprevisto. Es una señal de vulnerabilidad financiera que puede pesar mucho en la decisión.
-- **Embargos en nómina:** cualquier embargo reflejado en tu nómina —incluso por algo aparentemente menor como una multa de tráfico no pagada— es una línea roja absoluta. Bloquea el expediente y puede dejarte marcado en el sistema durante años.
+- **Embargos en nómina:** cualquier embargo reflejado en tu nómina —incluso por algo aparentemente menor como una multa de tráfico no pagada— suele ser un factor muy negativo para la mayoría de entidades, y puede complicar seriamente la operación.
 
 La recomendación es clara: durante los seis meses previos a solicitar una hipoteca, mantén una nómina limpia, sin movimientos que puedan interpretarse como señales de tensión económica.
 
@@ -621,7 +694,7 @@ Los profesionales que tributan por módulos (taxistas, comerciantes, agricultore
 
 ### Autónomos societarios
 
-Muchos socios o gerentes creen que, al asignarse una nómina mensual, el banco los tratará como empleados. Es un error. Para los analistas, sigues siendo autónomo: la exigencia es un mínimo de tres años de antigüedad continuada al frente de tu empresa, con cuentas anuales que demuestren estabilidad y capacidad de pago sostenida.
+Muchos socios o gerentes creen que, al asignarse una nómina mensual, el banco los tratará como empleados. No suele ser así: para la mayoría de analistas, sigues siendo autónomo a efectos de la operación, y algunas entidades pueden exigir una trayectoria más larga al frente de tu empresa —a menudo en torno a tres años—, con cuentas anuales que demuestren estabilidad y capacidad de pago sostenida.
 
 ## El paso previo que todo comprador inteligente da primero
 
@@ -632,6 +705,8 @@ Ese diagnóstico te dirá tres cosas: cuánto puedes pedir, a qué condiciones p
 > Un comprador informado no pierde el tiempo con viviendas o bancos que no encajan con su perfil. Llega a las negociaciones con ventaja.
 
 **¿Quieres saber si tu perfil está listo para una hipoteca en 2026? Escríbeme y hacemos juntos ese diagnóstico previo. Es gratuito, sin compromiso y puede ahorrarte meses de proceso.**`,
+    sources: [{ label: "Banco de España", url: "https://www.bde.es" }],
+    updatedAt: "31 de agosto de 2026",
   },
 ];
 

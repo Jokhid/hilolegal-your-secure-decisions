@@ -124,10 +124,10 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "La Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.      \n\n\nHe dirigido esa maquinaria por dentro, conozco cómo se instruyen los expedientes, cómo interpretan los técnicos la normativa y dónde se sitúan los márgenes legales que no aparecen en los manuales." },
-  { icon: "gavel", title: "Derecho civil y de familia", text: "Las decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.     \n\n\n Trabajo con absoluto rigor técnico, comunicando con honestidad las opciones reales de éxito. El valor del asesoramiento no radica en decir lo que deseas escuchar, sino en mostrar la realidad del escenario legal.\n\n\nRecibirás un análisis claro de tus opciones y, si decides seguir adelante, representación completa en el proceso." },
-  { icon: "home", title: "Inmobiliario y comunidades", text: "La compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.   \n \nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico.\n\n\nDesde la revisión legal previa hasta la reclamación judicial, con un único interlocutor en todo el proceso." },
-  { icon: "balance", title: "Derecho penal", text: "Un procedimiento penal representa el escenario más exigente para la reputación y viabilidad de una empresa o un particular. Requiere una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.    \n\n\nOfrezco asistencia letrada con absoluta transparencia sobre las expectativas reales del caso. Defensa y representación en procedimientos penales. \nClaridad total sobre el proceso, sin promesas que no se pueden cumplir." },
+  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "La Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.\n\n\nHe trabajado desde dentro de la Administración y conozco cómo se instruyen los expedientes y cómo interpretan los técnicos la normativa. Esa experiencia institucional permite entender aspectos prácticos del procedimiento que difícilmente se adquieren únicamente desde el estudio teórico." },
+  { icon: "gavel", title: "Derecho civil y de familia", text: "Las decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
+  { icon: "home", title: "Inmobiliario y comunidades", text: "La compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.\n\n\nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico." },
+  { icon: "balance", title: "Derecho penal", text: "Un procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada con transparencia total sobre las expectativas reales del caso, sin promesas que no se puedan cumplir." },
   { icon: "psychology", title: "Consultoría jurídica especializada", text: "Las empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley, se encuentra en los criterios de aplicación de la propia Administración.    \n\n\nHaber ocupado puestos de alta dirección en la Generalitat Valenciana me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
   { icon: "shield", title: "Estrategia jurídica preventiva", text: "Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
 ];
@@ -546,7 +546,24 @@ function Differentiation() {
           </div>
           <FadeUp delay={0.1}>
             <div className="space-y-8 text-xl text-gray-300 leading-relaxed">
-              <p>He trabajado como asesora jurídica, como parte del equipo directivo de organismos públicos autonómicos y locales y como profesora universitaria. Eso significa que cuando tienes un problema con la Administración, con un contrato, con una herencia o con cualquier asunto civil, no empiezo desde cero: entiendo cómo razona el sistema, cuándo vale la pena batallar y cuándo hay un camino más inteligente.{"\u00a0"}{"\u00a0"}{"\n\n\n"}Cuando asumo un asunto, no gestiono un expediente burocrático, evalúo una decisión con consecuencias reales. Mi objetivo es que conozcas el impacto económico y jurídico de cada escenario antes de dar el paso, eliminando la incertidumbre.</p>
+              <p>
+                Mi trayectoria combina ejercicio jurídico, docencia universitaria y
+                responsabilidades de alta dirección en la Administración Pública. Esa experiencia
+                me ha permitido conocer el Derecho desde perspectivas distintas: la defensa
+                profesional, la gestión pública, la elaboración y aplicación normativa y el
+                funcionamiento interno de las instituciones.
+              </p>
+              <p>
+                Conozco cómo se tramitan los procedimientos, cómo se construyen las decisiones
+                administrativas y qué aspectos pueden resultar determinantes cuando un asunto
+                entra en contacto con la Administración o llega a los tribunales. Ese conocimiento
+                institucional forma parte hoy de mi manera de ejercer: analizar el contexto
+                completo, anticipar escenarios y definir la estrategia jurídica más adecuada para
+                cada caso.
+              </p>
+              <p className="border-l-4 border-[#C5A566] pl-6 text-2xl font-bold text-white">
+                La experiencia desde dentro cambia la forma de ejercer el Derecho.
+              </p>
             </div>
           </FadeUp>
         </div>

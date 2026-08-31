@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
-import { blogPosts } from "@/lib/blogPosts";
+import { blogPosts, topicOf } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
@@ -272,7 +272,7 @@ const professionals = [
     img: "/9.webp",
     name: "José Carlos Hidalgo",
     area: "Área patrimonial e hipotecaria",
-    bio: "Más de 25 años de experiencia en financiación, protección, ahorro y patrimonio.",
+    bio: "Más de 25 años de trayectoria profesional, actualmente centrado en financiación, protección y planificación patrimonial.",
     cta: "Conocer a José Carlos",
     href: "/josecarlos",
   },
@@ -869,7 +869,17 @@ function Tools() {
 
 /* ---------- Contenido ---------- */
 function Content() {
-  const recent = blogPosts.slice(0, 3);
+  // Un artículo destacado por bloque (legal, hipotecas/patrimonio, comunidades) en vez de
+  // los 3 primeros del array — evita que la home se lea como un blog casi exclusivamente
+  // financiero. Si algún bloque aún no tiene artículo propio, se omite sin inventar contenido.
+  const legal = blogPosts.find((p) => topicOf(p) === "legal");
+  const patrimonial = blogPosts.find(
+    (p) => topicOf(p) === "hipotecas" || topicOf(p) === "patrimonio",
+  );
+  const comunidades = blogPosts.find((p) => topicOf(p) === "comunidades");
+  const recent = [legal, patrimonial, comunidades].filter(
+    (p): p is NonNullable<typeof p> => Boolean(p),
+  );
   return (
     <section id="contenido" className="content-block">
       <div className="content-block__inner">
@@ -1000,15 +1010,14 @@ function Contact() {
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-16 lg:grid-cols-2">
         <div className="space-y-8">
           <h2>
-            <Curtain>Hablemos sobre tu</Curtain>{" "}
+            <Curtain>Hablemos sobre</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">situación legal o financiera</span>
+              <span className="jch-accent jch-italic">lo que necesitas resolver</span>
             </Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>
-              Cuéntanos tu caso. Analizaremos tu situación para ofrecerte una hoja de ruta clara,
-              directa y adaptada a tus necesidades.
+              Cuéntanos brevemente tu situación y te indicaremos qué área de HiloLegal puede ayudarte.
             </p>
           </FadeUp>
 
@@ -1136,7 +1145,7 @@ function Contact() {
                 ? "Enviando…"
                 : status === "ok"
                   ? "¡Enviado!"
-                  : "Solicitar diagnóstico"}
+                  : "Enviar consulta"}
             </button>
 
             {status === "ok" && (

@@ -612,16 +612,13 @@ function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
     <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
       <div className="portal-block__inner">
         <div className="portal-block__heading">
-          <h2>
-            <Curtain>
-              <span className="hidden md:inline">Financiar · Proteger · Planificar</span>
-              <span className="flex md:hidden flex-col items-center text-center gap-1 w-full">
-                <span>· Financiar</span>
-                <span>· Proteger</span>
-                <span>· Planificar</span>
-              </span>
-            </Curtain>
-          </h2>
+          <h2 className="sr-only">Financiar · Proteger · Planificar</h2>
+          <div className="pilares-marquee" aria-hidden="true">
+            <div className="pilares-marquee__track">
+              <span className="pilares-marquee__item">FINANCIAR × PROTEGER × PLANIFICAR ×</span>
+              <span className="pilares-marquee__item">FINANCIAR × PROTEGER × PLANIFICAR ×</span>
+            </div>
+          </div>
           <FadeUp delay={0.1}>
             <p>Tres decisiones que están más relacionadas de lo que parecen.</p>
           </FadeUp>
@@ -936,7 +933,18 @@ function Herramientas() {
               </FadeUp>
             ) : (
               <FadeUp key={t.title}>
-                <a href={t.href} className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors" onClick={() => trackEvent(t.event!)}>
+                <a
+                  href={t.href}
+                  className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
+                  onClick={() =>
+                    trackEvent(t.event!, {
+                      source: "josecarlos",
+                      section: "herramientas",
+                      cta: t.title,
+                      destination: t.href ?? "",
+                    })
+                  }
+                >
                   <h3 className="text-xl font-bold mb-2">{t.title}</h3>
                   <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
                   <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">Abrir →</span>
@@ -1179,7 +1187,14 @@ function AdminFincasTeaser() {
         <Link
           to="/administracion-fincas"
           className="fincas-block__cta"
-          onClick={() => trackEvent("josecarlos_property_management_click")}
+          onClick={() =>
+            trackEvent("josecarlos_property_management_click", {
+              source: "josecarlos",
+              section: "fincas-teaser",
+              cta: "ir_a_administracion_de_fincas",
+              destination: "/administracion-fincas",
+            })
+          }
         >
           Ir a administración de fincas <span aria-hidden="true">→</span>
         </Link>

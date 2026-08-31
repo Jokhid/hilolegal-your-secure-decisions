@@ -250,8 +250,8 @@ function Hero() {
           </FadeUp>
           <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.08] tracking-tight text-balance">
             <WordReveal eager block delay={0.1} text="Ser presidente no debería" />
-            <WordReveal eager block delay={0.325} className="text-[var(--jch-accent-ink)]" text="significar hacer" />
-            <WordReveal eager block delay={0.46} text="de administrador gratis." />
+            <WordReveal eager block delay={0.325} className="text-[var(--jch-accent-ink)]" text="significar asumir" />
+            <WordReveal eager block delay={0.46} text="el trabajo del administrador." />
           </h1>
           <FadeUp delay={0.6}>
             <p className="hero-subtitle">
@@ -293,7 +293,7 @@ function ElPapel() {
         <div className="content-block__heading">
           <h2><Curtain>Lo que debería saber cualquier presidente.</Curtain></h2>
           <FadeUp delay={0.1}>
-            <p>Ser presidente no debería significar convertirse en administrador a tiempo parcial.</p>
+            <p>Ser presidente no debería significar asumir el trabajo del administrador.</p>
           </FadeUp>
         </div>
         <div className="content-block__grid">

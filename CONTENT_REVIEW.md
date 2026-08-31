@@ -18,13 +18,13 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 
 ---
 
-## 3. "Seguros de ahorro con rentabilidad garantizada (como el SIALP), hasta el 110 % del capital aportado."
+## 3. ~~"Seguros de ahorro con rentabilidad garantizada (como el SIALP), hasta el 110 % del capital aportado."~~ — RESUELTO (31/08/2026)
 
 **Dónde**: `src/lib/blogPosts.ts` — post `dinero-parado-en-el-banco`.
 
-**Por qué**: cifra concreta y verificable (110 % del capital aportado) sobre un producto financiero real. Si la normativa o las condiciones del SIALP cambian de aquí a que alguien lea el artículo, la cifra quedaría desactualizada.
+**Qué estaba mal**: el 110 % se atribuía al SIALP como si fuera una característica general del producto. Según aclaración explícita del cliente, ese rango (95–110 %) pertenece a un producto distinto — el Plan Garantizado de Inversión de Nationale-Nederlanden — y el SIALP tiene una garantía creciente del 85 %, no del 110 %.
 
-**Qué decidir**: confirmar que el 110 % sigue siendo correcto en la fecha de publicación/lectura, o suavizar a algo como "hasta un porcentaje del capital aportado, según condiciones vigentes".
+**Corrección aplicada**: se separó la lista de alternativas en dos entradas correctamente atribuidas: SIALP con garantía creciente del 85 % (con remisión a los otros dos posts sobre SIALP para el detalle fiscal) y, aparte, el Plan Garantizado de Inversión de Nationale-Nederlanden con su rango real (95–110 %). Se revisaron también `sialp-2026-ahorro-sin-impuestos`, `plan-de-pensiones-o-sialp` y `autonomo-ahorros-cuenta-corriente`: ninguno de los tres afirma ya "rentabilidad garantizada" ni "sin impuestos"/"exención fiscal total" como característica genérica del SIALP — se sustituyó por lenguaje que remite a que la exención depende de cumplir los requisitos legales vigentes, con fuente añadida (Agencia Tributaria, y BOE en el post que explica el régimen con más detalle). Ver [ArticleSource, componente `ArticleSources`] más abajo.
 
 ---
 
@@ -88,6 +88,26 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 - El ejemplo numérico de ahorro parado ("40.000 € durante 10 años... varios miles de euros") es una ilustración, no una cifra de rentabilidad garantizada — mismo criterio que ya aplicamos al ejemplo similar del artículo `prevision-financiera-vision` (punto 5 de este documento).
 
 **Qué decidir**: nada urgente — son afirmaciones jurídicas y financieras generales, no promesas de resultado. Si algún plazo o artículo cambia con la normativa, conviene actualizarlo en su momento.
+
+---
+
+## 9. Fase final de optimización (31/08/2026) — auditoría de rigor editorial
+
+**Contexto**: revisión "quirúrgica" de todo el proyecto para eliminar claims dudosos, tono de urgencia/miedo y afirmaciones categóricas sin fuente, sin tocar hero, áreas principales, Design System ni arquitectura de navegación.
+
+**Contenido corregido**:
+- `preparar-perfil-financiero-hipoteca-2026`: 3 frases absolutas suavizadas — scoring "de forma automática" → lenguaje de "puede", embargo como "línea roja absoluta" → matizado, autónomos societarios "mínimo de tres años" → "algunas entidades pueden exigir una trayectoria más larga...". Se añadió fuente **Banco de España** (mención de CIRBE).
+- `que-pasaria-con-tu-familia-si-no-pudieras-trabajar` y `base-minima-autonomos-baja-2026`: se añadió un párrafo que distingue contingencias comunes de accidente de trabajo/enfermedad profesional (antes conflacionados); título "Lo que el sistema público no te cubre" → "Qué cobraría un autónomo durante una incapacidad temporal por contingencias comunes". Fuente añadida: **Seguridad Social**.
+- `jubilacion-en-espana`: eliminada la frase "el sistema está diseñado para no dejarte en la calle" (o equivalente) → sustituida por "la pensión pública no garantiza necesariamente mantener el mismo nivel de ingresos". Fuente añadida: **Seguridad Social**.
+- Tono revisado (miedo/urgencia artificial → sobrio) en `flujo-caja-vs-riqueza-real-autonomo`, `educacion-financiera-lo-que-el-colegio-no-te-enseno` y `prevision-financiera-vision`.
+- Verónica (`veronica.tsx`): 2 frases de tono informal suavizadas en el área "Derecho administrativo" ("he dirigido esa maquinaria por dentro" / "márgenes legales que no aparecen en los manuales" → lenguaje profesional sin perder la experiencia real). Párrafos de Administrativo, Civil y Familia, Inmobiliario y Penal recortados (~15-25%) eliminando redundancia, sin quitar contenido SEO esencial. Se añadió el bloque "Derecho con experiencia desde dentro de las instituciones" con el copy exacto dado por el cliente. **No se enumeran cargos políticos/institucionales** en ningún punto de la página — confirmado.
+- Administración de Fincas: 3 microcorrecciones de copy ya aplicadas en rondas previas, confirmadas sin regresión ("24-48h" → "Cada aviso registrado...", "gratis"/"a tiempo parcial" → "asumir el trabajo del administrador" en las dos ubicaciones donde aparecía, "Sin roturas ni sorpresas" → "Un cambio ordenado...").
+- Home: CTA "Solicitar diagnóstico" → "Enviar consulta"; heading del contacto actualizado; cifra "25 años" de José Carlos sustituida por "Más de 25 años de trayectoria profesional..."; nueva sección de artículos destacados (1 legal + 1 patrimonial/hipotecario + 1 comunidades, sin inventar contenido).
+- Blog: nueva taxonomía visible de 5 categorías (Legal/Hipotecas/Patrimonio/Autónomos/Comunidades) derivada de la `category` ya existente de cada post — **no se tocó ningún slug ni se rompió ninguna URL**. Hero reescrito con el copy dado.
+- Nuevo componente `ArticleSources` (`src/components/ArticleSources.tsx`): muestra "Fuentes consultadas" solo cuando el post declara `sources` reales — se aplicó a los 8 posts de este bloque de auditoría, enlazando siempre a la home oficial del organismo (Agencia Tributaria, BOE, Banco de España, Seguridad Social), nunca a URLs profundas inventadas. Se añadió también `updatedAt` (fecha real de esta revisión) a esos mismos 8 posts, reflejado en el `dateModified` del JSON-LD.
+- José Carlos: nuevo marquee en bucle "Financiar × Proteger × Planificar" (texto más grande, color `#1f6f78`), sin cambiar el concepto ni el resto de la página (ya verificada en la ronda anterior: entidades separadas, FAQ, próximamente-tools ocultas). 2 eventos de analítica que no llevaban parámetros de contexto (`josecarlos_property_management_click`, evento de herramientas) se completaron con `source/section/cta/destination` para alinearlos con el resto del sistema.
+
+**Nada inventado**: ninguna estadística, fuente, testimonio, jurisprudencia o cifra nueva se ha creado en esta ronda — todas las correcciones suavizan lenguaje existente o citan organismos oficiales reales por su home pública.
 
 ---
 

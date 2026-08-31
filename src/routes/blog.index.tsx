@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { blogPosts, SERVICE_META, type BlogService } from "@/lib/blogPosts";
+import { blogPosts, topicOf, TOPIC_LABEL, type BlogTopic } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/blog/")({
@@ -11,13 +11,13 @@ export const Route = createFileRoute("/blog/")({
       {
         name: "description",
         content:
-          "Artículos sobre hipotecas, protección financiera, derecho de familia, civil y penal, y administración de fincas para familias y autónomos en Altea, Benidorm y la Costa Blanca.",
+          "Derecho, hipotecas, patrimonio y comunidades explicados con claridad. Artículos para entender antes de decidir, para familias, autónomos y comunidades de propietarios.",
       },
       { property: "og:title", content: "Blog | HiloLegal" },
       {
         property: "og:description",
         content:
-          "Financiero e hipotecas, legal y administración de fincas. Artículos prácticos sin tecnicismos.",
+          "Legal, hipotecas, patrimonio, autónomos y comunidades. Artículos prácticos sin tecnicismos.",
       },
       { property: "og:url", content: "https://www.hilolegal.es/blog" },
       { property: "og:type", content: "website" },
@@ -27,19 +27,21 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
 });
 
-const FILTERS: { key: BlogService | "all"; label: string }[] = [
+const FILTERS: { key: BlogTopic | "all"; label: string }[] = [
   { key: "all", label: "Todos" },
-  { key: "josecarlos", label: SERVICE_META.josecarlos.label },
-  { key: "veronica", label: SERVICE_META.veronica.label },
-  { key: "fincas", label: SERVICE_META.fincas.label },
+  { key: "legal", label: TOPIC_LABEL.legal },
+  { key: "hipotecas", label: TOPIC_LABEL.hipotecas },
+  { key: "patrimonio", label: TOPIC_LABEL.patrimonio },
+  { key: "autonomos", label: TOPIC_LABEL.autonomos },
+  { key: "comunidades", label: TOPIC_LABEL.comunidades },
 ];
 
 
 const WHATSAPP = "https://wa.me/34647506040";
 
 function BlogIndex() {
-  const [filter, setFilter] = useState<BlogService | "all">("all");
-  const posts = filter === "all" ? blogPosts : blogPosts.filter((p) => p.service === filter);
+  const [filter, setFilter] = useState<BlogTopic | "all">("all");
+  const posts = filter === "all" ? blogPosts : blogPosts.filter((p) => topicOf(p) === filter);
 
   return (
     <div className="blog-editorial min-h-screen">
@@ -70,15 +72,16 @@ function BlogIndex() {
 
       <main className="blog-editorial__main">
         <div className="blog-editorial__heading">
-          <span>Blog</span>
-          <h1>Decisiones claras, sin tecnicismos.</h1>
+          <span>Blog HiloLegal</span>
+          <h1>Entender antes de decidir.</h1>
           <p>
-            Artículos sobre hipotecas y finanzas, derecho civil, familia y penal, y
-            administración de fincas para familias y autónomos.
+            Derecho, hipotecas, patrimonio y comunidades explicados con claridad. Analizamos
+            cuestiones que pueden afectar a tu familia, tu vivienda, tu patrimonio o tu comunidad
+            para ayudarte a entender mejor las decisiones antes de tomarlas.
           </p>
         </div>
 
-        <div className="blog-editorial__filters" role="group" aria-label="Filtrar por servicio">
+        <div className="blog-editorial__filters" role="group" aria-label="Filtrar por categoría">
           {FILTERS.map((f) => (
             <button
               key={f.key}

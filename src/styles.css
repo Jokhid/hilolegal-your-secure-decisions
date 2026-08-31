@@ -2189,3 +2189,38 @@ footer.site-footer .brand {
   text-transform: uppercase;
   color: var(--jch-dim);
 }
+
+/* José Carlos — marquesina "Financiar × Proteger × Planificar" (Tres
+   Pilares). Bucle continuo de derecha a izquierda; la duplicación del
+   contenido dentro de __track + translateX(-50%) es lo que hace el
+   bucle imperceptible. */
+.pilares-marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+.pilares-marquee__track {
+  display: inline-flex;
+  width: max-content;
+  animation: pilares-marquee-scroll 22s linear infinite;
+}
+.pilares-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding-right: clamp(1rem, 2.5vw, 2rem);
+  color: #1f6f78;
+  font-family: "Familjen Grotesk", ui-sans-serif, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+@keyframes pilares-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pilares-marquee__track { animation: none; }
+}

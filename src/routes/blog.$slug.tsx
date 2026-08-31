@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ArticleSources } from "@/components/ArticleSources";
 import { blogPosts, findPost, SERVICE_META } from "@/lib/blogPosts";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -48,6 +49,7 @@ export const Route = createFileRoute("/blog/$slug")({
                   },
                 },
                 mainEntityOfPage: url,
+                ...(post.updatedAt ? { dateModified: post.updatedAt } : {}),
               }),
             },
           ]
@@ -203,10 +205,21 @@ function BlogPostPage() {
               {post.title}
             </h1>
             <p className="text-xl text-[#4A4A4A] leading-relaxed">{post.excerpt}</p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#6A6A6A]">
+              <span>
+                Por{" "}
+                <Link to={author.contactPath} className="font-bold text-[var(--jch-ink)] hover:text-[var(--jch-cta)] transition-colors">
+                  {author.authorName}
+                </Link>
+              </span>
+              {post.updatedAt && <span>· Revisado el {post.updatedAt}</span>}
+            </div>
             <div className="w-20 h-1 bg-[#C5A566]" />
           </div>
 
           <div className="prose-content">{renderMarkdown(post.content)}</div>
+
+          <ArticleSources sources={post.sources} />
 
           <div className="mt-16 pt-10 border-t border-[#E5E5E5]">
             <Link
