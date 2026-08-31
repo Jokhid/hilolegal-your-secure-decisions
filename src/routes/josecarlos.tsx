@@ -38,7 +38,7 @@ export const Route = createFileRoute("/josecarlos")({
       { rel: "canonical", href: "https://www.hilolegal.es/josecarlos" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=call,mail,location_on,expand_more,arrow_forward,balance,travel_explore&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=call,mail,location_on,expand_more,arrow_forward,balance,travel_explore,payments,shield,calendar_month&display=swap",
       },
     ],
     scripts: [
@@ -610,15 +610,23 @@ function Hero({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
+      <h2 className="sr-only">Financiar · Proteger · Planificar</h2>
+      <div className="pilares-marquee" aria-hidden="true">
+        <div className="pilares-marquee__track">
+          {[0, 1].map((i) => (
+            <span className="pilares-marquee__item" key={i}>
+              <span>FINANCIAR</span>
+              <Icon name="payments" />
+              <span>PROTEGER</span>
+              <Icon name="shield" />
+              <span>PLANIFICAR</span>
+              <Icon name="calendar_month" />
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="portal-block__inner">
         <div className="portal-block__heading">
-          <h2 className="sr-only">Financiar · Proteger · Planificar</h2>
-          <div className="pilares-marquee" aria-hidden="true">
-            <div className="pilares-marquee__track">
-              <span className="pilares-marquee__item">FINANCIAR × PROTEGER × PLANIFICAR ×</span>
-              <span className="pilares-marquee__item">FINANCIAR × PROTEGER × PLANIFICAR ×</span>
-            </div>
-          </div>
           <FadeUp delay={0.1}>
             <p>Tres decisiones que están más relacionadas de lo que parecen.</p>
           </FadeUp>

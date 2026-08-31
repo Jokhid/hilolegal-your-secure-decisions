@@ -2193,11 +2193,26 @@ footer.site-footer .brand {
 /* José Carlos — marquesina "Financiar × Proteger × Planificar" (Tres
    Pilares). Bucle continuo de derecha a izquierda; la duplicación del
    contenido dentro de __track + translateX(-50%) es lo que hace el
-   bucle imperceptible. */
+   bucle imperceptible. A ancho completo de página (full-bleed: rompe el
+   contenedor centrado del resto de la sección con el truco 100vw +
+   left:50% + translateX(-50%)), con colores invertidos respecto al
+   resto de la página según el tema — banda negra/ocre en modo claro,
+   banda blanca/verde en modo oscuro. Literal hex por [data-theme] (no
+   var()) porque este elemento se anima con transform y confirmamos en
+   otros sitios de este proyecto que var() se queda congelado en su
+   primer valor en elementos animados por transform/GPU — ver el
+   comentario sobre .jch-card más arriba en este archivo. */
 .pilares-marquee {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
   overflow: hidden;
-  width: 100%;
   padding: 1.5rem 0;
+  background: #ffffff;
+}
+[data-theme="light"] .pilares-marquee {
+  background: #0a0a0a;
 }
 .pilares-marquee__track {
   display: inline-flex;
@@ -2209,6 +2224,7 @@ footer.site-footer .brand {
   align-items: center;
   gap: clamp(1rem, 2.5vw, 2rem);
   padding-right: clamp(1rem, 2.5vw, 2rem);
+  padding-left: clamp(1rem, 2.5vw, 2rem);
   color: #1f6f78;
   font-family: "Familjen Grotesk", ui-sans-serif, sans-serif;
   font-weight: 600;
@@ -2216,6 +2232,12 @@ footer.site-footer .brand {
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.01em;
+}
+[data-theme="light"] .pilares-marquee__item {
+  color: #C5A566;
+}
+.pilares-marquee__item .material-symbols-outlined {
+  font-size: 0.55em;
 }
 @keyframes pilares-marquee-scroll {
   from { transform: translateX(0); }
