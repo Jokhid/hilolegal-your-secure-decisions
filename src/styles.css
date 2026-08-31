@@ -1429,7 +1429,8 @@ footer.site-footer .brand {
 }
 
 .blog-editorial__back,
-.blog-post__back {
+.blog-post__back,
+.header-back-link {
   color: #1A1A1A !important;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 10px;
@@ -1438,7 +1439,8 @@ footer.site-footer .brand {
 }
 
 .blog-editorial__back:hover,
-.blog-post__back:hover {
+.blog-post__back:hover,
+.header-back-link:hover {
   color: var(--jch-accent) !important;
 }
 

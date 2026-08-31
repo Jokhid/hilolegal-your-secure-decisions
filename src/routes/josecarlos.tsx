@@ -452,6 +452,9 @@ function Header() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle className="hidden sm:inline-flex" />
+            <Link to="/" className="header-back-link hidden md:inline-block">
+              ← Volver al inicio
+            </Link>
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
