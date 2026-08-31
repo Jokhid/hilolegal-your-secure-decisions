@@ -1969,6 +1969,18 @@ footer.site-footer .brand {
   object-position: center;
 }
 
+/* Both photos frame the subject toward the right third of a wide shot
+   (yoderecha.webp / VERODERECHA.webp — "derecha" is literal). On narrow
+   mobile crops, a centered object-position clips the person out of frame
+   in favor of background office clutter — shift the crop right so the
+   subject stays visible. */
+@media (max-width: 640px) {
+  .jc-hero-image,
+  .veronica-hero-image {
+    object-position: 76% center;
+  }
+}
+
 /* Hero heading stays white-with-shadow regardless of the theme toggle —
    ambient --jch-ink would otherwise turn it dark in light mode, same
    issue already fixed for hilolegal's hero h1. */

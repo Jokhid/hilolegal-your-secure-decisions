@@ -147,6 +147,21 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>
 );
 
+// Sistema de intent reutilizable: cada CTA de la página fija un `intent`
+// (en vez de un `topic` suelto) antes de saltar al formulario. El
+// formulario deriva de aquí el motivo preseleccionado, el título de
+// contexto y la etiqueta del botón — así el visitante no tiene que
+// volver a explicar qué estaba consultando.
+const INTENTS = {
+  mortgage: { topic: "Nueva Hipoteca", title: "Cuéntame tu operación.", ctaLabel: "Solicitar estudio" },
+  "mortgage-study": { topic: "Nueva Hipoteca", title: "Cuéntame tu operación.", ctaLabel: "Solicitar estudio" },
+  planning: { topic: "Diagnóstico General", title: "Cuéntame qué quieres conseguir.", ctaLabel: "Analizar mi situación" },
+  protection: { topic: "Protección", title: "Cuéntame qué quieres proteger.", ctaLabel: "Revisar mi situación" },
+  retirement: { topic: "Plan de Jubilación", title: "Cuéntame cómo estás preparando tu jubilación.", ctaLabel: "Solicitar análisis" },
+  "self-employed": { topic: "Autónomo", title: "Cuéntame tu situación como autónomo.", ctaLabel: "Analizar mi situación" },
+} as const;
+type IntentKey = keyof typeof INTENTS;
+
 const pilares = [
   {
     n: "01",
@@ -155,7 +170,9 @@ const pilares = [
     text: "Viabilidad, aportación y cuota, antes de mirar ninguna oferta.",
     img: 2,
     href: "#financiar",
-    topic: "Nueva Hipoteca",
+    intent: "mortgage" as IntentKey,
+    section: "tres-pilares",
+    cta: "financiar",
     event: "josecarlos_finance_click" as const,
   },
   {
@@ -165,7 +182,9 @@ const pilares = [
     text: "Ingresos, familia, vivienda y salud, sin catálogo de seguros de por medio.",
     img: 3,
     href: "#proteger",
-    topic: "Protección",
+    intent: "protection" as IntentKey,
+    section: "tres-pilares",
+    cta: "proteger",
     event: "josecarlos_protection_click" as const,
   },
   {
@@ -175,7 +194,9 @@ const pilares = [
     text: "Liquidez, deuda, ahorro, inversión y jubilación, en el orden correcto.",
     img: 4,
     href: "#planificar",
-    topic: "Diagnóstico General",
+    intent: "planning" as IntentKey,
+    section: "tres-pilares",
+    cta: "planificar",
     event: "josecarlos_planning_click" as const,
   },
 ];
@@ -195,7 +216,7 @@ const journey = [
   { n: "04", t: "Objetivos", d: "Saber para qué ahorras, no solo cuánto." },
   { n: "05", t: "Ahorro", d: "Un colchón que crece con constancia, no con urgencia." },
   { n: "06", t: "Inversión", d: "Que el dinero parado trabaje, con el riesgo que puedas asumir." },
-  { n: "07", t: "Jubilación", d: "Construir hoy los ingresos que quieres tener entonces." },
+  { n: "07", t: "Jubilación", d: "Preparar con tiempo una parte de los ingresos que necesitarás cuando dejes de trabajar." },
 ];
 
 const autonomosConexiones = ["Ingresos", "Protección", "Hipoteca", "Ahorro", "Jubilación", "Patrimonio"];
@@ -210,32 +231,28 @@ const method = [
 
 const faqs = [
   {
-    q: "¿Realmente es gratuito el primer diagnóstico?",
-    a: "Sí, totalmente. Mi objetivo en esta primera toma de contacto es entender si puedo ayudarte. Tú obtienes claridad sobre tu situación y yo entiendo el reto. Sin compromisos.",
+    q: "¿Cómo trabajas?",
+    a: "Primero analizamos tu situación completa: ingresos, gastos, ahorro, deuda, patrimonio y objetivos. Después vemos qué decisiones tienen sentido y en qué orden, antes de hablar de ningún producto.",
   },
   {
-    q: "¿Trabajas con todos los bancos para las hipotecas?",
-    a: "Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar entre estas tres entidades para tu hipoteca. No cubro la totalidad del mercado bancario, pero sí puedo ofrecerte una comparativa real entre las opciones con las que trabajo.",
+    q: "¿Con qué entidades trabajas para hipotecas?",
+    a: "Trabajo la financiación hipotecaria con ING y ABANCA. No cubro la totalidad del mercado bancario. Analizo tu operación y estudio qué alternativa puede encajar dentro de las opciones con las que trabajo.",
   },
   {
     q: "¿Puedes ayudarme a conseguir una hipoteca?",
     a: "Sí. Analizo tu perfil financiero, ingresos, ahorro disponible, estabilidad laboral, nivel de endeudamiento y viabilidad de la operación. Después vemos qué opciones hipotecarias pueden encajar mejor con tu caso.",
   },
   {
-    q: "¿Atiendes presencialmente en Alicante?",
-    a: "Atiendo presencialmente en toda la zona de Alicante, Marina Baixa, Benidorm y Altea. Si estás fuera, realizo consultas por videollamada con la misma eficacia.",
+    q: "¿Trabajas con autónomos?",
+    a: "Sí. En un autónomo conviene analizar de forma conjunta ingresos, protección, financiación, capacidad de ahorro y jubilación, porque muchas de estas decisiones están conectadas. Si quieres comprar una vivienda, también podemos estudiar específicamente cómo plantear la operación hipotecaria según tu situación.",
   },
   {
-    q: "¿Puedo mejorar mi hipoteca actual?",
-    a: "Sí. Podemos revisar tu hipoteca actual, tipo de interés, cuota, vinculaciones, seguros asociados y condiciones. En algunos casos puede ser interesante estudiar una novación, subrogación o cambio de estrategia financiera.",
+    q: "¿Qué analizas antes de recomendar una solución?",
+    a: "Ingresos, gastos, ahorro, deuda, patrimonio, riesgos y objetivos. Una solución financiera solo tiene sentido si encaja dentro de tu situación completa, no de forma aislada.",
   },
   {
-    q: "¿Por qué es importante para un autónomo revisar su protección financiera?",
-    a: "Porque muchos autónomos tienen ingresos variables y una cobertura pública limitada si dejan de trabajar por enfermedad, accidente o incapacidad. Una mala planificación puede afectar directamente a su familia, su negocio y su patrimonio.",
-  },
-  {
-    q: "¿También trabajas ahorro e inversión?",
-    a: "Sí. Analizo tu capacidad de ahorro, horizonte temporal, tolerancia al riesgo y objetivos. A partir de ahí, podemos valorar soluciones de ahorro, inversión, previsión social o jubilación adaptadas a tu perfil.",
+    q: "¿Tengo que contratar algún producto para hacer un análisis?",
+    a: "No. El primer análisis es gratuito y no implica ningún compromiso de contratación.",
   },
 ];
 
@@ -341,10 +358,10 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-type SetTopic = (topic: string) => void;
+type SetIntent = (intent: IntentKey) => void;
 
 function Index() {
-  const [preferredTopic, setPreferredTopic] = useState("Diagnóstico General");
+  const [intent, setIntent] = useState<IntentKey>("planning");
 
   return (
     <div className="josecarlos-original bg-[var(--jch-bg)] text-[var(--jch-ink)] selection:bg-[#C5A566] selection:text-white">
@@ -352,21 +369,21 @@ function Index() {
       <Header />
 
       <main>
-        <Hero onSelectTopic={setPreferredTopic} />
-        <TresPilares onSelectTopic={setPreferredTopic} />
-        <Financiar onSelectTopic={setPreferredTopic} />
-        <Proteger onSelectTopic={setPreferredTopic} />
-        <Planificar onSelectTopic={setPreferredTopic} />
-        <Autonomos onSelectTopic={setPreferredTopic} />
+        <Hero onSelectIntent={setIntent} />
+        <TresPilares onSelectIntent={setIntent} />
+        <Financiar onSelectIntent={setIntent} />
+        <Proteger onSelectIntent={setIntent} />
+        <Planificar onSelectIntent={setIntent} />
+        <Autonomos onSelectIntent={setIntent} />
         <Metodo />
         <Herramientas />
-        <PerfilProfesional />
-        <Entidades />
+        <PerfilProfesional onSelectIntent={setIntent} />
+        <Entidades onSelectIntent={setIntent} />
         <SociosHiloLegal />
         <AdminFincasTeaser />
         <ContenidoAutoridad />
         <FAQ />
-        <CtaFinal preferredTopic={preferredTopic} onSelectTopic={setPreferredTopic} />
+        <CtaFinal intent={intent} onSelectIntent={setIntent} />
       </main>
 
       <Footer />
@@ -418,7 +435,7 @@ function Header() {
             </span>
           </Link>
 
-          <div className="hidden items-center gap-9 md:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {navLinks.map(([label, href]) => (
               <a
                 key={href}
@@ -449,7 +466,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#C5A566] lg:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -464,7 +481,7 @@ function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl lg:hidden"
             role="dialog"
             aria-modal="true"
           >
@@ -508,7 +525,7 @@ function Header() {
   );
 }
 
-function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function Hero({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
@@ -519,7 +536,7 @@ function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
       <motion.img
         style={{ scale: imgScale }}
         alt="José Carlos Hidalgo"
-        className="hero-bg-image"
+        className="hero-bg-image jc-hero-image"
         src="/yoderecha.webp"
         loading="eager"
         decoding="async"
@@ -565,7 +582,10 @@ function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
                 transition={spring}
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
                 href="#contact"
-                onClick={() => onSelectTopic("Diagnóstico General")}
+                onClick={() => {
+                  onSelectIntent("planning");
+                  trackEvent("josecarlos_planning_click", { intent: "planning", source: "josecarlos", section: "hero", cta: "analizar_mi_situacion" });
+                }}
               >
                 Analizar mi situación
               </motion.a>
@@ -573,8 +593,8 @@ function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
                 href="#contact"
                 className="btn-ghost"
                 onClick={() => {
-                  onSelectTopic("Nueva Hipoteca");
-                  trackEvent("josecarlos_mortgage_start");
+                  onSelectIntent("mortgage");
+                  trackEvent("josecarlos_mortgage_start", { intent: "mortgage", source: "josecarlos", section: "hero", cta: "estudiar_mi_hipoteca" });
                 }}
               >
                 Estudiar mi hipoteca
@@ -587,13 +607,20 @@ function Hero({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   );
 }
 
-function TresPilares({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
       <div className="portal-block__inner">
         <div className="portal-block__heading">
           <h2>
-            <Curtain>Financiar · Proteger · Planificar</Curtain>
+            <Curtain>
+              <span className="hidden md:inline">Financiar · Proteger · Planificar</span>
+              <span className="flex md:hidden flex-col items-center text-center gap-1 w-full">
+                <span>· Financiar</span>
+                <span>· Proteger</span>
+                <span>· Planificar</span>
+              </span>
+            </Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Tres decisiones que están más relacionadas de lo que parecen.</p>
@@ -606,8 +633,8 @@ function TresPilares({ onSelectTopic }: { onSelectTopic: SetTopic }) {
                 href={p.href}
                 className="portal-card"
                 onClick={() => {
-                  onSelectTopic(p.topic);
-                  trackEvent(p.event);
+                  onSelectIntent(p.intent);
+                  trackEvent(p.event, { intent: p.intent, source: "josecarlos", section: p.section, cta: p.cta });
                 }}
               >
                 <div className="portal-card__art">
@@ -631,7 +658,7 @@ function TresPilares({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   );
 }
 
-function Financiar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function Financiar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section id="financiar" className="py-[100px] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -673,8 +700,10 @@ function Financiar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
 
         <FadeUp delay={0.25} className="mt-16 max-w-2xl">
           <p className="text-[var(--jch-muted)] leading-relaxed">
-            Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar
-            entre estas tres entidades para tu hipoteca.
+            Trabajo la financiación hipotecaria con ING y ABANCA. Analizo primero tu perfil y la
+            operación para estudiar qué alternativa puede encajar dentro de las opciones con las
+            que trabajo. La concesión y las condiciones finales dependen siempre del análisis y
+            aprobación de la entidad financiera.
           </p>
         </FadeUp>
 
@@ -683,8 +712,8 @@ function Financiar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
             href="#contact"
             className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
             onClick={() => {
-              onSelectTopic("Nueva Hipoteca");
-              trackEvent("josecarlos_mortgage_start");
+              onSelectIntent("mortgage-study");
+              trackEvent("josecarlos_mortgage_start", { intent: "mortgage-study", source: "josecarlos", section: "financiar", cta: "solicitar_estudio_hipotecario" });
             }}
           >
             Solicitar estudio hipotecario
@@ -695,7 +724,7 @@ function Financiar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   );
 }
 
-function Proteger({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function Proteger({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section id="proteger" className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
@@ -719,8 +748,8 @@ function Proteger({ onSelectTopic }: { onSelectTopic: SetTopic }) {
             href="#contact"
             className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
             onClick={() => {
-              onSelectTopic("Protección");
-              trackEvent("josecarlos_protection_click");
+              onSelectIntent("protection");
+              trackEvent("josecarlos_protection_click", { intent: "protection", source: "josecarlos", section: "proteger", cta: "revisar_mi_proteccion" });
             }}
           >
             Revisar mi protección
@@ -731,7 +760,7 @@ function Proteger({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   );
 }
 
-function Planificar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section id="planificar" className="py-[100px] border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -750,8 +779,8 @@ function Planificar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
                 href="#contact"
                 className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
                 onClick={() => {
-                  onSelectTopic("Diagnóstico General");
-                  trackEvent("josecarlos_wealth_start");
+                  onSelectIntent("planning");
+                  trackEvent("josecarlos_wealth_start", { intent: "planning", source: "josecarlos", section: "planificar", cta: "analizar_mi_situacion" });
                 }}
               >
                 Analizar mi situación
@@ -799,8 +828,8 @@ function Planificar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
               href="#contact"
               className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
               onClick={() => {
-                onSelectTopic("Plan de Jubilación");
-                trackEvent("josecarlos_retirement_click");
+                onSelectIntent("retirement");
+                trackEvent("josecarlos_retirement_click", { intent: "retirement", source: "josecarlos", section: "jubilacion", cta: "estudiar_mi_jubilacion" });
               }}
             >
               Estudiar mi jubilación
@@ -812,7 +841,7 @@ function Planificar({ onSelectTopic }: { onSelectTopic: SetTopic }) {
   );
 }
 
-function Autonomos({ onSelectTopic }: { onSelectTopic: SetTopic }) {
+function Autonomos({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section id="autonomos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 max-w-3xl">
@@ -834,8 +863,8 @@ function Autonomos({ onSelectTopic }: { onSelectTopic: SetTopic }) {
             href="#contact"
             className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
             onClick={() => {
-              onSelectTopic("Autónomo");
-              trackEvent("josecarlos_autonomos_click");
+              onSelectIntent("self-employed");
+              trackEvent("josecarlos_autonomos_click", { intent: "self-employed", source: "josecarlos", section: "autonomos", cta: "analizar_mi_situacion_como_autonomo" });
             }}
           >
             Analizar mi situación como autónomo
@@ -921,7 +950,7 @@ function Herramientas() {
   );
 }
 
-function PerfilProfesional() {
+function PerfilProfesional({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section id="about" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -955,50 +984,48 @@ function PerfilProfesional() {
               <div className="space-y-4">
                 <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
                 <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo</h2>
-                <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Más de 25 años trabajando con decisiones que afectan al patrimonio de las personas.</p>
+                <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Analizar primero. Decidir después.</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.1}>
               <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
-                <p>Hay una frase que escucho con frecuencia en mi trabajo: «Ojalá hubiera hablado con alguien antes de firmar esto.»</p>
-                <p>Mi meta es que lo peor no rompa el estilo de vida de los que más quieres y consigas claridad, previsión y paz mental.</p>
-                <p>Llevo años acompañando a familias y autónomos de la Costa Blanca en las decisiones financieras que más pesan: conseguir una hipoteca en las mejores condiciones posibles, proteger los ingresos ante lo inesperado, planificar el ahorro o su jubilación con cabeza o gestionar la comunidad de vecinos sin dramas.</p>
-                <p>No soy el asesor que te recomienda el producto del mes. Soy el que se sienta contigo, revisa tu situación real y te dice lo que necesitas escuchar, aunque no siempre sea lo más fácil.</p>
-                <p>Trabajo como gestor en Nationale-Nederlanden, ING y ABANCA, lo que me permite comparar entre estas tres entidades a la hora de buscar tu hipoteca.</p>
-                <p>Además, soy cofundador de HiloLegal, una firma legal y de administración de fincas que nació de la misma convicción: que la gente merece profesionales que hablen claro y cumplan lo que dicen.</p>
-                <p>Si estás en Altea, Benidorm, la Marina Baixa o la provincia de Alicante y quieres un diagnóstico honesto de tu situación financiera, el primer paso no cuesta nada.</p>
+                <p>Trabajo con familias y autónomos en decisiones relacionadas con financiación hipotecaria, protección, ahorro y planificación patrimonial.</p>
+                <p>Mi forma de trabajar parte de una idea sencilla: una solución financiera solo tiene sentido cuando encaja dentro de la situación completa de la persona.</p>
+                <p>Por eso, antes de hablar de productos, analizamos ingresos, gastos, ahorro, deuda, patrimonio, riesgos y objetivos.</p>
+                <p>Una hipoteca afecta a tu capacidad de ahorro. Una caída de ingresos puede afectar al pago de la vivienda. Y preparar la jubilación requiere entender cuánto puedes ahorrar hoy sin comprometer otros objetivos.</p>
+                <p>Trabajo la financiación hipotecaria con ING y ABANCA y desarrollo las áreas de protección y planificación patrimonial con las entidades con las que mantengo relación profesional.</p>
+                <p>También soy cofundador de HiloLegal junto a Verónica López. Esto nos permite abordar de forma coordinada situaciones en las que una decisión jurídica tiene consecuencias económicas o patrimoniales.</p>
+                <p>Mi trabajo empieza por entender tus números y conseguir que tú entiendas la decisión.</p>
               </div>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <div className="flex flex-wrap gap-3 pt-2">
-                {["Autónomos", "Familias", "Hipotecas", "Protección", "Ahorrar", "Administración de fincas"].map((t) => (
-                  <motion.span
-                    key={t}
-                    whileHover={{ y: -2, backgroundColor: "#1A1A1A", color: "#FFFFFF" }}
-                    transition={spring}
-                    className="border border-[var(--jch-line)] px-6 py-2 text-xs font-bold uppercase tracking-widest cursor-default"
-                  >
-                    {t}
-                  </motion.span>
-                ))}
-              </div>
-            </FadeUp>
-            <FadeUp delay={0.3}>
               <div className="flex items-center gap-4 text-[var(--jch-ink)] font-bold">
                 <Icon name="location_on" className="text-[var(--jch-accent-ink)]" />
                 <span className="text-sm uppercase tracking-widest text-[var(--jch-accent-ink)]">Altea · Benidorm · Costa Blanca · Alicante · Online</span>
               </div>
             </FadeUp>
-            <FadeUp delay={0.4}>
-              <a
-                href="https://share.google/GlqwXv7lO958pDPDS"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold text-[var(--jch-accent-ink)] hover:text-[var(--jch-ink)] transition-colors"
-              >
-                <Icon name="travel_explore" className="text-base" />
-                Ver mi perfil en Google
-              </a>
+            <FadeUp delay={0.3}>
+              <div className="flex flex-wrap items-center gap-8">
+                <a
+                  href="#contact"
+                  className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+                  onClick={() => {
+                    onSelectIntent("planning");
+                    trackEvent("josecarlos_planning_click", { intent: "planning", source: "josecarlos", section: "perfil", cta: "analizar_mi_situacion" });
+                  }}
+                >
+                  Analizar mi situación
+                </a>
+                <a
+                  href="https://share.google/GlqwXv7lO958pDPDS"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[var(--jch-accent-ink)] hover:text-[var(--jch-ink)] transition-colors"
+                >
+                  <Icon name="travel_explore" className="text-base" />
+                  Ver mi perfil en Google
+                </a>
+              </div>
             </FadeUp>
           </div>
         </div>
@@ -1007,37 +1034,80 @@ function PerfilProfesional() {
   );
 }
 
-const partners = [
-  { name: "Nationale-Nederlanden", className: "font-serif italic" },
+// Dos grupos deliberadamente separados (brief "AJUSTES FINALES", punto 2):
+// financiación hipotecaria (ING, ABANCA) y protección/planificación
+// (Nationale-Nederlanden, Sanitas, Caser) no son intercambiables — mezclarlas
+// sugería que cualquier entidad servía para cualquier necesidad.
+const entidadesHipoteca = [
   { name: "ING", className: "font-extrabold tracking-tight" },
   { name: "ABANCA", className: "font-bold tracking-[0.15em]" },
+];
+const entidadesProteccion = [
+  { name: "Nationale-Nederlanden", className: "font-serif italic" },
   { name: "Sanitas", className: "font-semibold" },
   { name: "Caser", className: "font-bold tracking-wide" },
 ];
 
-function Entidades() {
+function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section aria-label="Entidades colaboradoras" className="partners-editorial">
-      <div className="partners-editorial__inner">
-        <FadeUp>
-          <p className="partners-editorial__label">
-            Colaboro con estas entidades
-          </p>
-        </FadeUp>
-        <div className="partners-editorial__list">
-          {partners.map((p, idx) => (
-            <FadeUp key={p.name} delay={idx * 0.06}>
-              <span className={`partners-editorial__name ${p.className}`}>
-                {p.name}
-              </span>
-            </FadeUp>
-          ))}
+    <section aria-label="Entidades con las que trabajo" className="partners-editorial">
+      <div className="partners-editorial__inner space-y-16">
+        <div>
+          <FadeUp>
+            <p className="partners-editorial__label">Financiación hipotecaria</p>
+          </FadeUp>
+          <div className="partners-editorial__list">
+            {entidadesHipoteca.map((p, idx) => (
+              <FadeUp key={p.name} delay={idx * 0.06}>
+                <span className={`partners-editorial__name ${p.className}`}>
+                  {p.name}
+                </span>
+              </FadeUp>
+            ))}
+          </div>
+          <FadeUp delay={0.15}>
+            <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
+              Trabajo la financiación hipotecaria con ING y ABANCA. Analizo primero tu perfil y la
+              operación para estudiar qué alternativa puede encajar dentro de las opciones con las
+              que trabajo. La concesión y las condiciones finales dependen siempre del análisis y
+              aprobación de la entidad financiera.
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.2} className="mt-6">
+            <a
+              href="#contact"
+              className="duo-block__cta"
+              onClick={() => {
+                onSelectIntent("mortgage");
+                trackEvent("josecarlos_mortgage_start", { intent: "mortgage", source: "josecarlos", section: "entidades", cta: "estudiar_mi_hipoteca" });
+              }}
+            >
+              Estudiar mi hipoteca <span aria-hidden="true">→</span>
+            </a>
+          </FadeUp>
         </div>
-        <FadeUp delay={0.3}>
-          <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
-            Trabajo como gestor en estas entidades, lo que me permite comparar entre ellas — no soy asesor independiente de todo el mercado.
-          </p>
-        </FadeUp>
+
+        <div>
+          <FadeUp>
+            <p className="partners-editorial__label">Protección y planificación</p>
+          </FadeUp>
+          <div className="partners-editorial__list">
+            {entidadesProteccion.map((p, idx) => (
+              <FadeUp key={p.name} delay={idx * 0.06}>
+                <span className={`partners-editorial__name ${p.className}`}>
+                  {p.name}
+                </span>
+              </FadeUp>
+            ))}
+          </div>
+          <FadeUp delay={0.15}>
+            <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
+              Trabajo con distintas entidades dentro de las áreas de protección y planificación. La
+              elección de una solución debe partir de la situación, los objetivos y las
+              necesidades que previamente hemos analizado.
+            </p>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );
@@ -1220,12 +1290,40 @@ function FAQ() {
   );
 }
 
-function CtaFinal({ preferredTopic, onSelectTopic }: { preferredTopic: string; onSelectTopic: SetTopic }) {
+function CtaFinal({ intent, onSelectIntent }: { intent: IntentKey; onSelectIntent: SetIntent }) {
   const caminos = [
-    { q: "Quiero comprar una vivienda.", cta: "Estudiar mi hipoteca", topic: "Nueva Hipoteca", event: "josecarlos_mortgage_start" as const },
-    { q: "Quiero ordenar mis finanzas.", cta: "Analizar mi situación", topic: "Diagnóstico General", event: "josecarlos_planning_click" as const },
-    { q: "Quiero preparar mi jubilación.", cta: "Estudiar mi jubilación", topic: "Plan de Jubilación", event: "josecarlos_retirement_click" as const },
-    { q: "Soy autónomo.", cta: "Analizar mi situación", topic: "Autónomo", event: "josecarlos_autonomos_click" as const },
+    {
+      q: "Quiero comprar una vivienda.",
+      d: "Analizamos precio, ahorro, ingresos, financiación y cuota antes de estudiar la hipoteca.",
+      cta: "Estudiar mi hipoteca",
+      intent: "mortgage" as IntentKey,
+      ctaSlug: "estudiar_mi_hipoteca",
+      event: "josecarlos_mortgage_start" as const,
+    },
+    {
+      q: "Quiero ordenar mis finanzas.",
+      d: "Revisamos ingresos, gastos, ahorro, deuda, protección y objetivos para establecer prioridades.",
+      cta: "Analizar mi situación",
+      intent: "planning" as IntentKey,
+      ctaSlug: "analizar_mi_situacion",
+      event: "josecarlos_planning_click" as const,
+    },
+    {
+      q: "Quiero preparar mi jubilación.",
+      d: "Analizamos qué ingresos puedes necesitar, qué recursos puedes esperar y qué patrimonio necesitas construir.",
+      cta: "Estudiar mi jubilación",
+      intent: "retirement" as IntentKey,
+      ctaSlug: "estudiar_mi_jubilacion",
+      event: "josecarlos_retirement_click" as const,
+    },
+    {
+      q: "Soy autónomo.",
+      d: "Analizamos conjuntamente protección de ingresos, financiación, ahorro, jubilación y patrimonio.",
+      cta: "Analizar mi situación como autónomo",
+      intent: "self-employed" as IntentKey,
+      ctaSlug: "analizar_mi_situacion_como_autonomo",
+      event: "josecarlos_autonomos_click" as const,
+    },
   ];
 
   return (
@@ -1240,11 +1338,12 @@ function CtaFinal({ preferredTopic, onSelectTopic }: { preferredTopic: string; o
                   href="#contact-form"
                   className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
                   onClick={() => {
-                    onSelectTopic(c.topic);
-                    trackEvent(c.event);
+                    onSelectIntent(c.intent);
+                    trackEvent(c.event, { intent: c.intent, source: "josecarlos", section: "cta-final", cta: c.ctaSlug });
                   }}
                 >
                   <p className="text-lg font-bold mb-3">{c.q}</p>
+                  <p className="text-sm text-[var(--jch-muted)] mb-4">{c.d}</p>
                   <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">{c.cta} →</span>
                 </a>
               </FadeUp>
@@ -1306,29 +1405,40 @@ function CtaFinal({ preferredTopic, onSelectTopic }: { preferredTopic: string; o
           </FadeUp>
         </div>
         <FadeUp>
-          <ContactForm preferredTopic={preferredTopic} />
+          <ContactForm intent={intent} />
         </FadeUp>
       </div>
     </section>
   );
 }
 
-function ContactForm({ preferredTopic }: { preferredTopic: string }) {
+// Mapa inverso topic → intent, para cuando el visitante cambia el <select>
+// a mano en vez de llegar desde un CTA: el título/CTA del formulario se
+// mantienen sincronizados igualmente.
+const TOPIC_TO_INTENT = Object.fromEntries(
+  Object.entries(INTENTS).map(([key, cfg]) => [cfg.topic, key as IntentKey]),
+) as Record<string, IntentKey>;
+
+function ContactForm({ intent }: { intent: IntentKey }) {
   const submit = useServerFn(submitContact);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const [currentIntent, setCurrentIntent] = useState<IntentKey>(intent);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    topic: "Diagnóstico General",
+    topic: INTENTS[intent].topic,
     message: "",
   });
 
   useEffect(() => {
-    setForm((f) => ({ ...f, topic: preferredTopic }));
-  }, [preferredTopic]);
+    setCurrentIntent(intent);
+    setForm((f) => ({ ...f, topic: INTENTS[intent].topic }));
+  }, [intent]);
+
+  const config = INTENTS[currentIntent];
 
   // Campos extra solo para hipoteca y autónomo (progressive disclosure).
   // Se pliegan dentro de `message` en vez de añadirse como claves nuevas —
@@ -1349,7 +1459,10 @@ function ContactForm({ preferredTopic }: { preferredTopic: string }) {
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("contact_start");
+      trackEvent("contact_start", { intent: currentIntent, source: "josecarlos" });
+    }
+    if (k === "topic") {
+      setCurrentIntent(TOPIC_TO_INTENT[e.target.value] ?? currentIntent);
     }
     setForm((f) => ({ ...f, [k]: e.target.value }));
   };
@@ -1384,9 +1497,9 @@ function ContactForm({ preferredTopic }: { preferredTopic: string }) {
     try {
       await submit({ data: payload });
       setStatus("ok");
-      trackEvent("contact_submit");
-      trackEvent("josecarlos_contact_submit");
-      setForm({ name: "", phone: "", email: "", topic: "Diagnóstico General", message: "" });
+      trackEvent("contact_submit", { intent: currentIntent, source: "josecarlos" });
+      trackEvent("josecarlos_contact_submit", { intent: currentIntent, source: "josecarlos" });
+      setForm({ name: "", phone: "", email: "", topic: INTENTS[intent].topic, message: "" });
       setMortgage({ housePrice: "", financing: "", income: "", employment: "" });
       setAutonomo({ interestArea: "" });
       setAccepted(false);
@@ -1398,6 +1511,7 @@ function ContactForm({ preferredTopic }: { preferredTopic: string }) {
 
   return (
     <form id="contact-form" className="contact-form-card space-y-10 scroll-mt-28" onSubmit={onSubmit}>
+      <p className="text-xl font-bold">{config.title}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
         <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
@@ -1473,7 +1587,7 @@ function ContactForm({ preferredTopic }: { preferredTopic: string }) {
         style={{ color: "#ffffff" }}
         className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Enviar solicitud"}
+        {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : config.ctaLabel}
       </motion.button>
 
       {status === "ok" && (

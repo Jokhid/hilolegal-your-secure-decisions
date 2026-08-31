@@ -71,9 +71,9 @@ Los 3 testimonios fabricados de José Carlos (Ana M. / Marcos R. / Familia Lópe
 
 **Por qué están aquí igualmente**: aunque el cambio lo pidió el cliente, sigue siendo lenguaje sobre condiciones/relación bancaria — si en el futuro se quiere volver a un tono más comercial, debe revisarse con el mismo cuidado.
 
-**Cifra "más de 25 años" de experiencia** (subtítulo de la sección "Sobre mí"): viene dada literalmente por José Carlos en su propio brief, no la he verificado de forma independiente (no tengo forma de hacerlo). Si el número no es exacto, debe corregirlo él.
+**Cifra "más de 25 años" de experiencia** (subtítulo de la sección "Sobre mí") — RESUELTO: en el ajuste posterior ("AJUSTES FINALES PÁGINA JOSÉ CARLOS") el propio cliente pidió no usar esa cifra salvo que estuviera respaldada, y sustituyó la biografía completa por un texto nuevo que no menciona ningún número de años. Ya no aparece en la página.
 
-**Qué decidir**: nada pendiente salvo confirmar la cifra de "25 años" si no es exacta.
+**Qué decidir**: nada pendiente en este punto.
 
 ---
 
