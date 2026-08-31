@@ -24,6 +24,20 @@ export const Route = createFileRoute("/")({
         content:
           "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio y anticipar riesgos.",
       },
+      { property: "og:url", content: "https://www.hilolegal.es/" },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "es_ES" },
+      { property: "og:site_name", content: "HiloLegal" },
+      { property: "og:image", content: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp" },
+      { property: "og:image:width", content: "1536" },
+      { property: "og:image:height", content: "1024" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
+      {
+        name: "twitter:description",
+        content: "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio.",
+      },
+      { name: "twitter:image", content: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp" },
     ],
     links: [{ rel: "canonical", href: "https://www.hilolegal.es/" }],
     scripts: [
@@ -205,7 +219,7 @@ const areas = [
     text: "Estudiamos tu situación, analizamos la viabilidad y te acompañamos durante el proceso hipotecario.",
     tags: "Hipotecas ING y ABANCA",
     cta: "Estudiar mi hipoteca",
-    href: "/josecarlos",
+    href: "/josecarlos#financiar",
     art: "/hipotecas.webp",
     artAlt: "Ilustración del área de hipotecas de HiloLegal",
     event: "nav_service_mortgage" as const,
@@ -215,9 +229,9 @@ const areas = [
     title: "Patrimonio",
     kicker: "Proteger hoy. Planificar mañana.",
     text: "Analizamos ingresos, ahorro, protección y objetivos para construir una estrategia financiera adaptada a tu vida.",
-    tags: "Ahorro · Inversión · Pensiones · Protección",
+    tags: "Nationale-Nederlanden · Ahorro · Inversión · Pensiones",
     cta: "Analizar mi situación",
-    href: "/josecarlos",
+    href: "/josecarlos#planificar",
     art: "/patrimonial.webp",
     artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
     event: "nav_service_wealth" as const,
@@ -227,7 +241,7 @@ const areas = [
     title: "Administración de fincas",
     kicker: "Tu comunidad, bien gestionada.",
     text: "Administración cercana, transparente y profesional.",
-    tags: "",
+    tags: "Actas · Cuotas · Morosidad · Juntas de propietarios",
     cta: "Solicitar una propuesta",
     href: "/administracion-fincas",
     art: "/fincas.webp",
@@ -264,7 +278,7 @@ const professionals = [
     img: "/vero_jurista.webp",
     name: "Verónica López",
     area: "Área jurídica",
-    bio: "Más de 20 años de experiencia profesional combinando ejercicio jurídico, experiencia institucional y docencia universitaria.",
+    bio: "Más de 20 años combinando ejercicio jurídico, experiencia institucional y docencia universitaria. Derecho administrativo, civil, familia y estrategia jurídica preventiva.",
     cta: "Conocer a Verónica",
     href: "/veronica",
   },
@@ -272,7 +286,7 @@ const professionals = [
     img: "/9.webp",
     name: "José Carlos Hidalgo",
     area: "Área patrimonial e hipotecaria",
-    bio: "Más de 25 años de trayectoria profesional, actualmente centrado en financiación, protección y planificación patrimonial.",
+    bio: "Analiza financiación, protección y planificación patrimonial antes de hablar de productos. Hipotecas con ING y ABANCA; protección y ahorro con Nationale-Nederlanden.",
     cta: "Conocer a José Carlos",
     href: "/josecarlos",
   },
@@ -805,7 +819,7 @@ function Authority() {
               del hero histórico de esta sección por no poder confirmarse — no
               mostrar sin validar con el cliente primero. */}
           <div className="authority-block__stat">
-            <span className="authority-block__value">20+</span>
+            <span className="authority-block__value">45+</span>
             <span className="authority-block__label">Años de experiencia profesional combinada</span>
           </div>
           <div className="authority-block__stat">
@@ -969,7 +983,7 @@ function Contact() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    topic: "Defensa Jurídica",
+    topic: "Consulta jurídica general",
     message: "",
   });
   const startedRef = useRef(false);
@@ -997,7 +1011,7 @@ function Contact() {
       await submit({ data: form });
       setStatus("ok");
       trackEvent("contact_submit");
-      setForm({ name: "", phone: "", topic: "Defensa Jurídica", message: "" });
+      setForm({ name: "", phone: "", topic: "Consulta jurídica general", message: "" });
       setAccepted(false);
     } catch (err) {
       setStatus("error");
@@ -1091,7 +1105,7 @@ function Contact() {
                 onChange={onChange("topic")}
                 className="w-full bg-transparent border-0 border-b border-white/20 px-0 py-3 focus:outline-none focus:border-[color:var(--jch-accent)] transition-colors"
               >
-                <option>Defensa Jurídica</option>
+                <option>Consulta jurídica general</option>
                 <option>Asesoramiento Financiero</option>
                 <option>Hipotecas</option>
                 <option>Administración de Fincas</option>
