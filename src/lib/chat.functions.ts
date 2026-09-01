@@ -8,7 +8,15 @@ import { z } from "zod";
 // log de error real de producción, no contra documentación.
 const GEMINI_MODEL = "gemini-3.6-flash";
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
-const MAX_TOKENS = 300;
+// gemini-3.6-flash tiene "thinking" activado por defecto (nivel medio) y,
+// en generateContent (a diferencia de la Interactions API), no separa el
+// razonamiento interno en un bloque aparte — consume del mismo
+// max_output_tokens que la respuesta visible. Con 300 el modelo se
+// quedaba sin presupuesto a mitad de razonar, antes de llegar a
+// responder de verdad (confirmado viendo la respuesta real truncada en
+// producción). 1500 da margen de sobra a ambas cosas sin disparar el
+// coste para un chatbot de preguntas cortas.
+const MAX_TOKENS = 1500;
 const MAX_MESSAGES = 24;
 const MAX_MESSAGE_CHARS = 800;
 
