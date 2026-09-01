@@ -2237,13 +2237,13 @@ footer.site-footer .brand {
    contenido dentro de __track + translateX(-50%) es lo que hace el
    bucle imperceptible. A ancho completo de página (full-bleed: rompe el
    contenedor centrado del resto de la sección con el truco 100vw +
-   left:50% + translateX(-50%)), con colores invertidos respecto al
-   resto de la página según el tema — banda negra/ocre en modo claro,
-   banda blanca/verde en modo oscuro. Literal hex por [data-theme] (no
-   var()) porque este elemento se anima con transform y confirmamos en
-   otros sitios de este proyecto que var() se queda congelado en su
-   primer valor en elementos animados por transform/GPU — ver el
-   comentario sobre .jch-card más arriba en este archivo. */
+   left:50% + translateX(-50%)). Texto siempre ocre; el fondo sigue el
+   tema normal de la página (negro en modo oscuro, blanco en modo
+   claro) — ya no invertido respecto al resto del sitio. Literal hex por
+   [data-theme] (no var()) porque este elemento se anima con transform y
+   confirmamos en otros sitios de este proyecto que var() se queda
+   congelado en su primer valor en elementos animados por transform/GPU
+   — ver el comentario sobre .jch-card más arriba en este archivo. */
 .pilares-marquee {
   position: relative;
   left: 50%;
@@ -2251,10 +2251,10 @@ footer.site-footer .brand {
   margin-left: -50vw;
   overflow: hidden;
   padding: 1.5rem 0;
-  background: #ffffff;
+  background: #0a0a0a;
 }
 [data-theme="light"] .pilares-marquee {
-  background: #0a0a0a;
+  background: #ffffff;
 }
 .pilares-marquee__track {
   display: inline-flex;
@@ -2267,16 +2267,13 @@ footer.site-footer .brand {
   gap: clamp(1rem, 2.5vw, 2rem);
   padding-right: clamp(1rem, 2.5vw, 2rem);
   padding-left: clamp(1rem, 2.5vw, 2rem);
-  color: #1f6f78;
+  color: #C5A566;
   font-family: "Familjen Grotesk", ui-sans-serif, sans-serif;
   font-weight: 600;
   font-size: clamp(2.4rem, 7vw, 5.5rem);
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.01em;
-}
-[data-theme="light"] .pilares-marquee__item {
-  color: #C5A566;
 }
 .pilares-marquee__item .material-symbols-outlined {
   font-size: 0.55em;

@@ -529,7 +529,8 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-balance">
-            <WordReveal eager delay={0.1} text="El rigor que mereces," />{" "}
+            <WordReveal eager delay={0.1} text="El rigor que mereces," />
+            <br />
             <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="la cercanía que necesitas." />
           </h1>
 
