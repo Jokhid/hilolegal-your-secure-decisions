@@ -1,11 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-// "gemini-2.5-flash-lite" devolvía 404 (no disponible para esta cuenta,
-// pese a aparecer en la documentación) — confirmado directamente contra
-// GET /v1beta/models con la key real. "gemini-2.5-flash" sí está
-// disponible y sigue siendo la opción económica adecuada para este uso.
-const GEMINI_MODEL = "gemini-2.5-flash";
+// "gemini-2.5-flash-lite" y luego "gemini-2.5-flash" devolvían 404 — el
+// segundo con un mensaje explícito de Google: "This model
+// models/gemini-2.5-flash is no longer available to new users. Please
+// update your code to use models/gemini-3.6-flash". Confirmado contra el
+// log de error real de producción, no contra documentación.
+const GEMINI_MODEL = "gemini-3.6-flash";
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 const MAX_TOKENS = 300;
 const MAX_MESSAGES = 24;
