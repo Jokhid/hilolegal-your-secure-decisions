@@ -384,6 +384,46 @@ header [class*="uppercase"] {
 [data-theme="light"] .jch-card { background-color: #ffffff; }
 [data-theme="light"] .jch-card:hover { background-color: #f7f6f2; }
 
+/* Chat widget — the panel is a framer-motion motion.div animated via
+   transform (open/close), so it and everything inside it follow the same
+   literal-hex-per-[data-theme] convention as .jch-card above, instead of
+   var(), for the same documented reason (var() confirmed frozen at
+   first-paint on transform-animated elements in this project). */
+.jch-chat-panel { background-color: #0a0a0a; border-color: rgba(243, 240, 234, 0.14); }
+[data-theme="light"] .jch-chat-panel { background-color: #ffffff; border-color: rgba(26, 26, 26, 0.12); }
+
+.jch-chat-header { border-color: rgba(243, 240, 234, 0.14); color: #f3f0ea; }
+[data-theme="light"] .jch-chat-header { border-color: rgba(26, 26, 26, 0.12); color: #1a1a1a; }
+
+.jch-chat-bubble--assistant { background-color: #151515; color: #f3f0ea; }
+[data-theme="light"] .jch-chat-bubble--assistant { background-color: #f7f6f2; color: #1a1a1a; }
+
+.jch-chat-bubble--user { background-color: #1f6f78; color: #ffffff; }
+
+.jch-chat-input-bar { border-color: rgba(243, 240, 234, 0.14); }
+[data-theme="light"] .jch-chat-input-bar { border-color: rgba(26, 26, 26, 0.12); }
+
+.jch-chat-muted { color: #9a9892; }
+[data-theme="light"] .jch-chat-muted { color: #4a4a4a; }
+
+.jch-chat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.5;
+  animation: jch-chat-dot-bounce 1.2s ease-in-out infinite;
+}
+.jch-chat-dot:nth-child(2) { animation-delay: 0.15s; }
+.jch-chat-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes jch-chat-dot-bounce {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 0.9; transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jch-chat-dot { animation: none; opacity: 0.6; }
+}
+
 /* Header */
 
 /* Hero */

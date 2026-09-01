@@ -41,7 +41,11 @@ export type AnalyticsEvent =
   | "josecarlos_retirement_click"
   | "josecarlos_autonomos_click"
   | "josecarlos_property_management_click"
-  | "josecarlos_contact_submit";
+  | "josecarlos_contact_submit"
+  | "chat_open"
+  | "chat_message_sent"
+  | "chat_reply_received"
+  | "chat_error";
 
 export function trackEvent(event: AnalyticsEvent, params: Record<string, string | number | boolean> = {}) {
   if (typeof window === "undefined") return;

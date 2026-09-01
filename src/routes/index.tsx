@@ -529,16 +529,16 @@ function Hero() {
           </FadeUp>
 
           <h1 className="text-balance">
-            <WordReveal eager delay={0.1} text="Hay decisiones que afectan a mucho más de" />{" "}
-            <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="una cosa." />
+            <WordReveal eager delay={0.1} text="El rigor que mereces," />{" "}
+            <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="la cercanía que necesitas." />
           </h1>
 
           <FadeUp eager delay={0.5}>
             <p className="hero-subtitle">
               Un problema legal puede afectar a tu patrimonio. Una hipoteca condiciona tus finanzas
               durante años. Una mala planificación puede comprometer el futuro de tu familia. En
-              HiloLegal conectamos las piezas para ayudarte a tomar mejores decisiones y proteger lo
-              que has construido.
+              HiloLegal analizamos tu situación con el rigor que merece, y te acompañamos con la
+              cercanía que necesitas para proteger lo que has construido.
             </p>
           </FadeUp>
 

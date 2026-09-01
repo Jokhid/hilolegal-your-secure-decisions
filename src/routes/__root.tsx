@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import servicesArtCss from "../services-art.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CookieBanner } from "../components/CookieBanner";
+import { ChatWidget } from "../components/ChatWidget";
 
 const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Familjen+Grotesk:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap";
 
@@ -186,6 +187,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <CookieBanner />
+      <ChatWidget />
     </QueryClientProvider>
   );
 }
