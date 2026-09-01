@@ -8,15 +8,16 @@ import { z } from "zod";
 // log de error real de producción, no contra documentación.
 const GEMINI_MODEL = "gemini-3.6-flash";
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
-// gemini-3.6-flash tiene "thinking" activado por defecto (nivel medio) y,
-// en generateContent (a diferencia de la Interactions API), no separa el
-// razonamiento interno en un bloque aparte — consume del mismo
-// max_output_tokens que la respuesta visible. Con 300 el modelo se
-// quedaba sin presupuesto a mitad de razonar, antes de llegar a
-// responder de verdad (confirmado viendo la respuesta real truncada en
-// producción). 1500 da margen de sobra a ambas cosas sin disparar el
-// coste para un chatbot de preguntas cortas.
-const MAX_TOKENS = 1500;
+// gemini-3.6-flash tiene "thinking" activado por defecto y, en
+// generateContent, ese razonamiento no va en un bloque aparte — consume
+// del mismo max_output_tokens que la respuesta visible, y con 300 (o
+// incluso 1500) el modelo se quedaba sin presupuesto a mitad de razonar,
+// tardando ~30s y sin llegar a responder. "thinkingLevel" (no
+// "thinkingBudget", que es el parámetro de la serie 2.5) es el que
+// aplica a la serie 3.x — con "low" se minimiza el razonamiento interno,
+// más rápido y barato, apropiado para un chatbot de preguntas cortas.
+const THINKING_LEVEL = "low";
+const MAX_TOKENS = 500;
 const MAX_MESSAGES = 24;
 const MAX_MESSAGE_CHARS = 800;
 
@@ -108,7 +109,10 @@ export const sendChatMessage = createServerFn({ method: "POST" })
             role: m.role === "assistant" ? "model" : "user",
             parts: [{ text: m.content }],
           })),
-          generationConfig: { maxOutputTokens: MAX_TOKENS },
+          generationConfig: {
+            maxOutputTokens: MAX_TOKENS,
+            thinkingConfig: { thinkingLevel: THINKING_LEVEL },
+          },
         }),
       });
     } catch (err) {
