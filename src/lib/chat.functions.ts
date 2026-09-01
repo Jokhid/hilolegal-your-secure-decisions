@@ -14,9 +14,11 @@ const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/
 // incluso 1500) el modelo se quedaba sin presupuesto a mitad de razonar,
 // tardando ~30s y sin llegar a responder. "thinkingLevel" (no
 // "thinkingBudget", que es el parámetro de la serie 2.5) es el que
-// aplica a la serie 3.x — con "low" se minimiza el razonamiento interno,
-// más rápido y barato, apropiado para un chatbot de preguntas cortas.
-const THINKING_LEVEL = "low";
+// aplica a la serie 3.x. Niveles de menor a mayor razonamiento: minimal
+// (equivale a "sin pensar" para la mayoría de consultas) < low < medium
+// (por defecto) < high. "minimal" es el más rápido y barato, apropiado
+// para un chatbot de preguntas cortas y respuestas ya validadas.
+const THINKING_LEVEL = "minimal";
 const MAX_TOKENS = 500;
 const MAX_MESSAGES = 24;
 const MAX_MESSAGE_CHARS = 800;
