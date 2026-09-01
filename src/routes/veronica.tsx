@@ -51,6 +51,11 @@ export const Route = createFileRoute("/veronica")({
               url: "https://www.hilolegal.es/veronica",
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
+              // No se ha encontrado ningún perfil de LinkedIn/Instagram/Facebook
+              // propio de Verónica en el repositorio — solo se enlaza la ficha
+              // de Google del despacho (mismo enlace que ya usa José Carlos)
+              // en vez de inventar perfiles.
+              sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
               worksFor: {
                 "@type": "Organization",
                 name: "HiloLegal",
@@ -96,6 +101,13 @@ export const Route = createFileRoute("/veronica")({
                 reviewCount: testimonials.length,
                 bestRating: 5,
               },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.hilolegal.es/" },
+                { "@type": "ListItem", position: 2, name: "Verónica López", item: "https://www.hilolegal.es/veronica" },
+              ],
             },
             {
               "@type": "FAQPage",
@@ -815,7 +827,7 @@ function HiloLegal() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
-                <a href="https://www.hilolegal.es" target="_blank" rel="noopener noreferrer" className="font-bold uppercase tracking-widest text-xs hover:text-[var(--jch-accent-ink)] transition-colors">HiloLegal</a>
+                <Link to="/" className="font-bold uppercase tracking-widest text-xs hover:text-[var(--jch-accent-ink)] transition-colors">HiloLegal</Link>
               </div>
             </div>
           </FadeUp>

@@ -52,6 +52,13 @@ export const Route = createFileRoute("/")({
           url: "https://www.hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
+          // No hay perfiles sociales corporativos de "HiloLegal" en el
+          // footer ni en ningún otro punto del repo (los de LinkedIn/
+          // Instagram/Facebook que existen son personales de José Carlos,
+          // en josecarlos.tsx) — solo se enlaza la ficha de Google del
+          // despacho, ya usada en otras páginas, en vez de reutilizar
+          // perfiles personales como si fueran corporativos.
+          sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
           address: {
             "@type": "PostalAddress",
             streetAddress: "Calle Regata 3, 1º E",

@@ -57,6 +57,10 @@ export const Route = createFileRoute("/administracion-fincas/")({
                 name: "José Carlos Hidalgo Ortega",
                 url: "https://www.hilolegal.es/josecarlos",
               },
+              // Mismo criterio que index.tsx: sin perfiles corporativos
+              // propios de "Administración de fincas" en el repo, se
+              // enlaza solo la ficha de Google del despacho.
+              sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
               areaServed: [
                 { "@type": "City", name: "Altea" },
                 { "@type": "City", name: "Benidorm" },
