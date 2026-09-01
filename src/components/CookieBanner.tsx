@@ -6,13 +6,17 @@ export function CookieBanner() {
   useEffect(() => {
     try {
       if (localStorage.getItem("cookies_ok") !== "true" && localStorage.getItem("cookies_ok") !== "necessary") setShow(true);
-    } catch {}
+    } catch {
+      // localStorage no disponible (navegación privada, etc.) — no se muestra el banner, sin romper la página.
+    }
   }, []);
   if (!show) return null;
   const choose = (v: "true" | "necessary") => {
     try {
       localStorage.setItem("cookies_ok", v);
-    } catch {}
+    } catch {
+      // localStorage no disponible (navegación privada, etc.) — la preferencia no persiste, sin romper la página.
+    }
     if (v === "true") loadAnalyticsConsent();
     setShow(false);
   };

@@ -6,8 +6,8 @@ export function ArticleSources({ sources }: { sources?: ArticleSource[] }) {
   if (!sources || sources.length === 0) return null;
 
   return (
-    <div className="mt-10 pt-8 border-t border-[#E5E5E5]">
-      <h2 className="text-xs font-black uppercase tracking-[0.2em] text-[#8A8A8A] mb-3">
+    <div className="mt-10 pt-8 border-t border-[var(--jch-line)]">
+      <h2 className="text-xs font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-3">
         Fuentes consultadas
       </h2>
       <ul className="space-y-2">

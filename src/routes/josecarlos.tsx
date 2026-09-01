@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { blogPosts, findPost } from "@/lib/blogPosts";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 
 export const Route = createFileRoute("/josecarlos")({
   head: () => ({
@@ -166,7 +167,7 @@ const pilares = [
   {
     n: "01",
     title: "Financiar",
-    kicker: "Antes de elegir una hipoteca, hacemos números.",
+    kicker: "Comparamos ofertas reales, banco a banco.",
     text: "Viabilidad, aportación y cuota, antes de mirar ninguna oferta.",
     img: 2,
     href: "#financiar",
@@ -393,6 +394,8 @@ function Index() {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const drawerRef = useRef<HTMLElement>(null);
 
   const navLinks: [string, string][] = [
     ["Financiar", "#financiar"],
@@ -413,10 +416,12 @@ function Header() {
     };
   }, [mobileOpen]);
 
+  useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
+
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={reduce ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
         className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
@@ -480,13 +485,16 @@ function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
+            ref={drawerRef}
+            tabIndex={-1}
+            initial={reduce ? { x: 0 } : { x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl lg:hidden"
+            exit={reduce ? { x: 0 } : { x: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl outline-none lg:hidden"
             role="dialog"
             aria-modal="true"
+            aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
               <button
@@ -1727,10 +1735,12 @@ function Field({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }) {
+  const id = `field-${label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
+      <label htmlFor={id} className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}

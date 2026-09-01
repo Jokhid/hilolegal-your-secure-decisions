@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { blogPosts } from "@/lib/blogPosts";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 
 export const Route = createFileRoute("/administracion-fincas/")({
   head: () => ({
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/administracion-fincas/")({
       {
         name: "description",
         content:
-          "Administración de comunidades de propietarios en Altea, Benidorm y Marina Baixa. Gestión económica, incidencias, juntas y comunicación directa con la presidencia. Propuesta sin compromiso.",
+          "Administración de comunidades de propietarios en Altea, Benidorm y Marina Baixa. Gestión económica y comunicación directa con la presidencia.",
       },
       { property: "og:title", content: "Administración de Fincas en Altea y Marina Baixa | HiloLegal" },
       {
@@ -241,6 +242,8 @@ function AdministracionFincasPage() {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const drawerRef = useRef<HTMLElement>(null);
 
   const navLinks: [string, string][] = [
     ["El problema", "#problema"],
@@ -260,10 +263,12 @@ function Header() {
     };
   }, [mobileOpen]);
 
+  useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
+
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={reduce ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
         className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
@@ -327,13 +332,16 @@ function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
+            ref={drawerRef}
+            tabIndex={-1}
+            initial={reduce ? { x: 0 } : { x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            exit={reduce ? { x: 0 } : { x: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl outline-none md:hidden"
             role="dialog"
             aria-modal="true"
+            aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
               <button
@@ -493,8 +501,8 @@ function BloquePresidente() {
         <div className="position-block__body">
           <FadeUp delay={0.1}>
             <p>
-              Ser presidente de una comunidad no debería significar convertirse en administrador
-              a tiempo parcial. Tu papel es representar a los propietarios y tomar decisiones,
+              Ser presidente no debería significar asumir el trabajo del administrador.
+              Tu papel es representar a los propietarios y tomar decisiones,
               no perseguir facturas ni redactar actas.
             </p>
             <p>
@@ -1092,10 +1100,12 @@ function Field({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }) {
+  const id = `field-${label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
+      <label htmlFor={id} className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}

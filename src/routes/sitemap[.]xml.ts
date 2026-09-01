@@ -23,7 +23,10 @@ export const Route = createFileRoute("/sitemap.xml")({
             path: `/blog/${p.slug}`,
             changefreq: "monthly" as const,
             priority: "0.6",
-            lastmod: today,
+            // Fecha real (updatedAt si el post fue revisado, si no publishedAt),
+            // no "hoy" recalculado en cada petición — así lastmod sí sirve
+            // como señal real de re-rastreo para Google.
+            lastmod: p.updatedAt ?? p.publishedAt,
           })),
           { path: "/herramientas/ahorro-potencial/index.html", changefreq: "monthly", priority: "0.7", lastmod: today },
           { path: "/test-salud-financiera.html", changefreq: "monthly", priority: "0.7", lastmod: today },

@@ -7,11 +7,12 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { blogPosts } from "@/lib/blogPosts";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 const banner3Asset = { url: "/9.webp" };
 
 export const Route = createFileRoute("/veronica")({
   head: () => {
-    const VERONICA_DESCRIPTION = "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades. Consulta en Altea.";
+    const VERONICA_DESCRIPTION = "Abogada con experiencia en alta dirección pública, docencia universitaria y ejercicio privado. Derecho civil, administrativo, familia y comunidades.";
     const VERONICA_TELEPHONE = "+34" + PHONE_DISPLAY.replace(/\s/g, "");
     return {
     meta: [
@@ -145,12 +146,12 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "La Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.\n\n\nHe trabajado desde dentro de la Administración y conozco cómo se instruyen los expedientes y cómo interpretan los técnicos la normativa. Esa experiencia institucional permite entender aspectos prácticos del procedimiento que difícilmente se adquieren únicamente desde el estudio teórico." },
-  { icon: "gavel", title: "Derecho civil y de familia", text: "Las decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
-  { icon: "home", title: "Inmobiliario y comunidades", text: "La compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.\n\n\nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico." },
-  { icon: "balance", title: "Derecho penal", text: "Un procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada con transparencia total sobre las expectativas reales del caso, sin promesas que no se puedan cumplir." },
-  { icon: "psychology", title: "Consultoría jurídica especializada", text: "Las empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley, se encuentra en los criterios de aplicación de la propia Administración.    \n\n\nHaber ocupado puestos de alta dirección en la Generalitat Valenciana me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
-  { icon: "shield", title: "Estrategia jurídica preventiva", text: "Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
+  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "¿Te enfrentas a una sanción, un recurso o un expediente con la Administración? Lo analizamos con el mismo criterio con el que se instruyen los expedientes desde dentro.\n\n\nLa Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.\n\n\nHe trabajado desde dentro de la Administración y conozco cómo se instruyen los expedientes y cómo interpretan los técnicos la normativa. Esa experiencia institucional permite entender aspectos prácticos del procedimiento que difícilmente se adquieren únicamente desde el estudio teórico." },
+  { icon: "gavel", title: "Derecho civil y de familia", text: "¿Necesitas resolver una herencia, un divorcio o un contrato con seguridad jurídica? Trabajamos con rigor técnico y honestidad sobre las opciones reales de éxito.\n\n\nLas decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
+  { icon: "home", title: "Inmobiliario y comunidades", text: "¿Vas a comprar, vender o alquilar un inmueble? Revisamos la operación con la misma auditoría legal que usamos para proteger comunidades de propietarios.\n\n\nLa compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.\n\n\nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico." },
+  { icon: "balance", title: "Derecho penal", text: "¿Te enfrentas a un procedimiento penal? Ofrecemos defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso.\n\n\nUn procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada sin promesas que no se puedan cumplir." },
+  { icon: "psychology", title: "Consultoría jurídica especializada", text: "¿Tu empresa licita con el sector público o actúa en un mercado regulado? Detectamos las contingencias jurídicas antes de que se consoliden.\n\n\nLas empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley: se encuentra en los criterios de aplicación de la propia Administración.\n\n\nHaber ocupado puestos de alta dirección en la Administración autonómica me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
+  { icon: "shield", title: "Estrategia jurídica preventiva", text: "¿Quieres anticiparte a un conflicto antes de que ocurra? Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
 ];
 
 const errors = [
@@ -303,6 +304,8 @@ function Index() {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const drawerRef = useRef<HTMLElement>(null);
   const navLinks: [string, string][] = [
     ["Áreas", "#services"],
     ["Método", "#method"],
@@ -311,10 +314,12 @@ function Header() {
     ["Contacto", "#contact"],
   ];
 
+  useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
+
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={reduce ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
         className="sticky top-0 w-full z-50 bg-white backdrop-blur-xl border-b border-[#E5E5E5]"
@@ -373,13 +378,16 @@ function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
+            ref={drawerRef}
+            tabIndex={-1}
+            initial={reduce ? { x: 0 } : { x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            exit={reduce ? { x: 0 } : { x: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl outline-none md:hidden"
             role="dialog"
             aria-modal="true"
+            aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 p-8">
               <button
@@ -565,7 +573,7 @@ function Differentiation() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
           <div className="lg:sticky lg:top-32 space-y-8">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
-              <Curtain>Hay abogados que conocen la ley.{"\u00a0"}Pocos la han aplicado desde ambos lados.</Curtain>
+              <Curtain>La experiencia de haber aplicado la ley desde ambos lados{"\u00a0"}cambia la forma de ejercerla.</Curtain>
             </h2>
           </div>
           <FadeUp delay={0.1}>
@@ -991,6 +999,7 @@ function Contact() {
   const submit = useServerFn(submitContact);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [accepted, setAccepted] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -1012,6 +1021,11 @@ function Contact() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!accepted) {
+      setStatus("error");
+      setErrorMsg("Debes aceptar la política de privacidad para continuar.");
+      return;
+    }
     setStatus("sending");
     setErrorMsg("");
     try {
@@ -1025,6 +1039,7 @@ function Contact() {
       setStatus("ok");
       trackEvent("contact_submit");
       setForm({ name: "", phone: "", email: "", topic: "Consulta jurídica general", message: "" });
+      setAccepted(false);
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "No se ha podido enviar el formulario.");
@@ -1126,6 +1141,29 @@ function Contact() {
               />
             </div>
 
+            <label className="flex items-start gap-3 text-sm text-[var(--jch-muted)] cursor-pointer">
+              <input
+                type="checkbox"
+                checked={accepted}
+                onChange={(e) => setAccepted(e.target.checked)}
+                required
+                className="mt-1 w-4 h-4 shrink-0"
+                style={{ accentColor: "#C5A566" }}
+              />
+              <span>
+                He leído y acepto la{" "}
+                <a
+                  href="/privacidad.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-[var(--jch-ink)]"
+                >
+                  política de privacidad
+                </a>
+                .
+              </span>
+            </label>
+
             <motion.button
               type="submit"
               disabled={status === "sending"}
@@ -1211,10 +1249,12 @@ function Field({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }) {
+  const id = `field-${label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
+      <label htmlFor={id} className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}

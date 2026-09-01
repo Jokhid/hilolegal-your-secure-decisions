@@ -21,7 +21,17 @@ const LLMS_TXT = `# HiloLegal
 - [José Carlos Hidalgo](https://www.hilolegal.es/josecarlos): hipotecas y planificación patrimonial.
 - [Verónica López](https://www.hilolegal.es/veronica): asesoramiento jurídico.
 - [Administración de fincas](https://www.hilolegal.es/administracion-fincas): gestión de comunidades de propietarios.
+  - [Soy presidente de una comunidad](https://www.hilolegal.es/administracion-fincas/presidentes): acompañamiento a presidentes de comunidades de propietarios.
+  - [Cambio de administrador de fincas](https://www.hilolegal.es/administracion-fincas/cambio-administrador): traspaso ordenado desde otro administrador.
+  - [Nueva comunidad de propietarios](https://www.hilolegal.es/administracion-fincas/nueva-comunidad): constitución y primeros pasos de una comunidad nueva.
+  - [Gestión económica e impagos](https://www.hilolegal.es/administracion-fincas/gestion-economica-impagos): cuentas, presupuestos y morosidad en comunidades.
 - [Blog](https://www.hilolegal.es/blog): artículos sobre derecho, hipotecas, patrimonio y comunidades.
+  - [Dinero parado en el banco: cuánto estás perdiendo sin saberlo](https://www.hilolegal.es/blog/dinero-parado-en-el-banco)
+  - [Cómo preparar tu perfil financiero antes de pedir una hipoteca](https://www.hilolegal.es/blog/preparar-perfil-financiero-hipoteca-2026)
+  - [Jubilación en España: la historia real que nadie quiere ver](https://www.hilolegal.es/blog/jubilacion-en-espana)
+  - [Base mínima de autónomos en 2026: cuánto pierdes realmente cuando te pones enfermo](https://www.hilolegal.es/blog/base-minima-autonomos-baja-2026)
+  - [Custodia compartida: lo que de verdad valora un juez](https://www.hilolegal.es/blog/custodia-compartida-que-valora-un-juez)
+  - [Señales que indican que tu comunidad necesita cambiar de administrador](https://www.hilolegal.es/blog/senales-cambiar-administrador-de-fincas)
 
 ## Contacto
 

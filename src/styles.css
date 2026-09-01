@@ -103,7 +103,10 @@
   --jch-surface-2: #151515;
   --jch-ink: #f3f0ea;
   --jch-muted: #9a9892;
-  --jch-dim: #66645f;
+  /* #7d7b72 en vez del #66645f original: ese tono daba ~3.35:1 sobre
+     --jch-bg, por debajo del 4.5:1 mínimo AA para texto normal. Ajustado
+     a ~4.66:1. */
+  --jch-dim: #7d7b72;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-line-strong: rgba(243, 240, 234, 0.28);
   --jch-accent: #C5A566;
@@ -124,16 +127,22 @@
   --jch-surface-2: #efece4;
   --jch-ink: #1a1a1a;
   --jch-muted: #4a4a4a;
-  --jch-dim: #78766f;
+  /* #726f68 en vez de #78766f: el original daba ~4.55:1 sobre blanco, casi
+     sin margen sobre el mínimo AA de 4.5:1. Ajustado a ~5:1. */
+  --jch-dim: #726f68;
   --jch-line: rgba(26, 26, 26, 0.12);
   --jch-line-strong: rgba(26, 26, 26, 0.24);
   --jch-ink-rgb: 26, 26, 26;
   --jch-bg-rgb: 255, 255, 255;
-  /* --jch-accent and --jch-accent-2 intentionally unchanged — identical in both themes */
-  /* Kept identical to the dark-mode value on purpose: the site standardizes on a
-     single ochre tone (#C5A566) everywhere, including light-mode text on white,
-     even though that only reaches ~2.35:1 contrast there (below WCAG AA). */
-  --jch-accent-ink: #C5A566;
+  /* --jch-accent and --jch-accent-2 intentionally unchanged — identical in both themes,
+     se usan en elementos grandes/decorativos (números, iconos, bordes) donde el
+     mínimo AA de 3:1 basta o no aplica. */
+  /* #8a6d3a en vez de #C5A566 en modo claro: el ocre de marca solo alcanza
+     ~2.35:1 sobre blanco, por debajo del AA. --jch-accent-ink es el que se
+     usa como color de TEXTO (nav, CTAs de texto, etiquetas), así que aquí
+     se oscurece a ~4.85:1 manteniendo la familia cromática; --jch-accent
+     sigue siendo el ocre de marca para lo decorativo. */
+  --jch-accent-ink: #8a6d3a;
 }
 
 html, body {
@@ -2012,7 +2021,7 @@ footer.site-footer .brand {
      Pin them back to the dark-mode values for this subtree only. */
   --jch-ink: #f3f0ea;
   --jch-muted: #9a9892;
-  --jch-dim: #66645f;
+  --jch-dim: #7d7b72;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-ink-rgb: 243, 240, 234;
 }
@@ -2020,7 +2029,7 @@ footer.site-footer .brand {
 .veronica-original footer {
   --jch-ink: #f3f0ea;
   --jch-muted: #9a9892;
-  --jch-dim: #66645f;
+  --jch-dim: #7d7b72;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-ink-rgb: 243, 240, 234;
 }
@@ -2037,7 +2046,7 @@ footer.site-footer .brand {
      on its own near-black background. */
   --jch-ink: #f3f0ea;
   --jch-muted: #9a9892;
-  --jch-dim: #66645f;
+  --jch-dim: #7d7b72;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-ink-rgb: 243, 240, 234;
 }
@@ -2045,7 +2054,7 @@ footer.site-footer .brand {
 .josecarlos-original footer {
   --jch-ink: #f3f0ea;
   --jch-muted: #9a9892;
-  --jch-dim: #66645f;
+  --jch-dim: #7d7b72;
   --jch-line: rgba(243, 240, 234, 0.14);
   --jch-ink-rgb: 243, 240, 234;
 }

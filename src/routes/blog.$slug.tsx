@@ -11,7 +11,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData, params }) => {
     const post = loaderData?.post;
-    const title = post ? `${post.title} | Blog HiloLegal` : "Artículo";
+    const title = post ? `${shortTitle(post.title)} | HiloLegal` : "Artículo";
     const desc = post?.metaDescription ?? "";
     const url = `https://www.hilolegal.es/blog/${params.slug}`;
     const author = post ? SERVICE_META[post.service] : null;
@@ -23,6 +23,19 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: desc },
         { property: "og:url", content: url },
         { property: "og:type", content: "article" },
+        { property: "og:locale", content: "es_ES" },
+        { property: "og:site_name", content: "HiloLegal" },
+        ...(author
+          ? [
+              { property: "og:image", content: author.ogImage },
+              { property: "og:image:width", content: String(author.ogImageWidth) },
+              { property: "og:image:height", content: String(author.ogImageHeight) },
+              { name: "twitter:card", content: "summary_large_image" },
+              { name: "twitter:title", content: post?.title ?? "Artículo" },
+              { name: "twitter:description", content: desc },
+              { name: "twitter:image", content: author.ogImage },
+            ]
+          : []),
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: post && author
@@ -34,7 +47,9 @@ export const Route = createFileRoute("/blog/$slug")({
                 "@type": "Article",
                 headline: post.title,
                 description: post.metaDescription,
+                image: author.ogImage,
                 articleSection: post.category,
+                datePublished: post.publishedAt,
                 author: {
                   "@type": "Person",
                   name: author.authorName,
@@ -85,6 +100,37 @@ export const Route = createFileRoute("/blog/$slug")({
   ),
 });
 
+const SPANISH_MONTHS = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+];
+
+// post.updatedAt/publishedAt se guardan en ISO (YYYY-MM-DD) para que sirvan
+// tal cual como datePublished/dateModified en el JSON-LD; esta función los
+// convierte a formato legible en español solo para mostrarlos en pantalla.
+function formatSpanishDate(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return iso;
+  return `${d} de ${SPANISH_MONTHS[m - 1]} de ${y}`;
+}
+
+// Título corto para la etiqueta <title> (Google trunca en torno a 60
+// caracteres) sin tener que reescribir a mano los 25 posts — corta en el
+// último espacio antes del límite. El <h1> sigue mostrando post.title
+// completo, sin recortar.
+function shortTitle(title: string, max = 48) {
+  if (title.length <= max) return title;
+  const cut = title.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 24 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
+}
+
+const SERVICE_CTA: Record<string, string> = {
+  josecarlos: "Quiero mi diagnóstico gratuito",
+  veronica: "Cuéntanos tu caso",
+  fincas: "Solicitar propuesta",
+};
+
 function renderMarkdown(md: string) {
   const lines = md.split("\n");
   const blocks: React.ReactNode[] = [];
@@ -133,7 +179,7 @@ function renderMarkdown(md: string) {
       blocks.push(
         <blockquote
           key={key++}
-          className="border-l-4 border-[#C5A566] pl-6 my-8 italic text-xl text-[#1A1A1A]"
+          className="border-l-4 border-[#C5A566] pl-6 my-8 italic text-xl text-[var(--jch-ink)]"
         >
           {inline(line.slice(2))}
         </blockquote>,
@@ -150,7 +196,7 @@ function renderMarkdown(md: string) {
       blocks.push(
         <ListTag
           key={key++}
-          className={`my-6 space-y-2 ${isOrdered ? "list-decimal" : "list-disc"} pl-6 text-lg text-[#4A4A4A]`}
+          className={`my-6 space-y-2 ${isOrdered ? "list-decimal" : "list-disc"} pl-6 text-lg text-[var(--jch-muted)]`}
         >
           {items.map((it, idx) => (
             <li key={idx}>{inline(it)}</li>
@@ -159,7 +205,7 @@ function renderMarkdown(md: string) {
       );
     } else {
       blocks.push(
-        <p key={key++} className="my-5 text-lg leading-relaxed text-[#4A4A4A]">
+        <p key={key++} className="my-5 text-lg leading-relaxed text-[var(--jch-muted)]">
           {inline(line)}
         </p>,
       );
@@ -216,15 +262,15 @@ function BlogPostPage() {
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
               {post.title}
             </h1>
-            <p className="text-xl text-[#4A4A4A] leading-relaxed">{post.excerpt}</p>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#6A6A6A]">
+            <p className="text-xl text-[var(--jch-muted)] leading-relaxed">{post.excerpt}</p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--jch-dim)]">
               <span>
                 Por{" "}
                 <Link to={author.contactPath} className="font-bold text-[var(--jch-ink)] hover:text-[var(--jch-cta)] transition-colors">
                   {author.authorName}
                 </Link>
               </span>
-              {post.updatedAt && <span>· Revisado el {post.updatedAt}</span>}
+              {post.updatedAt && <span>· Revisado el {formatSpanishDate(post.updatedAt)}</span>}
             </div>
             <div className="w-20 h-1 bg-[#C5A566]" />
           </div>
@@ -233,12 +279,12 @@ function BlogPostPage() {
 
           <ArticleSources sources={post.sources} />
 
-          <div className="mt-16 pt-10 border-t border-[#E5E5E5] flex items-start gap-4">
+          <div className="mt-16 pt-10 border-t border-[var(--jch-line)] flex items-start gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1A1A1A] text-sm font-black uppercase text-white">
               {author.authorName.charAt(0)}
             </div>
             <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8A8A8A] mb-1">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">
                 Sobre el autor
               </p>
               <Link
@@ -247,23 +293,23 @@ function BlogPostPage() {
               >
                 {author.authorName}
               </Link>
-              <p className="mt-1 text-sm text-[#6A6A6A] leading-relaxed">{author.authorBio}</p>
+              <p className="mt-1 text-sm text-[var(--jch-muted)] leading-relaxed">{author.authorBio}</p>
             </div>
           </div>
 
-          <div className="mt-10 pt-10 border-t border-[#E5E5E5]">
+          <div className="mt-10 pt-10 border-t border-[var(--jch-line)]">
             <Link
               to={author.contactPath}
               hash="contact"
               className="inline-block rounded-full bg-[#1f6f78] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors"
             >
-              Quiero mi diagnóstico gratuito
+              {SERVICE_CTA[post.service] ?? "Cuéntanos tu caso"}
             </Link>
           </div>
         </article>
 
         {related.length > 0 && (
-          <aside className="mt-24 pt-12 border-t border-[#E5E5E5]">
+          <aside className="mt-24 pt-12 border-t border-[var(--jch-line)]">
             <h2 className="text-2xl font-bold mb-8 uppercase tracking-tight">
               Sigue leyendo
             </h2>
@@ -273,7 +319,7 @@ function BlogPostPage() {
                   key={r.slug}
                   to="/blog/$slug"
                   params={{ slug: r.slug }}
-                  className="block border border-[#E5E5E5] p-6 hover:border-[#C5A566] transition-colors"
+                  className="block border border-[var(--jch-line)] p-6 hover:border-[#C5A566] transition-colors"
                 >
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-accent-ink)]">
                     {r.category}

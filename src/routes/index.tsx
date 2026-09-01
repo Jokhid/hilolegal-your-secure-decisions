@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { blogPosts, topicOf } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -350,6 +351,8 @@ function Index() {
 /* ---------- Header ---------- */
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const drawerRef = useRef<HTMLElement>(null);
 
   const navLinks: [string, string][] = [
     ["Servicios", "#areas"],
@@ -368,10 +371,12 @@ function Header() {
     };
   }, [mobileOpen]);
 
+  useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
+
   return (
     <>
       <motion.header
-        initial={{ y: -60, opacity: 0 }}
+        initial={reduce ? false : { y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
         className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
@@ -425,13 +430,16 @@ function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
+            ref={drawerRef}
+            tabIndex={-1}
+            initial={reduce ? { x: 0 } : { x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            exit={reduce ? { x: 0 } : { x: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl outline-none md:hidden"
             role="dialog"
             aria-modal="true"
+            aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 p-8">
               <button

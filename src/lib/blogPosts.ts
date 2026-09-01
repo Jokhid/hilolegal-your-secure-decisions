@@ -21,9 +21,13 @@ export type BlogPost = {
   content: string;
   service: BlogService;
   sources?: ArticleSource[];
-  // Fecha real de última revisión de contenido (no la fecha de publicación).
-  // Solo se rellena cuando el artículo ha sido efectivamente revisado.
+  // Fecha real de última revisión de contenido (no la fecha de publicación),
+  // en ISO 8601 (YYYY-MM-DD) — se usa tal cual como dateModified en el JSON-LD
+  // y se formatea a español solo para mostrarla en pantalla.
   updatedAt?: string;
+  // Fecha real de publicación en ISO 8601, tomada del historial de git (fecha
+  // del commit que añadió cada artículo) — no es una fecha inventada.
+  publishedAt: string;
 };
 
 // Metadatos compartidos por servicio — usados por el filtro de /blog, el
@@ -31,7 +35,19 @@ export type BlogPost = {
 // final de cada artículo, que ahora enlaza a la página correspondiente.
 export const SERVICE_META: Record<
   BlogService,
-  { label: string; authorName: string; authorUrl: string; authorBio: string; contactPath: string }
+  {
+    label: string;
+    authorName: string;
+    authorUrl: string;
+    authorBio: string;
+    contactPath: string;
+    // Misma imagen ya usada como og:image en la página del profesional
+    // correspondiente (/josecarlos, /veronica, /administracion-fincas),
+    // con sus dimensiones reales verificadas.
+    ogImage: string;
+    ogImageWidth: number;
+    ogImageHeight: number;
+  }
 > = {
   josecarlos: {
     label: "Financiero e hipotecas",
@@ -40,6 +56,9 @@ export const SERVICE_META: Record<
     // Reutilizada literalmente de la sección "Sobre mí" de /josecarlos.
     authorBio: "Trabajo con familias y autónomos en decisiones relacionadas con financiación hipotecaria, protección, ahorro y planificación patrimonial.",
     contactPath: "/josecarlos",
+    ogImage: "https://www.hilolegal.es/yoderecha.webp",
+    ogImageWidth: 1672,
+    ogImageHeight: 941,
   },
   veronica: {
     label: "Legal",
@@ -48,13 +67,19 @@ export const SERVICE_META: Record<
     // Reutilizada literalmente del hero de /veronica.
     authorBio: "Abogada en ejercicio con trayectoria en puestos de alta dirección en la Administración Pública de la Comunidad Valenciana y profesora asociada de Derecho en la Universidad de Alicante.",
     contactPath: "/veronica",
+    ogImage: "https://www.hilolegal.es/VERODERECHA.webp",
+    ogImageWidth: 1672,
+    ogImageHeight: 941,
   },
   fincas: {
     label: "Administración de fincas",
     authorName: "José Carlos Hidalgo Ortega",
     authorUrl: "https://www.hilolegal.es/administracion-fincas",
-    authorBio: "Trabajo con familias y autónomos en decisiones relacionadas con financiación hipotecaria, protección, ahorro y planificación patrimonial.",
+    authorBio: "Administro comunidades de propietarios en Altea y la Marina Baixa: gestión económica, incidencias y comunicación directa con la presidencia.",
     contactPath: "/administracion-fincas",
+    ogImage: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp",
+    ogImageWidth: 1536,
+    ogImageHeight: 1024,
   },
 };
 
@@ -105,6 +130,7 @@ export function topicOf(post: Pick<BlogPost, "category" | "service">): BlogTopic
 const financialPosts: Omit<BlogPost, "service">[] = [
   {
     slug: "dinero-parado-en-el-banco",
+    publishedAt: "2026-07-31",
     title: "Dinero parado en el banco: cuánto estás perdiendo sin saberlo (2026)",
     category: "Ahorro e inversión",
     readingTime: "5 min",
@@ -153,10 +179,11 @@ No es si puedes ahorrar. La pregunta correcta es: ¿lo que estás haciendo hoy r
 
 **¿Quieres saber exactamente cuánto te está costando tener tu dinero parado? Escríbeme y lo calculamos juntos. El diagnóstico es gratuito.**`,
     sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "que-pasaria-con-tu-familia-si-no-pudieras-trabajar",
+    publishedAt: "2026-07-31",
     title: "¿Qué pasaría con tu familia si mañana no pudieras trabajar?",
     category: "Protección y seguros",
     readingTime: "5 min",
@@ -204,10 +231,11 @@ El objetivo no es contratar más productos. Es tener respuesta a esa pregunta in
 
 **Si quieres revisar juntos si tienes esa respuesta clara, escríbeme. La primera conversación no cuesta nada.**`,
     sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "prevision-financiera-vision",
+    publishedAt: "2026-07-31",
     title: "Previsión financiera: por qué los que planifican no tienen más suerte, sino más visión",
     category: "Planificación financiera",
     readingTime: "4 min",
@@ -244,6 +272,7 @@ Quien empieza a ahorrar 200 € al mes a los 35 años con rentabilidad media del
   },
   {
     slug: "contigo-senior-nationale-nederlanden",
+    publishedAt: "2026-07-31",
     title: "Contigo Senior: qué cubre y para quién es ideal este seguro de Nationale-Nederlanden",
     category: "Seguros",
     readingTime: "5 min",
@@ -290,10 +319,11 @@ Un seguro médico estándar cubre la enfermedad. Contigo Senior cubre la etapa. 
 
 > Si tienes más de 55 años y quieres analizar si Contigo Senior tiene sentido para ti, escríbeme. Te lo explico sin compromiso.`,
     sources: [{ label: "Nationale-Nederlanden España", url: "https://www.nnespana.es" }, { label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "autonomo-ahorros-cuenta-corriente",
+    publishedAt: "2026-07-31",
     title: "Autónomo con ahorros en cuenta corriente: el error silencioso que te cuesta dinero cada año",
     category: "Ahorro para autónomos",
     readingTime: "4 min",
@@ -327,10 +357,11 @@ Un autónomo que ha cotizado por la base mínima tiene derecho a una pensión p�
 
 > Soy especialista en ahorro para autónomos en Altea, Benidorm y la Costa Blanca. Escríbeme y analizamos tu situación real.`,
     sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "sialp-2026-ahorro-sin-impuestos",
+    publishedAt: "2026-07-31",
     title: "SIALP 2026: el producto de ahorro a largo plazo que el Gobierno quiere relanzar",
     category: "Ahorro e inversión",
     readingTime: "6 min",
@@ -381,10 +412,11 @@ Pionero en invertir con criterios ambientales, sociales y de buen gobierno.
 
 **¿Tienes dudas sobre si el SIALP encaja en tu situación? Escríbeme y te lo explico en menos de 15 minutos.**`,
     sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }, { label: "BOE", url: "https://www.boe.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "educacion-financiera-lo-que-el-colegio-no-te-enseno",
+    publishedAt: "2026-07-31",
     title: "Educación financiera: lo que el colegio no te enseñó y te cuesta dinero cada año",
     category: "Educación financiera",
     readingTime: "5 min",
@@ -429,6 +461,7 @@ No necesitas un máster. Necesitas tres o cuatro conceptos claros y alguien que 
   },
   {
     slug: "plan-de-pensiones-o-sialp",
+    publishedAt: "2026-07-31",
     title: "Plan de pensiones o SIALP: cuál te conviene según tu situación en 2026",
     category: "Ahorro e inversión",
     readingTime: "6 min",
@@ -482,10 +515,11 @@ No hay un producto universalmente mejor. Hay una estrategia correcta para cada s
 
 **Escríbeme y en 5 minutos te digo cuál te conviene realmente en tu situación. Sin jerga financiera.**`,
     sources: [{ label: "Agencia Tributaria", url: "https://sede.agenciatributaria.gob.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "flujo-caja-vs-riqueza-real-autonomo",
+    publishedAt: "2026-07-31",
     title: "Flujo de caja vs riqueza real: el error financiero más caro del autónomo",
     category: "Finanzas para autónomos",
     readingTime: "4 min",
@@ -526,6 +560,7 @@ Cuanto antes se ordena esta diferencia entre flujo de caja y patrimonio real, me
   },
   {
     slug: "base-minima-autonomos-baja-2026",
+    publishedAt: "2026-07-31",
     title: "Base mínima de autónomos en 2026: cuánto pierdes realmente cuando te pones enfermo",
     category: "Protección para autónomos",
     readingTime: "6 min",
@@ -570,10 +605,11 @@ Lo que sí puedes controlar es tu patrimonio privado, tu cobertura complementari
 
 **Si quieres calcular cuánto cobrarías de baja y cuánto perderías en la jubilación con tu situación actual, escríbeme.**`,
     sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "jubilacion-en-espana",
+    publishedAt: "2026-07-31",
     title: "Jubilación en España: la historia real que nadie quiere ver",
     category: "Planificación de jubilación",
     readingTime: "5 min",
@@ -614,10 +650,11 @@ No es imposible. Pero requiere empezar hoy, no a los 60.
 
 **Si quieres calcular tu brecha de jubilación y construir un plan real para cubrirla, escríbeme. Lo hacemos juntos.**`,
     sources: [{ label: "Seguridad Social", url: "https://www.seg-social.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "preparar-perfil-financiero-hipoteca-2026",
+    publishedAt: "2026-07-31",
     title: "Cómo preparar tu perfil financiero antes de pedir una hipoteca: la guía paso a paso (2026)",
     category: "Hipotecas",
     readingTime: "15 min",
@@ -644,7 +681,7 @@ Los sistemas de scoring bancario analizan tu comportamiento de pago con una prec
 
 Para el algoritmo, pagar mal o tarde tiene solo dos interpretaciones posibles: que tu economía está ajustada o que tienes mala disciplina financiera. Ninguna de las dos es una buena carta de presentación ante un banco que va a prestarte cientos de miles de euros.
 
-> **Acción previa:** revisa tus domiciliaciones y asegúrate de que ningún recibo ha quedado pendiente en los últimos 24 meses. Si tienes algún apunte negativo en ASNEF o en ficheros de morosidad, resuélvelo antes de iniciar el proceso.
+> **Acción previa:** revisa tus domiciliaciones y asegúrate de que ningún recibo ha quedado pendiente en los últimos 24 meses. Si tienes algún apunte negativo en ASNEF (el fichero de morosidad más consultado por las entidades) o en otros ficheros similares, resuélvelo antes de iniciar el proceso.
 
 ## 2. Lo que tus nóminas cuentan de ti (más de lo que crees)
 
@@ -713,13 +750,14 @@ Ese diagnóstico te dirá tres cosas: cuánto puedes pedir, a qué condiciones p
 
 **¿Quieres saber si tu perfil está listo para una hipoteca en 2026? Escríbeme y hacemos juntos ese diagnóstico previo. Es gratuito, sin compromiso y puede ahorrarte meses de proceso.**`,
     sources: [{ label: "Banco de España", url: "https://www.bde.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
 ];
 
 const fincasPosts: Omit<BlogPost, "service">[] = [
   {
     slug: "conflictos-comunidad-propietarios-como-cortarlos",
+    publishedAt: "2026-08-31",
     title: "Los 5 conflictos que más veces destruyen la convivencia en una comunidad (y cómo se cortan a tiempo)",
     category: "Convivencia y gestión",
     readingTime: "6 min",
@@ -770,6 +808,7 @@ Ningún edificio con varias familias está libre de tensiones. La diferencia ent
   },
   {
     slug: "estatutos-comunidad-propietarios-que-dicen",
+    publishedAt: "2026-08-31",
     title: "¿Sabes qué dicen los estatutos de tu comunidad? La mayoría de propietarios, no.",
     category: "Normativa de comunidades",
     readingTime: "6 min",
@@ -831,6 +870,7 @@ Los estatutos no son papeleo de trámite. Son el acuerdo que evita que la conviv
   },
   {
     slug: "senales-cambiar-administrador-de-fincas",
+    publishedAt: "2026-08-31",
     title: "Las señales que indican que tu comunidad necesita cambiar de administrador de fincas",
     category: "Administración de fincas",
     readingTime: "5 min",
@@ -873,13 +913,14 @@ Muchas comunidades aguantan años con un servicio mediocre por miedo al cambio: 
 
 Lo que sí tiene coste es quedarse con un administrador que no comunica, no resuelve, no informa y no mejora.
 
-**En HiloLegal gestionamos comunidades con comunicación directa, tecnología que simplifica cada gestión, transparencia financiera total y un compromiso activo con la mejora continua. Si alguna de estas cinco señales te suena familiar, es buen momento para hablar.**`,
+**En HiloLegal gestionamos comunidades con comunicación directa, tecnología que simplifica cada gestión y cuentas siempre accesibles. Si alguna de estas cinco señales te suena familiar, es buen momento para hablar.**`,
   },
 ];
 
 const legalPosts: Omit<BlogPost, "service">[] = [
   {
     slug: "separacion-o-divorcio-diferencias",
+    publishedAt: "2026-08-31",
     title: "Separación o divorcio: la pregunta que casi todo el mundo confunde",
     category: "Derecho de familia",
     readingTime: "5 min",
@@ -932,6 +973,7 @@ Separación y divorcio no son sinónimos legales, son dos decisiones distintas c
   },
   {
     slug: "reclamar-indemnizacion-por-danos",
+    publishedAt: "2026-08-31",
     title: "Reclamar una indemnización por daños: por qué \"tener razón\" no basta",
     category: "Responsabilidad civil",
     readingTime: "5 min",
@@ -976,6 +1018,7 @@ Tener razón es el punto de partida, no la garantía de nada. Lo que realmente d
   },
   {
     slug: "custodia-compartida-que-valora-un-juez",
+    publishedAt: "2026-08-31",
     title: "Custodia compartida: lo que de verdad valora un juez (y lo que no)",
     category: "Derecho de familia",
     readingTime: "6 min",
@@ -1013,10 +1056,11 @@ La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%
 
 **En HiloLegal preparamos cada caso de familia analizando qué criterios juegan a tu favor y cuáles hay que reforzar antes de llegar a la vista.**`,
     sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "pension-de-alimentos-como-se-calcula",
+    publishedAt: "2026-08-31",
     title: "Pensión de alimentos: cómo se calcula de verdad (y cuándo puede cambiar)",
     category: "Derecho de familia",
     readingTime: "6 min",
@@ -1060,10 +1104,11 @@ La pensión de alimentos no se calcula "a ojo" ni se cambia por decisión unilat
 
 **En HiloLegal analizamos si tu situación actual justifica una modificación de medidas y te acompañamos en todo el proceso para que la nueva pensión refleje tu realidad económica real.**`,
     sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "herencia-entre-hermanos-sin-acuerdo",
+    publishedAt: "2026-08-31",
     title: "Herencia entre hermanos sin acuerdo: opciones antes de llegar a juicio",
     category: "Sucesiones y herencias",
     readingTime: "5 min",
@@ -1110,6 +1155,7 @@ Un desacuerdo entre herederos no tiene que acabar automáticamente en los tribun
   },
   {
     slug: "desahucios-cuanto-tarda-y-errores",
+    publishedAt: "2026-08-31",
     title: "Desahucios: cuánto tarda de verdad y los errores que lo alargan aún más",
     category: "Arrendamientos",
     readingTime: "6 min",
@@ -1149,10 +1195,11 @@ Un desahucio no se gana ni se pierde en el último mes, se define en las primera
 
 **En HiloLegal gestionamos desahucios tanto desde la posición del propietario como del inquilino, buscando siempre la vía más rápida y menos costosa para cada caso.**`,
     sources: [{ label: "Consejo General del Poder Judicial", url: "https://www.poderjudicial.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "cancelacion-antecedentes-penales",
+    publishedAt: "2026-08-31",
     title: "Antecedentes penales: cuándo se cancelan de verdad (y por qué no se borran solos)",
     category: "Derecho penal",
     readingTime: "5 min",
@@ -1196,10 +1243,11 @@ Cumplir la condena es solo el primer paso. Sin la solicitud de cancelación, eso
 
 **En HiloLegal revisamos si ya cumples los plazos y requisitos para solicitar la cancelación, y tramitamos todo el procedimiento para evitar retrasos por errores de documentación.**`,
     sources: [{ label: "BOE", url: "https://www.boe.es" }, { label: "Ministerio de Justicia", url: "https://www.mjusticia.gob.es" }],
-    updatedAt: "31 de agosto de 2026",
+    updatedAt: "2026-08-31",
   },
   {
     slug: "antes-de-firmar-un-documento-legal",
+    publishedAt: "2026-08-31",
     title: "Antes de firmar cualquier documento legal, hazte estas 3 preguntas",
     category: "Derecho civil",
     readingTime: "4 min",
@@ -1241,6 +1289,7 @@ Estas tres preguntas no requieren conocimientos jurídicos. Requieren el hábito
 const mortgagePosts: Omit<BlogPost, "service">[] = [
   {
     slug: "subrogacion-hipotecaria-cambiar-de-banco",
+    publishedAt: "2026-08-31",
     title: "La subrogación hipotecaria",
     category: "Hipotecas",
     readingTime: "3 min",
@@ -1277,6 +1326,7 @@ Revisamos el seguro del coche cada año buscando algo mejor. La hipoteca, que su
   },
   {
     slug: "ahorros-parados-en-el-banco-autonomos",
+    publishedAt: "2026-08-31",
     title: "¿Por qué estás perdiendo dinero al tener todos tus ahorros en el banco?",
     category: "Ahorro para autónomos",
     readingTime: "3 min",

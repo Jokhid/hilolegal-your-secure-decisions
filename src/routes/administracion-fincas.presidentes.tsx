@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 
 export const Route = createFileRoute("/administracion-fincas/presidentes")({
   head: () => ({
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/administracion-fincas/presidentes")({
       {
         name: "description",
         content:
-          "¿Eres presidente de una comunidad de propietarios en Altea o la Marina Baixa? Descubre cómo un administrador te facilita el trabajo: juntas preparadas, cuentas claras y acompañamiento en cada decisión.",
+          "¿Eres presidente de comunidad en Altea o la Marina Baixa? Un administrador te facilita el trabajo: juntas preparadas, cuentas claras y acompañamiento.",
       },
       { property: "og:title", content: "Soy Presidente de una Comunidad | HiloLegal" },
       { property: "og:description", content: "El apoyo que necesita cualquier presidente de comunidad." },
@@ -23,6 +24,8 @@ export const Route = createFileRoute("/administracion-fincas/presidentes")({
       { property: "og:locale", content: "es_ES" },
       { property: "og:site_name", content: "HiloLegal" },
       { property: "og:image", content: "https://www.hilolegal.es/nosotros_cliente.webp" },
+      { property: "og:image:width", content: "1254" },
+      { property: "og:image:height", content: "1254" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Soy Presidente de una Comunidad | HiloLegal" },
       { name: "twitter:description", content: "El apoyo que necesita cualquier presidente de comunidad." },
@@ -147,6 +150,8 @@ function PresidentesPage() {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const drawerRef = useRef<HTMLElement>(null);
   const navLinks: [string, string][] = [
     ["Administración de fincas", "/administracion-fincas"],
     ["El papel del presidente", "#el-papel"],
@@ -164,10 +169,12 @@ function Header() {
     };
   }, [mobileOpen]);
 
+  useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
+
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
+        initial={reduce ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
         className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
@@ -208,13 +215,16 @@ function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
+            ref={drawerRef}
+            tabIndex={-1}
+            initial={reduce ? { x: 0 } : { x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl md:hidden"
+            exit={reduce ? { x: 0 } : { x: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.5, ease: easeOutExpo }}
+            className="fixed right-0 top-0 z-[9999] h-[100dvh] w-[min(88vw,420px)] border-l border-[#E5E5E5] bg-white/95 backdrop-blur-xl outline-none md:hidden"
             role="dialog"
             aria-modal="true"
+            aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
               <button type="button" onClick={() => setMobileOpen(false)} className="self-end text-3xl text-[#C5A566]" aria-label="Cerrar menú">×</button>
@@ -539,10 +549,12 @@ function LeadForm() {
 }
 
 function Field({ label, type, placeholder, value, onChange, required }: { label: string; type: string; placeholder: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; required?: boolean }) {
+  const id = `field-${label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-")}`;
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
+      <label htmlFor={id} className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={onChange}

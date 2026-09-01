@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { MessageCircle, X, Send } from "lucide-react";
 import { sendChatMessage } from "@/lib/chat.functions";
 import { trackEvent } from "@/lib/analytics";
+import { useDialogA11y } from "@/lib/useDialogA11y";
 
 const WHATSAPP = "https://wa.me/34647506040";
 const MAX_USER_MESSAGES = 6;
@@ -34,8 +35,11 @@ export function ChatWidget() {
   const [sending, setSending] = useState(false);
   const [userMessageCount, setUserMessageCount] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const send = useServerFn(sendChatMessage);
+
+  useDialogA11y(isOpen, () => setIsOpen(false), panelRef);
 
   useEffect(() => {
     try {
@@ -109,14 +113,16 @@ export function ChatWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-label="Chat con HiloLegal"
+            tabIndex={-1}
             initial={{ opacity: 0, y: reduce ? 0 : 16, scale: reduce ? 1 : 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: reduce ? 0 : 16, scale: reduce ? 1 : 0.98 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
-            className="jch-chat-panel fixed inset-x-4 bottom-4 top-16 z-[9998] flex flex-col overflow-hidden rounded-2xl border shadow-2xl sm:inset-x-auto sm:top-auto sm:bottom-24 sm:right-6 sm:h-[560px] sm:w-[380px]"
+            className="jch-chat-panel fixed inset-x-4 bottom-4 top-16 z-[9998] flex flex-col overflow-hidden rounded-2xl border shadow-2xl outline-none sm:inset-x-auto sm:top-auto sm:bottom-24 sm:right-6 sm:h-[560px] sm:w-[380px]"
           >
             <div className="jch-chat-header flex items-center justify-between border-b px-5 py-4">
               <div>
