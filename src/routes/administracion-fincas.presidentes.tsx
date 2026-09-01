@@ -441,6 +441,8 @@ function LeadForm() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
 
   const startedRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formLoadedAtRef = useRef(Date.now());
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
@@ -459,7 +461,14 @@ function LeadForm() {
     setStatus("sending");
     setErrorMsg("");
     try {
-      await submit({ data: { ...form, topic: "Soy presidente" } });
+      await submit({
+        data: {
+          ...form,
+          topic: "Soy presidente",
+          website: honeypotRef.current?.value ?? "",
+          formLoadedAt: formLoadedAtRef.current,
+        },
+      });
       setStatus("ok");
       trackEvent("property_form_submit", { section: "formulario", topic: "Soy presidente" });
       trackEvent("property_management_proposal_submit", { section: "formulario", topic: "Soy presidente" });
@@ -473,6 +482,15 @@ function LeadForm() {
 
   return (
     <form className="contact-form-card space-y-10" onSubmit={onSubmit}>
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
         <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />

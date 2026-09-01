@@ -1482,6 +1482,8 @@ function ContactForm({ intent }: { intent: IntentKey }) {
   const isAutonomo = form.topic === "Autónomo";
 
   const startedRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formLoadedAtRef = useRef(Date.now());
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
@@ -1519,6 +1521,8 @@ function ContactForm({ intent }: { intent: IntentKey }) {
     const payload = {
       ...form,
       message: extraNote ? `${extraNote}${form.message ? " · " + form.message : ""}` : form.message,
+      website: honeypotRef.current?.value ?? "",
+      formLoadedAt: formLoadedAtRef.current,
     };
     try {
       await submit({ data: payload });
@@ -1537,6 +1541,15 @@ function ContactForm({ intent }: { intent: IntentKey }) {
 
   return (
     <form id="contact-form" className="contact-form-card space-y-10 scroll-mt-28" onSubmit={onSubmit}>
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden"
+      />
       <p className="text-xl font-bold">{config.title}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />

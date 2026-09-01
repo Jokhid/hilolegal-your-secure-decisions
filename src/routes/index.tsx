@@ -1001,6 +1001,8 @@ function Contact() {
     message: "",
   });
   const startedRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formLoadedAtRef = useRef(Date.now());
 
   const onChange =
     (k: keyof typeof form) =>
@@ -1022,7 +1024,13 @@ function Contact() {
     setStatus("sending");
     setErrorMsg("");
     try {
-      await submit({ data: form });
+      await submit({
+        data: {
+          ...form,
+          website: honeypotRef.current?.value ?? "",
+          formLoadedAt: formLoadedAtRef.current,
+        },
+      });
       setStatus("ok");
       trackEvent("contact_submit");
       setForm({ name: "", phone: "", topic: "Consulta jurídica general", message: "" });
@@ -1091,6 +1099,15 @@ function Contact() {
 
         <FadeUp>
           <form id="contact-form" onSubmit={onSubmit} className="space-y-8 scroll-mt-28">
+            <input
+              ref={honeypotRef}
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Field
                 label="Nombre"

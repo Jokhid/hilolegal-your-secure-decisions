@@ -14,11 +14,30 @@ const contactSchema = z.object({
   email: z.string().trim().email().max(255).optional(),
   topic: z.string().trim().min(1).max(100),
   message: z.string().trim().max(2000).optional().default(""),
+  // Honeypot: campo invisible para personas, visible para bots que
+  // rellenan todos los inputs de un formulario. Un envío legítimo SIEMPRE
+  // lo deja vacío.
+  website: z.string().trim().max(200).optional().default(""),
+  // Timestamp (Date.now()) tomado al montar el formulario en el cliente,
+  // para descartar envíos completados en menos de MIN_FILL_TIME_MS —
+  // ningún humano rellena un formulario de contacto tan rápido.
+  formLoadedAt: z.number().optional(),
 });
+
+const MIN_FILL_TIME_MS = 3000;
 
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((input) => contactSchema.parse(input))
   .handler(async ({ data }) => {
+    // Honeypot relleno o formulario enviado demasiado rápido: probablemente
+    // un bot. Se responde éxito aparente sin revelar la detección, pero no
+    // se reenvía a ningún destino real.
+    const isHoneypotFilled = data.website.length > 0;
+    const isTooFast = typeof data.formLoadedAt === "number" && Date.now() - data.formLoadedAt < MIN_FILL_TIME_MS;
+    if (isHoneypotFilled || isTooFast) {
+      return { success: true };
+    }
+
     const webhookUrl =
       process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
       process.env.SHEETS_WEBHOOK_URL ||

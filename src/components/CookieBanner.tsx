@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { loadAnalyticsConsent } from "./Analytics";
 
 export function CookieBanner() {
   const [show, setShow] = useState(false);
@@ -12,6 +13,7 @@ export function CookieBanner() {
     try {
       localStorage.setItem("cookies_ok", v);
     } catch {}
+    if (v === "true") loadAnalyticsConsent();
     setShow(false);
   };
   return (

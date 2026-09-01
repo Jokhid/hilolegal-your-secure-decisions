@@ -1000,6 +1000,8 @@ function Contact() {
   });
 
   const startedRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const formLoadedAtRef = useRef(Date.now());
   const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (!startedRef.current) {
       startedRef.current = true;
@@ -1013,7 +1015,13 @@ function Contact() {
     setStatus("sending");
     setErrorMsg("");
     try {
-      await submit({ data: form });
+      await submit({
+        data: {
+          ...form,
+          website: honeypotRef.current?.value ?? "",
+          formLoadedAt: formLoadedAtRef.current,
+        },
+      });
       setStatus("ok");
       trackEvent("contact_submit");
       setForm({ name: "", phone: "", email: "", topic: "Consulta jurídica general", message: "" });
@@ -1078,6 +1086,15 @@ function Contact() {
         </div>
         <FadeUp>
           <form className="space-y-10" onSubmit={onSubmit}>
+            <input
+              ref={honeypotRef}
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <Field label="Nombre" type="text" placeholder="Tu nombre" value={form.name} onChange={onChange("name")} required />
               <Field label="Teléfono" type="tel" placeholder="Tu número" value={form.phone} onChange={onChange("phone")} required />
