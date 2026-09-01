@@ -424,6 +424,36 @@ header [class*="uppercase"] {
   .jch-chat-dot { animation: none; opacity: 0.6; }
 }
 
+/* Banner de cookies — antes tenía fondo azul oscuro fijo y texto blanco
+   fijo, pero la regla global `body > div { background: var(--jch-bg)
+   !important }` ya forzaba el fondo a blanco en modo claro sin que el
+   texto/botón cambiaran, dejándolos invisibles (blanco sobre blanco).
+   Aquí se fija explícitamente cada color por tema, con especificidad de
+   clase para ganarle a esa regla global. Modo oscuro se mantiene igual
+   que antes; "Aceptar todas" no cambia en ningún tema. */
+.cookie-banner { background-color: #1a1a2e !important; }
+[data-theme="light"] .cookie-banner { background-color: #ffffff !important; }
+
+.cookie-banner__text { color: rgba(255, 255, 255, 0.85); }
+[data-theme="light"] .cookie-banner__text { color: #000000; }
+
+.cookie-banner__btn-secondary {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.cookie-banner__btn-secondary:hover {
+  background-color: #ffffff;
+  color: #1a1a2e;
+}
+[data-theme="light"] .cookie-banner__btn-secondary {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+[data-theme="light"] .cookie-banner__btn-secondary:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
 /* Header */
 
 /* Hero */

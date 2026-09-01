@@ -31,24 +31,29 @@ export type BlogPost = {
 // final de cada artículo, que ahora enlaza a la página correspondiente.
 export const SERVICE_META: Record<
   BlogService,
-  { label: string; authorName: string; authorUrl: string; contactPath: string }
+  { label: string; authorName: string; authorUrl: string; authorBio: string; contactPath: string }
 > = {
   josecarlos: {
     label: "Financiero e hipotecas",
     authorName: "José Carlos Hidalgo Ortega",
     authorUrl: "https://www.hilolegal.es/josecarlos",
+    // Reutilizada literalmente de la sección "Sobre mí" de /josecarlos.
+    authorBio: "Trabajo con familias y autónomos en decisiones relacionadas con financiación hipotecaria, protección, ahorro y planificación patrimonial.",
     contactPath: "/josecarlos",
   },
   veronica: {
     label: "Legal",
     authorName: "Verónica López Ramón",
     authorUrl: "https://www.hilolegal.es/veronica",
+    // Reutilizada literalmente del hero de /veronica.
+    authorBio: "Abogada en ejercicio con trayectoria en puestos de alta dirección en la Administración Pública de la Comunidad Valenciana y profesora asociada de Derecho en la Universidad de Alicante.",
     contactPath: "/veronica",
   },
   fincas: {
     label: "Administración de fincas",
     authorName: "José Carlos Hidalgo Ortega",
     authorUrl: "https://www.hilolegal.es/administracion-fincas",
+    authorBio: "Trabajo con familias y autónomos en decisiones relacionadas con financiación hipotecaria, protección, ahorro y planificación patrimonial.",
     contactPath: "/administracion-fincas",
   },
 };
@@ -108,7 +113,7 @@ const financialPosts: Omit<BlogPost, "service">[] = [
     metaDescription: "¿Tienes dinero en cuenta corriente y crees que ahorras? En 2026 la inflación acumulada en España supera el 20%. Te explico cuánto estás perdiendo.",
     content: `## El dinero que no se mueve, retrocede
 
-Imagina que en enero de 2020 ingresas 10.000 € en una cuenta corriente. Sin tocarlos. Sin gastarlos. Siendo, en apariencia, completamente responsable con tu economía.
+Tener dinero en una cuenta corriente sin invertir no es ahorrar: es perder poder adquisitivo cada año, porque la inflación crece más rápido que el interés —casi nulo— que paga esa cuenta. En 2026, con una inflación acumulada que supera el 20% desde 2020, ese efecto ya no es teórico.\n\nImagina que en enero de 2020 ingresas 10.000 € en una cuenta corriente. Sin tocarlos. Sin gastarlos. Siendo, en apariencia, completamente responsable con tu economía.
 
 Hoy, en 2026, sigues viendo 10.000 € en el extracto. Pero algo ha cambiado.
 
@@ -160,7 +165,7 @@ No es si puedes ahorrar. La pregunta correcta es: ¿lo que estás haciendo hoy r
     metaDescription: "Una baja laboral, un diagnóstico inesperado o un accidente puede dejarte sin ingresos de un día para otro. ¿Tiene tu familia un plan real? Te lo explico.",
     content: `## La pregunta que casi nadie se hace hasta que es tarde
 
-> ¿Qué pasaría con mi familia si mañana yo no puedo estar?
+Sin un seguro de protección de ingresos, una baja médica larga puede dejar a tu familia solo con la prestación pública —normalmente muy por debajo de tus ingresos habituales— durante semanas o meses.\n\n> ¿Qué pasaría con mi familia si mañana yo no puedo estar?
 
 No hablo de muerte —aunque también hay que planificarlo. Hablo de algo más probable: una baja médica larga, un accidente, una incapacidad temporal o permanente.
 
@@ -211,7 +216,7 @@ El objetivo no es contratar más productos. Es tener respuesta a esa pregunta in
     metaDescription: "Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana. Así funciona la planificación financiera real y por qué la mayoría llega tarde.",
     content: `## Prever: del latín «ver antes»
 
-La palabra prever viene del latín *prae* (antes) y *videre* (ver). Ver antes de que ocurra. Precaverse va un paso más allá: guardarse de un peligro antes de que llegue.
+Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana, para no tener que improvisar bajo presión cuando ese cambio llegue.\n\nLa palabra prever viene del latín *prae* (antes) y *videre* (ver). Ver antes de que ocurra. Precaverse va un paso más allá: guardarse de un peligro antes de que llegue.
 
 Hay dos tipos de personas ante el futuro: las que esperan a que algo pase, y las que ya habían pensado qué harían si pasaba. Las segundas no tienen más suerte. Tienen más visión.
 
@@ -247,7 +252,7 @@ Quien empieza a ahorrar 200 € al mes a los 35 años con rentabilidad media del
     metaDescription: "Contigo Senior de Nationale-Nederlanden: salud y apoyo para personas de 55 a 80 años. Te explico qué cubre y para quién tiene sentido.",
     content: `## La paradoja de los 55
 
-Muchas personas que superan los 55 años llegan a esta etapa con una situación que pocos verbalizan: han construido patrimonio, tienen experiencia. Pero sienten que si algo falla, no tienen a nadie detrás.
+Contigo Senior es un seguro de salud y apoyo de Nationale-Nederlanden pensado para personas de entre 55 y 80 años, centrado en cobertura médica y servicios de asistencia en el día a día, no solo en hospitalización.\n\nMuchas personas que superan los 55 años llegan a esta etapa con una situación que pocos verbalizan: han construido patrimonio, tienen experiencia. Pero sienten que si algo falla, no tienen a nadie detrás.
 
 ## Qué es Contigo Senior
 
@@ -297,7 +302,7 @@ Un seguro médico estándar cubre la enfermedad. Contigo Senior cubre la etapa. 
     metaDescription: "Si eres autónomo y tienes dinero en cuenta corriente sin estrategia de ahorro, pierdes rentabilidad real cada año. Te explico qué alternativas existen.",
     content: `## El mito del dinero «controlado»
 
-Cuando hablo con autónomos sobre sus finanzas, escucho con frecuencia la misma frase: «Es que yo no soy de invertir. Prefiero tenerlo controlado.»
+Tener todos tus ahorros como autónomo en la cuenta corriente, sin ninguna estrategia detrás, tiene un coste real: pierdes rentabilidad frente a la inflación cada año, aunque la cifra de la cuenta no baje.\n\nCuando hablo con autónomos sobre sus finanzas, escucho con frecuencia la misma frase: «Es que yo no soy de invertir. Prefiero tenerlo controlado.»
 
 Controlado. En una cuenta que cobra comisiones de mantenimiento y ofrece entre el 0 % y el 1 % anual, mientras la inflación ha estado por encima del 3 % los últimos años.
 
@@ -432,7 +437,7 @@ No necesitas un máster. Necesitas tres o cuatro conceptos claros y alguien que 
     metaDescription: "¿Plan de pensiones o SIALP? No hay respuesta universal: depende de tus ingresos, tu perfil fiscal y cuándo necesitas el dinero. Te lo explico con números.",
     content: `## La pregunta que más me hacen
 
-«José Carlos, ¿me conviene más un plan de pensiones o un SIALP?» La respuesta depende de tu situación concreta.
+No hay una respuesta universal: un plan de pensiones suele convenir más si buscas reducir la base imponible del IRPF ahora y tienes un tipo marginal alto; un SIALP suele convenir más si priorizas liquidez y una posible exención fiscal a largo plazo. La decisión depende de tus ingresos, tu perfil fiscal y cuándo necesitas el dinero.\n\n«José Carlos, ¿me conviene más un plan de pensiones o un SIALP?» La respuesta depende de tu situación concreta.
 
 ## El plan de pensiones: el aplazador de impuestos
 
@@ -489,7 +494,7 @@ No hay un producto universalmente mejor. Hay una estrategia correcta para cada s
     metaDescription: "Ver una cifra alta en tu cuenta no significa que tengas seguridad financiera. Te explico la diferencia entre flujo de caja y riqueza real.",
     content: `## La trampa de la cuenta con muchos ceros
 
-Hay una sensación particular que conoce casi todo autónomo con buen nivel de facturación: ver una cifra alta en la cuenta corriente y sentir que todo está bajo control. Esa sensación es, en muchos casos, una trampa.
+Tener mucho dinero en la cuenta corriente de tu negocio no significa que seas rico: puede ser solo flujo de caja a la espera de pagar impuestos, proveedores o nóminas. Confundir ambas cosas es el error financiero que más cuesta a un autónomo.\n\nHay una sensación particular que conoce casi todo autónomo con buen nivel de facturación: ver una cifra alta en la cuenta corriente y sentir que todo está bajo control. Esa sensación es, en muchos casos, una trampa.
 
 El dinero que aparece en tu cuenta hoy no es tuyo del todo. Hay impuestos pendientes, facturas que aún no han llegado, gastos variables.
 
@@ -529,7 +534,7 @@ Cuanto antes se ordena esta diferencia entre flujo de caja y patrimonio real, me
     metaDescription: "¿Sabes cuánto cobrarías realmente si mañana te pusieras de baja? Los números son mucho peores de lo que crees. Te lo explico con el cálculo real para 2026.",
     content: `## La dicotomía financiera peligrosa del autónomo
 
-Muchos profesionales autónomos vivimos con ingresos medios o altos pero cuota baja. Esa contradicción tiene consecuencias muy concretas cuando la vida decide ponerte a prueba.
+Si cotizas por la base mínima, tu prestación por incapacidad temporal se calcula sobre esa base, no sobre lo que realmente ingresas — así que el contraste entre tu nivel de vida real y lo que cobrarías de baja suele ser mucho mayor de lo que la mayoría de autónomos espera.\n\nMuchos profesionales autónomos vivimos con ingresos medios o altos pero cuota baja. Esa contradicción tiene consecuencias muy concretas cuando la vida decide ponerte a prueba.
 
 ## El cálculo real: qué cobras de baja en 2026
 
@@ -577,7 +582,7 @@ Lo que sí puedes controlar es tu patrimonio privado, tu cobertura complementari
     metaDescription: "Una jubilada de 79 años duerme en el sofá porque alquila sus habitaciones para pagar las facturas. ¿Qué falló y qué puedes hacer tú para que no te pase?",
     content: `## Una historia real
 
-Susana tiene 79 años. Es viuda. Cobró su sueldo toda la vida, cotizó durante décadas y siguió todas las reglas. Hoy cobra 800 € de pensión. Para pagar alquiler y facturas, alquila las habitaciones de su piso a estudiantes. Ella duerme en el salón, en un sofá cama.
+La pensión pública no garantiza necesariamente mantener el mismo nivel de ingresos que tenías antes de jubilarte. Para muchas personas que cotizaron toda su vida, la pensión final resulta muy inferior a lo que necesitan para vivir como antes.\n\nSusana tiene 79 años. Es viuda. Cobró su sueldo toda la vida, cotizó durante décadas y siguió todas las reglas. Hoy cobra 800 € de pensión. Para pagar alquiler y facturas, alquila las habitaciones de su piso a estudiantes. Ella duerme en el salón, en un sofá cama.
 
 No es metáfora. Es una noticia publicada en *El Economista* en abril de 2025.
 
@@ -621,7 +626,7 @@ No es imposible. Pero requiere empezar hoy, no a los 60.
     metaDescription: "Antes de buscar piso, prepara tu perfil financiero. Los bancos usan algoritmos que van más allá del sueldo. Te explico qué revisan exactamente.",
     content: `## El error que comete la mayoría antes de pedir una hipoteca
 
-Abrir Idealista o Fotocasa. Enamorarse de un piso. Llamar para visitar. Negociar el precio. Y después, sentarse con el banco.
+Antes de buscar piso, conviene preparar tu perfil financiero: los bancos analizan tu comportamiento económico con algoritmos de scoring que van más allá del sueldo, así que entender qué revisan de antemano puede marcar la diferencia entre que te aprueben la hipoteca o no.\n\nAbrir Idealista o Fotocasa. Enamorarse de un piso. Llamar para visitar. Negociar el precio. Y después, sentarse con el banco.
 
 Ese orden es el más común. Y también es el más caro.
 
@@ -723,7 +728,7 @@ const fincasPosts: Omit<BlogPost, "service">[] = [
     metaDescription: "Los cinco conflictos que más deterioran la convivencia en tu comunidad: ruidos, zonas comunes, impagos, roces y falta de mantenimiento. Cómo cortarlos a tiempo.",
     content: `## El ruido de las 23:00, la sombrilla de siempre, la cuota que no llega
 
-Ninguno de estos problemas empieza siendo grave. Todos pueden acabar siéndolo si nadie los gestiona a tiempo.
+Los cinco conflictos que más deterioran la convivencia en una comunidad de propietarios son los ruidos, el uso de zonas comunes, los impagos, los roces personales entre vecinos y la falta de mantenimiento.\n\nNinguno de estos problemas empieza siendo grave. Todos pueden acabar siéndolo si nadie los gestiona a tiempo.
 
 Estos son los cinco conflictos que más se repiten en las comunidades de propietarios, y el motivo por el que casi siempre tienen solución antes de llegar a un juzgado.
 
@@ -834,7 +839,7 @@ Los estatutos no son papeleo de trámite. Son el acuerdo que evita que la conviv
     metaDescription: "Las cinco señales de que tu comunidad necesita cambiar de administrador: comunicación, incidencias, tecnología, transparencia y estancamiento.",
     content: `## Ninguna señal por separado, pero las cinco juntas
 
-Llevas semanas esperando una respuesta a una incidencia sencilla. Nadie te explica en qué se ha ido el dinero de la última derrama. Y cada junta se parece sospechosamente a la anterior, sin que nada mejore de verdad.
+Las señales más claras de que una comunidad necesita cambiar de administrador de fincas son: mala comunicación, incidencias sin seguimiento, falta de herramientas digitales, poca transparencia en las cuentas y estancamiento en la gestión año tras año.\n\nLlevas semanas esperando una respuesta a una incidencia sencilla. Nadie te explica en qué se ha ido el dinero de la última derrama. Y cada junta se parece sospechosamente a la anterior, sin que nada mejore de verdad.
 
 Ninguna de estas señales, por separado, parece motivo suficiente para cambiar de administrador. Juntas, sí lo son. Te contamos las cinco que más se repiten.
 
@@ -1063,7 +1068,7 @@ La pensión de alimentos no se calcula "a ojo" ni se cambia por decisión unilat
     category: "Sucesiones y herencias",
     readingTime: "5 min",
     keyword: "herencia entre hermanos sin acuerdo",
-    excerpt: "Un piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Las vías que conviene agotar antes de pensar en un juicio.",
+    excerpt: "Cuando varios herederos no se ponen de acuerdo sobre un piso, una cuenta o un negocio familiar, hay varias opciones antes de llegar a juicio: la partición de mutuo acuerdo, el contador-partidor, la mediación familiar y, como último recurso, la división judicial.\n\nUn piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Las vías que conviene agotar antes de pensar en un juicio.",
     metaDescription: "Un desacuerdo entre herederos no tiene que acabar en los tribunales. Partición de mutuo acuerdo, contador-partidor, mediación y división judicial: las opciones.",
     content: `## Cuando el reparto se atasca
 
@@ -1203,7 +1208,7 @@ Cumplir la condena es solo el primer paso. Sin la solicitud de cancelación, eso
     metaDescription: "Tres preguntas que hacerte siempre antes de firmar un documento legal: si entiendes lo que aceptas, qué pasa si sale mal, y a qué precio puedes salir.",
     content: `## Los problemas legales casi nunca empiezan con mala intención
 
-La mayoría de problemas legales que llegan a un despacho no nacen de una mala intención de nadie. Nacen de una firma puesta con prisa, sin hacerse antes las preguntas correctas.
+Antes de firmar cualquier documento legal, hazte tres preguntas: ¿entiendes de verdad lo que estás aceptando?, ¿qué pasa si algo sale mal?, y ¿puedes salir de esto, y a qué precio?\n\nLa mayoría de problemas legales que llegan a un despacho no nacen de una mala intención de nadie. Nacen de una firma puesta con prisa, sin hacerse antes las preguntas correctas.
 
 No hace falta ser abogado para evitarlo. Hace falta hacerse estas tres preguntas, siempre, antes de firmar.
 
@@ -1244,7 +1249,7 @@ const mortgagePosts: Omit<BlogPost, "service">[] = [
     metaDescription: "La subrogación hipotecaria te permite cambiar de banco sin pedir permiso al tuyo. Cómo funciona y qué plazo tiene tu banco para reaccionar.",
     content: `## Llevas años pagando la misma hipoteca y no la has vuelto a mirar
 
-Llevas 6 años pagando la misma hipoteca. Y no has vuelto a mirar el mercado ni una sola vez.
+La subrogación hipotecaria es el mecanismo que te permite cambiar tu hipoteca a otro banco sin necesitar el permiso del tuyo actual, cancelando la hipoteca original y abriendo una nueva con mejores condiciones en la entidad de destino.\n\nLlevas 6 años pagando la misma hipoteca. Y no has vuelto a mirar el mercado ni una sola vez.
 
 La mayoría de familias hace esto: firma la hipoteca, respira aliviada, y no vuelve a tocar el tema durante años. Como si esa decisión, tomada en un momento concreto, tuviera que ser la misma para siempre.
 
@@ -1279,6 +1284,8 @@ Revisamos el seguro del coche cada año buscando algo mejor. La hipoteca, que su
     excerpt: "\"Prefiero tenerlo todo en el banco, por si acaso.\" Es la frase que más veces escucho en una primera auditoría con un autónomo. Y es, casi siempre, la decisión que más dinero le está costando.",
     metaDescription: "Tener todo el ahorro parado en cuenta corriente tiene un coste real: pierde poder adquisitivo cada año. La liquidez para imprevistos no es tenerlo todo parado.",
     content: `## "Prefiero tenerlo todo en el banco, por si acaso"
+
+Tener todos tus ahorros parados en el banco tiene un coste real: pierdes poder adquisitivo cada año frente a la inflación. Tener liquidez para imprevistos no es lo mismo que tener todo el dinero parado sin ninguna estrategia.
 
 "Prefiero tenerlo todo en el banco, por si acaso." Es la frase que más veces escucho en una primera auditoría con un autónomo. Y es, casi siempre, la decisión que más dinero le está costando sin que se dé cuenta.
 

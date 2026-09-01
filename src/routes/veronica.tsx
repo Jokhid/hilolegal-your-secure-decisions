@@ -75,6 +75,9 @@ export const Route = createFileRoute("/veronica")({
               },
               areaServed: [
                 { "@type": "City", name: "Altea" },
+                { "@type": "City", name: "Benidorm" },
+                { "@type": "City", name: "Alicante" },
+                { "@type": "AdministrativeArea", name: "Marina Baixa" },
                 { "@type": "AdministrativeArea", name: "Costa Blanca" },
               ],
               makesOffer: services.map((s) => ({
@@ -87,6 +90,12 @@ export const Route = createFileRoute("/veronica")({
                 reviewRating: { "@type": "Rating", ratingValue: t.rating, bestRating: 5 },
                 reviewBody: t.text,
               })),
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length,
+                reviewCount: testimonials.length,
+                bestRating: 5,
+              },
             },
             {
               "@type": "FAQPage",

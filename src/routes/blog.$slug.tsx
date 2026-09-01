@@ -221,7 +221,25 @@ function BlogPostPage() {
 
           <ArticleSources sources={post.sources} />
 
-          <div className="mt-16 pt-10 border-t border-[#E5E5E5]">
+          <div className="mt-16 pt-10 border-t border-[#E5E5E5] flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1A1A1A] text-sm font-black uppercase text-white">
+              {author.authorName.charAt(0)}
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#8A8A8A] mb-1">
+                Sobre el autor
+              </p>
+              <Link
+                to={author.contactPath}
+                className="font-bold text-[var(--jch-ink)] hover:text-[var(--jch-cta)] transition-colors"
+              >
+                {author.authorName}
+              </Link>
+              <p className="mt-1 text-sm text-[#6A6A6A] leading-relaxed">{author.authorBio}</p>
+            </div>
+          </div>
+
+          <div className="mt-10 pt-10 border-t border-[#E5E5E5]">
             <Link
               to={author.contactPath}
               hash="contact"

@@ -60,7 +60,13 @@ export const Route = createFileRoute("/")({
             addressRegion: "Alicante",
             addressCountry: "ES",
           },
-          areaServed: [{ "@type": "City", name: "Altea" }],
+          areaServed: [
+            { "@type": "City", name: "Altea" },
+            { "@type": "City", name: "Benidorm" },
+            { "@type": "City", name: "Alicante" },
+            { "@type": "AdministrativeArea", name: "Marina Baixa" },
+            { "@type": "AdministrativeArea", name: "Costa Blanca" },
+          ],
           founder: [
             { "@type": "Person", name: "Verónica López" },
             { "@type": "Person", name: "José Carlos Hidalgo" },
