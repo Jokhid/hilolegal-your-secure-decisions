@@ -65,7 +65,7 @@ export const Route = createFileRoute("/administracion-fincas/gestion-economica-i
 const WHATSAPP = "https://wa.me/34647506040?text=Quiero%20informaci%C3%B3n%20sobre%20administraci%C3%B3n%20de%20fincas";
 const PHONE_DISPLAY = "647 50 60 40";
 const EMAIL = "josecarlos@hilolegal.es";
-const LOGO = "/logo-black.svg";
+const LOGO = "/hilolegal-logo-stacked-black.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>
@@ -181,8 +181,8 @@ function Header() {
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <Link to="/" className="group flex items-center gap-3">
-            <motion.img src={LOGO} alt="Logo HiloLegal" className="h-9 w-9 object-contain" whileHover={{ rotate: -6, scale: 1.05 }} transition={spring} />
-            <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A] md:text-lg">Administración de Fincas</span>
+            <motion.img src={LOGO} alt="Logo HiloLegal" className="h-8 w-auto object-contain" whileHover={{ rotate: -2, scale: 1.05 }} transition={spring} />
+            <span className="text-base font-bold tracking-tight text-[#8a6d3a] md:text-lg">Administración de Fincas</span>
           </Link>
           <div className="hidden items-center gap-9 md:flex">
             {navLinks.map(([label, href]) => (
@@ -206,7 +206,7 @@ function Header() {
             >
               WhatsApp
             </motion.a>
-            <button type="button" aria-label="Abrir menú" onClick={() => setMobileOpen((v) => !v)} className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden">
+            <button type="button" aria-label="Abrir menú" onClick={() => setMobileOpen((v) => !v)} className="-mr-2 p-2 text-2xl text-[var(--jch-accent-ink)] md:hidden">
               {mobileOpen ? "×" : "☰"}
             </button>
           </div>
@@ -227,7 +227,7 @@ function Header() {
             aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
-              <button type="button" onClick={() => setMobileOpen(false)} className="self-end text-3xl text-[#8a6d3a]" aria-label="Cerrar menú">×</button>
+              <button type="button" onClick={() => setMobileOpen(false)} className="self-end text-3xl text-[var(--jch-accent-ink)]" aria-label="Cerrar menú">×</button>
               <div className="mt-8 flex flex-col gap-2">
                 {navLinks.map(([label, href]) => (
                   <a key={href} href={href} onClick={() => setMobileOpen(false)} className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[var(--jch-accent-ink)]">
@@ -569,7 +569,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-16">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <img src="/logo-white.png" alt="Logo" loading="lazy" className="h-10 w-10 object-contain" />
+            <img src="/hilolegal-logo-white.webp" alt="Logo HiloLegal" loading="lazy" className="h-9 w-auto object-contain" />
             <div className="space-y-2">
               <div className="text-2xl font-black tracking-tighter uppercase">Administración de Fincas</div>
               <p className="text-gray-500 text-xs tracking-widest uppercase">José Carlos Hidalgo · HiloLegal</p>

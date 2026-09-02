@@ -384,15 +384,12 @@ function Header() {
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a href="/" className="group flex items-center gap-3">
             <motion.img
-              src="/logo-black.svg"
+              src="/hilolegal-logo-stacked-black.webp"
               alt="Logo HiloLegal"
-              className="h-9 w-9 object-contain"
-              whileHover={{ rotate: -6, scale: 1.05 }}
+              className="h-8 w-auto object-contain"
+              whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A] md:text-lg">
-              HiloLegal
-            </span>
           </a>
 
           <div className="hidden items-center gap-10 md:flex">
@@ -1284,18 +1281,26 @@ function Footer() {
       <div className="footer__inner">
         <div className="footer__grid">
           <div className="footer__brand">
-            <p className="brand">
-              <img
-                src="/hilolegal-logo-mark.svg"
-                alt=""
-                className="footer-logo-mark"
-                width={34}
-                height={37}
-                loading="lazy"
-                decoding="async"
-              />
-              HiloLegal
-            </p>
+            {/* El footer sigue el tema (var(--jch-bg): blanco en modo claro,
+                negro en modo oscuro) — se muestran las dos variantes del
+                logo y se conmutan por CSS según [data-theme], igual que ya
+                hace el resto del sitio con el toggle de tema, para que no
+                haya parpadeo al hidratar (el atributo data-theme ya está
+                fijado en el <html> antes del primer pintado). */}
+            <img
+              src="/hilolegal-logo-black.webp"
+              alt="Logo HiloLegal"
+              className="footer-logo footer-logo--dark h-8 w-auto object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              src="/hilolegal-logo-white.webp"
+              alt="Logo HiloLegal"
+              className="footer-logo footer-logo--light h-8 w-auto object-contain"
+              loading="lazy"
+              decoding="async"
+            />
             <p className="footer__tagline">
               Boutique legal y patrimonial · Altea - Costa Blanca
             </p>

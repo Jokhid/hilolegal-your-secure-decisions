@@ -327,13 +327,13 @@ function Header() {
         <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1200px] mx-auto">
           <Link className="flex items-center gap-3 group" to="/">
             <motion.img
-              src="/veronica-assets/logo.png"
-              alt="Logo Verónica López"
-              className="h-10 w-10 object-contain"
-              whileHover={{ rotate: -6, scale: 1.05 }}
+              src="/hilolegal-logo-stacked-black.webp"
+              alt="Logo HiloLegal"
+              className="h-8 w-auto object-contain"
+              whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base md:text-lg font-bold tracking-tight uppercase text-[#1A1A1A]">
+            <span className="text-base md:text-lg font-bold tracking-tight text-[#8a6d3a]">
               Verónica López
             </span>
           </Link>
@@ -367,7 +367,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[var(--jch-accent-ink)] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -393,7 +393,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#8a6d3a]"
+                className="self-end text-3xl text-[var(--jch-accent-ink)]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -450,7 +450,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#8a6d3a] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -1208,7 +1208,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-16">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <img src="/veronica-assets/logo-white.png" alt="Logo Verónica López" loading="lazy" className="h-12 w-12 object-contain" />
+            <img src="/hilolegal-logo-white.webp" alt="Logo HiloLegal" loading="lazy" className="h-9 w-auto object-contain" />
             <div className="space-y-2">
               <div className="text-2xl font-black tracking-tighter uppercase">Verónica López</div>
               <p className="text-gray-500 text-xs tracking-widest uppercase">Abogada · Administrativo · Civil · Institucional</p>

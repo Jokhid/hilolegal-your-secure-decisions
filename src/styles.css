@@ -2362,32 +2362,26 @@ footer.site-footer .brand {
  * bloqueaba el renderizado con su propia petición de red) —
  * mismo contenido, sin cambios.
  * ============================================================ */
-.header-logo-mark {
-  width: 34px;
-  height: 37px;
-  aspect-ratio: 68 / 74;
-  display: block;
-  object-fit: contain;
-  flex: 0 0 auto;
-}
-
-.footer-logo-mark {
-  width: 34px;
-  height: 37px;
-  aspect-ratio: 68 / 74;
-  display: block;
-  object-fit: contain;
-  flex: 0 0 auto;
-  margin-bottom: 0;
-}
+/* Footer de la home (único que sigue el tema, --jch-bg): se muestran las
+   dos variantes del logo y se conmuta cuál es visible por CSS según
+   [data-theme] — igual que el resto del sitio, sin parpadeo al hidratar
+   porque data-theme ya está fijado en el <html> antes del primer pintado. */
+.footer-logo { margin-bottom: .5rem; }
+[data-theme="light"] .footer-logo--dark { display: block; }
+[data-theme="light"] .footer-logo--light { display: none; }
+:root:not([data-theme="light"]) .footer-logo--dark { display: none; }
+:root:not([data-theme="light"]) .footer-logo--light { display: block; }
 
 header.sticky nav > a:first-child span {
   font-family: "Poppins", Inter, ui-sans-serif, system-ui, sans-serif !important;
   font-size: 1.5em !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  color: #1A1A1A !important;
+  /* Cabecera siempre con fondo blanco (ambos temas): se fija el ocre
+     accesible de modo claro (#8a6d3a, ~4.5:1 sobre blanco) en vez de
+     var(--jch-accent-ink), que en modo oscuro pasa a #C5A566 y no
+     cumple AA sobre un fondo que aquí nunca cambia. */
+  color: #8a6d3a !important;
 }
 
 footer.site-footer .brand {

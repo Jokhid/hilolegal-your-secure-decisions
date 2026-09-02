@@ -142,7 +142,7 @@ const WHATSAPP = "https://wa.me/34647506040";
 
 // Photos in /public
 const IMG = (n: number) => `/${n}.webp`;
-const LOGO = "/logo-black.svg";
+const LOGO = "/hilolegal-logo-stacked-black.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>
@@ -430,12 +430,12 @@ function Header() {
           <Link to="/" className="group flex items-center gap-3">
             <motion.img
               src={LOGO}
-              alt="Logo José Carlos Hidalgo"
-              className="h-9 w-9 object-contain"
-              whileHover={{ rotate: -6, scale: 1.05 }}
+              alt="Logo HiloLegal"
+              className="h-8 w-auto object-contain"
+              whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold uppercase tracking-tight text-[#1A1A1A] md:text-lg">
+            <span className="text-base font-bold tracking-tight text-[#8a6d3a] md:text-lg">
               José Carlos Hidalgo
             </span>
           </Link>
@@ -474,7 +474,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#8a6d3a] lg:hidden"
+              className="-mr-2 p-2 text-2xl text-[var(--jch-accent-ink)] lg:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -500,7 +500,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#8a6d3a]"
+                className="self-end text-3xl text-[var(--jch-accent-ink)]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -1679,7 +1679,7 @@ function Footer() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-16">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <img src="/logo-white.png" alt="Logo" loading="lazy" className="h-10 w-10 object-contain" />
+            <img src="/hilolegal-logo-white.webp" alt="Logo HiloLegal" loading="lazy" className="h-9 w-auto object-contain" />
             <div className="space-y-2">
               <div className="text-2xl font-black tracking-tighter uppercase">José Carlos Hidalgo</div>
               <p className="text-gray-500 text-xs tracking-widest uppercase">Hipotecas y planificación patrimonial</p>
