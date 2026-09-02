@@ -321,6 +321,13 @@ const tools = [
     href: "/test-salud-financiera.html",
     event: "tool_financial_health" as const,
   },
+  {
+    title: "Simulador de hipoteca",
+    text: "Calcula la cuota, el LTV, los gastos y el precio máximo de vivienda que puedes permitirte.",
+    cta: "Abrir simulador",
+    href: "/simulador-hipoteca",
+    event: "tool_mortgage" as const,
+  },
 ];
 
 /* ---------- Page ---------- */

@@ -1416,17 +1416,23 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
 #herramientas .tools__heading { max-width: 900px; margin-bottom: clamp(4rem, 7vw, 6rem); }
 #herramientas .tools__heading h2 { margin: 0 0 1.5rem; }
 #herramientas .tools__heading p { color: var(--jch-muted) !important; font-size: 1.1rem; }
+/* La cuadrícula rompe el ancho máximo del contenedor y ocupa todo el
+   viewport, con separación real entre tarjetas para que se vea el fondo
+   de la sección (textura de papel en modo claro) entre cuadro y cuadro. */
 #herramientas .tools__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--jch-line);
-  border-left: 1px solid var(--jch-line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 clamp(1.25rem, 3vw, 2.75rem);
+  box-sizing: border-box;
 }
 #herramientas .tool-card {
   height: 100%;
   padding: clamp(2rem, 3vw, 3rem);
-  border-right: 1px solid var(--jch-line);
-  border-bottom: 1px solid var(--jch-line);
+  border: 1px solid var(--jch-line);
   background: var(--jch-bg);
   min-height: 300px;
   display: flex;
@@ -2477,4 +2483,45 @@ main > section:first-child > div > .group {
     grid-row: auto;
     min-height: 22rem;
   }
+}
+
+/* ---------- Simulador de hipoteca: barras deslizantes ---------- */
+.jch-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--jch-line);
+  outline: none;
+  cursor: pointer;
+}
+.jch-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--jch-accent);
+  border: 3px solid var(--jch-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.jch-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--jch-bg);
+  border-radius: 50%;
+  background: var(--jch-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.jch-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: transparent;
+}
+.jch-range:focus-visible {
+  outline: 2px solid var(--jch-accent);
+  outline-offset: 4px;
 }
