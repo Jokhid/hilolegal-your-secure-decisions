@@ -2390,6 +2390,14 @@ header.sticky nav > a:first-child span {
   color: #8a6d3a !important;
 }
 
+/* José Carlos: con el logo ampliado un 50%, "José Carlos Hidalgo" a 1.5em
+   ya no cabe en una sola línea en el rango 1024-1200px (donde aparece el
+   menú de escritorio). Se reduce el tamaño solo en esta cabecera para que
+   el nombre completo quepa sin partirse en dos líneas ni desbordar. */
+header.sticky.jch-header-compact-name nav > a:first-child span {
+  font-size: 1.2em !important;
+}
+
 footer.site-footer .brand {
   display: inline-flex !important;
   align-items: center;
@@ -2524,4 +2532,15 @@ main > section:first-child > div > .group {
 .jch-range:focus-visible {
   outline: 2px solid var(--jch-accent);
   outline-offset: 4px;
+}
+
+/* ---------- Informe descargable (botón "Descargar informe") ---------- */
+.print-report { display: none; }
+@media print {
+  .no-print { display: none !important; }
+  header, footer { display: none !important; }
+  .print-report { display: block !important; }
+  html, body { background: #ffffff !important; color: #1a1a1a !important; }
+  .print-report h1, .print-report h2, .print-report h3 { color: #1a1a1a; }
+  .print-report * { box-shadow: none !important; }
 }

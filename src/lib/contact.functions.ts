@@ -26,6 +26,61 @@ const contactSchema = z.object({
 
 const MIN_FILL_TIME_MS = 3000;
 
+const downloadLeadSchema = z.object({
+  email: z.string().trim().email().max(255),
+  topic: z.string().trim().min(1).max(100),
+  website: z.string().trim().max(200).optional().default(""),
+  formLoadedAt: z.number().optional(),
+});
+
+/** Captura ligera (solo email) para el botón "Descargar informe" de las
+ *  herramientas — misma hoja y webhook que el formulario de contacto, pero
+ *  sin exigir nombre/teléfono, que el visitante no ha dado en ese punto. */
+export const submitDownloadLead = createServerFn({ method: "POST" })
+  .inputValidator((input) => downloadLeadSchema.parse(input))
+  .handler(async ({ data }) => {
+    const isHoneypotFilled = data.website.length > 0;
+    const isTooFast = typeof data.formLoadedAt === "number" && Date.now() - data.formLoadedAt < MIN_FILL_TIME_MS;
+    if (isHoneypotFilled || isTooFast) {
+      return { success: true };
+    }
+
+    const webhookUrl =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+      process.env.SHEETS_WEBHOOK_URL ||
+      process.env.CONTACT_WEBHOOK_URL ||
+      GOOGLE_SHEETS_WEBHOOK_URL;
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify({
+        timestamp: new Date().toISOString(),
+        sheetId: GOOGLE_SHEET_ID,
+        sheetName: GOOGLE_SHEET_NAME,
+        sheetUrl: GOOGLE_SHEET_URL,
+        name: "",
+        phone: "",
+        email: data.email,
+        interest: data.topic,
+        topic: data.topic,
+        message: "Descarga de informe desde una herramienta web.",
+        origin: "Web HiloLegal — Descarga de informe",
+      }),
+    });
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      console.error("Google Sheets webhook failed (download lead)", response.status, text);
+      throw new Error(USER_ERROR);
+    }
+
+    return { success: true };
+  });
+
 export const submitContact = createServerFn({ method: "POST" })
   .inputValidator((input) => contactSchema.parse(input))
   .handler(async ({ data }) => {

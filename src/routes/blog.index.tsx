@@ -73,7 +73,7 @@ function BlogIndex() {
       <header className="sticky top-0 z-50 backdrop-blur-xl">
         <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1500px] mx-auto">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/hilolegal-logo-stacked-black.webp" alt="Logo HiloLegal" className="h-8 w-auto object-contain" />
+            <img src="/hilolegal-logo-stacked-black.webp" alt="Logo HiloLegal" className="h-12 w-auto object-contain" />
           </Link>
           <div className="flex items-center gap-4">
             <ThemeToggle />

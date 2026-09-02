@@ -28,8 +28,8 @@ export const Route = createFileRoute("/sitemap.xml")({
             priority: "0.6",
             lastmod: p.updatedAt ?? p.publishedAt,
           })),
-          { path: "/herramientas/ahorro-potencial/index.html", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
-          { path: "/test-salud-financiera.html", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/ahorro-potencial", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
+          { path: "/test-salud-financiera", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
           { path: "/simulador-hipoteca", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
         ];
 

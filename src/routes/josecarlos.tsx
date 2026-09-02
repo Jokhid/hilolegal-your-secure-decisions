@@ -424,18 +424,18 @@ function Header() {
         initial={reduce ? false : { y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
-        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
+        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl jch-header-compact-name"
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
-          <Link to="/" className="group flex items-center gap-3">
+          <Link to="/" className="group flex items-center gap-3 min-w-0">
             <motion.img
               src={LOGO}
               alt="Logo HiloLegal"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain shrink-0"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold tracking-tight text-[#8a6d3a] md:text-lg">
+            <span className="text-base font-bold tracking-tight text-[#8a6d3a] whitespace-nowrap overflow-hidden text-ellipsis">
               José Carlos Hidalgo
             </span>
           </Link>
@@ -457,7 +457,7 @@ function Header() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle className="hidden sm:inline-flex" />
-            <Link to="/" className="header-back-link hidden md:inline-block">
+            <Link to="/" className="header-back-link hidden xl:inline-block">
               ← Volver al inicio
             </Link>
             <motion.a
@@ -1010,7 +1010,7 @@ function PerfilProfesional({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             <FadeUp>
               <div className="space-y-4">
                 <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
-                <h2 className="text-5xl font-bold tracking-tight">José Carlos Hidalgo</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap">José Carlos Hidalgo</h2>
                 <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Analizar primero. Decidir después.</p>
               </div>
             </FadeUp>

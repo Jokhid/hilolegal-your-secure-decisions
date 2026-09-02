@@ -311,14 +311,14 @@ const tools = [
     title: "Calculadora de ahorro potencial",
     text: "Calcula cuánto dinero se escapa en pequeños gastos recurrentes y visualiza tu ahorro anual recuperable.",
     cta: "Abrir calculadora",
-    href: "/herramientas/ahorro-potencial/index.html",
+    href: "/ahorro-potencial",
     event: "tool_wealth_audit" as const,
   },
   {
     title: "Test de salud financiera",
     text: "Evalúa tu nivel de protección, ahorro, endeudamiento y previsión.",
     cta: "Hacer test",
-    href: "/test-salud-financiera.html",
+    href: "/test-salud-financiera",
     event: "tool_financial_health" as const,
   },
   {
@@ -393,7 +393,7 @@ function Header() {
             <motion.img
               src="/hilolegal-logo-stacked-black.webp"
               alt="Logo HiloLegal"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />

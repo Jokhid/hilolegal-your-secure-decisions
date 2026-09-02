@@ -329,7 +329,7 @@ function Header() {
             <motion.img
               src="/hilolegal-logo-stacked-black.webp"
               alt="Logo HiloLegal"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />

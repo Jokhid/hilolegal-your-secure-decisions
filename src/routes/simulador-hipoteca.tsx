@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { useDialogA11y } from "@/lib/useDialogA11y";
+import { ReportDownload } from "@/components/ReportDownload";
 
 export const Route = createFileRoute("/simulador-hipoteca")({
   head: () => ({
@@ -391,7 +392,7 @@ function Header() {
             <motion.img
               src={LOGO}
               alt="Logo HiloLegal"
-              className="h-8 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
@@ -863,6 +864,41 @@ function Simulador({ rate, onRateChange }: { rate: RateConfigValue; onRateChange
             </div>
           </FadeUp>
         </div>
+
+        <FadeUp delay={0.15} className="mt-10">
+          <ReportDownload topic="Simulador de hipoteca">
+            <div style={{ fontFamily: "Inter, ui-sans-serif, sans-serif", padding: "2rem", maxWidth: "800px" }}>
+              <h1 style={{ fontSize: "1.8rem", fontWeight: 800, marginBottom: ".25rem" }}>Informe · Simulador de hipoteca</h1>
+              <p style={{ color: "#4A4A4A", marginBottom: "2rem" }}>HiloLegal · {new Date().toLocaleDateString("es-ES")}</p>
+
+              <h2 style={{ fontSize: "1.2rem", fontWeight: 700, marginTop: "1.5rem" }}>{viabilidad.viable ? "Operación viable" : "Operación posiblemente inviable"}</h2>
+              {!viabilidad.viable && (
+                <ul>{viabilidad.reasons.map((r) => <li key={r}>{r}</li>)}</ul>
+              )}
+
+              <h2 style={{ fontSize: "1.2rem", fontWeight: 700, marginTop: "1.5rem" }}>Datos de la operación</h2>
+              <p>Precio de compra: {eur0.format(price)}</p>
+              <p>Ingresos netos mensuales: {eur0.format(totalIncome)}</p>
+              <p>Edad del mayor titular: {age} años · Plazo: {termYears} años</p>
+              <p>Porcentaje de financiación: {pct1(financingPct)}</p>
+              <p>
+                Tipo de interés: {rate.mode === "fijo" ? `Fijo, TIN ${pct1(rate.tinFijo)}` : rate.mode === "variable" ? `Variable, euríbor + diferencial = ${pct1(rate.diferencial + rate.euribor)}` : `Mixto — TIN ${pct1(rate.tinFijo)} los primeros ${rate.fixedYears} años, después euríbor + diferencial = ${pct1(rate.diferencial + rate.euribor)}`}
+              </p>
+              <p>Tipo de vivienda: {housingType === "nueva" ? "Obra nueva" : "Segunda mano"}</p>
+
+              <h2 style={{ fontSize: "1.2rem", fontWeight: 700, marginTop: "1.5rem" }}>Resultado</h2>
+              <p>Cuota mensual: {eur0.format(schedule.cuotaFija)}{rate.mode === "mixta" ? ` (tramo fijo), después ${eur0.format(schedule.cuotaVariable)} (tramo variable, estimado)` : ""}</p>
+              <p>Esfuerzo sobre ingresos: {pct1(esfuerzoActual)}</p>
+              <p>Capital a financiar: {eur0.format(loan)} · LTV: {pct1(ltv)}</p>
+              <p>Gastos estimados de la operación: {eur0.format(gastos.total)} (impuestos {eur0.format(gastos.impuestos)}, tasación {eur0.format(gastos.tasacion)}, gestoría {eur0.format(gastos.gestoria)}, notaría {eur0.format(gastos.notaria)}, registro {eur0.format(gastos.registro)})</p>
+              <p style={{ fontWeight: 700 }}>Necesitas tener ahorrado: {eur0.format(aportacionNecesaria)}</p>
+
+              <p style={{ marginTop: "2rem", fontSize: ".85rem", color: "#4A4A4A" }}>
+                Cálculo orientativo. No sustituye a una oferta vinculante bancaria. HiloLegal — {PHONE_DISPLAY} — {EMAIL}
+              </p>
+            </div>
+          </ReportDownload>
+        </FadeUp>
       </div>
     </section>
   );
