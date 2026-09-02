@@ -406,7 +406,7 @@ function Calculadora() {
                   <div className="flex gap-2.5 min-w-0">
                     <span className="text-xl leading-none shrink-0" aria-hidden="true">{categoria.icono}</span>
                     <div className="min-w-0">
-                      <h3 className="text-sm font-bold truncate">{categoria.nombre}</h3>
+                      <h3 className="text-xs font-bold leading-snug">{categoria.nombre}</h3>
                       <p className="mt-0.5 text-xs text-[var(--jch-muted)] truncate">{categoria.descripcion}</p>
                     </div>
                   </div>
