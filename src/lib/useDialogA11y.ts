@@ -12,6 +12,12 @@ export function useDialogA11y(
   containerRef: React.RefObject<HTMLElement | null>,
 ) {
   const triggerRef = useRef<Element | null>(null);
+  // onClose se lee desde este ref (actualizado en cada render) en vez de
+  // capturarse directamente en el efecto — así el listener de Escape
+  // siempre llama a la versión más reciente, aunque el efecto solo se
+  // vuelva a ejecutar cuando cambia `isOpen`.
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -24,7 +30,7 @@ export function useDialogA11y(
     (focusable ?? el)?.focus();
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseRef.current();
     };
     document.addEventListener("keydown", onKeyDown);
 

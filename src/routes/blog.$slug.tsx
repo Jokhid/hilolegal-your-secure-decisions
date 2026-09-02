@@ -25,7 +25,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:locale", content: "es_ES" },
         { property: "og:site_name", content: "HiloLegal" },
-        ...(author
+        ...(post && author
           ? [
               { property: "og:image", content: author.ogImage },
               { property: "og:image:width", content: String(author.ogImageWidth) },
@@ -34,6 +34,8 @@ export const Route = createFileRoute("/blog/$slug")({
               { name: "twitter:title", content: post?.title ?? "Artículo" },
               { name: "twitter:description", content: desc },
               { name: "twitter:image", content: author.ogImage },
+              { property: "article:published_time", content: post.publishedAt },
+              ...(post.updatedAt ? [{ property: "article:modified_time", content: post.updatedAt }] : []),
             ]
           : []),
       ],
@@ -118,7 +120,7 @@ function formatSpanishDate(iso: string) {
 // caracteres) sin tener que reescribir a mano los 25 posts — corta en el
 // último espacio antes del límite. El <h1> sigue mostrando post.title
 // completo, sin recortar.
-function shortTitle(title: string, max = 48) {
+function shortTitle(title: string, max = 44) {
   if (title.length <= max) return title;
   const cut = title.slice(0, max);
   const lastSpace = cut.lastIndexOf(" ");

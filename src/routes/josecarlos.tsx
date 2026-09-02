@@ -16,7 +16,7 @@ export const Route = createFileRoute("/josecarlos")({
       {
         name: "description",
         content:
-          "Hipotecas y planificación patrimonial para familias y autónomos. Analiza financiación, protección, ahorro y jubilación con José Carlos Hidalgo en HiloLegal.",
+          "Hipotecas y planificación patrimonial para familias y autónomos. Analiza financiación, protección, ahorro y jubilación con José Carlos Hidalgo.",
       },
       { property: "og:title", content: "José Carlos Hidalgo | Hipotecas y planificación patrimonial" },
       {
@@ -474,7 +474,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] lg:hidden"
+              className="-mr-2 p-2 text-2xl text-[#8a6d3a] lg:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -500,7 +500,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#C5A566]"
+                className="self-end text-3xl text-[#8a6d3a]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -1094,9 +1094,8 @@ function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
           </div>
           <FadeUp delay={0.15}>
             <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
-              Trabajo la financiación hipotecaria con ING y ABANCA. Analizo primero tu perfil y la
-              operación para estudiar qué alternativa puede encajar dentro de las opciones con las
-              que trabajo. La concesión y las condiciones finales dependen siempre del análisis y
+              Selecciono la entidad según qué operación encaja mejor con tu perfil, no al revés.
+              La concesión y las condiciones finales dependen siempre del análisis y
               aprobación de la entidad financiera.
             </p>
           </FadeUp>

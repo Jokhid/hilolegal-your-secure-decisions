@@ -10,7 +10,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggleTheme}
       aria-label={isLight ? "Cambiar a modo oscuro" : "Cambiar a modo claro"}
-      className={`inline-flex items-center justify-center text-[#1A1A1A] transition-colors hover:text-[#C5A566] ${className}`}
+      className={`inline-flex items-center justify-center text-[#1A1A1A] transition-colors hover:text-[#8a6d3a] ${className}`}
     >
       {isLight ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
     </button>

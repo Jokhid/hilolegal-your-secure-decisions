@@ -11,7 +11,7 @@ export const Route = createFileRoute("/blog/")({
       {
         name: "description",
         content:
-          "Derecho, hipotecas, patrimonio y comunidades explicados con claridad. Artículos para entender antes de decidir, para familias, autónomos y comunidades de propietarios.",
+          "Derecho, hipotecas, patrimonio y comunidades explicados con claridad. Artículos para entender antes de decidir, para familias y autónomos.",
       },
       { property: "og:title", content: "Blog | HiloLegal" },
       {

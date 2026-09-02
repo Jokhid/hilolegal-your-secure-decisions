@@ -321,7 +321,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -347,7 +347,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#C5A566]"
+                className="self-end text-3xl text-[#8a6d3a]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -496,12 +496,11 @@ function BloquePresidente() {
     <section className="position-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="position-block__inner">
         <h2>
-          <Curtain>Lo que debería saber cualquier presidente.</Curtain>
+          <Curtain>El presidente representa, no gestiona.</Curtain>
         </h2>
         <div className="position-block__body">
           <FadeUp delay={0.1}>
             <p>
-              Ser presidente no debería significar asumir el trabajo del administrador.
               Tu papel es representar a los propietarios y tomar decisiones,
               no perseguir facturas ni redactar actas.
             </p>

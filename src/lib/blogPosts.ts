@@ -241,7 +241,7 @@ El objetivo no es contratar más productos. Es tener respuesta a esa pregunta in
     readingTime: "4 min",
     keyword: "previsión financiera personal",
     excerpt: "Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana.",
-    metaDescription: "Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana. Así funciona la planificación financiera real y por qué la mayoría llega tarde.",
+    metaDescription: "Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana. Así funciona la planificación financiera real.",
     content: `## Prever: del latín «ver antes»
 
 Prever no es adivinar el futuro. Es decidir hoy qué harás si algo cambia mañana, para no tener que improvisar bajo presión cuando ese cambio llegue.\n\nLa palabra prever viene del latín *prae* (antes) y *videre* (ver). Ver antes de que ocurra. Precaverse va un paso más allá: guardarse de un peligro antes de que llegue.
@@ -367,7 +367,7 @@ Un autónomo que ha cotizado por la base mínima tiene derecho a una pensión p�
     readingTime: "6 min",
     keyword: "qué es un SIALP",
     excerpt: "Un seguro de ahorro a largo plazo con un régimen fiscal específico: puede permitir la exención de los rendimientos si se cumplen los requisitos legales. Cómo funciona y por qué interesa.",
-    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con un régimen fiscal específico, sujeto a los requisitos legales vigentes. El Gobierno planea relanzarlo en 2026.",
+    metaDescription: "El SIALP es un seguro de ahorro a largo plazo con un régimen fiscal específico. El Gobierno planea relanzarlo en 2026.",
     content: `## ¿Qué es un SIALP?
 
 El SIALP —Seguro Individual de Ahorro a Largo Plazo— es una modalidad de ahorro que puede permitir la exención fiscal de los rendimientos positivos cuando se cumplen los requisitos establecidos legalmente, entre ellos mantener el dinero invertido un mínimo de cinco años. La fiscalidad depende del cumplimiento de esos requisitos y de la normativa vigente en cada momento (puedes consultarla en la Agencia Tributaria).
@@ -763,7 +763,7 @@ const fincasPosts: Omit<BlogPost, "service">[] = [
     readingTime: "6 min",
     keyword: "conflictos comunidad de propietarios",
     excerpt: "El ruido de las 23:00, la sombrilla que siempre ocupa la misma tumbona, el vecino que lleva meses sin pagar. Los cinco conflictos que más se repiten en las comunidades, y por qué casi todos tienen solución antes de llegar a un juzgado.",
-    metaDescription: "Los cinco conflictos que más deterioran la convivencia en tu comunidad: ruidos, zonas comunes, impagos, roces y falta de mantenimiento. Cómo cortarlos a tiempo.",
+    metaDescription: "Los cinco conflictos que más deterioran la convivencia en tu comunidad: ruidos, zonas comunes, impagos y falta de mantenimiento.",
     content: `## El ruido de las 23:00, la sombrilla de siempre, la cuota que no llega
 
 Los cinco conflictos que más deterioran la convivencia en una comunidad de propietarios son los ruidos, el uso de zonas comunes, los impagos, los roces personales entre vecinos y la falta de mantenimiento.\n\nNinguno de estos problemas empieza siendo grave. Todos pueden acabar siéndolo si nadie los gestiona a tiempo.
@@ -814,7 +814,7 @@ Ningún edificio con varias familias está libre de tensiones. La diferencia ent
     readingTime: "6 min",
     keyword: "estatutos comunidad de propietarios",
     excerpt: "Casi nadie los lee hasta que hay un problema. Y para entonces ya es tarde para decidir las reglas: solo queda cumplirlas o pelearlas. Qué son los estatutos y por qué muchas comunidades ni siquiera los tienen.",
-    metaDescription: "Los estatutos deciden, antes de cualquier conflicto, quién usa qué, quién paga qué y cómo se decide en tu comunidad. Qué son, qué regulan y cómo se actualizan.",
+    metaDescription: "Los estatutos deciden, antes de cualquier conflicto, quién usa qué, quién paga qué y cómo se decide en tu comunidad.",
     content: `## El documento que casi nadie lee hasta que hay un problema
 
 Los estatutos son el documento que decide, antes de que surja cualquier conflicto, quién puede usar qué, quién paga qué y cómo se toman las decisiones en tu edificio. Entender cómo funcionan no es un tecnicismo para abogados: es la diferencia entre anticiparte a un problema o sufrirlo.
@@ -979,7 +979,7 @@ Separación y divorcio no son sinónimos legales, son dos decisiones distintas c
     readingTime: "5 min",
     keyword: "reclamar indemnización por daños",
     excerpt: "En un juzgado no gana quien tiene razón, gana quien puede demostrarla. Lo que realmente determina si una reclamación por daños y perjuicios prospera o se queda por el camino.",
-    metaDescription: "Reclamar una indemnización por daños y perjuicios exige algo más que tener razón: prueba sólida, estrategia procesal y una cuantificación del daño con rigor.",
+    metaDescription: "Reclamar una indemnización por daños y perjuicios exige algo más que tener razón: prueba sólida y una cuantificación del daño con rigor.",
     content: `## Tener razón es el punto de partida, no la garantía
 
 Mucha gente llega a una reclamación de daños convencida de que con contar lo que pasó es suficiente. La realidad es más exigente: en un juzgado no gana quien tiene razón, gana quien puede demostrarla.
@@ -1066,7 +1066,7 @@ La custodia compartida no se gana por pedirla ni se pierde por no pedirla al 50%
     readingTime: "6 min",
     keyword: "cómo se calcula la pensión de alimentos",
     excerpt: "\"¿Cuánto me va a tocar pagar?\" Es la pregunta que más rápido llega en cualquier consulta de divorcio con hijos. Y la respuesta incómoda es: no hay una tabla fija que lo diga con exactitud.",
-    metaDescription: "La pensión de alimentos no tiene fórmula fija: depende de las necesidades de los hijos y la capacidad económica de cada progenitor. Cuándo se puede modificar.",
+    metaDescription: "La pensión de alimentos no tiene fórmula fija: depende de las necesidades de los hijos y la capacidad económica de cada progenitor.",
     content: `## No hay una fórmula automática
 
 "¿Cuánto me va a tocar pagar?" Es la pregunta que más rápido llega en cualquier consulta de divorcio con hijos. Y la respuesta incómoda es: no hay una tabla fija que lo diga con exactitud. Hay un análisis.
@@ -1114,7 +1114,7 @@ La pensión de alimentos no se calcula "a ojo" ni se cambia por decisión unilat
     readingTime: "5 min",
     keyword: "herencia entre hermanos sin acuerdo",
     excerpt: "Cuando varios herederos no se ponen de acuerdo sobre un piso, una cuenta o un negocio familiar, hay varias opciones antes de llegar a juicio: la partición de mutuo acuerdo, el contador-partidor, la mediación familiar y, como último recurso, la división judicial.\n\nUn piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Las vías que conviene agotar antes de pensar en un juicio.",
-    metaDescription: "Un desacuerdo entre herederos no tiene que acabar en los tribunales. Partición de mutuo acuerdo, contador-partidor, mediación y división judicial: las opciones.",
+    metaDescription: "Un desacuerdo entre herederos no tiene que acabar en los tribunales: partición de mutuo acuerdo, mediación o división judicial.",
     content: `## Cuando el reparto se atasca
 
 Un piso, una cuenta corriente, un negocio familiar. Y varios hermanos que no se ponen de acuerdo en qué hacer con nada de eso. Es una de las situaciones más comunes en derecho de sucesiones, y también una de las que más tiempo, dinero y relaciones familiares puede destruir si se gestiona mal desde el principio.
@@ -1161,7 +1161,7 @@ Un desacuerdo entre herederos no tiene que acabar automáticamente en los tribun
     readingTime: "6 min",
     keyword: "cuánto tarda un desahucio",
     excerpt: "\"En un mes lo tengo fuera.\" Es lo que muchos propietarios esperan cuando un inquilino deja de pagar. La realidad, en la mayoría de los juzgados españoles, es muy distinta.",
-    metaDescription: "Un desahucio por impago suele tardar entre 6 y 12 meses. Cómo funciona el proceso y los errores más comunes, del propietario y del inquilino, que lo alargan.",
+    metaDescription: "Un desahucio por impago suele tardar entre 6 y 12 meses. Cómo funciona el proceso y los errores más comunes que lo alargan.",
     content: `## "En un mes lo tengo fuera": la expectativa que no coincide con la realidad
 
 "En un mes lo tengo fuera." Es lo que muchos propietarios esperan cuando un inquilino deja de pagar. La realidad, en la mayoría de los juzgados españoles, es muy distinta: la duración media de un desahucio por impago se mueve entre 6 y 12 meses, y en algunos partidos judiciales puede prolongarse bastante más.
@@ -1205,7 +1205,7 @@ Un desahucio no se gana ni se pierde en el último mes, se define en las primera
     readingTime: "5 min",
     keyword: "cancelación de antecedentes penales",
     excerpt: "\"Ya cumplí mi condena hace años, ¿por qué me lo siguen pidiendo?\" Los antecedentes penales no desaparecen automáticamente por el simple paso del tiempo. Hay que solicitarlo.",
-    metaDescription: "Los antecedentes penales no se cancelan solos: hay plazos según la gravedad de la pena, requisito de no reincidencia y solicitud ante el Ministerio de Justicia.",
+    metaDescription: "Los antecedentes penales no se cancelan solos: hay plazos según la gravedad de la pena y hace falta solicitarlo ante el Ministerio de Justicia.",
     content: `## "Ya cumplí mi condena, ¿por qué me lo siguen pidiendo?"
 
 "Ya cumplí mi condena hace años, ¿por qué me lo siguen pidiendo?" Es una pregunta habitual, y la respuesta sorprende a mucha gente: los antecedentes penales no desaparecen automáticamente por el simple paso del tiempo. Hay que solicitarlo.
@@ -1332,7 +1332,7 @@ Revisamos el seguro del coche cada año buscando algo mejor. La hipoteca, que su
     readingTime: "3 min",
     keyword: "ahorro parado en el banco autónomos",
     excerpt: "\"Prefiero tenerlo todo en el banco, por si acaso.\" Es la frase que más veces escucho en una primera auditoría con un autónomo. Y es, casi siempre, la decisión que más dinero le está costando.",
-    metaDescription: "Tener todo el ahorro parado en cuenta corriente tiene un coste real: pierde poder adquisitivo cada año. La liquidez para imprevistos no es tenerlo todo parado.",
+    metaDescription: "Tener todo el ahorro parado en cuenta corriente tiene un coste real: pierde poder adquisitivo cada año.",
     content: `## "Prefiero tenerlo todo en el banco, por si acaso"
 
 Tener todos tus ahorros parados en el banco tiene un coste real: pierdes poder adquisitivo cada año frente a la inflación. Tener liquidez para imprevistos no es lo mismo que tener todo el dinero parado sin ninguna estrategia.

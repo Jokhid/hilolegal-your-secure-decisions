@@ -13,13 +13,13 @@ import { useDialogA11y } from "@/lib/useDialogA11y";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
+      { title: "HiloLegal | Boutique legal y patrimonial en Altea" },
       {
         name: "description",
         content:
-          "Abogacía, planificación financiera, hipotecas, seguros y administración de fincas en Altea - Costa Blanca. Diagnóstico patrimonial con criterio legal y financiero.",
+          "Abogacía, planificación financiera, hipotecas, seguros y administración de fincas en Altea. Diagnóstico con criterio legal y financiero.",
       },
-      { property: "og:title", content: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
+      { property: "og:title", content: "HiloLegal | Boutique legal y patrimonial en Altea" },
       {
         property: "og:description",
         content:
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:width", content: "1536" },
       { property: "og:image:height", content: "1024" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "HiloLegal | Boutique legal y patrimonial en Altea - Costa Blanca" },
+      { name: "twitter:title", content: "HiloLegal | Boutique legal y patrimonial en Altea" },
       {
         name: "twitter:description",
         content: "Criterio jurídico, visión patrimonial y experiencia financiera para proteger tu patrimonio.",
@@ -419,7 +419,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -445,7 +445,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#C5A566]"
+                className="self-end text-3xl text-[#8a6d3a]"
                 aria-label="Cerrar menú"
               >
                 ×

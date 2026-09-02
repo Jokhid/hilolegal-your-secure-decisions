@@ -11,7 +11,7 @@ import { useDialogA11y } from "@/lib/useDialogA11y";
 export const Route = createFileRoute("/administracion-fincas/presidentes")({
   head: () => ({
     meta: [
-      { title: "Soy Presidente de una Comunidad | Administración de Fincas HiloLegal" },
+      { title: "Soy Presidente de una Comunidad | HiloLegal" },
       {
         name: "description",
         content:
@@ -206,7 +206,7 @@ function Header() {
             >
               WhatsApp
             </motion.a>
-            <button type="button" aria-label="Abrir menú" onClick={() => setMobileOpen((v) => !v)} className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden">
+            <button type="button" aria-label="Abrir menú" onClick={() => setMobileOpen((v) => !v)} className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden">
               {mobileOpen ? "×" : "☰"}
             </button>
           </div>
@@ -227,7 +227,7 @@ function Header() {
             aria-label="Menú de navegación"
           >
             <div className="flex h-full flex-col gap-4 overflow-y-auto p-8">
-              <button type="button" onClick={() => setMobileOpen(false)} className="self-end text-3xl text-[#C5A566]" aria-label="Cerrar menú">×</button>
+              <button type="button" onClick={() => setMobileOpen(false)} className="self-end text-3xl text-[#8a6d3a]" aria-label="Cerrar menú">×</button>
               <div className="mt-8 flex flex-col gap-2">
                 {navLinks.map(([label, href]) => (
                   <a key={href} href={href} onClick={() => setMobileOpen(false)} className="block py-3 text-lg font-medium text-[#1A1A1A] transition-colors hover:text-[var(--jch-accent-ink)]">
@@ -253,7 +253,7 @@ function Header() {
 function Hero() {
   return (
     <section className="hero-bg-section">
-      <img alt="Presidente de comunidad" className="hero-bg-image" src="/nosotros_cliente.webp" loading="eager" decoding="async" fetchPriority="high" />
+      <img alt="Presidente de comunidad" className="hero-bg-image" src="/nosotros_cliente.webp" width={1254} height={1254} loading="eager" decoding="async" fetchPriority="high" />
       <div className="hero-bg-overlay" aria-hidden="true" />
       <div className="mx-auto px-6">
         <div className="space-y-10">

@@ -8,28 +8,28 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const today = new Date().toISOString().slice(0, 10);
+        // Fechas reales (última modificación conocida de cada archivo/plantilla),
+        // no "hoy" recalculado en cada petición — así lastmod sí sirve como
+        // señal real de re-rastreo para Google. Actualizar a mano cuando se
+        // edite el contenido visible de la página correspondiente.
         const entries = [
-          { path: "/", changefreq: "monthly", priority: "1.0", lastmod: today },
-          { path: "/josecarlos", changefreq: "monthly", priority: "0.8", lastmod: today },
-          { path: "/veronica", changefreq: "monthly", priority: "0.8", lastmod: today },
-          { path: "/administracion-fincas", changefreq: "monthly", priority: "0.8", lastmod: today },
-          { path: "/administracion-fincas/presidentes", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/administracion-fincas/cambio-administrador", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/administracion-fincas/nueva-comunidad", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/administracion-fincas/gestion-economica-impagos", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/blog", changefreq: "weekly", priority: "0.7", lastmod: today },
+          { path: "/", changefreq: "monthly", priority: "1.0", lastmod: "2026-09-01" },
+          { path: "/josecarlos", changefreq: "monthly", priority: "0.8", lastmod: "2026-09-01" },
+          { path: "/veronica", changefreq: "monthly", priority: "0.8", lastmod: "2026-09-01" },
+          { path: "/administracion-fincas", changefreq: "monthly", priority: "0.8", lastmod: "2026-09-01" },
+          { path: "/administracion-fincas/presidentes", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/administracion-fincas/cambio-administrador", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/administracion-fincas/nueva-comunidad", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/administracion-fincas/gestion-economica-impagos", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/blog", changefreq: "weekly", priority: "0.7", lastmod: "2026-08-31" },
           ...blogPosts.map((p) => ({
             path: `/blog/${p.slug}`,
             changefreq: "monthly" as const,
             priority: "0.6",
-            // Fecha real (updatedAt si el post fue revisado, si no publishedAt),
-            // no "hoy" recalculado en cada petición — así lastmod sí sirve
-            // como señal real de re-rastreo para Google.
             lastmod: p.updatedAt ?? p.publishedAt,
           })),
-          { path: "/herramientas/ahorro-potencial/index.html", changefreq: "monthly", priority: "0.7", lastmod: today },
-          { path: "/test-salud-financiera.html", changefreq: "monthly", priority: "0.7", lastmod: today },
+          { path: "/herramientas/ahorro-potencial/index.html", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
+          { path: "/test-salud-financiera.html", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-01" },
         ];
 
         const urls = entries

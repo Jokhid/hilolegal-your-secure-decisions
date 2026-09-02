@@ -16,9 +16,9 @@ export const Route = createFileRoute("/veronica")({
     const VERONICA_TELEPHONE = "+34" + PHONE_DISPLAY.replace(/\s/g, "");
     return {
     meta: [
-      { title: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
+      { title: "Verónica López Ramón | Abogada en Altea, Alicante" },
       { name: "description", content: VERONICA_DESCRIPTION },
-      { property: "og:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
+      { property: "og:title", content: "Verónica López Ramón | Abogada en Altea, Alicante" },
       { property: "og:description", content: VERONICA_DESCRIPTION },
       { property: "og:url", content: "https://www.hilolegal.es/veronica" },
       { property: "og:type", content: "website" },
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/veronica")({
       { property: "og:image:width", content: "1672" },
       { property: "og:image:height", content: "941" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Verónica López Ramón | Abogada en Altea · Costa Blanca · Alicante" },
+      { name: "twitter:title", content: "Verónica López Ramón | Abogada en Altea, Alicante" },
       { name: "twitter:description", content: VERONICA_DESCRIPTION },
       { name: "twitter:image", content: "https://www.hilolegal.es/VERODERECHA.webp" },
     ],
@@ -147,10 +147,10 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 
 const services = [
   { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "¿Te enfrentas a una sanción, un recurso o un expediente con la Administración? Lo analizamos con el mismo criterio con el que se instruyen los expedientes desde dentro.\n\n\nLa Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.\n\n\nHe trabajado desde dentro de la Administración y conozco cómo se instruyen los expedientes y cómo interpretan los técnicos la normativa. Esa experiencia institucional permite entender aspectos prácticos del procedimiento que difícilmente se adquieren únicamente desde el estudio teórico." },
-  { icon: "gavel", title: "Derecho civil y de familia", text: "¿Necesitas resolver una herencia, un divorcio o un contrato con seguridad jurídica? Trabajamos con rigor técnico y honestidad sobre las opciones reales de éxito.\n\n\nLas decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
+  { icon: "gavel", title: "Derecho civil y de familia", text: "¿Necesitas resolver una herencia, un divorcio o un contrato con seguridad jurídica? Analizamos tu caso con honestidad sobre qué es realmente viable.\n\n\nLas decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
   { icon: "home", title: "Inmobiliario y comunidades", text: "¿Vas a comprar, vender o alquilar un inmueble? Revisamos la operación con la misma auditoría legal que usamos para proteger comunidades de propietarios.\n\n\nLa compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.\n\n\nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico." },
   { icon: "balance", title: "Derecho penal", text: "¿Te enfrentas a un procedimiento penal? Ofrecemos defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso.\n\n\nUn procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada sin promesas que no se puedan cumplir." },
-  { icon: "psychology", title: "Consultoría jurídica especializada", text: "¿Tu empresa licita con el sector público o actúa en un mercado regulado? Detectamos las contingencias jurídicas antes de que se consoliden.\n\n\nLas empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley: se encuentra en los criterios de aplicación de la propia Administración.\n\n\nHaber ocupado puestos de alta dirección en la Administración autonómica me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
+  { icon: "psychology", title: "Consultoría jurídica especializada", text: "¿Tu empresa licita con el sector público o actúa en un mercado regulado? Detectamos el riesgo antes de que se convierta en sanción o litigio.\n\n\nLas empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley: se encuentra en los criterios de aplicación de la propia Administración.\n\n\nHaber ocupado puestos de alta dirección en la Administración autonómica me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
   { icon: "shield", title: "Estrategia jurídica preventiva", text: "¿Quieres anticiparte a un conflicto antes de que ocurra? Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
 ];
 
@@ -367,7 +367,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -393,7 +393,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#C5A566]"
+                className="self-end text-3xl text-[#8a6d3a]"
                 aria-label="Cerrar menú"
               >
                 ×
@@ -450,7 +450,7 @@ function Hero() {
       <div className="mx-auto px-6">
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp>
-            <div className="inline-flex items-center gap-3 text-[#C5A566] font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 text-[#8a6d3a] font-bold text-xs uppercase tracking-widest">
               <motion.span
                 initial={{ width: 0 }}
                 animate={{ width: 32 }}
@@ -877,7 +877,7 @@ function Testimonials() {
               <article className="relative h-full border border-[var(--jch-line)] p-10 hover:border-[#C5A566] transition-colors">
                 <div className="flex gap-1 mb-6" aria-label={`${t.rating} de 5 estrellas`}>
                   {Array.from({ length: t.rating }).map((_, idx) => (
-                    <span key={idx} aria-hidden="true" className="text-[#C5A566]">★</span>
+                    <span key={idx} aria-hidden="true" className="text-[var(--jch-accent-ink)]">★</span>
                   ))}
                 </div>
                 <p className="text-[var(--jch-muted)] leading-relaxed">{t.text}</p>
@@ -1084,7 +1084,7 @@ function Contact() {
           <FadeUp>
             <div className="pt-10 border-t border-[var(--jch-line)] space-y-4">
               <div className="flex items-center gap-3">
-                <Icon name="location_on" className="text-[#C5A566] text-xl" />
+                <Icon name="location_on" className="text-[var(--jch-accent-ink)] text-xl" />
                 <p className="text-sm font-bold uppercase tracking-widest">Calle Regata 3, 1º E, 03590 Altea</p>
               </div>
               <div className="w-full aspect-[4/3] overflow-hidden border border-[var(--jch-line)]">

@@ -474,7 +474,7 @@ main > section:first-child > div {
 main > section:first-child [class*="space-y-10"] { gap: 0; }
 
 main > section:first-child .hero-eyebrow {
-  color: #C5A566 !important;
+  color: var(--jch-accent-ink) !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 0.6rem !important;
   font-weight: 400 !important;
