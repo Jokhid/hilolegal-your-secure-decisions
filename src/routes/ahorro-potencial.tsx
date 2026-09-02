@@ -135,6 +135,7 @@ const CATEGORIAS: Categoria[] = [
   { id: "cafe", nombre: "Café y bebidas calientes", icono: "☕", precio: 1.5, descripcion: "Café diario en el trabajo o de camino a casa" },
   { id: "snacks", nombre: "Snacks y comida rápida", icono: "🍿", precio: 1.25, descripcion: "Patatas, chocolates, bollería y aperitivos" },
   { id: "cervezas", nombre: "Cervezas y bebidas alcohólicas", icono: "🍺", precio: 2.5, descripcion: "Cerveza en bares, vinos y cócteles" },
+  { id: "tabaco", nombre: "Tabaco", icono: "🚬", precio: 6, descripcion: "Cajetillas o tabaco de liar comprados por costumbre" },
   { id: "refrescos", nombre: "Refrescos y bebidas frías", icono: "🥤", precio: 1.5, descripcion: "Refrescos, zumos y agua embotellada" },
   { id: "restaurantes", nombre: "Comida en restaurantes", icono: "🍽️", precio: 12, descripcion: "Almuerzos y cenas fuera de casa no planificadas" },
   { id: "compras", nombre: "Compras impulsivas", icono: "🛍️", precio: 5, descripcion: "Artículos no planificados en supermercados y tiendas" },
@@ -380,143 +381,148 @@ function Calculadora() {
   const maxCategoria = Math.max(1, ...activos.map((c) => gastoAnual(gastos[c.id])));
 
   return (
-    <section id="calculadora" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="calculadora" className="py-20 border-t border-[var(--jch-line)]">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-10 max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
             <Curtain>Marca tus gastos hormiga</Curtain>
           </h2>
           <FadeUp delay={0.1}>
-            <p className="mt-4 text-lg text-[var(--jch-muted)]">
+            <p className="mt-3 text-base text-[var(--jch-muted)]">
               Activa los hábitos que se repiten en tu día a día y ajusta el importe y la frecuencia.
             </p>
           </FadeUp>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16">
-          <FadeUp className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {CATEGORIAS.map((categoria) => {
-              const gasto = gastos[categoria.id];
-              return (
-                <div
-                  key={categoria.id}
-                  className={`border p-6 transition-colors ${gasto.activo ? "border-[#C5A566] bg-[var(--jch-surface)]" : "border-[var(--jch-line)]"}`}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex gap-3">
-                      <span className="text-2xl leading-none" aria-hidden="true">{categoria.icono}</span>
-                      <div>
-                        <h3 className="text-sm font-bold">{categoria.nombre}</h3>
-                        <p className="mt-1 text-xs text-[var(--jch-muted)]">{categoria.descripcion}</p>
-                      </div>
+        <FadeUp className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {CATEGORIAS.map((categoria) => {
+            const gasto = gastos[categoria.id];
+            return (
+              <div
+                key={categoria.id}
+                className={`border p-4 transition-colors ${gasto.activo ? "border-[#1f6f78] bg-[var(--jch-surface)]" : "border-[var(--jch-line)]"}`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex gap-2.5 min-w-0">
+                    <span className="text-xl leading-none shrink-0" aria-hidden="true">{categoria.icono}</span>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-bold truncate">{categoria.nombre}</h3>
+                      <p className="mt-0.5 text-xs text-[var(--jch-muted)] truncate">{categoria.descripcion}</p>
                     </div>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={gasto.activo}
-                      aria-label={`Activar ${categoria.nombre}`}
-                      onClick={() => toggle(categoria.id)}
-                      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${gasto.activo ? "bg-[#C5A566]" : "bg-[var(--jch-line-strong)]"}`}
-                    >
-                      <span
-                        className="absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-transform"
-                        style={{ transform: gasto.activo ? "translateX(22px)" : "translateX(4px)" }}
-                      />
-                    </button>
                   </div>
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <input
-                      type="number"
-                      min={0}
-                      step={0.25}
-                      value={gasto.monto}
-                      disabled={!gasto.activo}
-                      onChange={(e) => setMonto(categoria.id, Number(e.target.value) || 0)}
-                      onWheel={(e) => e.currentTarget.blur()}
-                      aria-label="Importe"
-                      className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-2 text-sm focus:ring-0 focus:border-[#C5A566] transition-colors outline-none disabled:opacity-40"
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={gasto.activo}
+                    aria-label={`Activar ${categoria.nombre}`}
+                    onClick={() => toggle(categoria.id)}
+                    className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${gasto.activo ? "bg-[#1f6f78]" : "bg-[var(--jch-line-strong)]"}`}
+                  >
+                    <span
+                      className="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform"
+                      style={{ transform: gasto.activo ? "translateX(20px)" : "translateX(0)" }}
                     />
-                    <select
-                      value={gasto.frecuencia}
-                      disabled={!gasto.activo}
-                      onChange={(e) => setFrecuencia(categoria.id, e.target.value as FrecuenciaId)}
-                      aria-label="Frecuencia"
-                      className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-2 text-sm focus:ring-0 focus:border-[#C5A566] transition-colors outline-none disabled:opacity-40"
-                    >
-                      {FRECUENCIAS.map((f) => (
-                        <option key={f.id} value={f.id}>{f.nombre}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <p className="mt-3 text-xs text-[var(--jch-dim)]">
-                    <span className="font-bold text-[var(--jch-accent-ink)]">{eur2.format(gastoAnual(gasto))}</span> / año
-                  </p>
+                  </button>
                 </div>
-              );
-            })}
-          </FadeUp>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <input
+                    type="number"
+                    min={0}
+                    step={0.25}
+                    value={gasto.monto}
+                    disabled={!gasto.activo}
+                    onChange={(e) => setMonto(categoria.id, Number(e.target.value) || 0)}
+                    onWheel={(e) => e.currentTarget.blur()}
+                    aria-label="Importe"
+                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#1f6f78] transition-colors outline-none disabled:opacity-40"
+                  />
+                  <select
+                    value={gasto.frecuencia}
+                    disabled={!gasto.activo}
+                    onChange={(e) => setFrecuencia(categoria.id, e.target.value as FrecuenciaId)}
+                    aria-label="Frecuencia"
+                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#1f6f78] transition-colors outline-none disabled:opacity-40"
+                  >
+                    {FRECUENCIAS.map((f) => (
+                      <option key={f.id} value={f.id}>{f.nombre}</option>
+                    ))}
+                  </select>
+                </div>
+                <p className="mt-2 text-xs text-[var(--jch-dim)]">
+                  <span className="font-bold text-[var(--jch-accent-ink)]">{eur2.format(gastoAnual(gasto))}</span> / año
+                </p>
+              </div>
+            );
+          })}
+        </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <div className="lg:sticky lg:top-28 border border-[var(--jch-line)] bg-[var(--jch-surface)] p-8 md:p-10 space-y-8">
+        <FadeUp delay={0.1} className="mt-10 border border-[var(--jch-line)] bg-[var(--jch-surface)] p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-2">Gasto anual estimado</p>
+              <p className="text-4xl md:text-5xl font-black text-[var(--jch-accent-ink)]">{eur0.format(anual)}</p>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-2">Gasto anual estimado</p>
-                <p className="text-4xl md:text-5xl font-black text-[var(--jch-accent-ink)]">{eur0.format(anual)}</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Diario</p>
+                <p className="font-bold">{eur2.format(diario)}</p>
               </div>
-
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[var(--jch-line)]">
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Diario</p>
-                  <p className="font-bold">{eur2.format(diario)}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Semanal</p>
-                  <p className="font-bold">{eur2.format(semanal)}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Mensual</p>
-                  <p className="font-bold">{eur2.format(mensual)}</p>
-                </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Semanal</p>
+                <p className="font-bold">{eur2.format(semanal)}</p>
               </div>
-
-              <div className="pt-6 border-t border-[var(--jch-line)]">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-[var(--jch-muted)]">Nivel de gasto hormiga</span>
-                </div>
-                <div className="h-2 bg-[var(--jch-line)] overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-[#C5A566] to-[#1A1A1A]" style={{ width: `${nivelPct}%` }} />
-                </div>
-                <p className="mt-2 text-xs text-[var(--jch-dim)]">{nivelTexto}</p>
-              </div>
-
-              <div className="pt-6 border-t border-[var(--jch-line)]">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-4">Cuánto podrías recuperar al año</p>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between"><span className="text-[var(--jch-muted)]">Reduciendo el 50%</span><span className="font-bold">{eur0.format(anual * 0.5)}</span></li>
-                  <li className="flex justify-between"><span className="text-[var(--jch-muted)]">Reduciendo el 75%</span><span className="font-bold">{eur0.format(anual * 0.75)}</span></li>
-                  <li className="flex justify-between"><span className="text-[var(--jch-muted)]">Eliminación total</span><span className="font-bold text-[var(--jch-accent-ink)]">{eur0.format(anual)}</span></li>
-                </ul>
-              </div>
-
-              <div className="pt-6 border-t border-[var(--jch-line)]">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-2">Frente a la media española (150€/mes)</p>
-                {mensual === 0 ? (
-                  <p className="text-sm text-[var(--jch-muted)]">Activa alguna categoría para comparar.</p>
-                ) : (
-                  <p className={`text-sm font-bold ${diffReferencia > 0 ? "text-[#9b2c2c]" : "text-[#1f6f78]"}`}>
-                    {diffReferencia > 0
-                      ? `Gastas ${eur0.format(diffReferencia)} más que la referencia mensual.`
-                      : diffReferencia < 0
-                        ? `Gastas ${eur0.format(Math.abs(diffReferencia))} menos que la referencia mensual.`
-                        : "Estás justo en la referencia mensual."}
-                  </p>
-                )}
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-1">Mensual</p>
+                <p className="font-bold">{eur2.format(mensual)}</p>
               </div>
             </div>
-          </FadeUp>
-        </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 pt-6 border-t border-[var(--jch-line)]">
+            <div>
+              <p className="text-sm text-[var(--jch-muted)] mb-2">Nivel de gasto hormiga</p>
+              <div className="h-2 bg-[var(--jch-line)] overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-[#C5A566] to-[#1A1A1A]" style={{ width: `${nivelPct}%` }} />
+              </div>
+              <p className="mt-2 text-xs text-[var(--jch-dim)]">{nivelTexto}</p>
+            </div>
+            <div>
+              <p className="text-sm text-[var(--jch-muted)] mb-2">Frente a la media española (150€/mes)</p>
+              {mensual === 0 ? (
+                <p className="text-sm text-[var(--jch-muted)]">Activa alguna categoría para comparar.</p>
+              ) : (
+                <p className={`text-sm font-bold ${diffReferencia > 0 ? "text-[#9b2c2c]" : "text-[#1f6f78]"}`}>
+                  {diffReferencia > 0
+                    ? `Gastas ${eur0.format(diffReferencia)} más que la referencia mensual.`
+                    : diffReferencia < 0
+                      ? `Gastas ${eur0.format(Math.abs(diffReferencia))} menos que la referencia mensual.`
+                      : "Estás justo en la referencia mensual."}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-[var(--jch-line)]">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-4">Cuánto podrías recuperar al año</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="flex justify-between sm:block">
+                <span className="text-sm text-[var(--jch-muted)]">Reduciendo el 50%</span>
+                <span className="font-bold sm:block sm:mt-1">{eur0.format(anual * 0.5)}</span>
+              </div>
+              <div className="flex justify-between sm:block">
+                <span className="text-sm text-[var(--jch-muted)]">Reduciendo el 75%</span>
+                <span className="font-bold sm:block sm:mt-1">{eur0.format(anual * 0.75)}</span>
+              </div>
+              <div className="flex justify-between sm:block">
+                <span className="text-sm text-[var(--jch-muted)]">Eliminación total</span>
+                <span className="font-bold text-[var(--jch-accent-ink)] sm:block sm:mt-1">{eur0.format(anual)}</span>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
 
         {activos.length > 0 && (
-          <FadeUp delay={0.15} className="mt-16 border border-[var(--jch-line)] p-8 md:p-10">
+          <FadeUp delay={0.15} className="mt-10 border border-[var(--jch-line)] p-6 md:p-8">
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--jch-dim)] mb-6">Distribución por categoría</p>
             <div className="space-y-4">
               {activos
@@ -540,7 +546,7 @@ function Calculadora() {
           </FadeUp>
         )}
 
-        <FadeUp delay={0.2} className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <FadeUp delay={0.2} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CONSEJOS.map((consejo) => (
             <div key={consejo} className="border-l-2 border-[#C5A566] pl-4 py-1 text-sm text-[var(--jch-muted)]">
               {consejo}
@@ -548,7 +554,7 @@ function Calculadora() {
           ))}
         </FadeUp>
 
-        <FadeUp delay={0.25} className="mt-16">
+        <FadeUp delay={0.25} className="mt-10">
           <ReportDownload topic="Calculadora de ahorro potencial">
             <div style={{ fontFamily: "Inter, ui-sans-serif, sans-serif", padding: "2rem", maxWidth: "800px" }}>
               <h1 style={{ fontSize: "1.8rem", fontWeight: 800, marginBottom: ".25rem" }}>Informe · Ahorro potencial</h1>
