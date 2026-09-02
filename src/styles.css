@@ -193,6 +193,22 @@ main > section {
   color: var(--jch-ink) !important;
 }
 
+/* Textura de papel en vez de blanco liso en modo claro, en cada sección
+   de contenido — EXCEPTO la primera (el hero), que en todas las páginas
+   ya lleva su propia foto a pantalla completa (.hero-bg-image, position:
+   absolute) encima del fondo de la sección. Poniendo el background-image
+   justo en esa sección concreta se observó en el propio navegador que a
+   veces tapaba la foto del hero de forma intermitente (problema de
+   pintado/compositing, no de las reglas de apilamiento en sí, pero
+   reproducible) — así que se excluye por completo en vez de arriesgar
+   ocultar una imagen existente. Solo en modo claro: la textura es de
+   papel blanco, no tiene sentido sobre --jch-bg oscuro. No se ha tocado
+   ninguna imagen existente del sitio. */
+[data-theme="light"] main > section:not(:first-child) {
+  background-image: url("/paper-bg.webp") !important;
+  background-repeat: repeat !important;
+}
+
 main > section {
   position: relative;
   border-top: 1px solid var(--jch-line) !important;
