@@ -29,7 +29,7 @@ export function CookieBanner() {
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-4 md:gap-8">
         <p className="cookie-banner__text text-sm leading-relaxed text-center md:text-left flex-1">
           Utilizamos cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia. Puedes aceptar todas las cookies o configurar tus preferencias.{" "}
-          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--jch-accent-ink)]">Más información</a>
+          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--jch-accent-ink)]">Más información sobre cookies</a>
         </p>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
           <button

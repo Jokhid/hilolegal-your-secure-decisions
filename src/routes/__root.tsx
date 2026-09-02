@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import servicesArtCss from "../services-art.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CookieBanner } from "../components/CookieBanner";
 import { ChatWidget } from "../components/ChatWidget";
@@ -101,12 +100,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "stylesheet", href: servicesArtCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Ojo: NO se declara aquí un { rel: "stylesheet", href: FONT_PRIMARY }
+      // — React 19 gestiona los <link rel="stylesheet"> del array `links`
+      // con su propio sistema de "Resources" (precedence-based) y, al
+      // hacerlo, descarta atributos como "onload", además de bloquear
+      // deliberadamente el primer render hasta que carguen (para evitar
+      // FOUC). Por eso la hoja de Google Fonts se inyecta a mano más abajo
+      // (ver FONT_LOAD_SCRIPT / RootShell), fuera de ese sistema, con el
+      // patrón media="print" + onload ya usado en las páginas estáticas de
+      // herramientas. Solo queda aquí el preload como pista de descarga
+      // temprana (no bloquea, no pasa por el sistema de Resources).
       { rel: "preload", as: "style", href: FONT_PRIMARY },
-      { rel: "stylesheet", href: FONT_PRIMARY },
       {
         rel: "preload",
         as: "image",
@@ -141,6 +148,22 @@ try {
 } catch (e) {}
 `;
 
+// Inyecta la hoja de Google Fonts a mano, fuera del sistema de "Resources"
+// de React 19 (que bloquea el primer render y no deja usar onload — ver
+// el comentario en el array `links` de arriba). media="print" hace que el
+// navegador la descargue sin que bloquee el render en pantalla; el propio
+// onload la conmuta a todos los medios en cuanto termina de cargar. Mismo
+// patrón que ya usan las páginas estáticas de herramientas. Mientras
+// tanto se ve con la fuente de reserva gracias a "&display=swap" en la URL.
+const FONT_LOAD_SCRIPT = `
+var l = document.createElement('link');
+l.rel = 'stylesheet';
+l.href = ${JSON.stringify(FONT_PRIMARY)};
+l.media = 'print';
+l.onload = function () { this.media = 'all'; };
+document.head.appendChild(l);
+`;
+
 // GTM_ID/GA4_ID/GTM_SCRIPT/GA4_INLINE_SCRIPT viven aquí pero ya NO se
 // renderizan en RootShell (SSR incondicional) — se cargan solo en cliente,
 // solo tras consentimiento de cookies, vía src/components/Analytics.tsx.
@@ -162,6 +185,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="es" suppressHydrationWarning data-theme="light">
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: FONT_LOAD_SCRIPT }} />
         <HeadContent />
       </head>
       <body>

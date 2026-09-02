@@ -1324,7 +1324,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-70">
+        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <span className="uppercase tracking-[0.18em]">
             © {new Date().getFullYear()} HiloLegal. Todos los derechos reservados.
           </span>
