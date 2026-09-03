@@ -384,6 +384,15 @@ header [class*="uppercase"] {
 .jch-accent { color: var(--jch-accent-ink) !important; }
 .jch-italic { font-style: italic; font-weight: 400; padding-right: .05em; }
 
+/* Sombra en las palabras en ocre dentro de titulares (h1/h2/h3), para
+   que se despeguen un poco de la página en vez de quedar planas. */
+main h1 .jch-accent,
+main h2 .jch-accent,
+main h3 .jch-accent,
+.veronica-hero-ochre {
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+}
+
 /* Hand-authored theme-reactive utilities, used in place of Tailwind's
    bg-[var(--x)] arbitrary-value syntax (confirmed on live production
    to never generate a working rule for this project's build). These
