@@ -1069,7 +1069,7 @@ const entidadesProteccion = [
 function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
     <section aria-label="Entidades con las que trabajo" className="partners-editorial">
-      <div className="partners-editorial__inner space-y-16">
+      <div className="partners-editorial__inner grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
           <FadeUp>
             <p className="partners-editorial__label">Financiación hipotecaria</p>
@@ -1123,6 +1123,18 @@ function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
               elección de una solución debe partir de la situación, los objetivos y las
               necesidades que previamente hemos analizado.
             </p>
+          </FadeUp>
+          <FadeUp delay={0.2} className="mt-6">
+            <a
+              href="#contact"
+              className="duo-block__cta"
+              onClick={() => {
+                onSelectIntent("protection");
+                trackEvent("josecarlos_protection_click", { intent: "protection", source: "josecarlos", section: "entidades", cta: "revisar_mi_proteccion" });
+              }}
+            >
+              Revisar mi protección <span aria-hidden="true">→</span>
+            </a>
           </FadeUp>
         </div>
       </div>
