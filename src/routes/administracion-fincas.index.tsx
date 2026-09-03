@@ -496,7 +496,7 @@ function BloquePresidente() {
     <section className="position-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="position-block__inner">
         <h2>
-          <Curtain>El presidente representa, no gestiona.</Curtain>
+          <Curtain>El presidente <span className="jch-accent jch-italic">representa</span>, no gestiona.</Curtain>
         </h2>
         <div className="position-block__body">
           <FadeUp delay={0.1}>
@@ -550,7 +550,7 @@ function Metodo() {
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2>
-            <Curtain>Nuestra forma de trabajar.</Curtain>
+            <Curtain>Nuestra forma de <span className="jch-accent jch-italic">trabajar.</span></Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Un proceso ordenado, pensado para que la comunidad sepa siempre en qué punto está cada cosa.</p>
@@ -589,7 +589,7 @@ function Tecnologia() {
             Tecnología al servicio de la comunidad
           </span>
           <h2>
-            <Curtain>Menos papeles. Más información. Más control.</Curtain>
+            <Curtain>Menos papeles. Más información. <span className="jch-accent jch-italic">Más control.</span></Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>
@@ -674,7 +674,7 @@ function Incidencias() {
       <div className="authority-block__inner">
         <FadeUp>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10 text-center md:text-left">
-            Una incidencia abierta debe tener responsable y seguimiento.
+            Una incidencia abierta debe tener <span className="jch-accent jch-italic">responsable</span> y seguimiento.
           </h2>
         </FadeUp>
         <div className="authority-block__grid">
@@ -702,7 +702,7 @@ function Juntas() {
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
-            <Curtain>Una buena junta empieza antes de sentarse alrededor de una mesa.</Curtain>
+            <Curtain><span className="jch-accent jch-italic">Una buena junta</span> empieza antes de sentarse alrededor de una mesa.</Curtain>
           </h2>
         </div>
         <div className="content-block__grid">
@@ -766,7 +766,7 @@ function CuatroNecesidades() {
       <div className="portal-block__inner">
         <div className="portal-block__heading">
           <h2>
-            <Curtain>¿Qué necesita tu comunidad ahora mismo?</Curtain>
+            <Curtain>¿Qué necesita <span className="jch-accent jch-italic">tu comunidad</span> ahora mismo?</Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Cuatro situaciones habituales. Cada una con su propia forma de empezar.</p>
@@ -812,7 +812,7 @@ function Filosofia() {
     <section className="fincas-block border-t border-[var(--jch-line)]">
       <div className="fincas-block__inner">
         <span className="fincas-block__eyebrow">Filosofía de trabajo</span>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Una gestión que puedas seguir.</h2>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Una <span className="jch-accent jch-italic">gestión</span> que puedas seguir.</h2>
         <p className="fincas-block__lead">
           No se trata de prometer que no habrá problemas. Se trata de que, cuando los haya,
           la comunidad sepa exactamente qué está pasando y quién se está ocupando de resolverlo.
@@ -833,7 +833,7 @@ function AmbitoGeografico() {
     <section className="position-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="position-block__inner">
         <h2>
-          <Curtain>Administración de fincas en Altea y Marina Baixa.</Curtain>
+          <Curtain><span className="jch-accent jch-italic">Administración</span> de fincas en Altea y Marina Baixa.</Curtain>
         </h2>
         <div className="position-block__body">
           <FadeUp delay={0.1}>
@@ -1153,7 +1153,7 @@ function ContenidoAutoridad() {
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
-            <Curtain>Artículos para entender antes de decidir</Curtain>
+            <Curtain>Artículos para <span className="jch-accent jch-italic">entender antes</span> de decidir</Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Contenido propio sobre convivencia, normativa y gestión de comunidades.</p>

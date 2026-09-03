@@ -549,14 +549,17 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              Legal · Hipotecas · Patrimonio · Fincas
+              Abogados en Legal · Hipotecas · Patrimonio · Fincas en Altea
             </span>
           </FadeUp>
 
-          <h1 className="text-balance">
-            <WordReveal eager delay={0.1} text="El rigor que mereces," />
-            <br />
-            <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="la cercanía que necesitas." />
+          <h1 className="text-balance hero-title-2lines">
+            <span className="block md:whitespace-nowrap">
+              <WordReveal eager delay={0.1} text="El rigor que mereces," />
+            </span>
+            <span className="block md:whitespace-nowrap">
+              <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="la cercanía que necesitas." />
+            </span>
           </h1>
 
           <FadeUp eager delay={0.5}>
@@ -732,7 +735,7 @@ function Positioning() {
         <h2>
           <Curtain>Una decisión rara vez es solo</Curtain>{" "}
           <Curtain delay={0.1}>
-            <span className="jch-accent jch-italic">legal o financiera.</span>
+            <span className="jch-accent jch-italic whitespace-nowrap">legal o financiera.</span>
           </Curtain>
         </h2>
         <FadeUp delay={0.2} className="position-block__body">
@@ -809,7 +812,7 @@ function Professionals() {
           <h2>
             <Curtain>Dos especialistas.</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic">Una misma visión.</span>
+              <span className="jch-accent jch-italic whitespace-nowrap">Una misma visión.</span>
             </Curtain>
           </h2>
           <span className="duo-block__mark" aria-hidden="true">Jurídico × Patrimonial</span>

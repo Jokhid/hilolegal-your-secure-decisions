@@ -963,7 +963,7 @@ main > section:first-child a.btn-ghost:hover {
 }
 .portal-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .portal-card__wrap { height: 100%; }
@@ -2342,10 +2342,6 @@ footer.site-footer .brand {
   margin-left: -50vw;
   overflow: hidden;
   padding: 1.5rem 0;
-  background: #0a0a0a;
-}
-[data-theme="light"] .pilares-marquee {
-  background: #ffffff;
 }
 .pilares-marquee__track {
   display: inline-flex;

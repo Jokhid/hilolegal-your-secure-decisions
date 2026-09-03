@@ -746,7 +746,7 @@ function Proteger({ onSelectIntent }: { onSelectIntent: SetIntent }) {
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
-            <Curtain>¿Qué ocurriría si mañana uno de los ingresos de casa desapareciera durante varios meses?</Curtain>
+            <Curtain>¿Qué ocurriría si mañana uno de <span className="jch-accent jch-italic">los ingresos de casa</span> desapareciera durante varios meses?</Curtain>
           </h2>
         </div>
         <div className="content-block__grid">
@@ -822,7 +822,7 @@ function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
         <div id="jubilacion" className="mt-24 pt-16 border-t border-[var(--jch-line)] max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            <Curtain>La pregunta no es solo cuándo quieres jubilarte. Es cómo quieres vivir cuando lo hagas.</Curtain>
+            <Curtain>La pregunta no es solo cuándo quieres jubilarte. Es <span className="jch-accent jch-italic">cómo quieres vivir</span> cuando lo hagas.</Curtain>
           </h2>
           <FadeUp delay={0.1} className="mt-12">
             <div className="three-questions">
@@ -862,7 +862,7 @@ function Autonomos({ onSelectIntent }: { onSelectIntent: SetIntent }) {
     <section id="autonomos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 max-w-3xl">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-          <Curtain>Si tus ingresos dependen de ti, conviene saber qué ocurre cuando tú paras.</Curtain>
+          <Curtain>Si tus ingresos dependen de ti, conviene saber <span className="jch-accent jch-italic">qué ocurre cuando tú paras.</span></Curtain>
         </h2>
         <FadeUp delay={0.1} className="mt-10 flex flex-wrap gap-3">
           {autonomosConexiones.map((t) => (
@@ -937,7 +937,7 @@ function Herramientas() {
     <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. Más información.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. <span className="jch-accent jch-italic">Más información.</span></h2>
           <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1010,7 +1010,7 @@ function PerfilProfesional({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             <FadeUp>
               <div className="space-y-4">
                 <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap">José Carlos Hidalgo</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight whitespace-nowrap jch-accent jch-italic">José Carlos Hidalgo</h2>
                 <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Analizar primero. Decidir después.</p>
               </div>
             </FadeUp>
@@ -1148,7 +1148,7 @@ function SociosHiloLegal() {
             <div className="space-y-8">
               <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">PARTE DE HILOLEGAL</span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                <Curtain>Un mismo equipo, dos especialistas</Curtain>
+                <Curtain>Un mismo <span className="jch-accent jch-italic">equipo</span>, dos especialistas</Curtain>
               </h2>
               <div className="space-y-6 text-xl text-[var(--jch-muted)] leading-relaxed">
                 <p>Soy cofundador de HiloLegal junto a Verónica López, abogada especializada en derecho civil, administrativo y de familia. Cuando un caso tiene una vertiente legal además de financiera, trabajamos coordinados bajo una sola firma, para que no tengas que repetir tu situación a nadie.</p>
@@ -1193,7 +1193,7 @@ function AdminFincasTeaser() {
     <section id="fincas" className="fincas-block">
       <div className="fincas-block__inner">
         <span className="fincas-block__eyebrow">Además</span>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">También administro comunidades.</h2>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">También administro <span className="jch-accent jch-italic">comunidades.</span></h2>
         <p className="fincas-block__lead">
           Gestión económica de comunidades de propietarios, con seguimiento real de cada incidencia.
         </p>
@@ -1242,7 +1242,7 @@ function ContenidoAutoridad() {
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
-            <Curtain>Artículos para entender antes de decidir</Curtain>
+            <Curtain>Artículos para <span className="jch-accent jch-italic">entender antes</span> de decidir</Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Contenido propio sobre hipotecas, autónomos, ahorro, protección, jubilación y planificación.</p>

@@ -463,7 +463,10 @@ function Hero() {
 
           <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.02] tracking-tight text-balance">
             <WordReveal eager block delay={0.1} className="veronica-hero-ochre" text="Derecho con criterio." />
-            <WordReveal eager block delay={0.235} text="La experiencia desde dentro." />
+            <span className="block">
+              <WordReveal eager delay={0.235} className="veronica-hero-ochre jch-italic" text="La experiencia" />{" "}
+              <WordReveal eager delay={0.235} text="desde dentro." />
+            </span>
           </h1>
 
           <FadeUp delay={0.6}>
@@ -526,7 +529,7 @@ function Diagnosis() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-24 space-y-6 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-balance">
-            <Curtain>Experiencia jurídica, criterio institucional y visión práctica</Curtain>
+            <Curtain>Experiencia jurídica, criterio institucional y <span className="jch-accent jch-italic">visión práctica</span></Curtain>
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -611,7 +614,7 @@ function Services() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-24 space-y-6 max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <Curtain>Áreas de asesoramiento jurídico</Curtain>
+            <Curtain>Áreas de <span className="jch-accent jch-italic">asesoramiento</span> jurídico</Curtain>
           </h2>
           <FadeUp delay={0.15}>
             <p className="text-xl text-[var(--jch-muted)] max-w-2xl">Un enfoque integral que combina derecho administrativo, civil, familia, penal e institucional con una visión estratégica y preventiva.</p>
@@ -684,7 +687,7 @@ function Method() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-12">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <Curtain>Una forma de trabajar basada en análisis, claridad y estrategia</Curtain>
+              <Curtain>Una forma de trabajar basada en <span className="jch-accent jch-italic">análisis, claridad y estrategia</span></Curtain>
             </h2>
             <div className="space-y-12">
               {method.map((m, idx) => (
@@ -758,7 +761,7 @@ function About() {
             <FadeUp>
               <div className="space-y-4">
                 <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">SOBRE MÍ</span>
-                <h2 className="text-5xl font-bold tracking-tight">Verónica López</h2>
+                <h2 className="text-5xl font-bold tracking-tight jch-accent jch-italic">Verónica López</h2>
                 <p className="text-2xl font-medium text-[var(--jch-accent-ink)] italic">Conocer la norma importa. Saber aplicarla con estrategia marca la diferencia.</p>
               </div>
             </FadeUp>
@@ -868,7 +871,7 @@ function Testimonials() {
         <div className="mb-20 max-w-3xl space-y-4">
           <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">Reseñas verificadas en Google</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <Curtain>Lo que dicen quienes ya han trabajado conmigo</Curtain>
+            <Curtain><span className="jch-accent jch-italic">Lo que dicen</span> quienes ya han <span className="whitespace-nowrap">trabajado conmigo</span></Curtain>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -915,7 +918,7 @@ function ContenidoAutoridad() {
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
-            <Curtain>Artículos para entender antes de decidir</Curtain>
+            <Curtain>Artículos para <span className="jch-accent jch-italic">entender antes</span> de decidir</Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p>Contenido propio sobre familia, herencias, arrendamientos, penal y civil.</p>
@@ -1051,7 +1054,7 @@ function Contact() {
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
-            <Curtain>Hablemos de tu asunto</Curtain>
+            <Curtain><span className="jch-accent jch-italic">Hablemos</span> de tu asunto</Curtain>
           </h2>
           <FadeUp delay={0.1}>
             <p className="text-xl text-[var(--jch-muted)] leading-relaxed">

@@ -538,7 +538,12 @@ function NumberField({
           max={max}
           step={step}
           value={Number.isFinite(value) ? value : 0}
-          onChange={(e) => onChange(Math.max(min, Number(e.target.value) || 0))}
+          onChange={(e) => onChange(Number(e.target.value) || 0)}
+          onBlur={(e) => {
+            const n = Number(e.target.value) || 0;
+            const clamped = Math.min(max ?? Infinity, Math.max(min, n));
+            if (clamped !== n) onChange(clamped);
+          }}
           onWheel={(e) => e.currentTarget.blur()}
           className="w-full bg-transparent border-0 px-0 py-4 focus:ring-0 outline-none"
         />
@@ -680,7 +685,7 @@ function Simulador({ rate, onRateChange }: { rate: RateConfigValue; onRateChange
   const [housingType, setHousingType] = useState<HousingType>("usada");
 
   const maxTerm = Math.max(1, Math.min(75 - age, 40));
-  const minTerm = Math.min(5, maxTerm);
+  const minTerm = Math.min(8, maxTerm);
   const [termYears, setTermYears] = useState(30);
 
   useEffect(() => {
@@ -713,7 +718,7 @@ function Simulador({ rate, onRateChange }: { rate: RateConfigValue; onRateChange
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <FadeUp className="space-y-10">
+          <FadeUp className="space-y-10 border border-[var(--jch-line)] bg-[var(--jch-bg)] p-8 md:p-10">
             <NumberField label="Precio de compra del inmueble" value={price} onChange={setPrice} step={1000} suffix="€" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -742,7 +747,7 @@ function Simulador({ rate, onRateChange }: { rate: RateConfigValue; onRateChange
               )}
             </div>
 
-            <NumberField label="Edad del mayor titular" value={age} onChange={(n) => setAge(Math.min(74, Math.max(18, n)))} min={18} max={74} suffix="años" />
+            <NumberField label="Edad del mayor titular" value={age} onChange={setAge} min={18} max={74} suffix="años" />
 
             <RangeField
               label={`Plazo de la hipoteca (máx. ${maxTerm} años según la edad)`}
@@ -938,7 +943,7 @@ function CuantoPuedesPermitirte({ rate }: { rate: RateConfigValue }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <FadeUp className="space-y-10">
+          <FadeUp className="space-y-10 border border-[var(--jch-line)] bg-[var(--jch-surface)] p-8 md:p-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               <NumberField label={secondBorrower ? "Ingreso neto mensual — Titular 1" : "Ingreso neto mensual"} value={income1} onChange={setIncome1} step={50} suffix="€" />
               {secondBorrower ? (
@@ -957,7 +962,7 @@ function CuantoPuedesPermitirte({ rate }: { rate: RateConfigValue }) {
               )}
             </div>
 
-            <RangeField label="Plazo de la hipoteca" value={termYears} onChange={setTermYears} min={5} max={40} display={`${termYears} años`} />
+            <RangeField label="Plazo de la hipoteca" value={termYears} onChange={setTermYears} min={8} max={40} display={`${termYears} años`} />
 
             <RangeField
               label="Tasa de esfuerzo (cuota sobre ingresos)"
@@ -1037,10 +1042,10 @@ function Amortizacion() {
           </FadeUp>
         </div>
 
-        <FadeUp className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
+        <FadeUp className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12 border border-[var(--jch-line)] bg-[var(--jch-bg)] p-8 md:p-10">
           <NumberField label="Capital pendiente / préstamo" value={loan} onChange={setLoan} step={1000} suffix="€" />
           <NumberField label="Tipo de interés (TIN anual)" value={rate} onChange={setRate} step={0.05} max={15} suffix="%" />
-          <NumberField label="Plazo" value={termYears} onChange={(n) => setTermYears(Math.min(40, Math.max(1, n)))} min={1} max={40} suffix="años" />
+          <NumberField label="Plazo" value={termYears} onChange={setTermYears} min={1} max={40} suffix="años" />
         </FadeUp>
 
         <FadeUp delay={0.1} className="border border-[var(--jch-line)] bg-[var(--jch-surface)] p-8 md:p-10 mb-16">
