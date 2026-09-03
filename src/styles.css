@@ -967,8 +967,15 @@ main > section:first-child a.btn-ghost:hover {
 }
 .portal-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+/* Modificador para rejillas de 3 elementos (p. ej. Financiar/Proteger/
+   Planificar en José Carlos) — .portal-grid en sí se comparte con las
+   rejillas de 4 elementos de la home y de administración de fincas,
+   que deben quedar en 2x2. */
+.portal-grid--3col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .portal-card__wrap { height: 100%; }
 .portal-card {

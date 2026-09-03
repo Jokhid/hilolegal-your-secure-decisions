@@ -642,7 +642,7 @@ function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             <p>Tres decisiones que están más relacionadas de lo que parecen.</p>
           </FadeUp>
         </div>
-        <div className="portal-grid">
+        <div className="portal-grid portal-grid--3col">
           {pilares.map((p, idx) => (
             <FadeUp key={p.n} delay={idx * 0.08} className="portal-card__wrap">
               <a
