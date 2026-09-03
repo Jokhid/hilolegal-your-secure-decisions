@@ -935,7 +935,10 @@ function Herramientas() {
     <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Menos intuición. <span className="jch-accent jch-italic">Más información.</span></h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <span className="block">Menos intuición.</span>
+            <span className="block jch-accent jch-italic">Más información.</span>
+          </h2>
           <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
