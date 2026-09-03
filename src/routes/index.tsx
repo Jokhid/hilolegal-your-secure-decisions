@@ -342,7 +342,6 @@ function Index() {
         <Areas />
         <Positioning />
         <Professionals />
-        <Authority />
         <Method />
         <Tools />
         <Content />
@@ -549,7 +548,7 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              Abogados · Hipotecas · Patrimonio · Fincas en Altea
+              Abogados · Hipotecas · Patrimonio · Fincas · Altea
             </span>
           </FadeUp>
 
@@ -810,7 +809,7 @@ function Professionals() {
       <div className="duo-block__inner">
         <div className="duo-block__intro">
           <h2>
-            <Curtain>Dos especialistas.</Curtain>{" "}
+            <Curtain className="whitespace-nowrap">Dos especialistas.</Curtain>{" "}
             <Curtain delay={0.1}>
               <span className="jch-accent jch-italic whitespace-nowrap">Una misma visión.</span>
             </Curtain>
@@ -839,32 +838,6 @@ function Professionals() {
 }
 
 /* ---------- Prueba y autoridad ---------- */
-function Authority() {
-  return (
-    <section id="autoridad" className="authority-block">
-      <div className="authority-block__inner">
-        <FadeUp className="authority-block__grid">
-          {/* Cifras verificables únicamente. "1200+ personas ayudadas" se retiró
-              del hero histórico de esta sección por no poder confirmarse — no
-              mostrar sin validar con el cliente primero. */}
-          <div className="authority-block__stat">
-            <span className="authority-block__value">45+</span>
-            <span className="authority-block__label">Años de experiencia profesional combinada</span>
-          </div>
-          <div className="authority-block__stat">
-            <span className="authority-block__value">4</span>
-            <span className="authority-block__label">Áreas de asesoramiento bajo un mismo criterio</span>
-          </div>
-          <div className="authority-block__stat">
-            <span className="authority-block__value">Altea</span>
-            <span className="authority-block__label">Costa Blanca · Marina Baixa · Alicante</span>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- Herramientas ---------- */
 function Tools() {
   return (

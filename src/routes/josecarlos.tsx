@@ -927,11 +927,9 @@ function Metodo() {
 
 function Herramientas() {
   const items = [
-    { title: "Calculadora hipotecaria", text: "Estima cuota, plazo e intereses de tu futura hipoteca.", soon: true },
-    { title: "Estudio hipotecario", text: "Análisis completo de viabilidad, aportación y cuota.", soon: true },
-    { title: "Test de salud financiera", text: "Evalúa tu nivel de protección, ahorro y endeudamiento.", href: "/test-salud-financiera.html", event: "tool_financial_health" as const },
-    { title: "Diagnóstico patrimonial", text: "Visión completa de tu situación antes de decidir.", soon: true },
-    { title: "Calculadora de ahorro potencial", text: "Calcula cuánto dinero se te escapa en pequeños gastos recurrentes.", href: "/herramientas/ahorro-potencial/index.html", event: "tool_wealth_audit" as const },
+    { title: "Calculadora de ahorro potencial", text: "Calcula cuánto dinero se te escapa en pequeños gastos recurrentes.", href: "/ahorro-potencial", event: "tool_wealth_audit" as const },
+    { title: "Test de salud financiera", text: "Evalúa tu nivel de protección, ahorro y endeudamiento.", href: "/test-salud-financiera", event: "tool_financial_health" as const },
+    { title: "Simulador de hipoteca", text: "Calcula la cuota, el LTV, los gastos y el precio máximo de vivienda que puedes permitirte.", href: "/simulador-hipoteca", event: "tool_mortgage" as const },
   ];
   return (
     <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
@@ -941,36 +939,26 @@ function Herramientas() {
           <p className="text-[var(--jch-muted)]">Antes de tomar una decisión financiera importante, conviene hacer números.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {items.map((t) =>
-            t.soon ? (
-              <FadeUp key={t.title}>
-                <div className="block border border-[var(--jch-line)] p-8 tool-card--soon">
-                  <h3 className="text-xl font-bold mb-2">{t.title}</h3>
-                  <p className="text-[var(--jch-muted)] mb-2">{t.text}</p>
-                  <span className="tool-card--soon__badge">Próximamente</span>
-                </div>
-              </FadeUp>
-            ) : (
-              <FadeUp key={t.title}>
-                <a
-                  href={t.href}
-                  className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
-                  onClick={() =>
-                    trackEvent(t.event!, {
-                      source: "josecarlos",
-                      section: "herramientas",
-                      cta: t.title,
-                      destination: t.href ?? "",
-                    })
-                  }
-                >
-                  <h3 className="text-xl font-bold mb-2">{t.title}</h3>
-                  <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
-                  <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">Abrir →</span>
-                </a>
-              </FadeUp>
-            ),
-          )}
+          {items.map((t) => (
+            <FadeUp key={t.title}>
+              <a
+                href={t.href}
+                className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
+                onClick={() =>
+                  trackEvent(t.event, {
+                    source: "josecarlos",
+                    section: "herramientas",
+                    cta: t.title,
+                    destination: t.href,
+                  })
+                }
+              >
+                <h3 className="text-xl font-bold mb-2">{t.title}</h3>
+                <p className="text-[var(--jch-muted)] mb-6">{t.text}</p>
+                <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">Abrir →</span>
+              </a>
+            </FadeUp>
+          ))}
         </div>
       </div>
     </section>
@@ -1364,7 +1352,7 @@ function CtaFinal({ intent, onSelectIntent }: { intent: IntentKey; onSelectInten
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl mb-20">
           <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">¿Por dónde empezamos?</span>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {caminos.map((c, idx) => (
               <FadeUp key={c.q} delay={idx * 0.05}>
                 <a
