@@ -549,7 +549,7 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              Abogados en Legal · Hipotecas · Patrimonio · Fincas en Altea
+              Abogados · Hipotecas · Patrimonio · Fincas en Altea
             </span>
           </FadeUp>
 
