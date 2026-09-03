@@ -40,7 +40,7 @@ export function CookieBanner() {
           </button>
           <button
             onClick={() => choose("true")}
-            className="bg-[#8a6d3a] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1a1a2e] transition-colors"
+            className="bg-[#C5A566] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1a1a2e] transition-colors"
           >
             Aceptar todas
           </button>

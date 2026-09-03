@@ -333,7 +333,7 @@ function Header() {
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base md:text-lg font-bold tracking-tight text-[#8a6d3a]">
+            <span className="text-base md:text-lg font-bold tracking-tight text-[#C5A566]">
               Verónica López
             </span>
           </Link>

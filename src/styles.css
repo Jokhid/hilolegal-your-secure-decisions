@@ -134,15 +134,10 @@
   --jch-line-strong: rgba(26, 26, 26, 0.24);
   --jch-ink-rgb: 26, 26, 26;
   --jch-bg-rgb: 255, 255, 255;
-  /* --jch-accent and --jch-accent-2 intentionally unchanged — identical in both themes,
-     se usan en elementos grandes/decorativos (números, iconos, bordes) donde el
-     mínimo AA de 3:1 basta o no aplica. */
-  /* #8a6d3a en vez de #C5A566 en modo claro: el ocre de marca solo alcanza
-     ~2.35:1 sobre blanco, por debajo del AA. --jch-accent-ink es el que se
-     usa como color de TEXTO (nav, CTAs de texto, etiquetas), así que aquí
-     se oscurece a ~4.85:1 manteniendo la familia cromática; --jch-accent
-     sigue siendo el ocre de marca para lo decorativo. */
-  --jch-accent-ink: #8a6d3a;
+  /* --jch-accent, --jch-accent-2 y --jch-accent-ink intencionalmente sin
+     cambios respecto al modo oscuro: mismo ocre de marca (#C5A566) en
+     ambos temas, a petición expresa — aunque solo da ~2.35:1 sobre blanco,
+     por debajo del AA de 4.5:1 para texto normal. */
 }
 
 html, body {
@@ -2393,11 +2388,9 @@ header.sticky nav > a:first-child span {
   font-size: 1.5em !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
-  /* Cabecera siempre con fondo blanco (ambos temas): se fija el ocre
-     accesible de modo claro (#8a6d3a, ~4.5:1 sobre blanco) en vez de
-     var(--jch-accent-ink), que en modo oscuro pasa a #C5A566 y no
-     cumple AA sobre un fondo que aquí nunca cambia. */
-  color: #8a6d3a !important;
+  /* Ocre de marca fijo (#C5A566), igual en ambos temas — la cabecera
+     siempre tiene fondo blanco, así que no depende de var(--jch-accent-ink). */
+  color: #C5A566 !important;
 }
 
 /* José Carlos: con el logo ampliado un 50%, "José Carlos Hidalgo" a 1.5em
@@ -2553,4 +2546,43 @@ main > section:first-child > div > .group {
   html, body { background: #ffffff !important; color: #1a1a1a !important; }
   .print-report h1, .print-report h2, .print-report h3 { color: #1a1a1a; }
   .print-report * { box-shadow: none !important; }
+}
+
+/* ---------- Entidades (Financiación hipotecaria / Protección y planificación) ----------
+   Clases usadas en Entidades() sin ninguna regla propia — el bloque
+   renderizaba con el tamaño y el interlineado por defecto del navegador. */
+.partners-editorial {
+  padding: clamp(4rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--jch-line);
+}
+.partners-editorial__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 3vw, 2.75rem);
+}
+.partners-editorial__label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  /* !important: si no, gana la regla global `main p { color: var(--jch-muted)
+     !important }` (misma razón que .portal-card__kicker más abajo). */
+  color: var(--jch-accent-ink) !important;
+  margin: 0 0 1.75rem;
+}
+.partners-editorial__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+  row-gap: 1rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--jch-line);
+}
+.partners-editorial__name {
+  font-family: "Familjen Grotesk", ui-sans-serif, sans-serif;
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1;
+  color: var(--jch-ink);
 }

@@ -240,7 +240,7 @@ function Header() {
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold tracking-tight text-[#8a6d3a] md:text-lg">
+            <span className="text-base font-bold tracking-tight text-[#C5A566] md:text-lg">
               Calculadora de Ahorro Potencial
             </span>
           </Link>

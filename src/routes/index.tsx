@@ -423,7 +423,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#8a6d3a] md:hidden"
+              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -449,7 +449,7 @@ function Header() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
-                className="self-end text-3xl text-[#8a6d3a]"
+                className="self-end text-3xl text-[#C5A566]"
                 aria-label="Cerrar menú"
               >
                 ×

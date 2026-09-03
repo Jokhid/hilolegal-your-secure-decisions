@@ -435,7 +435,7 @@ function Header() {
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base font-bold tracking-tight text-[#8a6d3a] whitespace-nowrap overflow-hidden text-ellipsis">
+            <span className="text-base font-bold tracking-tight text-[#C5A566] whitespace-nowrap overflow-hidden text-ellipsis">
               José Carlos Hidalgo
             </span>
           </Link>
@@ -1093,7 +1093,7 @@ function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             ))}
           </div>
           <FadeUp delay={0.15}>
-            <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
+            <p className="text-base text-[var(--jch-muted)] max-w-xl mt-6">
               Selecciono la entidad según qué operación encaja mejor con tu perfil, no al revés.
               La concesión y las condiciones finales dependen siempre del análisis y
               aprobación de la entidad financiera.
@@ -1127,7 +1127,7 @@ function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             ))}
           </div>
           <FadeUp delay={0.15}>
-            <p className="text-sm text-[var(--jch-muted)] max-w-xl mt-8">
+            <p className="text-base text-[var(--jch-muted)] max-w-xl mt-6">
               Trabajo con distintas entidades dentro de las áreas de protección y planificación. La
               elección de una solución debe partir de la situación, los objetivos y las
               necesidades que previamente hemos analizado.
@@ -1369,14 +1369,14 @@ function CtaFinal({ intent, onSelectIntent }: { intent: IntentKey; onSelectInten
               <FadeUp key={c.q} delay={idx * 0.05}>
                 <a
                   href="#contact-form"
-                  className="block border border-[var(--jch-line)] p-8 hover:border-[#C5A566] transition-colors"
+                  className="block border border-[var(--jch-line)] p-8 md:p-10 hover:border-[#C5A566] transition-colors"
                   onClick={() => {
                     onSelectIntent(c.intent);
                     trackEvent(c.event, { intent: c.intent, source: "josecarlos", section: "cta-final", cta: c.ctaSlug });
                   }}
                 >
-                  <p className="text-lg font-bold mb-3">{c.q}</p>
-                  <p className="text-sm text-[var(--jch-muted)] mb-4">{c.d}</p>
+                  <h3 className="text-2xl font-bold mb-3">{c.q}</h3>
+                  <p className="text-base text-[var(--jch-muted)] mb-5 leading-relaxed">{c.d}</p>
                   <span className="text-[var(--jch-cta)] text-xs font-bold uppercase tracking-widest">{c.cta} →</span>
                 </a>
               </FadeUp>
