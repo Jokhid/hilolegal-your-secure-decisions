@@ -809,9 +809,9 @@ function Professionals() {
       <div className="duo-block__inner">
         <div className="duo-block__intro">
           <h2>
-            <Curtain className="whitespace-nowrap">Dos especialistas.</Curtain>{" "}
+            <Curtain className="md:whitespace-nowrap">Dos especialistas.</Curtain>{" "}
             <Curtain delay={0.1}>
-              <span className="jch-accent jch-italic whitespace-nowrap">Una misma visión.</span>
+              <span className="jch-accent jch-italic md:whitespace-nowrap">Una misma visión.</span>
             </Curtain>
           </h2>
           <span className="duo-block__mark" aria-hidden="true">Jurídico × Patrimonial</span>

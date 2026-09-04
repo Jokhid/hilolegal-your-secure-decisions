@@ -859,7 +859,7 @@ function Testimonials() {
         <div className="mb-20 max-w-3xl space-y-4">
           <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">Reseñas verificadas en Google</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            <Curtain><span className="jch-accent jch-italic">Lo que dicen</span> quienes ya han <span className="whitespace-nowrap">trabajado conmigo</span></Curtain>
+            <Curtain><span className="jch-accent jch-italic">Lo que dicen</span> quienes ya han <span className="md:whitespace-nowrap">trabajado conmigo</span></Curtain>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
