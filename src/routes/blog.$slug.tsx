@@ -128,7 +128,7 @@ function shortTitle(title: string, max = 44) {
 }
 
 const SERVICE_CTA: Record<string, string> = {
-  josecarlos: "Quiero mi diagnóstico gratuito",
+  josecarlos: "Quiero mi análisis gratuito",
   veronica: "Cuéntanos tu caso",
   fincas: "Solicitar propuesta",
 };

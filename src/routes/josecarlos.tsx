@@ -6,7 +6,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
-import { blogPosts, findPost } from "@/lib/blogPosts";
+import { findPost } from "@/lib/blogPosts";
 import { useDialogA11y } from "@/lib/useDialogA11y";
 
 export const Route = createFileRoute("/josecarlos")({
@@ -157,7 +157,7 @@ const INTENTS = {
   mortgage: { topic: "Nueva Hipoteca", title: "Cuéntame tu operación.", ctaLabel: "Solicitar estudio" },
   "mortgage-study": { topic: "Nueva Hipoteca", title: "Cuéntame tu operación.", ctaLabel: "Solicitar estudio" },
   planning: { topic: "Diagnóstico General", title: "Cuéntame qué quieres conseguir.", ctaLabel: "Analizar mi situación" },
-  protection: { topic: "Protección", title: "Cuéntame qué quieres proteger.", ctaLabel: "Revisar mi situación" },
+  protection: { topic: "Protección", title: "Cuéntame qué quieres proteger.", ctaLabel: "Revisar mi protección" },
   retirement: { topic: "Plan de Jubilación", title: "Cuéntame cómo estás preparando tu jubilación.", ctaLabel: "Solicitar análisis" },
   "self-employed": { topic: "Autónomo", title: "Cuéntame tu situación como autónomo.", ctaLabel: "Analizar mi situación" },
 } as const;

@@ -191,8 +191,6 @@ function resultText(score: number): { title: string; body: string } {
   return { title: "Excelente salud. Ahora el resto es la excelencia", body: "Tienes una situación financiera envidiable. En esta cima, el mayor riesgo es el estancamiento o el exceso de confianza. Los grandes patrimonios requieren precisión para mantenerse, crecer y legarse eficientemente." };
 }
 
-const eur0 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
-
 // ============================================================
 // Página
 // ============================================================

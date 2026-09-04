@@ -135,12 +135,6 @@ const WHATSAPP = "https://wa.me/34647506040";
 // are 1-3MB each; the .webp copies are already generated and 10-20x lighter)
 const IMG = (n: number) => `/veronica-assets/${n}.webp`;
 
-const LogoMark = ({ className = "", dotClassName = "" }: { className?: string; dotClassName?: string }) => (
-  <span className={`font-black tracking-tighter leading-none ${className}`}>
-    VL<span className={dotClassName} style={{ color: "#C5A566" }}>.</span>
-  </span>
-);
-
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span className={`material-symbols-outlined ${className}`}>{name}</span>
 );
@@ -152,12 +146,6 @@ const services = [
   { icon: "balance", title: "Derecho penal", text: "¿Te enfrentas a un procedimiento penal? Ofrecemos defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso.\n\n\nUn procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada sin promesas que no se puedan cumplir." },
   { icon: "psychology", title: "Consultoría jurídica especializada", text: "¿Tu empresa licita con el sector público o actúa en un mercado regulado? Detectamos el riesgo antes de que se convierta en sanción o litigio.\n\n\nLas empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley: se encuentra en los criterios de aplicación de la propia Administración.\n\n\nHaber ocupado puestos de alta dirección en la Administración autonómica me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
   { icon: "shield", title: "Estrategia jurídica preventiva", text: "¿Quieres anticiparte a un conflicto antes de que ocurra? Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
-];
-
-const errors = [
-  { n: "01", title: "Consultar demasiado tarde", text: "Muchos asuntos se complican porque se pide ayuda cuando el conflicto ya está avanzado, los plazos corren o la documentación no se ha preparado bien." },
-  { n: "02", title: "Mirar solo el expediente", text: "Un buen análisis jurídico debe valorar los hechos, la prueba, los tiempos, los riesgos y las consecuencias prácticas de cada decisión." },
-  { n: "03", title: "Judicializar sin estrategia", text: "No todos los asuntos deben acabar en los tribunales. A veces conviene negociar, requerir, preparar mejor la posición o anticipar escenarios antes de iniciar acciones." },
 ];
 
 const method = [

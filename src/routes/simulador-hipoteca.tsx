@@ -139,7 +139,6 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 // ============================================================
 
 const eur0 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
-const eur2 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
 const pct1 = (n: number) => `${n.toFixed(1).replace(".", ",")} %`;
 
 /** Cuota mensual de un préstamo a interés fijo, sistema de amortización francés. */

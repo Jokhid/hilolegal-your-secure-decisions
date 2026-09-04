@@ -4,9 +4,17 @@ import { z } from "zod";
 const GOOGLE_SHEET_ID = "1Klnh7mZ1NiWs6vNx0omeKrJWbiUaROj2tEYm5KN9HTU";
 const GOOGLE_SHEET_NAME = "Leads";
 const GOOGLE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/edit`;
-const GOOGLE_SHEETS_WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbx1pcT_UivxYBAjFhe10RWYSjx5lq9YZIyd7LZ8V8OlFquTXxptA-rdr85P6h7q1ER7/exec";
 const USER_ERROR = "No se ha podido enviar el formulario. Por favor, contacta por WhatsApp o inténtalo de nuevo en unos minutos.";
+
+function getWebhookUrl(): string {
+  const webhookUrl =
+    process.env.GOOGLE_SHEETS_WEBHOOK_URL || process.env.SHEETS_WEBHOOK_URL || process.env.CONTACT_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.error("No Google Sheets webhook env var is configured (GOOGLE_SHEETS_WEBHOOK_URL / SHEETS_WEBHOOK_URL / CONTACT_WEBHOOK_URL)");
+    throw new Error(USER_ERROR);
+  }
+  return webhookUrl;
+}
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -45,11 +53,7 @@ export const submitDownloadLead = createServerFn({ method: "POST" })
       return { success: true };
     }
 
-    const webhookUrl =
-      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
-      process.env.SHEETS_WEBHOOK_URL ||
-      process.env.CONTACT_WEBHOOK_URL ||
-      GOOGLE_SHEETS_WEBHOOK_URL;
+    const webhookUrl = getWebhookUrl();
 
     const response = await fetch(webhookUrl, {
       method: "POST",
@@ -93,11 +97,7 @@ export const submitContact = createServerFn({ method: "POST" })
       return { success: true };
     }
 
-    const webhookUrl =
-      process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
-      process.env.SHEETS_WEBHOOK_URL ||
-      process.env.CONTACT_WEBHOOK_URL ||
-      GOOGLE_SHEETS_WEBHOOK_URL;
+    const webhookUrl = getWebhookUrl();
 
     const response = await fetch(webhookUrl, {
       method: "POST",

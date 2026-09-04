@@ -12,4 +12,22 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // Split the framework/animation runtime out of the route-hydration
+          // entry chunk so it can be cached independently across deploys,
+          // instead of re-downloaded whenever any route changes.
+          manualChunks(id: string) {
+            if (id.includes("node_modules")) {
+              if (id.includes("framer-motion")) return "framer-motion";
+              if (id.includes("/react-dom/") || id.includes("/react/")) return "react-vendor";
+              if (id.includes("@tanstack/react-router") || id.includes("@tanstack/router-core")) return "tanstack-router";
+            }
+          },
+        },
+      },
+    },
+  },
 });

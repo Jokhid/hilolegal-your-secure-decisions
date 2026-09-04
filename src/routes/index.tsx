@@ -231,7 +231,7 @@ const areas = [
     title: "Hipotecas",
     kicker: "Comprar con seguridad.",
     text: "Estudiamos tu situación, analizamos la viabilidad y te acompañamos durante el proceso hipotecario.",
-    tags: "Hipotecas ING y ABANCA",
+    tags: "ING · ABANCA",
     cta: "Estudiar mi hipoteca",
     href: "/josecarlos#financiar",
     art: "/hipotecas.webp",
@@ -548,7 +548,7 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              Abogados · Hipotecas · Patrimonio · Fincas · Altea
+              Abogados · Hipotecas · Patrimonio · Comunidades · Altea
             </span>
           </FadeUp>
 
@@ -1253,7 +1253,7 @@ const footerColumns = [
     links: [
       ["Herramientas", "#herramientas"],
       ["Blog", "/blog"],
-      ["Diagnóstico patrimonial", "#contact"],
+      ["Diagnóstico patrimonial", "/josecarlos#contact"],
     ] as [string, string][],
   },
 ];

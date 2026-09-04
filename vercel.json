@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/test-salud-financiera.html", "destination": "/test-salud-financiera", "permanent": true },
+    { "source": "/herramientas/ahorro-potencial/index.html", "destination": "/ahorro-potencial", "permanent": true },
+    { "source": "/herramientas/ahorro-potencial", "destination": "/ahorro-potencial", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(webp|png|jpg|jpeg|svg|ico|woff|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

@@ -168,7 +168,6 @@ interface GastoState {
 
 const eur0 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 const eur2 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
-const pct1 = (n: number) => `${n.toFixed(1).replace(".", ",")} %`;
 
 function gastoAnual(gasto: GastoState): number {
   if (!gasto.activo || !gasto.monto) return 0;

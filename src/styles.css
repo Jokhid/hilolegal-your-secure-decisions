@@ -2161,7 +2161,7 @@ footer.site-footer .brand {
 }
 
 .veronica-hero-ochre {
-  color: #C5A566 !important;
+  color: var(--jch-accent-ink) !important;
 }
 
 .veronica-original main h1,
@@ -2320,18 +2320,6 @@ footer.site-footer .brand {
   color: var(--jch-dim);
   padding: .4rem .9rem;
   border: 1px solid var(--jch-line);
-}
-
-/* José Carlos — herramientas "próximamente" */
-.tool-card--soon { opacity: .55; }
-.tool-card--soon__badge {
-  display: inline-block;
-  margin-top: .5rem;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--jch-dim);
 }
 
 /* José Carlos — marquesina "Financiar × Proteger × Planificar" (Tres
