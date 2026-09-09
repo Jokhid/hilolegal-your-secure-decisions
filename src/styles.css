@@ -513,7 +513,7 @@ main > section:first-child .hero-subtitle {
   font-size: clamp(1.1rem, 1.6vw, 1.35rem) !important;
   font-weight: 500 !important;
   line-height: 1.5 !important;
-  max-width: 34rem;
+  max-width: 100%;
   opacity: 1 !important;
 }
 
