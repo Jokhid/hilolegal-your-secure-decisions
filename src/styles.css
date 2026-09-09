@@ -494,14 +494,17 @@ main > section:first-child > div {
 main > section:first-child [class*="space-y-10"] { gap: 0; }
 
 main > section:first-child .hero-eyebrow {
-  color: var(--jch-accent-ink) !important;
+  color: #ffffff !important;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 0.6rem !important;
+  font-size: clamp(0.35rem, 1.7vw, 1.1rem) !important;
   font-weight: 400 !important;
   line-height: 1.65;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  max-width: 26rem;
+  text-align: center;
+  white-space: nowrap;
+  max-width: none;
+  width: 100%;
   display: block;
   margin-bottom: 2rem;
 }

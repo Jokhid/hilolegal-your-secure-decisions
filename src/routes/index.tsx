@@ -548,7 +548,7 @@ function Hero() {
         <motion.div style={{ y: textY }} className="space-y-10">
           <FadeUp eager>
             <span className="hero-eyebrow">
-              Abogados · Hipotecas · Patrimonio · Comunidades · Altea
+              Abogados · Hipotecas · Patrimonio · Administración de fincas · Altea
             </span>
           </FadeUp>
 
@@ -563,10 +563,9 @@ function Hero() {
 
           <FadeUp eager delay={0.5}>
             <p className="hero-subtitle">
-              Un problema legal puede afectar a tu patrimonio. Una hipoteca condiciona tus finanzas
-              durante años. Una mala planificación puede comprometer el futuro de tu familia. En
-              HiloLegal analizamos tu situación con el rigor que merece, y te acompañamos con la
-              cercanía que necesitas para proteger lo que has construido.
+              Las decisiones importantes merecen una visión a la altura de lo que está en juego. En
+              HiloLegal integramos criterio jurídico, financiero y patrimonial para ayudarte a
+              proteger tus intereses y tomar cada decisión con seguridad, perspectiva y confianza.
             </p>
           </FadeUp>
 
