@@ -304,7 +304,7 @@ const cuentas = [
 
 function ComoGestionamos() {
   return (
-    <section id="cuentas" className="content-block py-[100px] border-t border-[var(--jch-line)]">
+    <section id="cuentas" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2><Curtain>Cuentas claras cada mes, sin esperar a la junta.</Curtain></h2>
@@ -335,7 +335,7 @@ const pasos = [
 
 function ProtocoloImpagos() {
   return (
-    <section id="impagos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="impagos" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2><Curtain>Protocolo de impagos.</Curtain></h2>
@@ -397,7 +397,7 @@ function FAQ() {
 
 function CtaFinal() {
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="contact" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">

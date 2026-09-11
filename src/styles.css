@@ -222,8 +222,6 @@ main > section {
 
 main > section {
   position: relative;
-  border-top: 1px solid var(--jch-line) !important;
-  border-bottom-color: var(--jch-line) !important;
   padding-top: clamp(6rem, 10vw, 11rem) !important;
   padding-bottom: clamp(6rem, 10vw, 11rem) !important;
   overflow: hidden;
@@ -889,8 +887,6 @@ main > section:first-child a.btn-ghost:hover {
 .fincas-block {
   padding: clamp(4rem, 6vw, 6rem) 0 !important;
   background: var(--jch-surface);
-  border-top: 1px solid var(--jch-line);
-  border-bottom: 1px solid var(--jch-line);
 }
 .fincas-block__inner {
   max-width: 760px;
@@ -2576,7 +2572,6 @@ main > section:first-child > div > .group {
    renderizaba con el tamaño y el interlineado por defecto del navegador. */
 .partners-editorial {
   padding: clamp(4rem, 7vw, 6rem) 0;
-  border-top: 1px solid var(--jch-line);
 }
 .partners-editorial__inner {
   max-width: 1200px;

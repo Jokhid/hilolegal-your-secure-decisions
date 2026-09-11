@@ -489,7 +489,7 @@ function TrustStats() {
     { i: "school", t: "Docencia en la Facultad de Derecho" },
   ];
   return (
-    <section className="py-16 border-b border-[var(--jch-line)]">
+    <section className="py-16">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:divide-x divide-[var(--jch-line)]">
           {items.map((s, idx) => (
@@ -854,7 +854,7 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section id="testimonios" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="testimonios" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-20 max-w-3xl space-y-4">
           <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">Reseñas verificadas en Google</span>
@@ -902,7 +902,7 @@ function ContenidoAutoridad() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="content-block py-[100px] border-t border-[var(--jch-line)]">
+    <section className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>

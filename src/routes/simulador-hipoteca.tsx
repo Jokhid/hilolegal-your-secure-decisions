@@ -483,7 +483,7 @@ function Header() {
 // ---------- Hero ----------
 function Hero() {
   return (
-    <section className="pt-24 pb-20 md:pt-32 md:pb-28 border-b border-[var(--jch-line)]">
+    <section className="pt-24 pb-20 md:pt-32 md:pb-28">
       <div className="max-w-[1200px] mx-auto px-6 space-y-10">
         <FadeUp>
           <div className="hero-eyebrow inline-flex items-center gap-3">
@@ -703,7 +703,7 @@ function Simulador({ rate, onRateChange }: { rate: RateConfigValue; onRateChange
   const viabilidad = evaluateViability({ loan, price, worstCuota, totalIncome, ltv });
 
   return (
-    <section id="simulador" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="simulador" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -927,7 +927,7 @@ function CuantoPuedesPermitirte({ rate }: { rate: RateConfigValue }) {
   const aportacionNecesaria = Math.max(0, maxPrice - maxLoan);
 
   return (
-    <section id="permitirte" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="permitirte" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -1028,7 +1028,7 @@ function Amortizacion() {
   const pctAmortizado = loan > 0 ? (amortizadoTotal / loan) * 100 : 0;
 
   return (
-    <section id="amortizacion" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="amortizacion" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -1142,7 +1142,7 @@ function FAQ() {
 // ---------- CTA final + formulario ----------
 function CtaFinal() {
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="contact" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">

@@ -620,7 +620,7 @@ function Hero({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
+    <section className="portal-block py-[100px]">
       <h2 className="sr-only">Financiar · Proteger · Planificar</h2>
       <div className="pilares-marquee" aria-hidden="true">
         <div className="pilares-marquee__track">
@@ -676,7 +676,7 @@ function TresPilares({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function Financiar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section id="financiar" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="financiar" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
@@ -742,7 +742,7 @@ function Financiar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function Proteger({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section id="proteger" className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="proteger" className="content-block py-[100px] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
@@ -778,7 +778,7 @@ function Proteger({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section id="planificar" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="planificar" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28 self-start">
@@ -859,7 +859,7 @@ function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function Autonomos({ onSelectIntent }: { onSelectIntent: SetIntent }) {
   return (
-    <section id="autonomos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="autonomos" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 max-w-3xl">
         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
           <Curtain>Si tus ingresos dependen de ti, conviene saber <span className="jch-accent jch-italic">qué ocurre cuando tú paras.</span></Curtain>
@@ -895,7 +895,7 @@ function Metodo() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="metodo" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="metodo" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-2xl mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
@@ -932,7 +932,7 @@ function Herramientas() {
     { title: "Simulador de hipoteca", text: "Calcula la cuota, el LTV, los gastos y el precio máximo de vivienda que puedes permitirte.", href: "/simulador-hipoteca", event: "tool_mortgage" as const },
   ];
   return (
-    <section id="herramientas-jc" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="herramientas-jc" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-16 max-w-2xl space-y-4">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -1144,7 +1144,7 @@ function Entidades({ onSelectIntent }: { onSelectIntent: SetIntent }) {
 
 function SociosHiloLegal() {
   return (
-    <section className="py-[100px] border-t border-[var(--jch-line)]">
+    <section className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <FadeUp>
@@ -1241,7 +1241,7 @@ function ContenidoAutoridad() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section className="content-block py-[100px] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
@@ -1363,7 +1363,7 @@ function CtaFinal({ intent, onSelectIntent }: { intent: IntentKey; onSelectInten
   ];
 
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="contact" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl mb-20">
           <span className="text-[var(--jch-accent-ink)] font-bold text-xs uppercase tracking-widest">¿Por dónde empezamos?</span>

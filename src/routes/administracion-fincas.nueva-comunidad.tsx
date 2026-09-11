@@ -305,7 +305,7 @@ const implica = [
 
 function QueImplica() {
   return (
-    <section id="que-implica" className="content-block py-[100px] border-t border-[var(--jch-line)]">
+    <section id="que-implica" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2><Curtain>Qué implica poner en marcha una comunidad nueva.</Curtain></h2>
@@ -336,7 +336,7 @@ const pasos = [
 
 function PrimerosPasos() {
   return (
-    <section id="primeros-pasos" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="primeros-pasos" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2><Curtain>Primeros pasos.</Curtain></h2>
@@ -398,7 +398,7 @@ function FAQ() {
 
 function CtaFinal() {
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="contact" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">

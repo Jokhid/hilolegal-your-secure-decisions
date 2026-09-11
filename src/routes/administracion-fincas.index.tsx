@@ -462,7 +462,7 @@ const problemas = [
 
 function Problema() {
   return (
-    <section id="problema" className="content-block py-[100px] border-t border-[var(--jch-line)]">
+    <section id="problema" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
@@ -493,7 +493,7 @@ function Problema() {
 
 function BloquePresidente() {
   return (
-    <section className="position-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section className="position-block py-[100px] bg-[var(--jch-surface)]">
       <div className="position-block__inner">
         <h2>
           <Curtain>El presidente <span className="jch-accent jch-italic">representa</span>, no gestiona.</Curtain>
@@ -546,7 +546,7 @@ const method = [
 
 function Metodo() {
   return (
-    <section id="metodo" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="metodo" className="py-[100px]">
       <div className="method-block__inner">
         <div className="method-block__intro">
           <h2>
@@ -582,7 +582,7 @@ const tecnologia = [
 
 function Tecnologia() {
   return (
-    <section className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section className="content-block py-[100px] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <span className="block mb-4 text-xs uppercase tracking-widest text-[var(--jch-dim)]">
@@ -622,7 +622,7 @@ const gestionEconomica = [
 
 function GestionEconomica() {
   return (
-    <section id="gestion-economica" className="content-block py-[100px] border-t border-[var(--jch-line)]">
+    <section id="gestion-economica" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
@@ -670,7 +670,7 @@ function Incidencias() {
     { v: "Hasta el cierre", l: "Seguimiento hasta la resolución" },
   ];
   return (
-    <section className="authority-block border-t border-[var(--jch-line)]">
+    <section className="authority-block">
       <div className="authority-block__inner">
         <FadeUp>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10 text-center md:text-left">
@@ -698,7 +698,7 @@ const juntas = [
 
 function Juntas() {
   return (
-    <section id="juntas" className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="juntas" className="content-block py-[100px] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>
@@ -762,7 +762,7 @@ const necesidades = [
 
 function CuatroNecesidades() {
   return (
-    <section className="portal-block py-[100px] border-t border-[var(--jch-line)]">
+    <section className="portal-block py-[100px]">
       <div className="portal-block__inner">
         <div className="portal-block__heading">
           <h2>
@@ -809,7 +809,7 @@ function CuatroNecesidades() {
 
 function Filosofia() {
   return (
-    <section className="fincas-block border-t border-[var(--jch-line)]">
+    <section className="fincas-block">
       <div className="fincas-block__inner">
         <span className="fincas-block__eyebrow">Filosofía de trabajo</span>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Una <span className="jch-accent jch-italic">gestión</span> que puedas seguir.</h2>
@@ -830,7 +830,7 @@ function Filosofia() {
 
 function AmbitoGeografico() {
   return (
-    <section className="position-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section className="position-block py-[100px] bg-[var(--jch-surface)]">
       <div className="position-block__inner">
         <h2>
           <Curtain><span className="jch-accent jch-italic">Administración</span> de fincas en Altea y Marina Baixa.</Curtain>
@@ -856,7 +856,7 @@ function AmbitoGeografico() {
 
 function CtaFinal() {
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="contact" className="py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">
@@ -1149,7 +1149,7 @@ function ContenidoAutoridad() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="content-block py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section className="content-block py-[100px] bg-[var(--jch-surface)]">
       <div className="content-block__inner">
         <div className="content-block__heading">
           <h2>

@@ -343,7 +343,7 @@ function Header() {
 // ---------- Hero ----------
 function Hero() {
   return (
-    <section className="pt-24 pb-20 md:pt-32 md:pb-28 border-b border-[var(--jch-line)]">
+    <section className="pt-24 pb-20 md:pt-32 md:pb-28">
       <div className="max-w-[1200px] mx-auto px-6 space-y-10">
         <FadeUp>
           <div className="hero-eyebrow inline-flex items-center gap-3">
@@ -398,7 +398,7 @@ function Test() {
   }
 
   return (
-    <section id="test" className="py-[100px] border-t border-[var(--jch-line)]">
+    <section id="test" className="py-[100px]">
       <div className="max-w-[900px] mx-auto px-6">
         {screen !== "welcome" && (
           <div className="mb-16">
@@ -638,7 +638,7 @@ function FAQ() {
 // ---------- CTA final + formulario ----------
 function CtaFinal() {
   return (
-    <section id="contact" className="py-[100px] border-t border-[var(--jch-line)] bg-[var(--jch-surface)]">
+    <section id="contact" className="py-[100px] bg-[var(--jch-surface)]">
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <h2 className="contact-editorial__title text-5xl md:text-6xl font-bold tracking-tight">
