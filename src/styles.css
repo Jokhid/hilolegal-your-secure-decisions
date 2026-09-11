@@ -204,6 +204,22 @@ main > section {
   background-repeat: repeat !important;
 }
 
+/* Modo oscuro: la misma textura de papel del modo claro, pero oscurecida
+   — no invertida. Un ::before con z-index negativo + filter:invert()
+   resultó invisible en la práctica (probablemente overflow:hidden de la
+   sección de abajo interactuando mal con un descendiente de z-index
+   negativo con filter, combinación con bugs de compositing conocidos en
+   varios motores). En vez de pelear con eso, se aplica el mismo
+   background-image DIRECTO sobre la sección, tal cual ya hace modo claro
+   arriba (mecanismo ya probado, sin pseudo-elemento), y se oscurece
+   apilando un degradado semitransparente negro como primera capa del
+   propio background-image — dos imágenes en una sola propiedad, sin
+   filter, así que el texto de la sección no se ve afectado. */
+:root:not([data-theme="light"]) main > section:not(:first-child) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/paper-bg.webp") !important;
+  background-repeat: no-repeat, repeat !important;
+}
+
 main > section {
   position: relative;
   border-top: 1px solid var(--jch-line) !important;
