@@ -46,7 +46,8 @@ export type AnalyticsEvent =
   | "chat_message_sent"
   | "chat_reply_received"
   | "chat_error"
-  | "report_download";
+  | "report_download"
+  | "legal_area_view";
 
 export function trackEvent(event: AnalyticsEvent, params: Record<string, string | number | boolean> = {}) {
   if (typeof window === "undefined") return;

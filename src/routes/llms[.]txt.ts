@@ -20,6 +20,10 @@ const LLMS_TXT = `# HiloLegal
 - [Inicio](https://www.hilolegal.es/): presentación de HiloLegal y las cuatro áreas de servicio.
 - [José Carlos Hidalgo](https://www.hilolegal.es/josecarlos): hipotecas y planificación patrimonial.
 - [Verónica López](https://www.hilolegal.es/veronica): asesoramiento jurídico.
+  - [Derecho civil y de familia](https://www.hilolegal.es/derecho-familia): herencias, divorcios y contratos.
+  - [Derecho penal](https://www.hilolegal.es/derecho-penal): defensa técnica desde la primera declaración.
+  - [Derecho administrativo](https://www.hilolegal.es/derecho-administrativo): sanciones, recursos y expedientes frente a la Administración.
+  - [Inmobiliario, urbanismo y comunidades](https://www.hilolegal.es/derecho-inmobiliario): compraventa, alquiler, licencias urbanísticas y conflictos de comunidades de propietarios.
 - [Administración de fincas](https://www.hilolegal.es/administracion-fincas): gestión de comunidades de propietarios.
   - [Soy presidente de una comunidad](https://www.hilolegal.es/administracion-fincas/presidentes): acompañamiento a presidentes de comunidades de propietarios.
   - [Cambio de administrador de fincas](https://www.hilolegal.es/administracion-fincas/cambio-administrador): traspaso ordenado desde otro administrador.

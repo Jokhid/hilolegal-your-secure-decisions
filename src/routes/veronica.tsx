@@ -140,10 +140,10 @@ const Icon = ({ name, className = "" }: { name: string; className?: string }) =>
 );
 
 const services = [
-  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", text: "¿Te enfrentas a una sanción, un recurso o un expediente con la Administración? Lo analizamos con el mismo criterio con el que se instruyen los expedientes desde dentro.\n\n\nLa Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos. Limitarse a leer el boletín oficial es insuficiente cuando afrontas una sanción, un recurso o una relación contractual con un organismo público.\n\n\nHe trabajado desde dentro de la Administración y conozco cómo se instruyen los expedientes y cómo interpretan los técnicos la normativa. Esa experiencia institucional permite entender aspectos prácticos del procedimiento que difícilmente se adquieren únicamente desde el estudio teórico." },
-  { icon: "gavel", title: "Derecho civil y de familia", text: "¿Necesitas resolver una herencia, un divorcio o un contrato con seguridad jurídica? Analizamos tu caso con honestidad sobre qué es realmente viable.\n\n\nLas decisiones personales más relevantes conllevan una dimensión jurídica inevitable. Una herencia sin planificar, un proceso de divorcio carente de estrategia o un contrato redactado con premura generan conflictos que se arrastran durante años.\n\n\nTrabajo con rigor técnico y honestidad sobre las opciones reales de éxito. Recibirás un análisis claro de tu situación y, si decides seguir adelante, representación completa en el proceso." },
-  { icon: "home", title: "Inmobiliario y comunidades", text: "¿Vas a comprar, vender o alquilar un inmueble? Revisamos la operación con la misma auditoría legal que usamos para proteger comunidades de propietarios.\n\n\nLa compra, venta o arrendamiento de un inmueble exige certezas jurídicas para proteger el capital invertido.\n\n\nTrabajamos en coordinación directa con el área de administración de fincas de HiloLegal, ofreciendo una solución que cubre desde la auditoría legal previa de la propiedad hasta la reclamación judicial por impagos, manteniendo un único interlocutor estratégico." },
-  { icon: "balance", title: "Derecho penal", text: "¿Te enfrentas a un procedimiento penal? Ofrecemos defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso.\n\n\nUn procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular: exige una defensa técnica sin fisuras, una estrategia clara desde la primera declaración y un acompañamiento que anticipe los movimientos de la acusación.\n\n\nOfrezco asistencia letrada sin promesas que no se puedan cumplir." },
+  { icon: "account_balance", title: "Derecho administrativo y relaciones con la Administración", href: "/derecho-administrativo", text: "¿Te enfrentas a una sanción, un recurso o un expediente con la Administración? Lo analizamos con el mismo criterio con el que se instruyen los expedientes desde dentro." },
+  { icon: "gavel", title: "Derecho civil y de familia", href: "/derecho-familia", text: "¿Necesitas resolver una herencia, un divorcio o un contrato con seguridad jurídica? Analizamos tu caso con honestidad sobre qué es realmente viable." },
+  { icon: "home", title: "Inmobiliario, urbanismo y comunidades", href: "/derecho-inmobiliario", text: "¿Vas a comprar, construir o alquilar? Revisamos la operación —también licencias y expedientes urbanísticos— con la misma auditoría legal que usamos para proteger comunidades de propietarios." },
+  { icon: "balance", title: "Derecho penal", href: "/derecho-penal", text: "¿Te enfrentas a un procedimiento penal? Ofrecemos defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso." },
   { icon: "psychology", title: "Consultoría jurídica especializada", text: "¿Tu empresa licita con el sector público o actúa en un mercado regulado? Detectamos el riesgo antes de que se convierta en sanción o litigio.\n\n\nLas empresas que licitan con el sector público o actúan en mercados regulados necesitan identificar las contingencias jurídicas antes de que se consoliden. El riesgo en el entorno público rara vez reside en el texto estricto de la ley: se encuentra en los criterios de aplicación de la propia Administración.\n\n\nHaber ocupado puestos de alta dirección en la Administración autonómica me permite detectar las vulnerabilidades que pasan desapercibidas desde el exterior de la institución. Informes, dictámenes y orientación estratégica en asuntos que requieren experiencia técnica, criterio jurídico y visión institucional." },
   { icon: "shield", title: "Estrategia jurídica preventiva", text: "¿Quieres anticiparte a un conflicto antes de que ocurra? Análisis previo de riesgos, revisión documental, preparación de actuaciones y diseño de estrategias antes de tomar decisiones relevantes." },
 ];
@@ -610,6 +610,27 @@ function Services() {
         </div>
         <div className="divide-y divide-[var(--jch-line)] border-t border-b border-[var(--jch-line)]">
           {services.map((s, idx) => {
+            if (s.href) {
+              return (
+                <FadeUp key={s.title} delay={(idx % 2) * 0.05}>
+                  <Link
+                    to={s.href}
+                    className="group flex items-start gap-6 py-10 md:py-12"
+                    onClick={() => trackEvent("nav_service_legal", { section: "services", cta: s.title })}
+                  >
+                    <Icon name={s.icon} className="text-[var(--jch-accent-ink)] text-3xl shrink-0 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-[#C5A566] transition-colors">{s.title}</h3>
+                      <p className="text-[var(--jch-muted)] leading-relaxed">{s.text}</p>
+                      <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-black uppercase tracking-widest text-[var(--jch-cta)] group-hover:text-[var(--jch-ink)] transition-colors">
+                        Ver más <Icon name="arrow_forward" className="text-base" />
+                      </span>
+                    </div>
+                  </Link>
+                </FadeUp>
+              );
+            }
+
             const paragraphs = s.text.split(/\n\s*\n\s*\n/).map((p) => p.trim()).filter(Boolean);
             const [intro, ...rest] = paragraphs;
             const isOpen = open === idx;
