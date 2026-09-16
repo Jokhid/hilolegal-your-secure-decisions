@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -477,196 +477,75 @@ function Header() {
   );
 }
 
-const THREAD_VB_W = 1600;
-const THREAD_VB_H = 300;
-// Every half-wave below is an identical 400-unit-wide S-curve (control
-// points sit at the same y as their own endpoint, so the tangent is
-// exactly flat at each anchor) — this guarantees the anchors ARE the
-// curve's true crest/trough, and that every hump is geometrically
-// identical. Two extra half-waves run off-screen (-250 and 1750) purely
-// so the visible portion always looks like a continuous strand instead
-// of starting/ending on a stunted quarter-wave.
-const THREAD_X_START = -250;
-const THREAD_X_END = 1750;
-const threadPoints = [
-  { label: "Abogados", x: 150, y: 40, crest: true },
-  { label: "Hipotecas", x: 550, y: 260, crest: false },
-  { label: "Patrimonio", x: 950, y: 40, crest: true },
-  { label: "Comunidades", x: 1350, y: 260, crest: false },
+const heroTrust = [
+  { label: "Un equipo, dos especialidades", text: "Derecho y finanzas, bajo un mismo criterio." },
+  { label: "Visión jurídica y patrimonial", text: "Soluciones hoy, tranquilidad mañana." },
+  { label: "Altea · Costa Blanca", text: "Trato directo, en cada paso." },
 ];
-const THREAD_D =
-  "M-250,260 C-116.67,260 16.67,40 150,40 C283.33,40 416.67,260 550,260 C683.33,260 816.67,40 950,40 C1083.33,40 1216.67,260 1350,260 C1483.33,260 1616.67,40 1750,40";
-const THREAD_D_VIBRATE =
-  "M-250,260 C-116.67,248 16.67,52 150,40 C283.33,28 416.67,272 550,260 C683.33,248 816.67,52 950,40 C1083.33,28 1216.67,272 1350,260 C1483.33,248 1616.67,52 1750,40";
-const THREAD_DRAW_DELAY = 1.1;
-const THREAD_DRAW_DURATION = 9.6;
 
 /* ---------- Hero ---------- */
+// A partir de 1024px: foto a sección completa con el texto colocado a mano
+// sobre los huecos reales de ESTA foto (pared vacía arriba, hueco entre
+// las dos personas, mesa abajo) — coordenadas ajustadas directamente sobre
+// la imagen para no tapar ninguna cara. Por debajo de 1024px no hay sitio
+// para ese "collage": la foto pasa arriba a ancho completo y el texto
+// vuelve a flujo normal debajo, en el mismo orden de lectura.
 function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const [threadTop, setThreadTop] = useState<number | null>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-
-  useEffect(() => {
-    function measure() {
-      if (!ref.current || !ctaRef.current) return;
-      const sectionTop = ref.current.getBoundingClientRect().top;
-      const ctaBottom = ctaRef.current.getBoundingClientRect().bottom;
-      setThreadTop(ctaBottom - sectionTop + 28);
-    }
-    measure();
-    window.addEventListener("resize", measure);
-    const id = window.setTimeout(measure, 400); // re-check after webfonts settle
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.clearTimeout(id);
-    };
-  }, []);
-
   return (
-    <section ref={ref} className="hero-bg-section">
-      <picture>
-        <source media="(max-width: 767px)" srcSet="/fotoalteadespachovertical.webp" />
-        <motion.img
-          style={{ scale: imgScale }}
-          src="/fotoalteadespachohorizontal.webp"
-          alt="HiloLegal — boutique legal y patrimonial en Altea - Costa Blanca"
-          className="hero-bg-image"
-          width={1536}
-          height={1024}
+    <section className="hero-photo">
+      <div className="hero-photo__media">
+        <img
+          src="/josecarlos_veronica.webp"
+          alt="Verónica López y José Carlos Hidalgo, en el despacho de HiloLegal en Altea"
+          width={1184}
+          height={596}
           loading="eager"
           decoding="async"
           fetchPriority="high"
         />
-      </picture>
-      <div className="hero-bg-overlay" aria-hidden="true" />
-
-      <div>
-        <motion.div style={{ y: textY }} className="space-y-10">
-          <FadeUp eager>
-            <span className="hero-eyebrow">
-              Abogados · Hipotecas · Patrimonio · Administración de fincas · Altea
-            </span>
-          </FadeUp>
-
-          <h1 className="text-balance hero-title-2lines">
-            <span className="block md:whitespace-nowrap">
-              <WordReveal eager delay={0.1} text="El rigor que mereces," />
-            </span>
-            <span className="block md:whitespace-nowrap">
-              <WordReveal eager delay={0.45} className="jch-accent jch-italic" text="la cercanía que necesitas." />
-            </span>
-          </h1>
-
-          <FadeUp eager delay={0.5}>
-            <p className="hero-subtitle">
-              Las decisiones importantes merecen una visión a la altura de lo que está en juego. En
-              HiloLegal integramos criterio jurídico, financiero y patrimonial para ayudarte a
-              proteger tus intereses y tomar cada decisión con seguridad, perspectiva y confianza.
-            </p>
-          </FadeUp>
-
-          <FadeUp eager delay={0.65}>
-            <div ref={ctaRef} className="flex flex-wrap justify-center gap-3 pt-4">
-              <a href="#contact" className="btn-primary">
-                Cuéntanos qué necesitas
-              </a>
-              <a href="#areas" className="btn-ghost">
-                Ver servicios
-              </a>
-            </div>
-          </FadeUp>
-
-          <div className="hero-thread-reserve" aria-hidden="true" />
-        </motion.div>
       </div>
 
-      {threadTop !== null && (
-      <div className="hero-thread" style={{ top: threadTop }} aria-hidden="true">
-        <motion.svg
-          viewBox={`0 0 ${THREAD_VB_W} ${THREAD_VB_H}`}
-          className="hero-thread__svg"
-          preserveAspectRatio="none"
-          initial={{ filter: "brightness(1)" }}
-          animate={{ filter: ["brightness(1)", "brightness(1)", "brightness(2.2)", "brightness(1)"] }}
-          transition={{ duration: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION + 0.5, times: [0, 0.94, 0.97, 1], ease: "easeOut" }}
-        >
-          <defs>
-            <linearGradient id="hero-thread-gradient" x1="0" y1="0" x2="1" y2="0.3">
-              <stop offset="0%" className="hero-thread__stop-a" />
-              <stop offset="45%" className="hero-thread__stop-b" />
-              <stop offset="100%" className="hero-thread__stop-c" />
-            </linearGradient>
-          </defs>
-          <motion.path
-            className="hero-thread__line-glow"
-            initial={{ pathLength: 0, d: THREAD_D }}
-            animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
-            transition={{
-              pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
-              d: { duration: 10.4, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
-            }}
-          />
-          <motion.path
-            className="hero-thread__line"
-            initial={{ pathLength: 0, d: THREAD_D }}
-            animate={{ pathLength: 1, d: [THREAD_D, THREAD_D_VIBRATE, THREAD_D] }}
-            transition={{
-              pathLength: { duration: THREAD_DRAW_DURATION, ease: easeOutExpo, delay: THREAD_DRAW_DELAY },
-              d: { duration: 10.4, repeat: Infinity, ease: "easeInOut", delay: THREAD_DRAW_DELAY + THREAD_DRAW_DURATION },
-            }}
-          />
-        </motion.svg>
-        {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION;
-          return (
-            <motion.span
-              key={`${p.label}-ping`}
-              className="hero-thread__ping"
-              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
-              initial={{ scale: 0.4, opacity: 0.9 }}
-              animate={{ scale: 2.6, opacity: 0 }}
-              transition={{ duration: 0.9, delay, ease: "easeOut" }}
-            />
-          );
-        })}
-        {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION;
-          return (
-            <motion.span
-              key={p.label}
-              className="hero-thread__dot"
-              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 320, damping: 14, delay }}
-            />
-          );
-        })}
-        {threadPoints.map((p) => {
-          const delay = THREAD_DRAW_DELAY + ((p.x - THREAD_X_START) / (THREAD_X_END - THREAD_X_START)) * THREAD_DRAW_DURATION + 0.15;
-          return (
-            <span
-              key={`${p.label}-label`}
-              className={`hero-thread__label-anchor hero-thread__label-anchor--${p.crest ? "up" : "down"}`}
-              style={{ left: `${(p.x / THREAD_VB_W) * 100}%`, top: `${(p.y / THREAD_VB_H) * 100}%` }}
-            >
-              <motion.span
-                className="hero-thread__label"
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring", stiffness: 260, damping: 16, delay }}
-              >
-                {p.label}
-              </motion.span>
-            </span>
-          );
-        })}
+      <FadeUp eager className="hero-photo__eyebrow">
+        <span className="text-[var(--jch-photo-ink)] font-bold text-xs uppercase tracking-widest">
+          Abogados · Hipotecas · Patrimonio · Administración de fincas · Altea
+        </span>
+      </FadeUp>
+
+      <h1 className="hero-photo__h1 text-balance font-bold tracking-tight">
+        <WordReveal eager block delay={0.1} text="Tu situación merece" />
+        <WordReveal eager block delay={0.45} className="jch-accent jch-italic" text="una respuesta clara." />
+      </h1>
+
+      <FadeUp eager delay={0.5} className="hero-photo__subtitle">
+        <p className="hero-photo__subtitle-text">
+          Te ayudamos a resolver asuntos legales, conseguir tu hipoteca y organizar tu patrimonio.
+        </p>
+      </FadeUp>
+
+      <div className="hero-photo__ctas">
+        <FadeUp eager delay={0.65} className="hero-photo__cta hero-photo__cta--left">
+          <a href="#contact" className="btn-primary">
+            Cuéntanos tu situación
+          </a>
+        </FadeUp>
+
+        <FadeUp eager delay={0.72} className="hero-photo__cta hero-photo__cta--right">
+          <a href="#areas" className="btn-ghost">
+            Encuentra tu servicio
+          </a>
+        </FadeUp>
       </div>
-      )}
+
+      <FadeUp eager delay={0.85} className="hero-photo__trust-wrap">
+        <ul className="hero-photo__trust">
+          {heroTrust.map((t) => (
+            <li key={t.label}>
+              <span className="hero-photo__trust-label">{t.label}</span>
+              <span className="hero-photo__trust-text">{t.text}</span>
+            </li>
+          ))}
+        </ul>
+      </FadeUp>
     </section>
   );
 }
