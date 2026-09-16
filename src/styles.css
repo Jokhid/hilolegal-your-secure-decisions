@@ -765,16 +765,19 @@ main > section:first-child .hero-subtitle {
 
   /* El header pasa a position:fixed (ver .home-header) para que la foto
      quede detrás de él en vez de empezar por debajo — así que la parte
-     de arriba del collage tiene que dejar sitio a su altura real (~92px)
-     además del porcentaje sobre la foto, o el listado/H1 quedarían bajo
-     el logo y el menú. */
+     de arriba del collage tiene que dejar sitio a su altura real (~102px)
+     además del porcentaje sobre la foto, o el H1 quedaría bajo el logo
+     y el menú. El listado de palabras baja mucho más (44%): a la altura
+     del header las carpetas del archivador ya han empezado, así que un
+     offset pequeño lo dejaba encima de ellas — se baja hasta que quede
+     libre justo donde arranca el mueble blanco, debajo de las carpetas. */
   .hero-photo .hero-photo__brandwords {
-    top: calc(4% + 92px);
+    top: 44%;
     left: 2%;
     right: auto;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.55rem;
+    gap: 0.4rem;
     font-size: 0.78rem;
   }
   .hero-photo .hero-photo__brandwords li::after {
@@ -782,7 +785,7 @@ main > section:first-child .hero-subtitle {
   }
 
   .hero-photo .hero-photo__h1 {
-    top: calc(1.5% + 92px);
+    top: calc(1.5% + 102px);
     left: 10%;
     right: 7%;
     text-align: center;

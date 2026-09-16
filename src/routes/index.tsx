@@ -382,10 +382,14 @@ function Header() {
   // sección — el umbral se mide contra la altura real de .hero-photo (que
   // cambia con el viewport, aspect-ratio) en vez de un nº de píxeles fijo,
   // para que el cambio ocurra justo al salir de la foto y no a medio hero.
+  // Solo aplica a partir de 1024px: en móvil el header se queda blanco
+  // sólido siempre (ver .home-header en CSS), así que si "scrolled" se
+  // activase igualmente ahí, el logo pasaría a la variante blanca sobre
+  // ese mismo fondo blanco y se volvería invisible.
   useEffect(() => {
     const hero = document.querySelector<HTMLElement>(".hero-photo");
     const getThreshold = () => (hero ? hero.offsetHeight - 80 : 40);
-    const onScroll = () => setScrolled(window.scrollY > getThreshold());
+    const onScroll = () => setScrolled(window.innerWidth >= 1024 && window.scrollY > getThreshold());
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -410,7 +414,7 @@ function Header() {
             <motion.img
               src={scrolled ? "/hilolegal-logo-white.webp" : "/hilolegal-logo-stacked-black.webp"}
               alt="Logo HiloLegal"
-              className={`home-header__logo w-auto object-contain ${scrolled ? "h-9" : "h-12"}`}
+              className={`home-header__logo w-auto object-contain ${scrolled ? "h-[43.2px]" : "h-[57.6px]"}`}
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
