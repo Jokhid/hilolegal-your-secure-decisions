@@ -357,6 +357,7 @@ function Index() {
 /* ---------- Header ---------- */
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
   const drawerRef = useRef<HTMLElement>(null);
 
@@ -377,6 +378,23 @@ function Header() {
     };
   }, [mobileOpen]);
 
+  // Transparente sobre la foto del hero, sólido en cuanto se abandona esa
+  // sección — el umbral se mide contra la altura real de .hero-photo (que
+  // cambia con el viewport, aspect-ratio) en vez de un nº de píxeles fijo,
+  // para que el cambio ocurra justo al salir de la foto y no a medio hero.
+  useEffect(() => {
+    const hero = document.querySelector<HTMLElement>(".hero-photo");
+    const getThreshold = () => (hero ? hero.offsetHeight - 80 : 40);
+    const onScroll = () => setScrolled(window.scrollY > getThreshold());
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   useDialogA11y(mobileOpen, () => setMobileOpen(false), drawerRef);
 
   return (
@@ -385,14 +403,14 @@ function Header() {
         initial={reduce ? false : { y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...spring, delay: 0.1 }}
-        className="sticky top-0 z-50 w-full border-b border-[#E5E5E5] bg-white backdrop-blur-xl"
+        className={`home-header left-0 right-0 z-50 w-full${scrolled ? " home-header--scrolled" : ""}`}
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a href="/" className="group flex items-center gap-3">
             <motion.img
-              src="/hilolegal-logo-stacked-black.webp"
+              src={scrolled ? "/hilolegal-logo-white.webp" : "/hilolegal-logo-stacked-black.webp"}
               alt="Logo HiloLegal"
-              className="h-12 w-auto object-contain"
+              className={`home-header__logo w-auto object-contain ${scrolled ? "h-9" : "h-12"}`}
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
@@ -400,7 +418,7 @@ function Header() {
 
           <div className="hidden items-center gap-10 md:flex">
             {navLinks.map(([label, href]) => (
-              <a key={href} href={href} className="group relative text-sm font-medium text-[#1A1A1A]">
+              <a key={href} href={href} className="home-header__link group relative text-sm font-medium">
                 <span className="transition-colors group-hover:text-[var(--jch-accent-ink)]">{label}</span>
                 <span className="absolute -bottom-1 left-0 h-[1px] w-full origin-left scale-x-0 bg-[#C5A566] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </a>
@@ -408,7 +426,9 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle className="hidden sm:inline-flex" />
+            <span className="home-header__toggle-wrap hidden sm:inline-flex">
+              <ThemeToggle />
+            </span>
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -422,7 +442,7 @@ function Header() {
               type="button"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((v) => !v)}
-              className="-mr-2 p-2 text-2xl text-[#C5A566] md:hidden"
+              className="home-header__burger -mr-2 p-2 text-2xl md:hidden"
             >
               {mobileOpen ? "×" : "☰"}
             </button>
@@ -483,6 +503,8 @@ const heroTrust = [
   { label: "Altea · Costa Blanca", text: "Trato directo, en cada paso." },
 ];
 
+const heroBrandWords = ["Abogados", "Hipotecas", "Patrimonio", "Administración", "de", "fincas", "Altea"];
+
 /* ---------- Hero ---------- */
 // A partir de 1024px: foto a sección completa con el texto colocado a mano
 // sobre los huecos reales de ESTA foto (pared vacía arriba, hueco entre
@@ -491,6 +513,8 @@ const heroTrust = [
 // para ese "collage": la foto pasa arriba a ancho completo y el texto
 // vuelve a flujo normal debajo, en el mismo orden de lectura.
 function Hero() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="hero-photo">
       <div className="hero-photo__media">
@@ -505,11 +529,23 @@ function Hero() {
         />
       </div>
 
-      <FadeUp eager className="hero-photo__eyebrow">
-        <span className="text-[var(--jch-photo-ink)] font-bold text-xs uppercase tracking-widest">
-          Abogados · Hipotecas · Patrimonio · Administración de fincas · Altea
-        </span>
-      </FadeUp>
+      <ul className="hero-photo__brandwords" aria-label="Abogados · Hipotecas · Patrimonio · Administración de fincas · Altea">
+        {heroBrandWords.map((word, i) =>
+          reduce ? (
+            <li key={i} aria-hidden="true">{word}</li>
+          ) : (
+            <motion.li
+              key={i}
+              aria-hidden="true"
+              initial={{ opacity: 0, x: -28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ ...spring, delay: 0.15 + i * 0.09 }}
+            >
+              {word}
+            </motion.li>
+          )
+        )}
+      </ul>
 
       <h1 className="hero-photo__h1 text-balance font-bold tracking-tight">
         <WordReveal eager block delay={0.1} text="Tu situación merece" />

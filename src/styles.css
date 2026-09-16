@@ -390,6 +390,8 @@ main > section:first-child p {
    tinta oscura fija (ver bloque .hero-photo más abajo), no blanco. */
 .hero-photo .hero-photo__subtitle-text {
   color: var(--jch-photo-muted) !important;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.55;
 }
 
 main label, main strong, main button, main select, main input, main textarea {
@@ -599,7 +601,6 @@ main > section:first-child .hero-subtitle {
   margin: 0 !important;
 }
 
-.hero-photo .hero-photo__eyebrow,
 .hero-photo .hero-photo__subtitle,
 .hero-photo .hero-photo__ctas,
 .hero-photo .hero-photo__trust-wrap {
@@ -638,6 +639,33 @@ main > section:first-child .hero-subtitle {
   max-width: none !important;
   font-size: clamp(1.9rem, 3.4vw, 2.75rem) !important;
   line-height: 1.15 !important;
+}
+
+/* Antes era una sola línea con "·" centrada arriba; ahora es una palabra
+   por fila, en la columna donde está la estantería blanca de la foto
+   (ver el @media 1024px más abajo). En móvil no hay estantería que
+   enmarque nada, así que se queda como una fila que envuelve, con "·"
+   reinsertado por CSS entre palabras (mismo aspecto de antes). */
+.hero-photo__brandwords {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--jch-photo-ink) !important;
+  line-height: 1.4;
+}
+.hero-photo__brandwords li:not(:last-child)::after {
+  content: "·";
+  margin-left: 0.35rem;
+  opacity: 0.6;
 }
 
 .hero-photo__ctas {
@@ -715,7 +743,7 @@ main > section:first-child .hero-subtitle {
      foto (nivel 2) lo tapa por completo. z-index explícito y más alto
      en todos los bloques de texto para que la foto quede siempre debajo,
      sin depender del orden accidental en el DOM. */
-  .hero-photo .hero-photo__eyebrow,
+  .hero-photo .hero-photo__brandwords,
   .hero-photo .hero-photo__h1,
   .hero-photo .hero-photo__subtitle,
   .hero-photo .hero-photo__ctas,
@@ -735,19 +763,31 @@ main > section:first-child .hero-subtitle {
      pared clara de esta foto. Se oscurece solo aquí. */
   .hero-photo .jch-accent { color: var(--jch-photo-accent-ink) !important; }
 
-  .hero-photo .hero-photo__eyebrow {
-    top: 3.5%;
-    left: 21%;
-    right: 21%;
-    text-align: center;
+  /* El header pasa a position:fixed (ver .home-header) para que la foto
+     quede detrás de él en vez de empezar por debajo — así que la parte
+     de arriba del collage tiene que dejar sitio a su altura real (~92px)
+     además del porcentaje sobre la foto, o el listado/H1 quedarían bajo
+     el logo y el menú. */
+  .hero-photo .hero-photo__brandwords {
+    top: calc(4% + 92px);
+    left: 2%;
+    right: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.78rem;
+  }
+  .hero-photo .hero-photo__brandwords li::after {
+    content: none;
   }
 
   .hero-photo .hero-photo__h1 {
-    top: 8.5%;
+    top: calc(1.5% + 92px);
     left: 10%;
     right: 7%;
     text-align: center;
     font-size: clamp(2.6rem, 5.6vw, 6.2rem) !important;
+    line-height: 1.05 !important;
   }
 
   .hero-photo .hero-photo__subtitle {
@@ -798,6 +838,63 @@ main > section:first-child .hero-subtitle {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Encabezado de la home. En móvil la foto del hero mide poco (aspect-ratio
+   2:1 a ancho completo) — un header fijo encima taparía media foto, así
+   que ahí se queda como cabecera normal, sólida, en flujo (igual que en
+   el resto del sitio). Sólo a partir de 1024px, donde el hero pasa al
+   collage a pantalla completa, el header se vuelve fijo y transparente
+   sobre la foto (misma tinta oscura que el resto del texto superpuesto),
+   y sólido en negro semitransparente en cuanto se abandona esa sección. */
+.home-header {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+.home-header__link { color: #1a1a1a; }
+.home-header__burger { color: #c5a566; }
+
+@media (min-width: 1024px) {
+  .home-header {
+    position: fixed;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 400ms ease, border-color 400ms ease, backdrop-filter 400ms ease;
+  }
+  .home-header--scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* El logo tiene un punto en ocre (color de marca) además del trazo
+     negro/blanco — un filter (invert, brightness) tiñe o aplana ese
+     punto en vez de mantenerlo dorado, así que en vez de un filtro se
+     conmuta a la variante ya diseñada en blanco (hilolegal-logo-white.
+     webp), que conserva el punto en su ocre real. */
+  .home-header__logo {
+    transition: opacity 200ms ease;
+  }
+
+  .home-header__link {
+    transition: color 400ms ease;
+  }
+  .home-header--scrolled .home-header__link {
+    color: #f3f0ea;
+  }
+
+  .home-header__toggle-wrap button {
+    transition: color 400ms ease;
+  }
+  .home-header--scrolled .home-header__toggle-wrap button {
+    color: #f3f0ea !important;
+  }
+  .home-header--scrolled .home-header__toggle-wrap button:hover {
+    color: #c5a566 !important;
   }
 }
 
