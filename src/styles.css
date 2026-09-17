@@ -1232,8 +1232,30 @@ main > section:first-child a.btn-ghost:hover {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.45) 55%, rgba(10, 10, 10, 0.86) 100%);
 }
+/* .portal-card ya no es el propio <a> (una de las tarjetas necesita
+   varios destinos: la tarjeta entera hacia el hub, más enlaces sueltos
+   por área dentro de las etiquetas — un <a> no puede anidar otro <a>).
+   Este enlace "estirado" ocupa toda la tarjeta y capta cualquier clic
+   que no caiga sobre un enlace de etiqueta, que se queda por encima
+   gracias a .portal-card__body (z-index:2). */
+.portal-card__stretched-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.portal-card__taglink {
+  position: relative;
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  transition: text-decoration-color 250ms ease;
+}
+.portal-card__taglink:hover { text-decoration-color: #ffffff; }
 .portal-card__body {
   position: relative;
   z-index: 2;
@@ -1242,6 +1264,14 @@ main > section:first-child a.btn-ghost:hover {
   height: 100%;
   padding: clamp(2rem, 3vw, 3rem);
   color: #ffffff;
+  /* Por encima del enlace estirado (z-index:1) para que el texto se vea
+     sobre la foto, pero eso también lo pondría por encima en el hit-test
+     de clics — sin esto, el título/texto normal (que no es un <a>) se
+     convierte en una zona muerta que no navega a ningún sitio. Con
+     pointer-events:none aquí, los clics atraviesan hasta el enlace
+     estirado en todos lados salvo en .portal-card__taglink, que
+     reactiva pointer-events explícitamente. */
+  pointer-events: none;
 }
 .portal-card__number {
   font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -1805,6 +1835,12 @@ footer.site-footer .brand {
   font-size: 10px;
   letter-spacing: .14em;
   text-transform: uppercase;
+  /* Dentro del header comparte fila con el nav completo, el toggle de
+     tema y el botón de WhatsApp — sin esto, el contenedor flex lo
+     encoge por debajo de su ancho natural y "Volver al inicio" se
+     parte en 2-3 líneas. */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .blog-editorial__back:hover,

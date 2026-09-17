@@ -19,17 +19,17 @@ const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;40
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--jch-bg)] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Página no encontrada</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h1 className="text-7xl font-bold text-[var(--jch-ink)]">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-[var(--jch-ink)]">Página no encontrada</h2>
+        <p className="mt-2 text-sm text-[var(--jch-muted)]">
           La página que buscas no existe o se ha movido.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--jch-accent-ink)] px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
             Volver al inicio
           </Link>
@@ -47,12 +47,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--jch-bg)] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-xl font-semibold tracking-tight text-[var(--jch-ink)]">
           Esta página no se ha podido cargar
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-[var(--jch-muted)]">
           Algo ha fallado. Puedes actualizar la página o volver al inicio.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -61,13 +61,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--jch-accent-ink)] px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
           >
             Intentarlo de nuevo
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--jch-line-strong)] px-5 py-2.5 text-sm font-medium text-[var(--jch-ink)] transition-colors hover:bg-[var(--jch-line)]"
           >
             Volver al inicio
           </a>
@@ -144,7 +144,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 const THEME_INIT_SCRIPT = `
 try {
   var t = localStorage.getItem('hilolegal-theme');
-  if (t === 'dark') document.documentElement.removeAttribute('data-theme');
+  var wantsDark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  if (wantsDark) document.documentElement.removeAttribute('data-theme');
 } catch (e) {}
 `;
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
@@ -220,8 +220,14 @@ const areas = [
     kicker: "Defender lo que importa.",
     text: "Asesoramiento y defensa jurídica para particulares, familias y empresas.",
     tags: "Civil · Familia · Penal · Administrativo · Inmobiliario",
+    subLinks: [
+      { label: "Familia", href: "/derecho-familia" },
+      { label: "Penal", href: "/derecho-penal" },
+      { label: "Administrativo", href: "/derecho-administrativo" },
+      { label: "Inmobiliario", href: "/derecho-inmobiliario" },
+    ],
     cta: "Cuéntanos tu caso",
-    href: "/veronica#services",
+    href: "/veronica",
     art: "/legal.webp",
     artAlt: "Ilustración del área legal de HiloLegal",
     event: "nav_service_legal" as const,
@@ -613,7 +619,13 @@ function Areas() {
         <div className="portal-grid">
           {areas.map((a, i) => (
             <FadeUp key={a.title} delay={(i % 2) * 0.08} className="portal-card__wrap">
-              <a href={a.href} className="portal-card" onClick={() => trackEvent(a.event)}>
+              <div className="portal-card">
+                <a
+                  href={a.href}
+                  className="portal-card__stretched-link"
+                  aria-label={a.title}
+                  onClick={() => trackEvent(a.event)}
+                />
                 <div className="portal-card__art">
                   <img
                     src={a.art}
@@ -629,13 +641,26 @@ function Areas() {
                   <h3>{a.title}</h3>
                   <p className="portal-card__kicker">{a.kicker}</p>
                   <p className="portal-card__text">{a.text}</p>
-                  {a.tags && <p className="portal-card__tags">{a.tags}</p>}
+                  {"subLinks" in a && a.subLinks ? (
+                    <p className="portal-card__tags">
+                      {a.subLinks.map((s, si) => (
+                        <span key={s.href}>
+                          {si > 0 && " · "}
+                          <Link to={s.href} className="portal-card__taglink">
+                            {s.label}
+                          </Link>
+                        </span>
+                      ))}
+                    </p>
+                  ) : (
+                    a.tags && <p className="portal-card__tags">{a.tags}</p>
+                  )}
                   <span className="portal-card__cta">
                     <span aria-hidden="true" />
                     {a.cta}
                   </span>
                 </div>
-              </a>
+              </div>
             </FadeUp>
           ))}
         </div>

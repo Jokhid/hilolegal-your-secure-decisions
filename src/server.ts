@@ -44,8 +44,33 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+// Las 4 páginas de derecho servían 200 tanto en /derecho-familia como en
+// /DERECHO-FAMILIA (contenido duplicado sin redirección de origen — solo
+// mitigado por el canonical). El router de TanStack es case-sensitive por
+// diseño, así que la normalización se hace aquí, antes de que la petición
+// llegue al handler de SSR.
+const DERECHO_ROUTES = new Set([
+  "/derecho-familia",
+  "/derecho-penal",
+  "/derecho-administrativo",
+  "/derecho-inmobiliario",
+]);
+
+function derechoCaseRedirect(request: Request): Response | null {
+  const url = new URL(request.url);
+  const lower = url.pathname.toLowerCase();
+  if (url.pathname !== lower && DERECHO_ROUTES.has(lower)) {
+    url.pathname = lower;
+    return Response.redirect(url.toString(), 301);
+  }
+  return null;
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const redirect = derechoCaseRedirect(request);
+    if (redirect) return redirect;
+
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
