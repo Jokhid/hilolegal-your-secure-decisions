@@ -65,7 +65,7 @@ export const Route = createFileRoute("/administracion-fincas/nueva-comunidad")({
 const WHATSAPP = "https://wa.me/34647506040?text=Quiero%20informaci%C3%B3n%20sobre%20administraci%C3%B3n%20de%20fincas";
 const PHONE_DISPLAY = "647 50 60 40";
 const EMAIL = "josecarlos@hilolegal.es";
-const LOGO = "/hilolegal-logo-stacked-black.webp";
+const LOGO = "/hilolegal-logo-white.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>

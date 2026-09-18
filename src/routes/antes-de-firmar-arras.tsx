@@ -57,7 +57,7 @@ export const Route = createFileRoute("/antes-de-firmar-arras")({
 const WHATSAPP = "https://wa.me/34647506040?text=Quiero%20revisar%20mi%20contrato%20de%20arras%20antes%20de%20firmar";
 const PHONE_DISPLAY = "647 50 60 40";
 const EMAIL = "veronicalopez@hilolegal.es";
-const LOGO = "/hilolegal-logo-stacked-black.webp";
+const LOGO = "/hilolegal-logo-white.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>

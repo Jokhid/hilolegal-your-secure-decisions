@@ -91,7 +91,7 @@ export const Route = createFileRoute("/josecarlos")({
               // Ficha real de HiloLegal (no la personal de José Carlos, que
               // sigue en el sameAs del Person de más arriba).
               hasMap: "https://share.google/t4jmqHWMM9suL0v2a",
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",
@@ -145,7 +145,7 @@ const WHATSAPP = "https://wa.me/34647506040";
 
 // Photos in /public
 const IMG = (n: number) => `/${n}.webp`;
-const LOGO = "/hilolegal-logo-stacked-black.webp";
+const LOGO = "/hilolegal-logo-white.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>

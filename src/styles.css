@@ -1859,15 +1859,40 @@ footer.site-footer .brand {
 
 .blog-editorial > header,
 .blog-post > header {
-  background: #ffffff !important;
-  border-bottom: 1px solid #E5E5E5 !important;
-  color: #1A1A1A !important;
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+  color: #f3f0ea !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+/* Mismo estilo que el header de la home: transparente, con el tinte
+   oscuro y el desenfoque degradándose en gradiente dentro de su misma
+   altura en vez de cortar en un borde recto. */
+.blog-editorial > header::after,
+.blog-post > header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
+
+.blog-editorial > header a,
+.blog-editorial > header button,
+.blog-post > header a,
+.blog-post > header button {
+  color: inherit !important;
 }
 
 .blog-editorial__back,
 .blog-post__back,
 .header-back-link {
-  color: #1A1A1A !important;
+  color: #f3f0ea !important;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 10px;
   letter-spacing: .14em;
@@ -2423,9 +2448,26 @@ footer.site-footer .brand {
 }
 
 .josecarlos-original header.sticky {
-  background: #ffffff !important;
-  color: #1A1A1A !important;
-  border-bottom: 1px solid #E5E5E5 !important;
+  background: transparent !important;
+  color: #f3f0ea !important;
+  border-bottom-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+/* Mismo estilo que el header de la home: transparente, con el tinte
+   oscuro y el desenfoque degradándose en gradiente dentro de su misma
+   altura en vez de cortar en un borde recto. */
+.josecarlos-original header.sticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
 }
 
 .josecarlos-original header.sticky a,
@@ -2510,9 +2552,26 @@ footer.site-footer .brand {
 }
 
 .veronica-original header.sticky {
-  background: #ffffff !important;
-  color: #1A1A1A !important;
-  border-bottom: 1px solid #E5E5E5 !important;
+  background: transparent !important;
+  color: #f3f0ea !important;
+  border-bottom-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+/* Mismo estilo que el header de la home: transparente, con el tinte
+   oscuro y el desenfoque degradándose en gradiente dentro de su misma
+   altura en vez de cortar en un borde recto. */
+.veronica-original header.sticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
 }
 
 .veronica-original header.sticky a,

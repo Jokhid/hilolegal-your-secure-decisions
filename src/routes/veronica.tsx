@@ -74,7 +74,7 @@ export const Route = createFileRoute("/veronica")({
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
               // Perfiles corporativos reales de HiloLegal (no personales).
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",
@@ -319,7 +319,7 @@ function Header() {
         <nav className="flex justify-between items-center w-full px-6 py-5 max-w-[1200px] mx-auto">
           <Link className="flex items-center gap-3 group" to="/">
             <motion.img
-              src="/hilolegal-logo-stacked-black.webp"
+              src="/hilolegal-logo-white.webp"
               alt="Logo HiloLegal"
               className="h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}

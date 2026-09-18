@@ -62,7 +62,7 @@ export const Route = createFileRoute("/administracion-fincas/")({
               // El enlace de Google usado aquí antes ("GlqwXv7lO958pDPDS")
               // resultó ser, verificado navegando el redirect, la ficha
               // personal de José Carlos, no la del despacho.
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
               areaServed: [
                 { "@type": "City", name: "Altea" },
                 { "@type": "City", name: "Benidorm" },
@@ -102,7 +102,7 @@ export const Route = createFileRoute("/administracion-fincas/")({
 const WHATSAPP = "https://wa.me/34647506040?text=Quiero%20informaci%C3%B3n%20sobre%20administraci%C3%B3n%20de%20fincas";
 const PHONE_DISPLAY = "647 50 60 40";
 const EMAIL = "josecarlos@hilolegal.es";
-const LOGO = "/hilolegal-logo-stacked-black.webp";
+const LOGO = "/hilolegal-logo-white.webp";
 
 const Icon = ({ name, className = "" }: { name: string; className?: string }) => (
   <span aria-hidden="true" className={`material-symbols-outlined ${className}`}>{name}</span>
