@@ -1261,9 +1261,17 @@ function Field({
 /* ---------- Footer ---------- */
 const footerColumns = [
   {
+    title: "Legal",
+    links: [
+      ["Derecho de familia", "/derecho-familia"],
+      ["Derecho penal", "/derecho-penal"],
+      ["Derecho administrativo", "/derecho-administrativo"],
+      ["Inmobiliario y comunidades", "/derecho-inmobiliario"],
+    ] as [string, string][],
+  },
+  {
     title: "Servicios",
     links: [
-      ["Legal", "/veronica#services"],
       ["Hipotecas", "/josecarlos"],
       ["Patrimonio", "/josecarlos"],
       ["Administración de fincas", "/administracion-fincas"],
@@ -1280,6 +1288,7 @@ const footerColumns = [
     title: "Recursos",
     links: [
       ["Herramientas", "#herramientas"],
+      ["Antes de firmar las arras", "/antes-de-firmar-arras"],
       ["Blog", "/blog"],
       ["Diagnóstico patrimonial", "/josecarlos#contact"],
     ] as [string, string][],

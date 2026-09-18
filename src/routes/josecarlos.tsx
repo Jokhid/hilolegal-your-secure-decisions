@@ -1712,6 +1712,18 @@ function Footer() {
           </div>
         </div>
         <div className="mt-20 pt-10 border-t border-white/5 flex flex-col items-center gap-4">
+          <p className="text-[10px] text-gray-600 uppercase tracking-widest">Todas las áreas de HiloLegal</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12px] text-gray-400">
+            <Link to="/derecho-familia" className="hover:text-[var(--jch-accent-ink)] transition-colors">Familia</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/derecho-penal" className="hover:text-[var(--jch-accent-ink)] transition-colors">Penal</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/derecho-administrativo" className="hover:text-[var(--jch-accent-ink)] transition-colors">Administrativo</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/derecho-inmobiliario" className="hover:text-[var(--jch-accent-ink)] transition-colors">Inmobiliario</Link>
+            <span aria-hidden="true">·</span>
+            <Link to="/administracion-fincas" className="hover:text-[var(--jch-accent-ink)] transition-colors">Administración de fincas</Link>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[12px] text-gray-400">
             <a href="/terminos.html" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Términos y condiciones</a>
             <span aria-hidden="true">·</span>
