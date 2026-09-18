@@ -295,7 +295,7 @@ function Hero() {
 
 const puntos = [
   { n: "01", title: "Lo que digas en la primera declaración importa", text: "La estrategia de defensa empieza desde la primera comparecencia, no después. Improvisar ahí sale caro más adelante." },
-  { n: "02", title: "La reputación se juega antes de la sentencia", text: "Para una empresa o un particular, la viabilidad del caso puede depender tanto del proceso como del resultado final." },
+  { n: "02", title: "La reputación se juega antes de la sentencia", text: "Para una empresa o un particular, la viabilidad del caso puede depender tanto del proceso como del resultado final — que puede tener consecuencias patrimoniales directas: fianza, responsabilidad civil o embargo preventivo de bienes." },
   { n: "03", title: "No hay promesas que se puedan garantizar", text: "Cualquier abogado que asegure un resultado concreto de antemano no está siendo honesto contigo." },
 ];
 
@@ -362,7 +362,8 @@ const faqs = [
   { q: "¿La primera consulta es gratuita?", a: "Sí. En esa primera consulta se revisan los hechos y el estado del procedimiento, y te digo con claridad cómo puedo ayudarte." },
   { q: "¿Me tienen que haber citado ya para contactar contigo?", a: "No hace falta esperar a una citación formal. Cuanto antes se revise el caso, más margen hay para preparar una defensa sólida." },
   { q: "¿Puedes garantizarme un resultado?", a: "No, y desconfía de quien lo haga. Lo que sí puedo darte es una defensa técnica sin fisuras y transparencia total sobre las expectativas reales del caso." },
-  { q: "¿Cuánto dura un procedimiento penal?", a: "Depende de la complejidad del caso y de la carga del juzgado — cualquier plazo cerrado de antemano sería una promesa que no se puede garantizar. Se da una estimación realista tras revisar el expediente." },
+  { q: "¿Cuánto dura un procedimiento penal?", a: "Depende de la complejidad del caso y de la carga del juzgado. No prometo una fecha cerrada de antemano — sí una estimación realista una vez revisado el expediente." },
+  { q: "¿Un procedimiento penal puede afectar a mi patrimonio?", a: "Sí, cuando hay fianza, responsabilidad civil o riesgo de embargo preventivo. En esos casos coordino con José Carlos Hidalgo, el asesor patrimonial de HiloLegal, para que entiendas el impacto económico real y cómo protegerte, además de la defensa penal." },
 ];
 
 function FAQ() {
@@ -388,6 +389,22 @@ function FAQ() {
               </FadeUp>
             );
           })}
+        </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
+          <Link
+            to="/blog/$slug"
+            params={{ slug: "cancelacion-antecedentes-penales" }}
+            className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+          >
+            Antecedentes penales: cuándo se cancelan de verdad
+          </Link>
+          <Link
+            to="/blog/$slug"
+            params={{ slug: "reclamar-indemnizacion-por-danos" }}
+            className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+          >
+            Reclamar una indemnización por daños
+          </Link>
         </div>
       </div>
     </section>
@@ -425,11 +442,18 @@ function CtaFinal() {
               </FadeUp>
             ))}
           </div>
-          <FadeUp>
-            <Link to="/veronica" className="duo-block__cta">
-              Conocer a Verónica López <span aria-hidden="true">→</span>
-            </Link>
-          </FadeUp>
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
+            <FadeUp>
+              <Link to="/veronica" className="duo-block__cta">
+                Conocer a Verónica López <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+            <FadeUp delay={0.05}>
+              <Link to="/josecarlos" hash="planificar" className="duo-block__cta">
+                Ver planificación patrimonial <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+          </div>
         </div>
         <FadeUp>
           <LeadForm />

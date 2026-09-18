@@ -53,13 +53,13 @@ export const Route = createFileRoute("/")({
           url: "https://www.hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
-          // No hay perfiles sociales corporativos de "HiloLegal" en el
-          // footer ni en ningún otro punto del repo (los de LinkedIn/
-          // Instagram/Facebook que existen son personales de José Carlos,
-          // en josecarlos.tsx) — solo se enlaza la ficha de Google del
-          // despacho, ya usada en otras páginas, en vez de reutilizar
-          // perfiles personales como si fueran corporativos.
-          sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
+          // Perfiles corporativos reales de HiloLegal (no personales de
+          // José Carlos ni de Verónica). El antiguo enlace de Google aquí
+          // usado ("GlqwXv7lO958pDPDS") resultó ser, verificado navegando
+          // el redirect, la ficha personal de José Carlos, no la del
+          // despacho — se sustituye por la ficha de Google Business real
+          // de HiloLegal.
+          sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
           address: {
             "@type": "PostalAddress",
             streetAddress: "Calle Regata 3, 1º E",
@@ -85,6 +85,21 @@ export const Route = createFileRoute("/")({
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hipotecas y financiación de vivienda" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Administración de fincas y comunidades de propietarios" } },
           ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        // Coincide con el acordeón visible de la sección FAQHome más abajo —
+        // Google exige que el FAQPage schema refleje contenido realmente
+        // visible en la página, no preguntas añadidas solo para el schema.
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: homeFaqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         }),
       },
     ],
@@ -351,6 +366,7 @@ function Index() {
         <Method />
         <Tools />
         <Content />
+        <FAQHome />
         <Closing />
         <Contact />
       </main>
@@ -887,6 +903,75 @@ function Content() {
   );
 }
 
+/* ---------- FAQ ---------- */
+const homeFaqs = [
+  {
+    q: "¿Qué es HiloLegal?",
+    a: "Un equipo formado por Verónica López, abogada, y José Carlos Hidalgo, asesor patrimonial, que trabajan bajo un mismo criterio cuando un caso tiene a la vez una dimensión legal y financiera — sin que tengas que repetir tu situación a dos interlocutores distintos.",
+  },
+  {
+    q: "¿La primera consulta es gratuita?",
+    a: "Sí. En el área legal y en el primer análisis financiero, la consulta inicial no tiene coste ni compromiso.",
+  },
+  {
+    q: "¿Qué áreas de derecho cubrís?",
+    a: "Derecho civil y de familia, penal, administrativo, e inmobiliario, urbanismo y comunidades — todas con Verónica López como interlocutora.",
+  },
+  {
+    q: "¿Dónde trabajáis?",
+    a: "En Altea y en toda la Costa Blanca: Benidorm, Alicante y la comarca de la Marina Baixa.",
+  },
+  {
+    q: "¿Cómo coordináis lo legal y lo financiero?",
+    a: "Cuando un caso tiene las dos caras —por ejemplo, un divorcio con hipoteca compartida o una herencia con implicaciones patrimoniales— Verónica y José Carlos trabajan coordinados, bajo un mismo criterio.",
+  },
+];
+
+function FAQHome() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section id="faq" className="py-[100px]">
+      <div className="max-w-3xl mx-auto px-6">
+        <h2 className="text-4xl font-bold tracking-tight text-center mb-20">
+          <Curtain>Preguntas</Curtain>{" "}
+          <Curtain delay={0.1}>
+            <span className="jch-accent jch-italic">frecuentes.</span>
+          </Curtain>
+        </h2>
+        <div className="space-y-px bg-[var(--jch-line)]">
+          {homeFaqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <FadeUp key={f.q} delay={i * 0.05}>
+                <div className="bg-[var(--jch-bg)]">
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="w-full flex justify-between items-center gap-6 text-left p-8 text-lg font-bold tracking-tight"
+                    aria-expanded={isOpen}
+                  >
+                    <span>{f.q}</span>
+                    <span aria-hidden="true" className="jch-accent text-2xl leading-none shrink-0">
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.5, ease: easeOutExpo }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <div className="px-8 pb-8 text-[var(--jch-muted)] leading-relaxed">{f.a}</div>
+                  </motion.div>
+                </div>
+              </FadeUp>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Cierre ---------- */
 function Closing() {
   return (
@@ -1201,6 +1286,23 @@ const footerColumns = [
   },
 ];
 
+const footerSocialLinks = [
+  {
+    label: "Facebook de HiloLegal",
+    href: "https://www.facebook.com/HiloLegal",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    ),
+  },
+  {
+    label: "Ficha de Google Business de HiloLegal",
+    href: "https://share.google/t4jmqHWMM9suL0v2a",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.344-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/></svg>
+    ),
+  },
+];
+
 function Footer() {
   return (
     <footer className="site-footer">
@@ -1230,6 +1332,22 @@ function Footer() {
             <p className="footer__tagline">
               Boutique legal y patrimonial · Altea - Costa Blanca
             </p>
+            <div className="flex items-center gap-5 mt-6">
+              {footerSocialLinks.map((s) => (
+                <motion.a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -2 }}
+                  transition={spring}
+                  className="opacity-70 hover:opacity-100 hover:text-[var(--jch-accent-ink)] transition-colors"
+                  aria-label={s.label}
+                >
+                  {s.icon}
+                </motion.a>
+              ))}
+            </div>
           </div>
 
           {footerColumns.map((col) => (

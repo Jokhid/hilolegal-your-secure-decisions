@@ -88,7 +88,10 @@ export const Route = createFileRoute("/josecarlos")({
                 "Hipotecas y planificación patrimonial para familias y autónomos en Altea, Benidorm y Alicante. Financiación, protección, ahorro y jubilación con criterio, antes de elegir producto.",
               priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
-              hasMap: "https://share.google/GlqwXv7lO958pDPDS",
+              // Ficha real de HiloLegal (no la personal de José Carlos, que
+              // sigue en el sameAs del Person de más arriba).
+              hasMap: "https://share.google/t4jmqHWMM9suL0v2a",
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",
@@ -1711,7 +1714,7 @@ function Footer() {
             <span aria-hidden="true">·</span>
             <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Política de privacidad</a>
             <span aria-hidden="true">·</span>
-            <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Ver en Google Maps</a>
+            <a href="https://share.google/t4jmqHWMM9suL0v2a" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Ver en Google Maps</a>
           </div>
           <div className="text-center text-[10px] text-gray-600 uppercase tracking-widest">
             © {new Date().getFullYear()} JOSÉ CARLOS HIDALGO. TODOS LOS DERECHOS RESERVADOS.

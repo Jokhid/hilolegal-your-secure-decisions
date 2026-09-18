@@ -391,6 +391,15 @@ function FAQ() {
             );
           })}
         </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
+          <Link
+            to="/blog/$slug"
+            params={{ slug: "desahucios-cuanto-tarda-y-errores" }}
+            className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+          >
+            Desahucios: cuánto tarda de verdad y los errores que lo alargan
+          </Link>
+        </div>
       </div>
     </section>
   );

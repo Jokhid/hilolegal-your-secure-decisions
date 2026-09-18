@@ -58,10 +58,11 @@ export const Route = createFileRoute("/administracion-fincas/")({
                 name: "José Carlos Hidalgo Ortega",
                 url: "https://www.hilolegal.es/josecarlos",
               },
-              // Mismo criterio que index.tsx: sin perfiles corporativos
-              // propios de "Administración de fincas" en el repo, se
-              // enlaza solo la ficha de Google del despacho.
-              sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
+              // Perfiles corporativos reales de HiloLegal (no personales).
+              // El enlace de Google usado aquí antes ("GlqwXv7lO958pDPDS")
+              // resultó ser, verificado navegando el redirect, la ficha
+              // personal de José Carlos, no la del despacho.
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
               areaServed: [
                 { "@type": "City", name: "Altea" },
                 { "@type": "City", name: "Benidorm" },
@@ -1265,7 +1266,7 @@ function Footer() {
             <span aria-hidden="true">·</span>
             <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Política de privacidad</a>
             <span aria-hidden="true">·</span>
-            <a href="https://share.google/GlqwXv7lO958pDPDS" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Ver en Google Maps</a>
+            <a href="https://share.google/t4jmqHWMM9suL0v2a" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--jch-accent-ink)] transition-colors">Ver en Google Maps</a>
           </div>
           <div className="text-center text-[10px] text-gray-600 uppercase tracking-widest">
             © {new Date().getFullYear()} HILOLEGAL. TODOS LOS DERECHOS RESERVADOS.

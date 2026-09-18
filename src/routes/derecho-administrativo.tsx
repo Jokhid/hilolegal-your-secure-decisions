@@ -295,7 +295,7 @@ function Hero() {
 
 const puntos = [
   { n: "01", title: "Los plazos de recurso son cortos", text: "Dejar pasar el plazo de alegación o recurso puede cerrar opciones que, a tiempo, sí estaban disponibles." },
-  { n: "02", title: "El boletín oficial no es suficiente", text: "El riesgo real casi nunca está en el texto de la norma, sino en cómo la interpretan los técnicos que la aplican." },
+  { n: "02", title: "El boletín oficial no es suficiente", text: "El riesgo real casi nunca está en el texto de la norma, sino en cómo la interpretan los técnicos que la aplican — y en lo que una sanción económica puede suponer para la caja de tu empresa." },
   { n: "03", title: "La experiencia institucional importa", text: "Entender cómo se instruye un expediente desde dentro cambia qué argumentos funcionan y cuáles no." },
 ];
 
@@ -363,6 +363,7 @@ const faqs = [
   { q: "¿Cuánto tiempo tengo para recurrir una sanción?", a: "Depende del tipo de procedimiento y de la notificación recibida — por eso conviene revisar el expediente cuanto antes, para no perder el plazo." },
   { q: "¿Qué diferencia hay entre alegar y recurrir?", a: "La alegación se presenta antes de que la sanción sea firme, dentro del propio procedimiento. El recurso se plantea después, cuando ya hay una resolución. Cada vía tiene su momento." },
   { q: "¿Trabajas con empresas que licitan con el sector público?", a: "Sí, esa consultoría jurídica especializada se explica en la página de Verónica López — el criterio de fondo (entender cómo interpreta la Administración su propia normativa) es el mismo." },
+  { q: "Una sanción económica, ¿afecta también a la financiación de mi empresa?", a: "Puede hacerlo, sobre todo si compromete la tesorería o la capacidad de asumir nueva deuda. En esos casos trabajo en coordinación con José Carlos Hidalgo, el asesor patrimonial de HiloLegal, para valorar el impacto financiero real, no solo el jurídico." },
 ];
 
 function FAQ() {
@@ -425,11 +426,18 @@ function CtaFinal() {
               </FadeUp>
             ))}
           </div>
-          <FadeUp>
-            <Link to="/veronica" className="duo-block__cta">
-              Conocer a Verónica López <span aria-hidden="true">→</span>
-            </Link>
-          </FadeUp>
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
+            <FadeUp>
+              <Link to="/veronica" className="duo-block__cta">
+                Conocer a Verónica López <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+            <FadeUp delay={0.05}>
+              <Link to="/josecarlos" hash="planificar" className="duo-block__cta">
+                Ver planificación patrimonial <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+          </div>
         </div>
         <FadeUp>
           <LeadForm />

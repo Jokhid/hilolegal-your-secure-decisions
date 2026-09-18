@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { blogPosts, topicOf, TOPIC_LABEL, type BlogTopic } from "@/lib/blogPosts";
@@ -66,7 +66,15 @@ const WHATSAPP = "https://wa.me/34647506040";
 
 function BlogIndex() {
   const [filter, setFilter] = useState<BlogTopic | "all">("all");
-  const posts = filter === "all" ? blogPosts : blogPosts.filter((p) => topicOf(p) === filter);
+  // Los artículos se listan por fecha de publicación descendente, no por el
+  // orden fijo en que se concatenan financialPosts/mortgagePosts/legalPosts/
+  // fincasPosts en blogPosts.ts — así el contenido más reciente de cada
+  // categoría es visible sin depender de en qué bloque se escribió primero.
+  const sortedPosts = useMemo(
+    () => [...blogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)),
+    [],
+  );
+  const posts = filter === "all" ? sortedPosts : sortedPosts.filter((p) => topicOf(p) === filter);
 
   return (
     <div className="blog-editorial min-h-screen">

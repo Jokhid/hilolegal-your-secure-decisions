@@ -296,7 +296,7 @@ function Hero() {
 
 const puntos = [
   { n: "01", title: "Cada herencia es distinta", text: "Sin planificar, una herencia sin acuerdo entre herederos puede generar conflictos que se prolongan durante años." },
-  { n: "02", title: "Un divorcio sin estrategia sale caro", text: "Custodia, vivienda y pensión se deciden una vez. Conviene decidirlas bien la primera vez, no corregirlas después." },
+  { n: "02", title: "Un divorcio sin estrategia sale caro", text: "Custodia, vivienda y pensión se deciden una vez, y la vivienda casi siempre lleva detrás una hipoteca compartida. Conviene decidirlas bien la primera vez —también en lo patrimonial—, no corregirlas después." },
   { n: "03", title: "Un contrato mal redactado cuesta más después", text: "Revisar antes de firmar es siempre más barato que litigar después de haber firmado." },
 ];
 
@@ -363,7 +363,8 @@ const faqs = [
   { q: "¿La primera consulta es gratuita?", a: "Sí. En esa primera consulta se revisan los hechos, los plazos y los objetivos, y te digo con claridad si puedo ayudarte y cómo." },
   { q: "¿Puedo separarme de mutuo acuerdo sin ir a juicio?", a: "Sí, si hay acuerdo entre las partes sobre custodia, vivienda y pensión, el proceso es notablemente más rápido y menos costoso que un procedimiento contencioso." },
   { q: "¿Qué pasa si los herederos no se ponen de acuerdo?", a: "Se intenta primero una vía negociada. Si no es posible, se valora la vía judicial, siempre explicando antes las implicaciones reales de cada camino." },
-  { q: "¿Cuánto tarda un proceso de familia o una herencia?", a: "Depende del grado de acuerdo entre las partes y de la carga del juzgado — cualquier plazo cerrado de antemano sería una promesa que no se puede garantizar. Se da una estimación realista tras revisar el caso concreto." },
+  { q: "¿Cuánto tarda un proceso de familia o una herencia?", a: "Varía mucho según haya o no acuerdo entre las partes, y según la carga del juzgado en cada momento. En la primera consulta te doy una horquilla realista para tu caso concreto, no una cifra genérica." },
+  { q: "Mi divorcio o mi herencia incluye una vivienda con hipoteca, ¿quién se encarga de eso?", a: "La parte legal la llevo yo. Cuando hace falta reordenar la hipoteca o planificar el patrimonio resultante, coordino directamente con José Carlos Hidalgo, el asesor patrimonial de HiloLegal, para que no tengas que explicar la situación dos veces." },
 ];
 
 function FAQ() {
@@ -389,6 +390,22 @@ function FAQ() {
               </FadeUp>
             );
           })}
+        </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
+          <Link
+            to="/blog/$slug"
+            params={{ slug: "separacion-o-divorcio-diferencias" }}
+            className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+          >
+            Separación o divorcio: la pregunta que casi todo el mundo confunde
+          </Link>
+          <Link
+            to="/blog/$slug"
+            params={{ slug: "herencia-entre-hermanos-sin-acuerdo" }}
+            className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+          >
+            Herencia entre hermanos sin acuerdo
+          </Link>
         </div>
       </div>
     </section>
@@ -426,11 +443,18 @@ function CtaFinal() {
               </FadeUp>
             ))}
           </div>
-          <FadeUp>
-            <Link to="/veronica" className="duo-block__cta">
-              Conocer a Verónica López <span aria-hidden="true">→</span>
-            </Link>
-          </FadeUp>
+          <div className="flex flex-wrap gap-x-8 gap-y-3">
+            <FadeUp>
+              <Link to="/veronica" className="duo-block__cta">
+                Conocer a Verónica López <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+            <FadeUp delay={0.05}>
+              <Link to="/josecarlos" hash="planificar" className="duo-block__cta">
+                Ver planificación patrimonial <span aria-hidden="true">→</span>
+              </Link>
+            </FadeUp>
+          </div>
         </div>
         <FadeUp>
           <LeadForm />

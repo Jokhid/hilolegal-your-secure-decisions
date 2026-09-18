@@ -53,10 +53,12 @@ export const Route = createFileRoute("/veronica")({
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               // No se ha encontrado ningún perfil de LinkedIn/Instagram/Facebook
-              // propio de Verónica en el repositorio — solo se enlaza la ficha
-              // de Google del despacho (mismo enlace que ya usa José Carlos)
-              // en vez de inventar perfiles.
-              sameAs: ["https://share.google/GlqwXv7lO958pDPDS"],
+              // propio de Verónica en el repositorio, así que no se inventa
+              // ninguno aquí. El enlace de Google que antes figuraba en este
+              // campo resultó ser (verificado navegando el redirect) la
+              // ficha personal de José Carlos, no la de Verónica — se
+              // elimina en vez de mantener una atribución incorrecta. La
+              // ficha real de HiloLegal va en el sameAs del LegalService.
               worksFor: {
                 "@type": "Organization",
                 name: "HiloLegal",
@@ -71,6 +73,8 @@ export const Route = createFileRoute("/veronica")({
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
+              // Perfiles corporativos reales de HiloLegal (no personales).
+              sameAs: ["https://www.facebook.com/HiloLegal", "https://share.google/t4jmqHWMM9suL0v2a"],
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",

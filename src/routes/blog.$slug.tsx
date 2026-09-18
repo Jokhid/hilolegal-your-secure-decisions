@@ -133,6 +133,16 @@ const SERVICE_CTA: Record<string, string> = {
   fincas: "Solicitar propuesta",
 };
 
+// Solo se enlaza a una página de derecho dedicada cuando la categoría del
+// artículo encaja de forma inequívoca — "Derecho civil" o "Responsabilidad
+// civil", por ejemplo, se quedan fuera por no tener una página propia clara.
+const CATEGORY_DERECHO_PAGE: Record<string, { path: string; label: string }> = {
+  "Derecho de familia": { path: "/derecho-familia", label: "Derecho civil y de familia" },
+  "Sucesiones y herencias": { path: "/derecho-familia", label: "Derecho civil y de familia" },
+  "Derecho penal": { path: "/derecho-penal", label: "Derecho penal" },
+  "Arrendamientos": { path: "/derecho-inmobiliario", label: "Inmobiliario, urbanismo y comunidades" },
+};
+
 function renderMarkdown(md: string) {
   const lines = md.split("\n");
   const blocks: React.ReactNode[] = [];
@@ -224,6 +234,7 @@ function BlogPostPage() {
   const rest = others.filter((p) => p.service !== post.service);
   const related = [...sameService, ...rest].slice(0, 3);
   const author = SERVICE_META[post.service];
+  const derechoPage = CATEGORY_DERECHO_PAGE[post.category];
 
   return (
     <div className="blog-post min-h-screen">
@@ -296,7 +307,7 @@ function BlogPostPage() {
             </div>
           </div>
 
-          <div className="mt-10 pt-10 border-t border-[var(--jch-line)]">
+          <div className="mt-10 pt-10 border-t border-[var(--jch-line)] flex flex-wrap items-center gap-6">
             <Link
               to={author.contactPath}
               hash="contact"
@@ -304,6 +315,14 @@ function BlogPostPage() {
             >
               {SERVICE_CTA[post.service] ?? "Cuéntanos tu caso"}
             </Link>
+            {derechoPage && (
+              <Link
+                to={derechoPage.path}
+                className="text-sm font-bold text-[var(--jch-ink)] underline hover:text-[var(--jch-cta)] transition-colors"
+              >
+                Ver {derechoPage.label} →
+              </Link>
+            )}
           </div>
         </article>
 
