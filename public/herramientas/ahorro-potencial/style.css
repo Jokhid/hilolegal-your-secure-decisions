@@ -424,12 +424,12 @@ main > section {
 }
 
 .gasto-toggle.active {
-  background: #1f6f78;
-  box-shadow: inset 0 0 0 1px rgba(26,26,26,.06), 0 2px 12px rgba(31,111,120,.35);
+  background: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(26,26,26,.06), 0 2px 12px rgba(197,165,102,.35);
 }
 
 .gasto-toggle:focus-visible {
-  outline-color: rgba(31,111,120,.4);
+  outline-color: rgba(197,165,102,.4);
 }
 
 .metric-card,

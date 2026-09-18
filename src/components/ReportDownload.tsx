@@ -60,7 +60,7 @@ export function ReportDownload({ topic, children }: { topic: string; children: R
             type="button"
             onClick={handleDownload}
             disabled={!isValid || status === "sending"}
-            className="rounded-full bg-[#1f6f78] px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap"
+            className="rounded-full bg-[#C5A566] px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap"
           >
             {status === "sending" ? "Un momento…" : "Descargar informe"}
           </button>

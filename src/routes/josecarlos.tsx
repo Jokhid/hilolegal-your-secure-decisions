@@ -467,7 +467,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -522,7 +522,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]"
+                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57]"
                 >
                   WhatsApp
                 </a>
@@ -594,7 +594,7 @@ function Hero({ onSelectIntent }: { onSelectIntent: SetIntent }) {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
+                className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
                 onClick={() => {
                   onSelectIntent("planning");
@@ -726,10 +726,10 @@ function Financiar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.3} className="mt-10">
+        <FadeUp delay={0.3} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
           <a
             href="#contact"
-            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
             onClick={() => {
               onSelectIntent("mortgage-study");
               trackEvent("josecarlos_mortgage_start", { intent: "mortgage-study", source: "josecarlos", section: "financiar", cta: "solicitar_estudio_hipotecario" });
@@ -737,6 +737,9 @@ function Financiar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
           >
             Solicitar estudio hipotecario
           </a>
+          <Link to="/antes-de-firmar-arras" className="duo-block__cta">
+            Checklist gratuita: antes de firmar las arras <span aria-hidden="true">→</span>
+          </Link>
         </FadeUp>
       </div>
     </section>
@@ -765,7 +768,7 @@ function Proteger({ onSelectIntent }: { onSelectIntent: SetIntent }) {
         <FadeUp delay={0.2} className="content-block__footer">
           <a
             href="#contact"
-            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
             onClick={() => {
               onSelectIntent("protection");
               trackEvent("josecarlos_protection_click", { intent: "protection", source: "josecarlos", section: "proteger", cta: "revisar_mi_proteccion" });
@@ -796,7 +799,7 @@ function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
             <FadeUp delay={0.2}>
               <a
                 href="#contact"
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+                className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
                 onClick={() => {
                   onSelectIntent("planning");
                   trackEvent("josecarlos_wealth_start", { intent: "planning", source: "josecarlos", section: "planificar", cta: "analizar_mi_situacion" });
@@ -845,7 +848,7 @@ function Planificar({ onSelectIntent }: { onSelectIntent: SetIntent }) {
           <FadeUp delay={0.15} className="mt-10">
             <a
               href="#contact"
-              className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+              className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
               onClick={() => {
                 onSelectIntent("retirement");
                 trackEvent("josecarlos_retirement_click", { intent: "retirement", source: "josecarlos", section: "jubilacion", cta: "estudiar_mi_jubilacion" });
@@ -880,7 +883,7 @@ function Autonomos({ onSelectIntent }: { onSelectIntent: SetIntent }) {
         <FadeUp delay={0.2} className="mt-10">
           <a
             href="#contact"
-            className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+            className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
             onClick={() => {
               onSelectIntent("self-employed");
               trackEvent("josecarlos_autonomos_click", { intent: "self-employed", source: "josecarlos", section: "autonomos", cta: "analizar_mi_situacion_como_autonomo" });
@@ -1029,7 +1032,7 @@ function PerfilProfesional({ onSelectIntent }: { onSelectIntent: SetIntent }) {
               <div className="flex flex-wrap items-center gap-8">
                 <a
                   href="#contact"
-                  className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors inline-block shadow-xl shadow-[#1f6f78]/20"
+                  className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors inline-block shadow-xl shadow-[#C5A566]/20"
                   onClick={() => {
                     onSelectIntent("planning");
                     trackEvent("josecarlos_planning_click", { intent: "planning", source: "josecarlos", section: "perfil", cta: "analizar_mi_situacion" });
@@ -1636,8 +1639,8 @@ function ContactForm({ intent }: { intent: IntentKey }) {
         transition={spring}
         type="submit"
         disabled={status === "sending"}
-        style={{ color: "#ffffff" }}
-        className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+        style={{ color: "#1a1a1a" }}
+        className="rounded-full w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#A78C57] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : config.ctaLabel}
       </motion.button>

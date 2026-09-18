@@ -105,7 +105,7 @@ export function ChatWidget() {
         type="button"
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat con HiloLegal"}
         onClick={() => (isOpen ? setIsOpen(false) : openWidget())}
-        className="fixed bottom-6 right-6 z-[9998] flex h-14 w-14 items-center justify-center rounded-full bg-[#1f6f78] text-white shadow-xl transition-colors hover:bg-[#17535a]"
+        className="fixed bottom-6 right-6 z-[9998] flex h-14 w-14 items-center justify-center rounded-full bg-[#C5A566] text-black shadow-xl transition-colors hover:bg-[#A78C57]"
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </button>
@@ -187,7 +187,7 @@ export function ChatWidget() {
                 type="submit"
                 aria-label="Enviar mensaje"
                 disabled={sending || limitReached || !input.trim()}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1f6f78] text-white transition-colors hover:bg-[#17535a] disabled:opacity-40"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#C5A566] text-black transition-colors hover:bg-[#A78C57] disabled:opacity-40"
               >
                 <Send className="h-4 w-4" />
               </button>

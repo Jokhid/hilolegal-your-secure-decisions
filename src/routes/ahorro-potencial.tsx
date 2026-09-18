@@ -262,7 +262,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -307,7 +307,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]"
+                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57]"
                 >
                   WhatsApp
                 </a>
@@ -399,7 +399,7 @@ function Calculadora() {
             return (
               <div
                 key={categoria.id}
-                className={`border p-4 transition-colors ${gasto.activo ? "border-[#1f6f78] bg-[var(--jch-surface)]" : "border-[var(--jch-line)]"}`}
+                className={`border p-4 transition-colors ${gasto.activo ? "border-[#C5A566] bg-[var(--jch-surface)]" : "border-[var(--jch-line)]"}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex gap-2.5 min-w-0">
@@ -415,7 +415,7 @@ function Calculadora() {
                     aria-checked={gasto.activo}
                     aria-label={`Activar ${categoria.nombre}`}
                     onClick={() => toggle(categoria.id)}
-                    className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${gasto.activo ? "bg-[#1f6f78]" : "bg-[var(--jch-line-strong)]"}`}
+                    className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${gasto.activo ? "bg-[#C5A566]" : "bg-[var(--jch-line-strong)]"}`}
                   >
                     <span
                       className="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform"
@@ -433,14 +433,14 @@ function Calculadora() {
                     onChange={(e) => setMonto(categoria.id, Number(e.target.value) || 0)}
                     onWheel={(e) => e.currentTarget.blur()}
                     aria-label="Importe"
-                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#1f6f78] transition-colors outline-none disabled:opacity-40"
+                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#C5A566] transition-colors outline-none disabled:opacity-40"
                   />
                   <select
                     value={gasto.frecuencia}
                     disabled={!gasto.activo}
                     onChange={(e) => setFrecuencia(categoria.id, e.target.value as FrecuenciaId)}
                     aria-label="Frecuencia"
-                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#1f6f78] transition-colors outline-none disabled:opacity-40"
+                    className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-1.5 text-sm focus:ring-0 focus:border-[#C5A566] transition-colors outline-none disabled:opacity-40"
                   >
                     {FRECUENCIAS.map((f) => (
                       <option key={f.id} value={f.id}>{f.nombre}</option>
@@ -755,8 +755,8 @@ function LeadForm() {
         transition={spring}
         type="submit"
         disabled={status === "sending"}
-        style={{ color: "#ffffff" }}
-        className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+        style={{ color: "#1a1a1a" }}
+        className="rounded-full w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#A78C57] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Solicitar revisión"}
       </motion.button>
@@ -811,7 +811,7 @@ function Footer() {
             rel="noopener noreferrer"
             whileHover={{ y: -2 }}
             transition={spring}
-            className="rounded-full border border-white/20 px-8 py-4 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-[#1f6f78] hover:text-[#1f6f78]"
+            className="rounded-full border border-white/20 px-8 py-4 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-[#C5A566] hover:text-[#C5A566]"
           >
             Escríbenos por WhatsApp
           </motion.a>

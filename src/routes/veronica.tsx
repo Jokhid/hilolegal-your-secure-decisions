@@ -350,7 +350,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#1f6f78] text-white px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#17535a] transition-colors"
+              className="header-whatsapp-btn hidden sm:inline-block rounded-full bg-[#C5A566] text-black px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] hover:bg-[#A78C57] transition-colors"
               href={WHATSAPP}
             >
               WhatsApp
@@ -404,7 +404,7 @@ function Header() {
                 <a
                   href={WHATSAPP}
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]"
+                  className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57]"
                 >
                   WhatsApp
                 </a>
@@ -473,7 +473,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
+                className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
                 Primera consulta
@@ -1186,8 +1186,8 @@ function Contact() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={spring}
-              style={{ color: "#ffffff" }}
-              className="rounded-full inline-block text-center w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              style={{ color: "#1a1a1a" }}
+              className="rounded-full inline-block text-center w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#A78C57] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "sending" ? "Enviando…" : "Enviar consulta"}
             </motion.button>

@@ -255,7 +255,7 @@ function BlogPostPage() {
               href="https://wa.me/34647506040"
               target="_blank"
               rel="noopener noreferrer"
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
             >
               WhatsApp
             </a>
@@ -311,7 +311,7 @@ function BlogPostPage() {
             <Link
               to={author.contactPath}
               hash="contact"
-              className="inline-block rounded-full bg-[#1f6f78] text-white px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors"
+              className="inline-block rounded-full bg-[#C5A566] text-black px-8 py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors"
             >
               {SERVICE_CTA[post.service] ?? "Cuéntanos tu caso"}
             </Link>

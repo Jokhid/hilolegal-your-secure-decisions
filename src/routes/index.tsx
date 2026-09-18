@@ -460,7 +460,7 @@ function Header() {
               whileTap={{ scale: 0.97 }}
               transition={spring}
               href="#contact"
-              className="hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
+              className="home-header__cta hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
             >
               Cuéntanos qué necesitas
             </motion.a>
@@ -1197,9 +1197,9 @@ function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed bg-[#1f6f78] hover:bg-[#17535a]"
+              className="w-full py-5 rounded-full uppercase text-xs tracking-[0.2em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed bg-[#C5A566] hover:bg-[#A78C57]"
               style={{
-                color: "#ffffff",
+                color: "#1a1a1a",
               }}
             >
               {status === "sending"

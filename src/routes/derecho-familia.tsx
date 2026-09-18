@@ -200,7 +200,7 @@ function Header() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={spring}
-              className="header-whatsapp-btn hidden rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a] sm:inline-block"
+              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
               href={WHATSAPP}
             >
               WhatsApp
@@ -233,7 +233,7 @@ function Header() {
                     {label}
                   </a>
                 ))}
-                <a href={WHATSAPP} onClick={() => setMobileOpen(false)} className="mt-2 inline-block self-start rounded-full bg-[#1f6f78] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#17535a]">
+                <a href={WHATSAPP} onClick={() => setMobileOpen(false)} className="mt-2 inline-block self-start rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-center text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57]">
                   WhatsApp
                 </a>
                 <div className="flex items-center gap-2 border-t border-white/10 pt-4 text-lg font-medium text-[#F3F0EA]">
@@ -279,7 +279,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={spring}
-                className="rounded-full bg-[#1f6f78] text-white px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#17535a] transition-colors shadow-xl shadow-[#1f6f78]/20"
+                className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
                 onClick={() => trackEvent("cta_legal", { section: "hero", cta: "cuentanos_tu_caso" })}
               >
@@ -549,8 +549,8 @@ function LeadForm() {
         transition={spring}
         type="submit"
         disabled={status === "sending"}
-        style={{ color: "#ffffff" }}
-        className="rounded-full w-full bg-[#1f6f78] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#17535a] transition-colors shadow-2xl shadow-[#1f6f78]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+        style={{ color: "#1a1a1a" }}
+        className="rounded-full w-full bg-[#C5A566] py-6 font-black uppercase text-xs tracking-[0.3em] hover:bg-[#A78C57] transition-colors shadow-2xl shadow-[#C5A566]/20 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Enviando…" : status === "ok" ? "¡Enviado!" : "Cuéntanos tu caso"}
       </motion.button>
@@ -604,7 +604,7 @@ function Footer() {
             rel="noopener noreferrer"
             whileHover={{ y: -2 }}
             transition={spring}
-            className="rounded-full border border-white/20 px-8 py-4 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-[#1f6f78] hover:text-[#1f6f78]"
+            className="rounded-full border border-white/20 px-8 py-4 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors hover:border-[#C5A566] hover:text-[#C5A566]"
           >
             Escríbenos por WhatsApp
           </motion.a>

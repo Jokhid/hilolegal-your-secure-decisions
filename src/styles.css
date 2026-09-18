@@ -112,11 +112,14 @@
   --jch-accent: #C5A566;
   --jch-accent-2: #C5A566;
   --jch-accent-ink: #C5A566;
-  /* Action color: reserved for CTAs/buttons specifically, kept distinct
-     from the ochre brand accent above (headings, dividers, decorative
-     elements stay ochre). Identical in both themes on purpose. */
-  --jch-cta: #1f6f78;
-  --jch-cta-hover: #17535a;
+  /* Action color: antes un teal deliberadamente distinto del ocre de marca;
+     unificado a ocre (Fase C) para que haya un único acento en todo el
+     sitio. --jch-cta-ink es el color de texto sobre ese fondo (oscuro,
+     porque el ocre es demasiado claro para texto blanco legible).
+     Idéntico en ambos temas a propósito. */
+  --jch-cta: #C5A566;
+  --jch-cta-hover: #A78C57;
+  --jch-cta-ink: #1a1a1a;
   --jch-ink-rgb: 243, 240, 234;
   --jch-bg-rgb: 10, 10, 10;
 }
@@ -452,7 +455,7 @@ main h3 .jch-accent,
 .jch-chat-bubble--assistant { background-color: #151515; color: #f3f0ea; }
 [data-theme="light"] .jch-chat-bubble--assistant { background-color: #f7f6f2; color: #1a1a1a; }
 
-.jch-chat-bubble--user { background-color: #1f6f78; color: #ffffff; }
+.jch-chat-bubble--user { background-color: #C5A566; color: #1a1a1a; }
 
 .jch-chat-input-bar { border-color: rgba(243, 240, 234, 0.14); }
 [data-theme="light"] .jch-chat-input-bar { border-color: rgba(26, 26, 26, 0.12); }
@@ -874,6 +877,25 @@ main > section:first-child .hero-subtitle {
     border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 
+  /* El CTA del header repite casi el mismo mensaje que el CTA principal
+     del hero ("Cuéntanos qué necesitas" / "Cuéntanos tu situación"), y
+     ambos son visibles a la vez en el primer viewport. Mientras el header
+     es transparente sobre la foto, se atenúa a un estilo "ghost" a juego
+     con el CTA secundario del hero, para no duplicar el mismo peso visual
+     dos veces seguidas — al hacer scroll, cuando ya es el único CTA
+     visible, recupera el peso sólido. */
+  .home-header__cta {
+    transition: background-color 400ms ease, color 400ms ease, border-color 400ms ease;
+  }
+  .home-header:not(.home-header--scrolled) .home-header__cta {
+    background: rgba(255, 255, 255, 0.72) !important;
+    color: #1a1a1a !important;
+    border: 1px solid rgba(26, 26, 26, 0.3);
+  }
+  .home-header:not(.home-header--scrolled) .home-header__cta:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+
   /* El logo tiene un punto en ocre (color de marca) además del trazo
      negro/blanco — un filter (invert, brightness) tiñe o aplana ese
      punto en vez de mantenerlo dorado, así que en vez de un filtro se
@@ -918,7 +940,7 @@ main > section:first-child a.btn-ghost {
 
 main > section:first-child a.btn-primary {
   background: var(--jch-cta) !important;
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
 }
 main > section:first-child a.btn-primary:hover { background: var(--jch-cta-hover) !important; }
 
@@ -1771,7 +1793,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
   align-items: center;
   gap: .75rem;
   background: var(--jch-cta);
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
   padding: 1.1rem 2rem;
   border-radius: 999px;
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
@@ -1911,7 +1933,7 @@ footer.site-footer .brand {
 .blog-editorial__filter--active {
   background: var(--jch-cta);
   border-color: var(--jch-cta);
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
 }
 .blog-editorial__filter--active:hover { border-color: var(--jch-cta-hover); background: var(--jch-cta-hover); }
 
@@ -2397,7 +2419,7 @@ footer.site-footer .brand {
 }
 
 .josecarlos-original header.sticky a.header-whatsapp-btn {
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
 }
 
 .veronica-hero-image {
@@ -2484,12 +2506,12 @@ footer.site-footer .brand {
 }
 
 .veronica-original header.sticky a.header-whatsapp-btn {
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
 }
 
 .blog-editorial > header a.header-whatsapp-btn,
 .blog-post > header a.header-whatsapp-btn {
-  color: #ffffff !important;
+  color: var(--jch-cta-ink) !important;
 }
 
 .veronica-original footer {
