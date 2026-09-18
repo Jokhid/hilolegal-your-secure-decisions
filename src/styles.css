@@ -870,11 +870,26 @@ main > section:first-child .hero-subtitle {
     border-bottom: 1px solid transparent;
     transition: background-color 400ms ease, border-color 400ms ease, backdrop-filter 400ms ease;
   }
+  /* Sin límite duro: en vez de una caja sólida con un borde recto, el
+     fondo del header (color + blur) se desvanece en gradiente justo
+     debajo del contenido, hasta integrarse con la página. La capa real
+     vive en ::after, más alta que el propio header, para tener margen
+     donde degradarse antes de desaparecer del todo. */
   .home-header--scrolled {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .home-header--scrolled::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
   }
 
   /* El CTA del header repite casi el mismo mensaje que el CTA principal
@@ -1725,7 +1740,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
    de la sección (textura de papel en modo claro) entre cuadro y cuadro. */
 #herramientas .tools__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: clamp(1.25rem, 2.5vw, 2rem);
   width: 100vw;
   margin-left: calc(50% - 50vw);

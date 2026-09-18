@@ -22,6 +22,7 @@ export type AnalyticsEvent =
   | "tool_mortgage"
   | "tool_financial_health"
   | "tool_wealth_audit"
+  | "tool_arras_checklist"
   | "contact_start"
   | "contact_submit"
   | "blog_article_click"

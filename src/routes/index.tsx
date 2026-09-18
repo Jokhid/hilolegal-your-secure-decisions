@@ -349,6 +349,13 @@ const tools = [
     href: "/simulador-hipoteca",
     event: "tool_mortgage" as const,
   },
+  {
+    title: "Checklist: antes de firmar las arras",
+    text: "Revisa titularidad, cargas, tipo de arras, financiación y plazos antes de comprometer tu dinero.",
+    cta: "Abrir checklist",
+    href: "/antes-de-firmar-arras",
+    event: "tool_arras_checklist" as const,
+  },
 ];
 
 /* ---------- Page ---------- */
