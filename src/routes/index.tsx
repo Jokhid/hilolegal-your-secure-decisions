@@ -581,8 +581,8 @@ function Hero() {
       </ul>
 
       <h1 className="hero-photo__h1 text-balance font-bold tracking-tight">
-        <WordReveal eager block delay={0.1} text="Tu situación merece" />
-        <WordReveal eager block delay={0.45} className="jch-accent jch-italic" text="una respuesta clara." />
+        <WordReveal eager block delay={0.1} text="Abogados y asesores" />
+        <WordReveal eager block delay={0.45} className="jch-accent jch-italic" text="con una respuesta clara." />
       </h1>
 
       <FadeUp eager delay={0.5} className="hero-photo__subtitle">

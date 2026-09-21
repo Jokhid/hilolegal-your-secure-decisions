@@ -305,7 +305,7 @@ function QueDeberiasSaber() {
     <section id="que-deberias-saber" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
-          <h2><Curtain>Qué deberías saber antes de decidir.</Curtain></h2>
+          <h2><Curtain>Antes de heredar, separarte o firmar.</Curtain></h2>
           <FadeUp delay={0.1}>
             <p>Las decisiones personales más relevantes conllevan una dimensión jurídica inevitable.</p>
           </FadeUp>

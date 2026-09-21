@@ -304,7 +304,7 @@ function QueDeberiasSaber() {
     <section id="que-deberias-saber" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
-          <h2><Curtain>Qué deberías saber antes de decidir.</Curtain></h2>
+          <h2><Curtain>Lo que el boletín oficial no explica.</Curtain></h2>
           <FadeUp delay={0.1}>
             <p>La Administración Pública se rige por tiempos, lógicas internas y criterios normativos específicos.</p>
           </FadeUp>

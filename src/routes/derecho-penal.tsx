@@ -304,7 +304,7 @@ function QueDeberiasSaber() {
     <section id="que-deberias-saber" className="content-block py-[100px]">
       <div className="content-block__inner">
         <div className="content-block__heading">
-          <h2><Curtain>Qué deberías saber antes de decidir.</Curtain></h2>
+          <h2><Curtain>Lo que se decide antes de que haya sentencia.</Curtain></h2>
           <FadeUp delay={0.1}>
             <p>Un procedimiento penal es el escenario más exigente para la reputación y viabilidad de una empresa o un particular.</p>
           </FadeUp>
