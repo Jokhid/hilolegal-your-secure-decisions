@@ -25,6 +25,7 @@ export type AnalyticsEvent =
   | "tool_arras_checklist"
   | "contact_start"
   | "contact_submit"
+  | "cta_contact"
   | "blog_article_click"
   | "property_management_view"
   | "property_management_proposal_start"

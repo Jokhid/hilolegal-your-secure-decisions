@@ -241,7 +241,7 @@ const areas = [
       { label: "Administrativo", href: "/derecho-administrativo" },
       { label: "Inmobiliario", href: "/derecho-inmobiliario" },
     ],
-    cta: "Cuéntanos tu caso",
+    cta: "Resolver mi asunto legal",
     href: "/veronica",
     art: "/legal.webp",
     artAlt: "Ilustración del área legal de HiloLegal",
@@ -265,7 +265,7 @@ const areas = [
     kicker: "Proteger hoy. Planificar mañana.",
     text: "Analizamos ingresos, ahorro, protección y objetivos para construir una estrategia financiera adaptada a tu vida.",
     tags: "Nationale-Nederlanden · Ahorro · Inversión · Pensiones",
-    cta: "Analizar mi situación",
+    cta: "Planificar mi patrimonio",
     href: "/josecarlos#planificar",
     art: "/patrimonial.webp",
     artAlt: "Ilustración del área patrimonial y financiera de HiloLegal",
@@ -467,6 +467,7 @@ function Header() {
               whileTap={{ scale: 0.97 }}
               transition={spring}
               href="#contact"
+              onClick={() => trackEvent("cta_contact", { location: "header", channel: "form" })}
               className="home-header__cta hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
             >
               Cuéntanos qué necesitas
@@ -521,6 +522,27 @@ function Header() {
                   <ThemeToggle />
                   <span>Modo claro</span>
                 </div>
+              </div>
+              <div className="mt-auto flex flex-col gap-3">
+                <a
+                  href="#contact"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    trackEvent("cta_contact", { location: "drawer", channel: "form" });
+                  }}
+                  className="rounded-full bg-[#C5A566] px-4 py-4 text-center text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57]"
+                >
+                  Cuéntanos qué necesitas
+                </a>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("cta_contact", { location: "drawer", channel: "whatsapp" })}
+                  className="rounded-full border border-[#1A1A1A]/30 px-4 py-4 text-center text-xs font-medium uppercase tracking-[0.14em] text-[#1A1A1A] transition-colors hover:border-[#1A1A1A]"
+                >
+                  Escribir por WhatsApp
+                </a>
               </div>
             </div>
           </motion.aside>
@@ -593,8 +615,12 @@ function Hero() {
 
       <div className="hero-photo__ctas">
         <FadeUp eager delay={0.65} className="hero-photo__cta hero-photo__cta--left">
-          <a href="#contact" className="btn-primary">
-            Cuéntanos tu situación
+          <a
+            href="#contact"
+            className="btn-primary"
+            onClick={() => trackEvent("cta_contact", { location: "hero", channel: "form" })}
+          >
+            Cuéntanos qué necesitas
           </a>
         </FadeUp>
 
@@ -994,13 +1020,16 @@ function Closing() {
         </FadeUp>
         <FadeUp delay={0.2}>
           <p>
-            Cuéntanos qué necesitas. Analizaremos tu situación y te indicaremos cómo podemos
-            ayudarte.
+            Analizaremos tu situación y te indicaremos cómo podemos ayudarte.
           </p>
         </FadeUp>
         <FadeUp delay={0.3}>
-          <a href="#contact" className="closing__cta">
-            Hablar con HiloLegal <span aria-hidden="true">→</span>
+          <a
+            href="#contact"
+            className="closing__cta"
+            onClick={() => trackEvent("cta_contact", { location: "closing", channel: "form" })}
+          >
+            Cuéntanos qué necesitas <span aria-hidden="true">→</span>
           </a>
         </FadeUp>
         <FadeUp delay={0.4}>
