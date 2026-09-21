@@ -35,6 +35,9 @@ const LLMS_TXT = `# HiloLegal
   - [Jubilación en España: la historia real que nadie quiere ver](https://www.hilolegal.es/blog/jubilacion-en-espana)
   - [Base mínima de autónomos en 2026: cuánto pierdes realmente cuando te pones enfermo](https://www.hilolegal.es/blog/base-minima-autonomos-baja-2026)
   - [Custodia compartida: lo que de verdad valora un juez](https://www.hilolegal.es/blog/custodia-compartida-que-valora-un-juez)
+  - [Te han notificado una resolución: cuánto tiempo tienes para recurrir](https://www.hilolegal.es/blog/plazos-para-recurrir-una-resolucion-administrativa)
+  - [Sanción administrativa con descuento por pago: qué implica y cuándo conviene alegar](https://www.hilolegal.es/blog/sancion-administrativa-pagar-con-reduccion-o-alegar)
+  - [Si la Administración no contesta: qué significa el silencio administrativo](https://www.hilolegal.es/blog/silencio-administrativo-si-la-administracion-no-contesta)
   - [Señales que indican que tu comunidad necesita cambiar de administrador](https://www.hilolegal.es/blog/senales-cambiar-administrador-de-fincas)
 
 ## Contacto

@@ -360,7 +360,7 @@ function ComoTrabajamos() {
 
 const faqs = [
   { q: "¿La primera consulta es gratuita?", a: "Sí. Se revisa el expediente, los plazos y los objetivos, y te digo con claridad qué opciones reales tienes." },
-  { q: "¿Cuánto tiempo tengo para recurrir una sanción?", a: "Depende del tipo de procedimiento y de la notificación recibida — por eso conviene revisar el expediente cuanto antes, para no perder el plazo." },
+  { q: "¿Cuánto tiempo tengo para recurrir una sanción?", a: "Depende del tipo de procedimiento y de la notificación recibida. Como referencia general, el recurso de alzada y el de reposición se interponen en un mes desde el día siguiente a la notificación, y el contencioso-administrativo en dos meses. Por eso conviene revisar cuanto antes qué dice tu notificación, para no perder el plazo." },
   { q: "¿Qué diferencia hay entre alegar y recurrir?", a: "La alegación se presenta antes de que la sanción sea firme, dentro del propio procedimiento. El recurso se plantea después, cuando ya hay una resolución. Cada vía tiene su momento." },
   { q: "¿Trabajas con empresas que licitan con el sector público?", a: "Sí, esa consultoría jurídica especializada se explica en la página de Verónica López — el criterio de fondo (entender cómo interpreta la Administración su propia normativa) es el mismo." },
   { q: "Una sanción económica, ¿afecta también a la financiación de mi empresa?", a: "Puede hacerlo, sobre todo si compromete la tesorería o la capacidad de asumir nueva deuda. En esos casos trabajo en coordinación con José Carlos Hidalgo, el asesor patrimonial de HiloLegal, para valorar el impacto financiero real, no solo el jurídico." },
@@ -389,6 +389,22 @@ function FAQ() {
               </FadeUp>
             );
           })}
+        </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
+          {[
+            ["plazos-para-recurrir-una-resolucion-administrativa", "Cuánto tiempo tienes para recurrir una resolución"],
+            ["sancion-administrativa-pagar-con-reduccion-o-alegar", "Sanción con descuento: pagar o alegar"],
+            ["silencio-administrativo-si-la-administracion-no-contesta", "Si la Administración no contesta"],
+          ].map(([slug, label]) => (
+            <Link
+              key={slug}
+              to="/blog/$slug"
+              params={{ slug }}
+              className="text-[var(--jch-muted)] underline decoration-white/20 hover:text-[#C5A566] hover:decoration-[#C5A566] transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

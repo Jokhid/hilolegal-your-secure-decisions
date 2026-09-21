@@ -104,6 +104,7 @@ const CATEGORY_TOPIC_MAP: Record<string, BlogTopic> = {
   "Sucesiones y herencias": "legal",
   "Arrendamientos": "legal",
   "Derecho penal": "legal",
+  "Derecho administrativo": "legal",
   "Derecho civil": "legal",
   "Hipotecas": "hipotecas",
   "Ahorro e inversión": "patrimonio",
@@ -1283,6 +1284,188 @@ Muchas cláusulas de permanencia, comisiones de cancelación anticipada o period
 Estas tres preguntas no requieren conocimientos jurídicos. Requieren el hábito de no firmar nada por costumbre, cortesía o presión de tiempo. Cuando la respuesta a cualquiera de ellas te genera dudas, esa es la señal de que conviene una revisión legal antes de firmar, no después de que el problema ya exista.
 
 **En HiloLegal revisamos contratos y documentos antes de que los firmes, no solo cuando ya han generado un problema. Cuesta menos una revisión previa que una defensa posterior.**`,
+  },
+  {
+    slug: "plazos-para-recurrir-una-resolucion-administrativa",
+    publishedAt: "2026-09-21",
+    title: "Te han notificado una resolución: cuánto tiempo tienes para recurrir",
+    category: "Derecho administrativo",
+    readingTime: "6 min",
+    keyword: "plazo para recurrir una resolución administrativa",
+    excerpt: "\"Ya recurriré si sale mal.\" Frente a una resolución administrativa, el reloj corre desde el día siguiente a la notificación: un mes en la vía administrativa y dos meses en la judicial.",
+    metaDescription: "Plazos para recurrir una resolución administrativa: un mes en alzada y reposición, dos meses en la vía contencioso-administrativa, y cómo se cuentan.",
+    content: `## "Ya recurriré si sale mal": el plazo empieza a correr con la notificación
+
+Cuando la Administración notifica una resolución que te perjudica (una sanción, una denegación, una liquidación), el plazo para recurrir empieza a contar desde el día siguiente a la notificación. No espera a que decidas qué hacer, ni se reinicia porque necesites tiempo para reunir documentación.
+
+Los plazos son cortos: pasado el del recurso de alzada, la resolución es firme a todos los efectos, y pasado el de reposición ya solo queda la vía judicial. Por eso conviene entender de entrada qué vías existen y cuánto dura cada una.
+
+## Primera pregunta: ¿el acto pone fin a la vía administrativa?
+
+De la respuesta depende qué recurso corresponde. La propia notificación debe indicar si el acto pone fin o no a la vía administrativa, qué recursos caben, ante qué órgano se presentan y en qué plazo (artículo 40.2 de la Ley 39/2015). Es lo primero que hay que leer, y con atención.
+
+- **Si no pone fin a la vía administrativa**, cabe recurso de alzada ante el órgano superior jerárquico del que dictó el acto.
+- **Si pone fin a la vía administrativa** (por ejemplo, la resolución de un recurso de alzada, o la de un órgano que no tiene superior jerárquico), cabe recurso potestativo de reposición ante el mismo órgano que dictó el acto, o acudir directamente a los tribunales.
+
+## Las tres vías y sus plazos
+
+- **Recurso de alzada:** un mes desde el día siguiente a la notificación. Transcurrido ese mes sin recurrir, la resolución es firme. La Administración tiene tres meses para resolver; si no lo hace, el recurso puede entenderse desestimado.
+- **Recurso potestativo de reposición:** también un mes. Pasado ese plazo, solo queda la vía contencioso-administrativa. La Administración dispone de un mes para resolverlo.
+- **Recurso contencioso-administrativo:** dos meses desde el día siguiente a la notificación del acto que pone fin a la vía administrativa (artículo 46.1 de la Ley 29/1998). Si antes interpusiste reposición, esos dos meses se cuentan desde que se te notifica su resolución expresa o desde que debe entenderse desestimado por silencio.
+
+Que la reposición sea "potestativa" significa que puedes saltártela. Pero si la interpones, no puedes acudir a los tribunales hasta que se resuelva o se entienda desestimada (artículo 123.2). No se pueden simultanear las dos vías.
+
+## Cómo se cuentan los plazos
+
+- **Los plazos en meses se cuentan de fecha a fecha**, a partir del día siguiente a la notificación. Como ejemplo ilustrativo: si te notifican el 10 de marzo, el plazo de un mes concluye el 10 de abril. Si en el mes de vencimiento no existe ese día, vence el último día del mes, y si el último día es inhábil, se prorroga al primer día hábil siguiente (artículo 30 de la Ley 39/2015).
+- **Los plazos en días son hábiles**: no cuentan sábados, domingos ni festivos, salvo que una ley disponga que son naturales.
+- **Agosto no afecta a todos los plazos por igual.** Para interponer el recurso contencioso-administrativo, el mes de agosto no computa (artículo 128.2 de la Ley 29/1998). En cambio, la Ley 39/2015 no declara inhábil el mes de agosto para los recursos de alzada y reposición, salvo los días que cada Administración declare inhábiles en su calendario oficial.
+
+## La notificación electrónica cuenta aunque no la abras
+
+Están obligados a relacionarse electrónicamente con la Administración, entre otros, las personas jurídicas, las entidades sin personalidad jurídica y quienes ejercen una profesión de colegiación obligatoria (artículo 14.2 de la Ley 39/2015). Cuando la notificación electrónica es obligatoria, o la has elegido tú, se entiende rechazada si pasan diez días naturales desde su puesta a disposición sin que accedas a ella (artículo 43.2).
+
+Rechazada no significa inexistente: se hace constar en el expediente y el procedimiento sigue su curso (artículo 41.5). Los plazos, por tanto, también.
+
+## Recurrir no suspende la ejecución
+
+La interposición de un recurso no suspende, por sí sola, la ejecución del acto impugnado (artículo 117.1 de la Ley 39/2015). Si el acto tiene efectos inmediatos, como una sanción económica, puede ser necesario solicitar la suspensión. Procede, previa ponderación, cuando la ejecución pudiera causar perjuicios de imposible o difícil reparación, o cuando el recurso se funde en una causa de nulidad de pleno derecho (artículo 117.2). Si transcurre un mes desde que se presenta la solicitud sin resolución expresa, la ejecución se entiende suspendida (artículo 117.3).
+
+## Si la Administración no contesta
+
+Cuando no hay resolución expresa y el acto es presunto (silencio administrativo), los plazos cambian. La alzada y la reposición pueden interponerse en cualquier momento a partir del día siguiente a aquel en que se produzcan los efectos del silencio (artículos 122.1 y 124.1), y la ley fija seis meses para acudir a los tribunales (artículo 46.1 de la Ley 29/1998). El sentido y los efectos del silencio merecen un análisis propio, que desarrollamos en otro artículo de este blog.
+
+## La idea con la que quedarte
+
+El plazo para recurrir no se negocia, y qué recurso interponer se decide antes de que venza, no después. Lo que sí puedes hacer es revisar desde el primer día qué dice la notificación, qué vía corresponde y en qué fecha exacta vence cada plazo.
+
+Este artículo es información general: el plazo aplicable a tu caso depende de lo que diga tu notificación y de la normativa del procedimiento concreto.
+
+**En HiloLegal revisamos la notificación y el expediente para fijar qué vía corresponde y cuándo vence cada plazo, antes de decidir si recurrir y con qué argumentos.**`,
+    sources: [{ label: "BOE — Ley 39/2015 y Ley 29/1998 (texto consolidado)", url: "https://www.boe.es" }],
+    updatedAt: "2026-09-21",
+  },
+  {
+    slug: "sancion-administrativa-pagar-con-reduccion-o-alegar",
+    publishedAt: "2026-09-21",
+    title: "Sanción administrativa con descuento por pago: qué implica y cuándo conviene alegar",
+    category: "Derecho administrativo",
+    readingTime: "6 min",
+    keyword: "reducción sanción administrativa pago voluntario",
+    excerpt: "\"Si pago ahora, me lo dejan en menos.\" Es cierto, y el descuento tiene una condición: renunciar a recurrir en vía administrativa. Conviene saberlo antes de pagar.",
+    metaDescription: "Pagar una sanción administrativa con reducción exige renunciar a recurrir en vía administrativa. Qué dice la Ley 39/2015 y cuándo conviene alegar en lugar de pagar.",
+    content: `## "Si pago ahora, me lo dejan en menos": cierto, pero con una condición
+
+Iniciado un procedimiento sancionador, la Ley 39/2015 prevé dos formas de terminarlo antes de tiempo: que reconozcas tu responsabilidad, o que pagues voluntariamente antes de que se dicte la resolución (artículo 85). El pago voluntario pone fin al procedimiento cuando la sanción es únicamente económica, o cuando cabía imponer una sanción económica y otra no económica y se ha justificado que esta segunda no procede.
+
+Cuando la sanción es solo económica, cada una de esas dos vías da derecho a una reducción de al menos el 20 % sobre el importe de la sanción propuesta, y las reducciones pueden acumularse. Los porcentajes deben constar en la notificación de inicio del expediente, y un reglamento puede aumentarlos.
+
+Ahora bien: la ley condiciona esa reducción al desistimiento o a la renuncia de cualquier acción o recurso en vía administrativa contra la sanción.
+
+## Qué se cierra cuando pagas
+
+- **Los recursos administrativos.** La reducción está condicionada a que renuncies a recurrir en vía administrativa. Qué ocurre después con la vía judicial depende de la norma sectorial aplicable y de lo que diga tu notificación: conviene comprobarlo antes de pagar, no después.
+- **La discusión sobre los hechos y su calificación.** Si pagas, no habrá alegaciones ni resolución que valore si los hechos eran ciertos o estaban bien calificados.
+- **No todo el expediente.** El pago termina el procedimiento sancionador, pero no la reposición de la situación alterada ni la indemnización de los daños y perjuicios causados, que pueden seguir reclamándose (artículo 85.2).
+- **Otras consecuencias de una sanción firme.** Además del importe, una sanción firme puede tener efectos añadidos. Por ejemplo, ciertas infracciones sancionadas con carácter firme, graves o muy graves según la materia (profesional, disciplina de mercado, laboral, social o medioambiental, entre otras), pueden dar lugar a una prohibición de contratar con el sector público (artículo 71 de la Ley 9/2017, de Contratos del Sector Público). Para una empresa que contrata con el sector público, ese efecto puede pesar más que el importe de la multa.
+
+## Cuándo suele compensar pagar
+
+No hay una regla general, pero el pago con reducción suele tener sentido cuando se dan a la vez tres circunstancias: los hechos no se discuten, la calificación y el importe son razonables, y la sanción no arrastra otras consecuencias (sanciones accesorias, efectos sobre autorizaciones o sobre la capacidad de contratar).
+
+Es una valoración de conjunto (importe, coste de defenderse, consecuencias colaterales), no un cálculo automático.
+
+## Cuándo conviene alegar
+
+Alegar tiene sentido, en general, cuando hay algo real que discutir: los hechos imputados no son ciertos o no te son atribuibles, la calificación jurídica o el importe son desproporcionados, hay defectos en la notificación o en el procedimiento, o concurre caducidad o prescripción (más abajo).
+
+Dos detalles de procedimiento:
+
+- **El plazo lo indica el acuerdo de iniciación.** Debe recoger tu derecho a formular alegaciones y los plazos para ejercerlo (artículo 64.2.f). Con carácter general, los trámites de los interesados se realizan en diez días desde el siguiente a la notificación, salvo que la norma aplicable fije otro plazo (artículo 73.1), y esos días son hábiles.
+- **No alegar no es neutro.** Si no alegas dentro del plazo y el acuerdo de iniciación contiene un pronunciamiento preciso sobre la responsabilidad que se te imputa, ese acuerdo puede considerarse propuesta de resolución (artículo 64.2.f).
+
+## Dos defensas que no dependen del fondo: caducidad y prescripción
+
+**Caducidad.** Los procedimientos sancionadores iniciados de oficio tienen un plazo máximo para resolver y notificar. Lo fija la norma reguladora del procedimiento y, salvo que una ley establezca otro mayor, no puede pasar de seis meses; si la norma no lo fija, es de tres meses, contados desde la fecha del acuerdo de iniciación (artículo 21). Si vence sin resolución notificada, se produce la caducidad y se ordena el archivo de las actuaciones (artículo 25.1.b). El cómputo se interrumpe si el procedimiento se paraliza por causa imputable al interesado (artículo 25.2).
+
+Pero caducidad no significa que el asunto termine sin más: no produce por sí sola la prescripción, y un procedimiento caducado no interrumpe el plazo de prescripción. Si la infracción no ha prescrito, la Administración puede iniciar un nuevo procedimiento (artículo 95.3).
+
+**Prescripción.** Los plazos los fijan las leyes sectoriales. Cuando no lo hacen, las infracciones muy graves prescriben a los tres años, las graves a los dos y las leves a los seis meses (artículo 30 de la Ley 40/2015). El plazo se interrumpe cuando se inicia, con conocimiento del interesado, el procedimiento sancionador.
+
+## La idea con la que quedarte
+
+Un descuento por pago es una oferta con condiciones: menos importe a cambio de renunciar a discutir. A veces es la mejor decisión y otras es una renuncia que no compensaba. Lo que no conviene es decidirla con una primera lectura de la notificación y el plazo casi agotado.
+
+Este artículo es información general: los porcentajes, plazos y efectos concretos dependen de la norma que regule cada tipo de sanción y de lo que figure en tu notificación.
+
+**En HiloLegal revisamos el acuerdo de iniciación y el expediente para ayudarte a decidir entre pagar con reducción y alegar, valorando también las consecuencias que van más allá del importe.**`,
+    sources: [{ label: "BOE — Ley 39/2015, Ley 40/2015 y Ley 9/2017 (texto consolidado)", url: "https://www.boe.es" }],
+    updatedAt: "2026-09-21",
+  },
+  {
+    slug: "silencio-administrativo-si-la-administracion-no-contesta",
+    publishedAt: "2026-09-21",
+    title: "Si la Administración no contesta: qué significa el silencio administrativo",
+    category: "Derecho administrativo",
+    readingTime: "6 min",
+    keyword: "silencio administrativo positivo o negativo",
+    excerpt: "\"Han pasado los meses y nadie me ha contestado.\" Según lo que hayas pedido, el silencio de la Administración puede significar que sí o que no, y en los dos casos hay decisiones que tomar.",
+    metaDescription: "Silencio administrativo: cuándo la falta de respuesta equivale a un sí y cuándo a un no, qué plazo tiene la Administración y qué hacer cuando vence.",
+    content: `## "Han pasado los meses y nadie me ha contestado"
+
+Presentas una solicitud a la Administración (una licencia, una ayuda, una reclamación) y pasan semanas sin respuesta. La pregunta habitual es si eso significa que sí o que no. La respuesta jurídica es que depende de lo que hayas pedido, y que en ambos casos hay decisiones que tomar.
+
+## Primero: la Administración está obligada a contestar, y en un plazo
+
+La Administración debe dictar y notificar resolución expresa en todos los procedimientos (artículo 21.1 de la Ley 39/2015). El plazo máximo lo fija la norma reguladora de cada procedimiento y, salvo que una ley establezca otro mayor, no puede superar los seis meses. Si la norma no fija plazo, es de tres meses.
+
+En los procedimientos iniciados a solicitud del interesado, ese plazo se cuenta desde que la solicitud tiene entrada en el registro electrónico del organismo competente para tramitarla (artículo 21.3). Además, la Administración debe informarte del plazo máximo y de los efectos del silencio, en una comunicación que ha de enviarte dentro de los diez días siguientes a la recepción de tu solicitud (artículo 21.4).
+
+## Silencio positivo: la regla general cuando has pedido algo
+
+En los procedimientos iniciados a solicitud del interesado, si vence el plazo máximo sin resolución expresa, puedes entender estimada tu solicitud por silencio administrativo. La excepción es que una norma con rango de ley, una norma de la Unión Europea o de Derecho internacional aplicable en España establezcan lo contrario (artículo 24.1). Sus efectos:
+
+- La estimación por silencio es, a todos los efectos, un acto administrativo que pone fin al procedimiento (artículo 24.2).
+- Produce efectos desde el vencimiento del plazo máximo y puedes hacerlo valer ante la propia Administración y ante cualquier persona física o jurídica, pública o privada (artículo 24.4).
+- Se puede acreditar por cualquier medio de prueba, incluido el certificado del silencio producido. El órgano competente debe expedirlo de oficio en quince días desde que expira el plazo, y tú puedes pedirlo en cualquier momento (artículo 24.4).
+- La resolución expresa posterior solo puede ser confirmatoria, no contraria (artículo 24.3.a).
+
+## Silencio negativo: cuando no contestar significa "no"
+
+La ley establece supuestos en los que el silencio es desestimatorio (artículo 24.1):
+
+- El ejercicio del derecho de petición.
+- Los procedimientos cuya estimación transferiría al solicitante o a terceros facultades relativas al dominio público o al servicio público.
+- Los procedimientos que impliquen actividades que puedan dañar el medio ambiente.
+- Los procedimientos de responsabilidad patrimonial de las Administraciones Públicas.
+- Los procedimientos de impugnación de actos y disposiciones y los de revisión de oficio iniciados a solicitud de los interesados.
+
+Además, una ley con rango de ley o una norma de la Unión Europea puede fijar el sentido contrario para un procedimiento concreto. Por eso hay que consultar la norma específica de cada trámite, y no dar por supuesto el sentido del silencio.
+
+La desestimación por silencio tiene solo un efecto: permitirte interponer el recurso administrativo o contencioso-administrativo que proceda (artículo 24.2). Y la Administración puede resolver después de forma expresa sin quedar vinculada por el sentido del silencio (artículo 24.3.b).
+
+Hay un matiz llamativo: si recurres en alzada una desestimación por silencio de una solicitud y la Administración vuelve a no resolver, el recurso se entiende estimado. Se exceptúan las materias de silencio negativo enumeradas justo antes (petición, dominio o servicio público, medio ambiente y responsabilidad patrimonial), según el artículo 24.1, tercer párrafo.
+
+## Procedimientos iniciados de oficio: el silencio funciona de otra manera
+
+Cuando es la propia Administración quien abre el procedimiento, vencer el plazo sin resolver no la libera de la obligación de resolver (artículo 25.1). Si se trata de un procedimiento sancionador, o de intervención con efectos desfavorables, se produce la caducidad. Si de él pudieran derivarse derechos o situaciones favorables, los interesados que hayan comparecido pueden entender desestimadas sus pretensiones.
+
+## Qué hacer cuando vence el plazo
+
+1. **Identifica el plazo máximo y desde cuándo cuenta.** Comprueba la fecha en que tu solicitud entró en el registro y si la Administración te envió la comunicación con el plazo y los efectos del silencio.
+2. **Determina el sentido del silencio** para ese procedimiento concreto. Depende de la norma que lo regule, no de la intuición.
+3. **Si es positivo, valora pedir el certificado del silencio.** Sirve para acreditar el acto ante la Administración o ante terceros sin depender de que llegue una resolución expresa.
+4. **Si es negativo, valora recurrir.** La alzada y la reposición pueden interponerse en cualquier momento a partir del día siguiente a aquel en que se produzcan los efectos del silencio (artículos 122.1 y 124.1 de la Ley 39/2015). Ante los tribunales, la ley fija seis meses desde el acto presunto (artículo 46.1 de la Ley 29/1998). Como criterio prudente, no conviene agotar ese plazo esperando una respuesta que puede no llegar.
+
+## La idea con la que quedarte
+
+El silencio administrativo no es una falta de respuesta sin consecuencias: es una respuesta que la ley te obliga a interpretar. En unos casos equivale a un sí y en otros a un no, y lo que importa es qué haces después y cuándo.
+
+Este artículo es información general: el plazo y el sentido del silencio de tu trámite dependen de la norma que lo regule.
+
+**En HiloLegal revisamos qué plazo máximo y qué sentido del silencio corresponden a tu solicitud, y valoramos si toca pedir el certificado, recurrir o esperar a la resolución expresa.**`,
+    sources: [{ label: "BOE — Ley 39/2015 y Ley 29/1998 (texto consolidado)", url: "https://www.boe.es" }],
+    updatedAt: "2026-09-21",
   },
 ];
 

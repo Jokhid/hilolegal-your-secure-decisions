@@ -140,6 +140,7 @@ const CATEGORY_DERECHO_PAGE: Record<string, { path: string; label: string }> = {
   "Derecho de familia": { path: "/derecho-familia", label: "Derecho civil y de familia" },
   "Sucesiones y herencias": { path: "/derecho-familia", label: "Derecho civil y de familia" },
   "Derecho penal": { path: "/derecho-penal", label: "Derecho penal" },
+  "Derecho administrativo": { path: "/derecho-administrativo", label: "Derecho administrativo" },
   "Arrendamientos": { path: "/derecho-inmobiliario", label: "Inmobiliario, urbanismo y comunidades" },
 };
 
