@@ -787,13 +787,26 @@ main > section:first-child .hero-subtitle {
     content: none;
   }
 
+  /* Tamaño fluido calculado para que las dos líneas del H1 quepan SIEMPRE
+     entre la cabecera fija (~102px, tamaño fijo) y la frente del hombre
+     (~38% de la altura de la foto). Un 5.6vw a secas dejaba el titular
+     sobre las cabezas por debajo de ~1900px, porque la foto encoge con
+     el ancho y los 102px de cabecera no. Resuelto para fs: 2 líneas ×
+     1.05 ≤ 0.36·H − (1.5%·H + 102px), con H = ancho / 1.987. */
   .hero-photo .hero-photo__h1 {
     top: calc(1.5% + 102px);
     left: 10%;
     right: 7%;
     text-align: center;
-    font-size: clamp(2.6rem, 5.6vw, 6.2rem) !important;
+    font-size: clamp(2.2rem, calc(8.27vw - 52px), 6.2rem) !important;
     line-height: 1.05 !important;
+  }
+  /* La máscara de cada palabra (overflow:hidden) es un inline-block cuya
+     línea base cae en su borde inferior, y eso alargaba cada línea del H1
+     hasta ~1.24× su tamaño. Alinearla arriba deja la línea en su
+     line-height real (1.05) sin cambiar el recorte de la animación. */
+  .hero-photo .hero-photo__h1 .word-reveal-mask {
+    vertical-align: top;
   }
 
   .hero-photo .hero-photo__subtitle {
@@ -844,6 +857,27 @@ main > section:first-child .hero-subtitle {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* Pantallas medias (portátiles de 1280–1440px y tabletas apaisadas): la foto
+   encoge con el ancho pero el texto de las tarjetas de confianza no, así que
+   con la franja de 44% de ancho cada tarjeta se alargaba hacia arriba hasta
+   pisar la fila de botones. Más ancho de franja = tarjetas más bajas. Las
+   pantallas grandes (≥1536px) conservan la franja original. */
+@media (min-width: 1024px) and (max-width: 1535px) {
+  .hero-photo .hero-photo__trust-wrap {
+    left: 14%;
+    right: 16%;
+  }
+}
+
+/* Entre 1024 y 1239px no caben rótulo + frase en cada tarjeta sin invadir los
+   botones: se deja solo el rótulo (la frase sigue visible desde 1240px y en
+   el flujo apilado de móvil). */
+@media (min-width: 1024px) and (max-width: 1239px) {
+  .hero-photo__trust-wrap .hero-photo__trust-text {
+    display: none;
   }
 }
 
