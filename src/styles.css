@@ -191,37 +191,10 @@ main > section {
   color: var(--jch-ink) !important;
 }
 
-/* Textura de papel en vez de blanco liso en modo claro, en cada sección
-   de contenido — EXCEPTO la primera (el hero), que en todas las páginas
-   ya lleva su propia foto a pantalla completa (.hero-bg-image, position:
-   absolute) encima del fondo de la sección. Poniendo el background-image
-   justo en esa sección concreta se observó en el propio navegador que a
-   veces tapaba la foto del hero de forma intermitente (problema de
-   pintado/compositing, no de las reglas de apilamiento en sí, pero
-   reproducible) — así que se excluye por completo en vez de arriesgar
-   ocultar una imagen existente. Solo en modo claro: la textura es de
-   papel blanco, no tiene sentido sobre --jch-bg oscuro. No se ha tocado
-   ninguna imagen existente del sitio. */
-[data-theme="light"] main > section:not(:first-child) {
-  background-image: url("/paper-bg.webp") !important;
-  background-repeat: repeat !important;
-}
-
-/* Modo oscuro: la misma textura de papel del modo claro, pero oscurecida
-   — no invertida. Un ::before con z-index negativo + filter:invert()
-   resultó invisible en la práctica (probablemente overflow:hidden de la
-   sección de abajo interactuando mal con un descendiente de z-index
-   negativo con filter, combinación con bugs de compositing conocidos en
-   varios motores). En vez de pelear con eso, se aplica el mismo
-   background-image DIRECTO sobre la sección, tal cual ya hace modo claro
-   arriba (mecanismo ya probado, sin pseudo-elemento), y se oscurece
-   apilando un degradado semitransparente negro como primera capa del
-   propio background-image — dos imágenes en una sola propiedad, sin
-   filter, así que el texto de la sección no se ve afectado. */
-:root:not([data-theme="light"]) main > section:not(:first-child) {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/paper-bg.webp") !important;
-  background-repeat: no-repeat, repeat !important;
-}
+/* La textura de papel arrugado (paper-bg.webp) que llevaba cada sección
+   de contenido, en ambos temas, se ha quitado a petición del cliente —
+   las secciones vuelven al fondo liso de --jch-bg ya declarado en la
+   regla "main > section" de arriba. */
 
 main > section {
   position: relative;
@@ -1778,7 +1751,7 @@ footer.site-footer .footer__col-static { display: inline-block; padding: .55rem 
 #herramientas .tools__heading p { color: var(--jch-muted) !important; font-size: 1.1rem; }
 /* La cuadrícula rompe el ancho máximo del contenedor y ocupa todo el
    viewport, con separación real entre tarjetas para que se vea el fondo
-   de la sección (textura de papel en modo claro) entre cuadro y cuadro. */
+   de la sección entre cuadro y cuadro. */
 #herramientas .tools__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
