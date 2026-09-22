@@ -407,18 +407,20 @@ function Header() {
     };
   }, [mobileOpen]);
 
-  // Transparente sobre la foto del hero, sólido en cuanto se abandona esa
-  // sección — el umbral se mide contra la altura real de .hero-photo (que
-  // cambia con el viewport, aspect-ratio) en vez de un nº de píxeles fijo,
-  // para que el cambio ocurra justo al salir de la foto y no a medio hero.
-  // Solo aplica a partir de 1024px: en móvil el header se queda blanco
-  // sólido siempre (ver .home-header en CSS), así que si "scrolled" se
-  // activase igualmente ahí, el logo pasaría a la variante blanca sobre
-  // ese mismo fondo blanco y se volvería invisible.
+  // Transparente sobre la foto del hero, píldora flotante con glass en
+  // cuanto se abandona esa sección — el umbral se mide contra la altura
+  // real de .hero-photo (que cambia con el viewport, aspect-ratio) en vez
+  // de un nº de píxeles fijo, para que el cambio ocurra justo al salir de
+  // la foto y no a medio hero. Ya no depende del ancho de pantalla: antes
+  // solo pasaba a partir de 1024px porque el logo blanco se volvía
+  // invisible sobre la barra blanca sólida del móvil — ahora esa barra
+  // también se oscurece al hacer scroll (ver .home-header--scrolled en
+  // CSS), así que el mismo mecanismo funciona igual en cualquier tamaño,
+  // igual que en el resto de páginas del sitio.
   useEffect(() => {
     const hero = document.querySelector<HTMLElement>(".hero-photo");
     const getThreshold = () => (hero ? hero.offsetHeight - 80 : 40);
-    const onScroll = () => setScrolled(window.innerWidth >= 1024 && window.scrollY > getThreshold());
+    const onScroll = () => setScrolled(window.scrollY > getThreshold());
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);

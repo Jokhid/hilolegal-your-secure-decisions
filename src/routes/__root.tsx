@@ -19,20 +19,53 @@ const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;40
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--jch-bg)] px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-[var(--jch-ink)]">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-[var(--jch-ink)]">Página no encontrada</h2>
-        <p className="mt-2 text-sm text-[var(--jch-muted)]">
-          La página que buscas no existe o se ha movido.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--jch-accent-ink)] px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
-          >
-            Volver al inicio
-          </Link>
+    <div className="flex min-h-screen flex-col bg-[var(--jch-bg)]">
+      {/* React 19 saca este <title> al <head> automáticamente, sustituyendo
+          al de la ruta raíz — sin esto, la pestaña y el título compartido
+          al enlazar esta página mostraban "HiloLegal | Boutique legal y
+          patrimonial en Altea", el título de la home, no uno propio. */}
+      <title>Página no encontrada | HiloLegal</title>
+      <meta name="robots" content="noindex" />
+
+      {/* Antes esta página no tenía ni logo ni navegación — quien llegaba
+          aquí desde un enlace roto solo podía volver al inicio, sin forma
+          de llegar directamente al blog o a un área de servicio. */}
+      <header className="w-full px-6 py-5">
+        <Link to="/" className="inline-flex items-center gap-3">
+          <img
+            src="/hilolegal-logo-black.webp"
+            alt="Logo HiloLegal"
+            className="notfound-logo notfound-logo--dark h-10 w-auto object-contain"
+          />
+          <img
+            src="/hilolegal-logo-white.webp"
+            alt="Logo HiloLegal"
+            className="notfound-logo notfound-logo--light h-10 w-auto object-contain"
+          />
+        </Link>
+      </header>
+
+      <div className="flex flex-1 items-center justify-center px-4">
+        <div className="max-w-md text-center">
+          <h1 className="text-7xl font-bold text-[var(--jch-ink)]">404</h1>
+          <h2 className="mt-4 text-xl font-semibold text-[var(--jch-ink)]">Página no encontrada</h2>
+          <p className="mt-2 text-sm text-[var(--jch-muted)]">
+            La página que buscas no existe o se ha movido.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--jch-accent-ink)] px-5 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
+            >
+              Volver al inicio
+            </Link>
+            <Link
+              to="/blog"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--jch-line-strong)] px-5 py-2.5 text-sm font-medium text-[var(--jch-ink)] transition-colors hover:bg-[var(--jch-line)]"
+            >
+              Ir al blog
+            </Link>
+          </div>
         </div>
       </div>
     </div>

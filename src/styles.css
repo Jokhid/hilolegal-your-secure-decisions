@@ -827,8 +827,10 @@ main > section:first-child .hero-subtitle {
      claro translúcido lo hace legible sin importar qué haya detrás. */
   .hero-photo .hero-photo__cta a.btn-ghost {
     background: rgba(255, 255, 255, 0.72) !important;
+    /* Sin -webkit-backdrop-filter a mano — ver el comentario junto a
+       .home-header--scrolled nav sobre por qué el compilador lo descarta
+       si se escriben los dos. */
     backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     border-color: rgba(26, 26, 26, 0.3) !important;
   }
   .hero-photo .hero-photo__cta a.btn-ghost:hover {
@@ -854,7 +856,6 @@ main > section:first-child .hero-subtitle {
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.42);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   }
@@ -893,37 +894,60 @@ main > section:first-child .hero-subtitle {
   top: 0;
   background: #ffffff;
   border-bottom: 1px solid #e5e5e5;
+  transition: background-color 300ms ease, border-color 300ms ease;
 }
-.home-header__link { color: #1a1a1a; }
+.home-header__link { color: #1a1a1a; transition: color 300ms ease; }
 .home-header__burger { color: #c5a566; }
+
+/* Header flotante — píldora redondeada con efecto glass, igual en toda la
+   web (ver el bloque compartido ".veronica-original header.sticky nav,
+   .josecarlos-original header.sticky nav, ..." más abajo, mismo fondo,
+   blur, borde y sombra). La home es la única página con un estado previo
+   realmente transparente (mientras el header flota sobre la foto del
+   hero), así que aquí la píldora solo aparece cuando "scrolled" es cierto
+   — ya no depende del ancho de pantalla (ver el comentario en index.tsx),
+   así que este mismo bloque funciona igual en móvil y en escritorio. */
+.home-header--scrolled {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.home-header--scrolled nav {
+  width: calc(100% - 24px);
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: rgba(15, 15, 15, 0.62);
+  /* Un solo backdrop-filter, sin el -webkit- a mano: el compilador (Lightning
+     CSS) añade el prefijo que haga falta él solo — escribir los dos a mano
+     hace que descarte la versión estándar en el CSS final (visto en
+     .home-header--scrolled nav y en la píldora compartida de abajo: el build
+     dejaba solo -webkit-backdrop-filter, sin blur real en Chrome). */
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  transition: background-color 300ms ease, box-shadow 300ms ease, width 300ms ease, margin 300ms ease;
+}
+.home-header--scrolled .home-header__link {
+  color: #f3f0ea;
+}
+.home-header--scrolled .home-header__toggle-wrap button {
+  color: #f3f0ea !important;
+}
+.home-header--scrolled .home-header__toggle-wrap button:hover {
+  color: #c5a566 !important;
+}
+
+@media (min-width: 640px) {
+  .home-header--scrolled nav {
+    width: calc(100% - 48px);
+    margin-top: 14px;
+  }
+}
 
 @media (min-width: 1024px) {
   .home-header {
     position: fixed;
     background: transparent;
     border-bottom: 1px solid transparent;
-    transition: background-color 400ms ease, border-color 400ms ease, backdrop-filter 400ms ease;
-  }
-  /* Sin límite duro: en vez de una caja sólida con un borde recto, el
-     fondo del header (color + blur) se desvanece en gradiente justo
-     debajo del contenido, hasta integrarse con la página. La capa real
-     vive en ::after, más alta que el propio header, para tener margen
-     donde degradarse antes de desaparecer del todo. */
-  .home-header--scrolled {
-    background: transparent;
-    border-bottom-color: transparent;
-  }
-  .home-header--scrolled::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
   }
 
   /* El CTA del header repite casi el mismo mensaje que el CTA principal
@@ -952,23 +976,6 @@ main > section:first-child .hero-subtitle {
      webp), que conserva el punto en su ocre real. */
   .home-header__logo {
     transition: opacity 200ms ease;
-  }
-
-  .home-header__link {
-    transition: color 400ms ease;
-  }
-  .home-header--scrolled .home-header__link {
-    color: #f3f0ea;
-  }
-
-  .home-header__toggle-wrap button {
-    transition: color 400ms ease;
-  }
-  .home-header--scrolled .home-header__toggle-wrap button {
-    color: #f3f0ea !important;
-  }
-  .home-header--scrolled .home-header__toggle-wrap button:hover {
-    color: #c5a566 !important;
   }
 }
 
@@ -1877,7 +1884,8 @@ footer.site-footer .brand {
 
 /* Responsive tweaks */
 @media (max-width: 767px) {
-  header.sticky nav { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
+  header.sticky nav,
+  .home-header--scrolled nav { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
   main > section { padding-top: 5.5rem !important; padding-bottom: 5.5rem !important; }
   main > section:first-child { min-height: auto; padding-top: 4.5rem !important; }
   main h1 { font-size: clamp(2.5rem, 12vw, 4rem) !important; }
@@ -1898,22 +1906,6 @@ footer.site-footer .brand {
   color: #f3f0ea !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-}
-/* Mismo estilo que el header de la home: transparente, con el tinte
-   oscuro y el desenfoque degradándose en gradiente dentro de su misma
-   altura en vez de cortar en un borde recto. */
-.blog-editorial > header::after,
-.blog-post > header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
 }
 
 .blog-editorial > header a,
@@ -2488,21 +2480,6 @@ footer.site-footer .brand {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-/* Mismo estilo que el header de la home: transparente, con el tinte
-   oscuro y el desenfoque degradándose en gradiente dentro de su misma
-   altura en vez de cortar en un borde recto. */
-.josecarlos-original header.sticky::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-}
 
 .josecarlos-original header.sticky a,
 .josecarlos-original header.sticky button {
@@ -2592,21 +2569,6 @@ footer.site-footer .brand {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-/* Mismo estilo que el header de la home: transparente, con el tinte
-   oscuro y el desenfoque degradándose en gradiente dentro de su misma
-   altura en vez de cortar en un borde recto. */
-.veronica-original header.sticky::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-}
 
 .veronica-original header.sticky a,
 .veronica-original header.sticky button {
@@ -2620,6 +2582,42 @@ footer.site-footer .brand {
 .blog-editorial > header a.header-whatsapp-btn,
 .blog-post > header a.header-whatsapp-btn {
   color: var(--jch-cta-ink) !important;
+}
+
+/* ============================================================
+   Header flotante — píldora redondeada con efecto glass, unificada en
+   todo el sitio (Verónica, José Carlos, las 4 páginas de derecho,
+   administración de fincas y sus 4 subpáginas, las 3 herramientas, la
+   checklist de arras, y el blog). El <header> de cada familia ya se deja
+   transparente arriba; aquí es el <nav> de dentro el que lleva el fondo,
+   el desenfoque, el borde redondeado y la sombra — antes era una barra
+   de borde a borde con un tinte que se degradaba en gradiente hacia
+   abajo; ahora es una píldora separada de los bordes, como en la home
+   una vez se hace scroll (mismo tinte oscuro, deliberado con
+   independencia del tema claro/oscuro de cada página — ver el
+   comentario de unificación de encabezados más arriba). */
+.veronica-original header.sticky nav,
+.josecarlos-original header.sticky nav,
+.blog-editorial > header nav,
+.blog-post > header nav {
+  width: calc(100% - 24px);
+  max-width: 1200px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: rgba(15, 15, 15, 0.62);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+@media (min-width: 640px) {
+  .veronica-original header.sticky nav,
+  .josecarlos-original header.sticky nav,
+  .blog-editorial > header nav,
+  .blog-post > header nav {
+    width: calc(100% - 48px);
+    margin-top: 14px;
+  }
 }
 
 .veronica-original footer {
@@ -2780,13 +2778,22 @@ footer.site-footer .brand {
 :root:not([data-theme="light"]) .footer-logo--dark { display: none; }
 :root:not([data-theme="light"]) .footer-logo--light { display: block; }
 
+/* Logo de la página 404 — mismo mecanismo que .footer-logo, sin
+   parpadeo al hidratar porque data-theme ya está fijado antes del
+   primer pintado. */
+[data-theme="light"] .notfound-logo--dark { display: block; }
+[data-theme="light"] .notfound-logo--light { display: none; }
+:root:not([data-theme="light"]) .notfound-logo--dark { display: none; }
+:root:not([data-theme="light"]) .notfound-logo--light { display: block; }
+
 header.sticky nav > a:first-child span {
   font-family: "Poppins", Inter, ui-sans-serif, system-ui, sans-serif !important;
   font-size: 1.5em !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
-  /* Ocre de marca fijo (#C5A566), igual en ambos temas — la cabecera
-     siempre tiene fondo blanco, así que no depende de var(--jch-accent-ink). */
+  /* Ocre de marca fijo (#C5A566), igual en ambos temas — la píldora del
+     header siempre es oscura, así que no depende de var(--jch-accent-ink)
+     (que se aclara en tema claro y perdería contraste aquí). */
   color: #C5A566 !important;
 }
 

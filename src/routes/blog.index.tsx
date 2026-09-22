@@ -83,16 +83,19 @@ function BlogIndex() {
           <Link to="/" className="flex items-center gap-3">
             <img src="/hilolegal-logo-white.webp" alt="Logo HiloLegal" className="h-12 w-auto object-contain" />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <ThemeToggle />
-            <Link to="/" className="blog-editorial__back">
+            {/* En móvil el logo ya lleva a "/" — este enlace es redundante ahí
+                y ocupa el espacio que necesita el botón de WhatsApp, así que
+                se oculta hasta sm: (misma lógica que antes tenía WhatsApp). */}
+            <Link to="/" className="blog-editorial__back hidden sm:inline-block">
               ← Volver al inicio
             </Link>
             <a
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-whatsapp-btn hidden rounded-full bg-[#C5A566] px-8 py-[1.1rem] text-xs font-medium uppercase tracking-[0.14em] text-black transition-colors hover:bg-[#A78C57] sm:inline-block"
+              className="header-whatsapp-btn inline-flex items-center rounded-full bg-[#C5A566] px-4 py-2 text-[10px] font-medium uppercase tracking-[0.1em] text-black transition-colors hover:bg-[#A78C57] sm:px-8 sm:py-[1.1rem] sm:text-xs sm:tracking-[0.14em]"
             >
               WhatsApp
             </a>

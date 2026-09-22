@@ -35,6 +35,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/ahorro-potencial", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
           { path: "/test-salud-financiera", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
           { path: "/simulador-hipoteca", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-02" },
+          { path: "/antes-de-firmar-arras", changefreq: "monthly", priority: "0.7", lastmod: "2026-09-22" },
         ];
 
         const urls = entries

@@ -44,31 +44,33 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
-// Las 4 páginas de derecho servían 200 tanto en /derecho-familia como en
-// /DERECHO-FAMILIA (contenido duplicado sin redirección de origen — solo
-// mitigado por el canonical). El router de TanStack es case-sensitive por
-// diseño, así que la normalización se hace aquí, antes de que la petición
-// llegue al handler de SSR.
-const DERECHO_ROUTES = new Set([
-  "/derecho-familia",
-  "/derecho-penal",
-  "/derecho-administrativo",
-  "/derecho-inmobiliario",
-]);
-
-function derechoCaseRedirect(request: Request): Response | null {
+// Cualquier variante en mayúsculas de una ruta de página (p. ej.
+// /DERECHO-FAMILIA, /JoseCarlos, /Blog) servía 200 con el mismo contenido
+// que su versión en minúsculas — contenido duplicado sin redirección de
+// origen, solo mitigado por el canonical. Antes esto solo se corregía para
+// las 4 páginas de derecho; se generaliza a cualquier ruta de página del
+// sitio, no solo a una lista concreta. El router de TanStack es
+// case-sensitive por diseño, así que la normalización se hace aquí, antes
+// de que la petición llegue al handler de SSR.
+//
+// Se excluyen las rutas cuyo último segmento tiene un "." (sitemap.xml,
+// llms.txt, y cualquier archivo estático real como una imagen o un bundle
+// de /assets) — ahí la mayúscula/minúscula puede ser parte real del nombre
+// de archivo y no debe tocarse.
+function caseRedirect(request: Request): Response | null {
   const url = new URL(request.url);
-  const lower = url.pathname.toLowerCase();
-  if (url.pathname !== lower && DERECHO_ROUTES.has(lower)) {
-    url.pathname = lower;
-    return Response.redirect(url.toString(), 301);
-  }
-  return null;
+  const { pathname } = url;
+  const lower = pathname.toLowerCase();
+  if (pathname === lower) return null;
+  const lastSegment = pathname.slice(pathname.lastIndexOf("/") + 1);
+  if (lastSegment.includes(".")) return null;
+  url.pathname = lower;
+  return Response.redirect(url.toString(), 301);
 }
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    const redirect = derechoCaseRedirect(request);
+    const redirect = caseRedirect(request);
     if (redirect) return redirect;
 
     try {
