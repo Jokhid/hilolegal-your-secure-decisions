@@ -1,12 +1,14 @@
-// Centralized event tracking. Pushes to the GTM dataLayer that's already
-// initialized in __root.tsx — GTM's own tag config decides what (if
-// anything) forwards each event to GA4 or elsewhere, this file just makes
-// sure every push uses one of a known, agreed set of event names instead
-// of ad-hoc strings scattered across components.
-
+// Centralized event tracking. Pushes to the GTM dataLayer (for whenever
+// tags get built inside the GTM-NVXKNWS2 container — hoy vacío, verificado
+// el 22/09/2026: "Aún no tiene ninguna etiqueta") y, además, llama a
+// gtag('event', ...) directamente, para que cada evento llegue a GA4 ya
+// mismo sin depender de esa configuración pendiente. gtag solo existe tras
+// aceptar cookies (ver Analytics.tsx / loadAnalyticsConsent) — sin
+// consentimiento, esta función solo hace el push a dataLayer, como antes.
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -55,4 +57,7 @@ export function trackEvent(event: AnalyticsEvent, params: Record<string, string 
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event, ...params });
+  if (typeof window.gtag === "function") {
+    window.gtag("event", event, params);
+  }
 }
