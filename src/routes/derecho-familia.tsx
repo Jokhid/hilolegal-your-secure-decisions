@@ -14,7 +14,7 @@ export const Route = createFileRoute("/derecho-familia")({
       { title: "Abogada de Familia y Herencias en Altea | HiloLegal" },
       {
         name: "description",
-        content: "Herencias, divorcios y contratos con seguridad jurídica. Verónica López analiza tu caso con honestidad sobre qué es realmente viable, en Altea y la Costa Blanca.",
+        content: "Herencias, divorcios y contratos con seguridad jurídica. Verónica López analiza tu caso con honestidad sobre qué es viable, en Altea y Costa Blanca.",
       },
       { property: "og:title", content: "Abogada de Familia y Herencias en Altea | HiloLegal" },
       { property: "og:description", content: "Herencias, divorcios y contratos con seguridad jurídica, analizados con honestidad sobre qué es realmente viable." },

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/derecho-penal")({
       { title: "Abogada Penalista en Altea | HiloLegal" },
       {
         name: "description",
-        content: "Defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso. Verónica López, abogada penalista en Altea y la Costa Blanca.",
+        content: "Defensa técnica desde la primera declaración, con transparencia total sobre el caso. Verónica López, abogada penalista en Altea y Costa Blanca.",
       },
       { property: "og:title", content: "Abogada Penalista en Altea | HiloLegal" },
       { property: "og:description", content: "Defensa técnica desde la primera declaración, con transparencia sobre las expectativas reales del caso." },

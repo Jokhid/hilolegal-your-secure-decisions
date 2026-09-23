@@ -567,7 +567,7 @@ Cuanto antes se ordena esta diferencia entre flujo de caja y patrimonio real, me
     readingTime: "6 min",
     keyword: "base mínima autónomos baja laboral 2026",
     excerpt: "¿Sabes cuánto cobrarías si mañana te pusieras de baja? Los números son peores de lo que crees.",
-    metaDescription: "¿Sabes cuánto cobrarías realmente si mañana te pusieras de baja? Los números son mucho peores de lo que crees. Te lo explico con el cálculo real para 2026.",
+    metaDescription: "¿Sabes cuánto cobrarías si mañana te pusieras de baja? Los números son peores de lo que crees. Te explico el cálculo real para 2026.",
     content: `## La dicotomía financiera peligrosa del autónomo
 
 Si cotizas por la base mínima, tu prestación por incapacidad temporal se calcula sobre esa base, no sobre lo que realmente ingresas — así que el contraste entre tu nivel de vida real y lo que cobrarías de baja suele ser mucho mayor de lo que la mayoría de autónomos espera.\n\nMuchos profesionales autónomos vivimos con ingresos medios o altos pero cuota baja. Esa contradicción tiene consecuencias muy concretas cuando la vida decide ponerte a prueba.
@@ -1353,7 +1353,7 @@ Este artículo es información general: el plazo aplicable a tu caso depende de 
     readingTime: "6 min",
     keyword: "reducción sanción administrativa pago voluntario",
     excerpt: "\"Si pago ahora, me lo dejan en menos.\" Es cierto, y el descuento tiene una condición: renunciar a recurrir en vía administrativa. Conviene saberlo antes de pagar.",
-    metaDescription: "Pagar una sanción administrativa con reducción exige renunciar a recurrir en vía administrativa. Qué dice la Ley 39/2015 y cuándo conviene alegar en lugar de pagar.",
+    metaDescription: "Pagar una sanción con reducción exige renunciar a recurrir en vía administrativa. Qué dice la Ley 39/2015 y cuándo conviene alegar en vez de pagar.",
     content: `## "Si pago ahora, me lo dejan en menos": cierto, pero con una condición
 
 Iniciado un procedimiento sancionador, la Ley 39/2015 prevé dos formas de terminarlo antes de tiempo: que reconozcas tu responsabilidad, o que pagues voluntariamente antes de que se dicte la resolución (artículo 85). El pago voluntario pone fin al procedimiento cuando la sanción es únicamente económica, o cuando cabía imponer una sanción económica y otra no económica y se ha justificado que esta segunda no procede.

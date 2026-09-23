@@ -14,7 +14,7 @@ export const Route = createFileRoute("/derecho-administrativo")({
       { title: "Abogada Derecho Administrativo en Altea | HiloLegal" },
       {
         name: "description",
-        content: "Sanciones, recursos y expedientes frente a la Administración, analizados con el mismo criterio con el que se instruyen desde dentro. Verónica López, en Altea.",
+        content: "Sanciones, recursos y expedientes frente a la Administración, analizados con el criterio de quien los instruye desde dentro. Verónica López, en Altea.",
       },
       { property: "og:title", content: "Abogada Derecho Administrativo en Altea | HiloLegal" },
       { property: "og:description", content: "Sanciones, recursos y expedientes frente a la Administración, analizados con criterio institucional." },
