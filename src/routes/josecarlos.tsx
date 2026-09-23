@@ -89,9 +89,19 @@ export const Route = createFileRoute("/josecarlos")({
               priceRange: "€€",
               openingHours: "Mo-Fr 09:00-19:00",
               // Ficha real de HiloLegal (no la personal de José Carlos, que
-              // sigue en el sameAs del Person de más arriba).
+              // sigue en el sameAs del Person de más arriba). hasMap no es
+              // una afirmación de identidad como sameAs, solo un enlace
+              // práctico al mapa, así que se queda.
               hasMap: "https://share.google/t4jmqHWMM9suL0v2a",
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
+              // Sin sameAs: antes llevaba los mismos perfiles corporativos
+              // (Facebook, LinkedIn, Google Business) que ya declara el
+              // LegalService de la home con un nombre de entidad distinto
+              // ("HiloLegal" vs. "José Carlos Hidalgo — Hipotecas y
+              // Planificación Patrimonial") — confunde la resolución de
+              // entidad de Google sobre a quién pertenecen esos perfiles.
+              // Confirmado con el cliente que son de la empresa, así que se
+              // quedan solo en el LegalService de la home
+              // (src/routes/index.tsx) — mismo ajuste hecho en /veronica.
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",

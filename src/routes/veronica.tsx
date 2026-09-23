@@ -57,8 +57,10 @@ export const Route = createFileRoute("/veronica")({
               // ninguno aquí. El enlace de Google que antes figuraba en este
               // campo resultó ser (verificado navegando el redirect) la
               // ficha personal de José Carlos, no la de Verónica — se
-              // elimina en vez de mantener una atribución incorrecta. La
-              // ficha real de HiloLegal va en el sameAs del LegalService.
+              // elimina en vez de mantener una atribución incorrecta. Los
+              // perfiles corporativos de HiloLegal (confirmado: son de la
+              // empresa) van solo en el LegalService de la home — ver el
+              // comentario junto al LegalService de aquí abajo.
               worksFor: {
                 "@type": "Organization",
                 name: "HiloLegal",
@@ -73,8 +75,16 @@ export const Route = createFileRoute("/veronica")({
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
-              // Perfiles corporativos reales de HiloLegal (no personales).
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
+              // Sin sameAs: antes llevaba los perfiles corporativos de
+              // HiloLegal (Facebook, LinkedIn, Google Business), los mismos
+              // que ya declara el LegalService de la home — dos entidades
+              // con nombres distintos ("HiloLegal" aquí en la home,
+              // "Verónica López — Abogada" allí) reclamando ser el mismo
+              // Facebook/LinkedIn/ficha de Google confunde la resolución de
+              // entidad de Google. Confirmado con el cliente que esos
+              // perfiles son de la empresa, así que se quedan solo en el
+              // LegalService de la home (src/routes/index.tsx) — el mismo
+              // ajuste se hizo en el FinancialService de /josecarlos.
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Calle Regata 3, 1º E",
