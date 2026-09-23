@@ -58,11 +58,23 @@ export const Route = createFileRoute("/administracion-fincas/")({
                 name: "José Carlos Hidalgo Ortega",
                 url: "https://www.hilolegal.es/josecarlos",
               },
-              // Perfiles corporativos reales de HiloLegal (no personales).
-              // El enlace de Google usado aquí antes ("GlqwXv7lO958pDPDS")
-              // resultó ser, verificado navegando el redirect, la ficha
-              // personal de José Carlos, no la del despacho.
-              sameAs: ["https://www.facebook.com/HiloLegal", "https://www.linkedin.com/in/hilolegal/", "https://share.google/t4jmqHWMM9suL0v2a"],
+              // Misma foto ya usada como og:image de esta página. Sin
+              // priceRange a petición expresa del cliente.
+              image: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp",
+              openingHours: "Mo-Fr 09:00-19:00",
+              // Sin sameAs: esta ficha llevaba los mismos perfiles
+              // corporativos de HiloLegal (Facebook, LinkedIn, Google
+              // Business) que ya declara el LegalService de la home, bajo
+              // un nombre de entidad distinto ("Administración de fincas —
+              // José Carlos Hidalgo") — confunde la resolución de entidad
+              // de Google sobre a quién pertenecen esos perfiles.
+              // Confirmado con el cliente que son de la empresa, así que se
+              // quedan solo en el LegalService de la home
+              // (src/routes/index.tsx) — mismo ajuste hecho en /veronica y
+              // /josecarlos. El enlace de Google usado aquí antes
+              // ("GlqwXv7lO958pDPDS") resultó ser además, verificado
+              // navegando el redirect, la ficha personal de José Carlos, no
+              // la del despacho.
               areaServed: [
                 { "@type": "City", name: "Altea" },
                 { "@type": "City", name: "Benidorm" },

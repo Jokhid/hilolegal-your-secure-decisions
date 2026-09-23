@@ -75,6 +75,10 @@ export const Route = createFileRoute("/veronica")({
               telephone: VERONICA_TELEPHONE,
               email: EMAIL,
               description: VERONICA_DESCRIPTION,
+              // Misma foto ya usada como og:image de esta página. Sin
+              // priceRange a petición expresa del cliente.
+              image: "https://www.hilolegal.es/VERODERECHA.webp",
+              openingHours: "Mo-Fr 09:00-19:00",
               // Sin sameAs: antes llevaba los perfiles corporativos de
               // HiloLegal (Facebook, LinkedIn, Google Business), los mismos
               // que ya declara el LegalService de la home — dos entidades

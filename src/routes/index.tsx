@@ -53,6 +53,14 @@ export const Route = createFileRoute("/")({
           url: "https://www.hilolegal.es",
           telephone: "+34647506040",
           email: "info@hilolegal.es",
+          // Misma foto ya usada como og:image de esta página. Sin
+          // priceRange a petición expresa del cliente — el resto de campos
+          // de LocalBusiness (image, openingHours) sí se completan aquí,
+          // ausentes hasta ahora solo en esta ficha, en la de Verónica y en
+          // la de administración de fincas, mientras que la de José Carlos
+          // (FinancialService en /josecarlos) ya los tenía los tres.
+          image: "https://www.hilolegal.es/fotoalteadespachohorizontal.webp",
+          openingHours: "Mo-Fr 09:00-19:00",
           // Perfiles corporativos reales de HiloLegal (no personales de
           // José Carlos ni de Verónica). El antiguo enlace de Google aquí
           // usado ("GlqwXv7lO958pDPDS") resultó ser, verificado navegando
