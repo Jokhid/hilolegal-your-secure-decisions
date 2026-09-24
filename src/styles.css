@@ -224,21 +224,17 @@ main > section:first-child {
   object-position: center;
 }
 
+/* Sin degradado oscuro: la foto del hero se ve a color completo en
+   cualquier página y en cualquier tema — la legibilidad del texto
+   superpuesto corre a cargo de la sombra de texto de más abajo, no de
+   oscurecer la foto. Antes esto solo se quitaba en modo claro (y de
+   forma incondicional en .josecarlos-original); en modo oscuro,
+   /veronica y las 4 páginas de derecho seguían aplicando un degradado
+   de hasta el 95% de negro sobre la foto. */
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(100deg, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.9) 55%, rgba(10, 10, 10, 0.68) 85%, rgba(10, 10, 10, 0.45) 100%),
-    linear-gradient(0deg, rgba(10, 10, 10, 0.6), transparent 45%);
-}
-
-/* In light mode the hero photo should read in full color instead of
-   through a dark scrim — legibility falls back to the text-shadow rule
-   below. josecarlos.tsx is permanently light-themed (no [data-theme]
-   toggle applies there), so it gets the same treatment unconditionally. */
-[data-theme="light"] .hero-bg-overlay,
-.josecarlos-original .hero-bg-overlay {
   background: none;
 }
 
