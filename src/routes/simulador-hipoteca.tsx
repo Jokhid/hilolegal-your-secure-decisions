@@ -389,9 +389,16 @@ function Header() {
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <Link to="/" className="group flex items-center gap-3">
             <motion.img
-              src={LOGO}
+              src="/hilolegal-logo-white.webp"
               alt="Logo HiloLegal"
-              className="h-12 w-auto object-contain"
+              className="header-logo-ondark h-12 w-auto object-contain"
+              whileHover={{ rotate: -2, scale: 1.05 }}
+              transition={spring}
+            />
+            <motion.img
+              src="/hilolegal-logo-black.webp"
+              alt="Logo HiloLegal"
+              className="header-logo-onwhite h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />

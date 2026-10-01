@@ -335,7 +335,14 @@ function Header() {
             <motion.img
               src="/hilolegal-logo-white.webp"
               alt="Logo HiloLegal"
-              className="h-12 w-auto object-contain"
+              className="header-logo-ondark h-12 w-auto object-contain"
+              whileHover={{ rotate: -2, scale: 1.05 }}
+              transition={spring}
+            />
+            <motion.img
+              src="/hilolegal-logo-black.webp"
+              alt="Logo HiloLegal"
+              className="header-logo-onwhite h-12 w-auto object-contain"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />

@@ -450,10 +450,29 @@ function Header() {
       >
         <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-5">
           <a href="/" className="group flex items-center gap-3">
+            {/* 3 imágenes, visibilidad elegida por CSS (ver .home-header__logo--*
+                en styles.css) en vez de por JS: apilada en negro mientras no hay
+                scroll; sobre la píldora, blanca en tema claro y negra (con el
+                punto en ocre) en tema oscuro — para que la píldora siga
+                destacando sobre lo que tenga detrás en cualquier tema. */}
             <motion.img
-              src={scrolled ? "/hilolegal-logo-white.webp" : "/hilolegal-logo-stacked-black.webp"}
+              src="/hilolegal-logo-stacked-black.webp"
               alt="Logo HiloLegal"
-              className={`home-header__logo w-auto object-contain ${scrolled ? "h-[43.2px]" : "h-[57.6px]"}`}
+              className="home-header__logo home-header__logo--prescroll w-auto object-contain h-[57.6px]"
+              whileHover={{ rotate: -2, scale: 1.05 }}
+              transition={spring}
+            />
+            <motion.img
+              src="/hilolegal-logo-white.webp"
+              alt="Logo HiloLegal"
+              className="home-header__logo home-header__logo--postscroll-ondark w-auto object-contain h-[43.2px]"
+              whileHover={{ rotate: -2, scale: 1.05 }}
+              transition={spring}
+            />
+            <motion.img
+              src="/hilolegal-logo-black.webp"
+              alt="Logo HiloLegal"
+              className="home-header__logo home-header__logo--postscroll-onwhite w-auto object-contain h-[43.2px]"
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />

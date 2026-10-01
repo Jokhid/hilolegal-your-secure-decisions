@@ -905,6 +905,44 @@ main > section:first-child .hero-subtitle {
   color: #c5a566 !important;
 }
 
+/* Logo de la home: 3 variantes superpuestas, elegidas por CSS en vez de
+   por JS — antes era un único <img> cuyo src cambiaba con "scrolled";
+   ahora cada variante es su propia imagen y solo se cambia qué se ve. */
+.home-header__logo--postscroll-ondark,
+.home-header__logo--postscroll-onwhite {
+  display: none;
+}
+.home-header--scrolled .home-header__logo--prescroll {
+  display: none;
+}
+.home-header--scrolled .home-header__logo--postscroll-ondark {
+  display: block;
+}
+
+/* Píldora del header en modo oscuro: en vez del glass oscuro con texto
+   claro de siempre, glass BLANCO con texto negro — el inverso exacto,
+   para que la píldora siga destacando sobre lo que tenga detrás (la
+   propia foto del hero, o páginas que ya son oscuras de por sí, como
+   /veronica) en vez de fundirse con un fondo igual de oscuro que ella. */
+:root:not([data-theme="light"]) .home-header--scrolled nav {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(26, 26, 26, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+:root:not([data-theme="light"]) .home-header--scrolled .home-header__link {
+  color: #1a1a1a;
+}
+:root:not([data-theme="light"]) .home-header--scrolled .home-header__burger,
+:root:not([data-theme="light"]) .home-header--scrolled .home-header__toggle-wrap button {
+  color: #1a1a1a !important;
+}
+:root:not([data-theme="light"]) .home-header--scrolled .home-header__logo--postscroll-ondark {
+  display: none;
+}
+:root:not([data-theme="light"]) .home-header--scrolled .home-header__logo--postscroll-onwhite {
+  display: block;
+}
+
 @media (min-width: 640px) {
   .home-header--scrolled nav {
     width: calc(100% - 48px);
@@ -2562,9 +2600,11 @@ footer.site-footer .brand {
    el desenfoque, el borde redondeado y la sombra — antes era una barra
    de borde a borde con un tinte que se degradaba en gradiente hacia
    abajo; ahora es una píldora separada de los bordes, como en la home
-   una vez se hace scroll (mismo tinte oscuro, deliberado con
-   independencia del tema claro/oscuro de cada página — ver el
-   comentario de unificación de encabezados más arriba). */
+   una vez se hace scroll. En modo claro (o sin tema) es este glass
+   oscuro con texto claro; en modo oscuro se invierte a glass blanco con
+   texto negro — ver el bloque ":root:not([data-theme=light])" más abajo
+   — para que la píldora siga destacando sobre lo que tenga detrás en
+   vez de fundirse con un fondo igual de oscuro que ella. */
 .veronica-original header.sticky nav,
 .josecarlos-original header.sticky nav,
 .blog-editorial > header nav,
@@ -2587,6 +2627,46 @@ footer.site-footer .brand {
     width: calc(100% - 48px);
     margin-top: 14px;
   }
+}
+
+:root:not([data-theme="light"]) .veronica-original header.sticky nav,
+:root:not([data-theme="light"]) .josecarlos-original header.sticky nav,
+:root:not([data-theme="light"]) .blog-editorial > header nav,
+:root:not([data-theme="light"]) .blog-post > header nav {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(26, 26, 26, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+:root:not([data-theme="light"]) .veronica-original header.sticky,
+:root:not([data-theme="light"]) .josecarlos-original header.sticky,
+:root:not([data-theme="light"]) .blog-editorial > header,
+:root:not([data-theme="light"]) .blog-post > header {
+  color: #1a1a1a !important;
+}
+:root:not([data-theme="light"]) .blog-editorial__back,
+:root:not([data-theme="light"]) .blog-post__back,
+:root:not([data-theme="light"]) .header-back-link {
+  color: #1a1a1a !important;
+}
+:root:not([data-theme="light"]) .blog-editorial__back:hover,
+:root:not([data-theme="light"]) .blog-post__back:hover,
+:root:not([data-theme="light"]) .header-back-link:hover {
+  color: var(--jch-accent) !important;
+}
+
+/* Logo de cada header, en las familias de arriba: dos imágenes
+   superpuestas, mostrando la que haga falta según el tema — blanca
+   sobre el glass oscuro de siempre, negra (con el punto en ocre) sobre
+   el glass blanco de modo oscuro. Mismo mecanismo que .footer-logo y
+   .notfound-logo (sin parpadeo al hidratar, data-theme ya está fijado
+   antes del primer pintado). */
+[data-theme="light"] .header-logo-onwhite,
+:root:not([data-theme="light"]) .header-logo-ondark {
+  display: none;
+}
+[data-theme="light"] .header-logo-ondark,
+:root:not([data-theme="light"]) .header-logo-onwhite {
+  display: block;
 }
 
 .veronica-original footer {
@@ -2760,10 +2840,15 @@ header.sticky nav > a:first-child span {
   font-size: 1.5em !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
-  /* Ocre de marca fijo (#C5A566), igual en ambos temas — la píldora del
-     header siempre es oscura, así que no depende de var(--jch-accent-ink)
-     (que se aclara en tema claro y perdería contraste aquí). */
+  /* Ocre de marca fijo (#C5A566) en modo claro, sin depender de
+     var(--jch-accent-ink) (que se aclara en tema claro y perdería
+     contraste contra la píldora oscura). En modo oscuro la píldora es
+     blanca — ver el override de abajo, que lo pasa a negro junto con el
+     resto del texto del header. */
   color: #C5A566 !important;
+}
+:root:not([data-theme="light"]) header.sticky nav > a:first-child span {
+  color: #1a1a1a !important;
 }
 
 /* José Carlos: con el logo ampliado un 50%, "José Carlos Hidalgo" a 1.5em
