@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequestIP } from "@tanstack/react-start/server";
 import { z } from "zod";
 
 // "gemini-2.5-flash-lite" y luego "gemini-2.5-flash" devolvían 404 — el
@@ -24,6 +25,36 @@ const MAX_MESSAGES = 24;
 const MAX_MESSAGE_CHARS = 800;
 
 const USER_ERROR = "El asistente no está disponible ahora mismo. Escríbenos por WhatsApp y te ayudamos enseguida.";
+
+// Límite por IP: este endpoint es público y cada llamada gasta cuota de Gemini,
+// así que sin freno cualquiera podría vaciársela en bucle. Un visitante normal
+// no pasa de 6 mensajes por conversación (tope del widget). El contador vive en
+// la memoria de la instancia: en un servidor sin estado es un freno de mejor
+// esfuerzo (cada instancia lleva su cuenta), no una barrera absoluta.
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX_REQUESTS = 20;
+const RATE_MAX_TRACKED_IPS = 5000;
+const recentRequests = new Map<string, number[]>();
+
+function isRateLimited(key: string, now = Date.now()): boolean {
+  const recent = (recentRequests.get(key) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+  const limited = recent.length >= RATE_MAX_REQUESTS;
+  if (!limited) recent.push(now);
+  recentRequests.set(key, recent);
+
+  if (recentRequests.size > RATE_MAX_TRACKED_IPS) {
+    for (const [ip, times] of recentRequests) {
+      if (!times.some((t) => now - t < RATE_WINDOW_MS)) recentRequests.delete(ip);
+    }
+    // Si aun así hay demasiadas (avalancha de IPs distintas), se descartan las más antiguas:
+    // la memoria queda acotada aunque se pierda algo de cuenta.
+    for (const ip of recentRequests.keys()) {
+      if (recentRequests.size <= RATE_MAX_TRACKED_IPS) break;
+      recentRequests.delete(ip);
+    }
+  }
+  return limited;
+}
 
 // Dado literalmente por el cliente. Única corrección aplicada: el teléfono de
 // Verónica se unificó al número compartido del despacho (647 50 60 40) en
@@ -94,6 +125,12 @@ const chatRequestSchema = z.object({
 export const sendChatMessage = createServerFn({ method: "POST" })
   .inputValidator((input) => chatRequestSchema.parse(input))
   .handler(async ({ data }) => {
+    const ip = getRequestIP({ xForwardedFor: true }) ?? "unknown";
+    if (isRateLimited(ip)) {
+      console.warn("Chat rate limit exceeded for", ip);
+      throw new Error(USER_ERROR);
+    }
+
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("GEMINI_API_KEY is not configured");

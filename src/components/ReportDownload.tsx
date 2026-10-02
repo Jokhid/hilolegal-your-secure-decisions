@@ -65,6 +65,13 @@ export function ReportDownload({ topic, children }: { topic: string; children: R
             {status === "sending" ? "Un momento…" : "Descargar informe"}
           </button>
         </div>
+        <p className="mt-4 text-xs leading-relaxed text-[var(--jch-muted)]">
+          Al pedir el informe, HiloLegal recibe tu email. Cómo lo tratamos está en nuestra{" "}
+          <a href="/privacidad.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:no-underline">
+            política de privacidad
+          </a>
+          .
+        </p>
         {status === "error" && (
           <p className="mt-3 text-sm text-[#9b2c2c]">No se ha podido registrar tu email. Puedes intentarlo de nuevo.</p>
         )}

@@ -1,25 +1,80 @@
 import { useEffect, useState } from "react";
+import { Cookie } from "lucide-react";
 import { loadAnalyticsConsent } from "./Analytics";
+import { GA4_ID } from "../routes/__root";
+
+type Choice = "true" | "necessary";
+
+/** Borra las cookies de Google Analytics/Tag Manager (propias del dominio) para que
+ *  retirar el consentimiento no deje rastro. GA las escribe en el dominio raíz y en
+ *  el host, así que se intenta en los dos. */
+function clearAnalyticsCookies() {
+  const host = location.hostname;
+  const root = host.replace(/^www\./, "");
+  const names = document.cookie
+    .split(";")
+    .map((c) => c.split("=")[0].trim())
+    .filter((n) => /^(_ga|_gid|_gat|_gcl_)/.test(n));
+  for (const name of names) {
+    for (const domain of [host, `.${root}`, undefined]) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain ? `; domain=${domain}` : ""}`;
+    }
+  }
+}
 
 export function CookieBanner() {
   const [show, setShow] = useState(false);
+  // Hasta que el visitante elige, no hay botón de "Cookies" — el banner ya está en pantalla.
+  const [hasChosen, setHasChosen] = useState(false);
+
   useEffect(() => {
     try {
-      if (localStorage.getItem("cookies_ok") !== "true" && localStorage.getItem("cookies_ok") !== "necessary") setShow(true);
+      const v = localStorage.getItem("cookies_ok");
+      if (v === "true" || v === "necessary") setHasChosen(true);
+      else setShow(true);
     } catch {
       // localStorage no disponible (navegación privada, etc.) — no se muestra el banner, sin romper la página.
     }
   }, []);
-  if (!show) return null;
-  const choose = (v: "true" | "necessary") => {
+
+  const choose = (v: Choice) => {
+    let previous: string | null = null;
     try {
+      previous = localStorage.getItem("cookies_ok");
       localStorage.setItem("cookies_ok", v);
     } catch {
       // localStorage no disponible (navegación privada, etc.) — la preferencia no persiste, sin romper la página.
     }
-    if (v === "true") loadAnalyticsConsent();
+    if (v === "true") {
+      loadAnalyticsConsent();
+    } else if (previous === "true" || window.__hilolegalAnalyticsLoaded) {
+      // Retirada del consentimiento: los scripts de Google ya están en memoria y no se
+      // pueden descargar, así que se frenan, se borran sus cookies y se recarga la página
+      // (sin consentimiento guardado, al recargar no se vuelven a cargar).
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GA4_ID}`] = true;
+      clearAnalyticsCookies();
+      location.reload();
+      return;
+    }
+    setHasChosen(true);
     setShow(false);
   };
+
+  if (!show) {
+    if (!hasChosen) return null;
+    return (
+      <button
+        type="button"
+        onClick={() => setShow(true)}
+        aria-label="Configurar cookies"
+        title="Configurar cookies"
+        className="cookie-reopen fixed bottom-6 left-6 z-[9997] flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-colors"
+      >
+        <Cookie className="h-[18px] w-[18px]" aria-hidden="true" />
+      </button>
+    );
+  }
+
   return (
     <div
       role="region"

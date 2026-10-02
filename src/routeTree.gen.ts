@@ -10,10 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdministracionFincasRouteImport } from './routes/administracion-fincas'
+import { Route as AhorroPotencialRouteImport } from './routes/ahorro-potencial'
+import { Route as AntesDeFirmarArrasRouteImport } from './routes/antes-de-firmar-arras'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as DerechoAdministrativoRouteImport } from './routes/derecho-administrativo'
+import { Route as DerechoFamiliaRouteImport } from './routes/derecho-familia'
+import { Route as DerechoInmobiliarioRouteImport } from './routes/derecho-inmobiliario'
+import { Route as DerechoPenalRouteImport } from './routes/derecho-penal'
 import { Route as JosecarlosRouteImport } from './routes/josecarlos'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as QuienesSomosRouteImport } from './routes/quienes-somos'
+import { Route as SimuladorHipotecaRouteImport } from './routes/simulador-hipoteca'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TestSaludFinancieraRouteImport } from './routes/test-salud-financiera'
 import { Route as VeronicaRouteImport } from './routes/veronica'
+import { Route as AdministracionFincasIndexRouteImport } from './routes/administracion-fincas.index'
+import { Route as AdministracionFincasCambioAdministradorRouteImport } from './routes/administracion-fincas.cambio-administrador'
+import { Route as AdministracionFincasGestionEconomicaImpagosRouteImport } from './routes/administracion-fincas.gestion-economica-impagos'
+import { Route as AdministracionFincasNuevaComunidadRouteImport } from './routes/administracion-fincas.nueva-comunidad'
+import { Route as AdministracionFincasPresidentesRouteImport } from './routes/administracion-fincas.presidentes'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -22,9 +38,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdministracionFincasRoute = AdministracionFincasRouteImport.update({
+  id: '/administracion-fincas',
+  path: '/administracion-fincas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AhorroPotencialRoute = AhorroPotencialRouteImport.update({
+  id: '/ahorro-potencial',
+  path: '/ahorro-potencial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AntesDeFirmarArrasRoute = AntesDeFirmarArrasRouteImport.update({
+  id: '/antes-de-firmar-arras',
+  path: '/antes-de-firmar-arras',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DerechoAdministrativoRoute = DerechoAdministrativoRouteImport.update({
+  id: '/derecho-administrativo',
+  path: '/derecho-administrativo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DerechoFamiliaRoute = DerechoFamiliaRouteImport.update({
+  id: '/derecho-familia',
+  path: '/derecho-familia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DerechoInmobiliarioRoute = DerechoInmobiliarioRouteImport.update({
+  id: '/derecho-inmobiliario',
+  path: '/derecho-inmobiliario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DerechoPenalRoute = DerechoPenalRouteImport.update({
+  id: '/derecho-penal',
+  path: '/derecho-penal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JosecarlosRoute = JosecarlosRouteImport.update({
@@ -32,9 +83,29 @@ const JosecarlosRoute = JosecarlosRouteImport.update({
   path: '/josecarlos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuienesSomosRoute = QuienesSomosRouteImport.update({
+  id: '/quienes-somos',
+  path: '/quienes-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SimuladorHipotecaRoute = SimuladorHipotecaRouteImport.update({
+  id: '/simulador-hipoteca',
+  path: '/simulador-hipoteca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestSaludFinancieraRoute = TestSaludFinancieraRouteImport.update({
+  id: '/test-salud-financiera',
+  path: '/test-salud-financiera',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VeronicaRoute = VeronicaRouteImport.update({
@@ -42,6 +113,36 @@ const VeronicaRoute = VeronicaRouteImport.update({
   path: '/veronica',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdministracionFincasIndexRoute =
+  AdministracionFincasIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AdministracionFincasRoute,
+  } as any)
+const AdministracionFincasCambioAdministradorRoute =
+  AdministracionFincasCambioAdministradorRouteImport.update({
+    id: '/cambio-administrador',
+    path: '/cambio-administrador',
+    getParentRoute: () => AdministracionFincasRoute,
+  } as any)
+const AdministracionFincasGestionEconomicaImpagosRoute =
+  AdministracionFincasGestionEconomicaImpagosRouteImport.update({
+    id: '/gestion-economica-impagos',
+    path: '/gestion-economica-impagos',
+    getParentRoute: () => AdministracionFincasRoute,
+  } as any)
+const AdministracionFincasNuevaComunidadRoute =
+  AdministracionFincasNuevaComunidadRouteImport.update({
+    id: '/nueva-comunidad',
+    path: '/nueva-comunidad',
+    getParentRoute: () => AdministracionFincasRoute,
+  } as any)
+const AdministracionFincasPresidentesRoute =
+  AdministracionFincasPresidentesRouteImport.update({
+    id: '/presidentes',
+    path: '/presidentes',
+    getParentRoute: () => AdministracionFincasRoute,
+  } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,60 +156,170 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/administracion-fincas': typeof AdministracionFincasRouteWithChildren
+  '/ahorro-potencial': typeof AhorroPotencialRoute
+  '/antes-de-firmar-arras': typeof AntesDeFirmarArrasRoute
   '/blog': typeof BlogRouteWithChildren
+  '/derecho-administrativo': typeof DerechoAdministrativoRoute
+  '/derecho-familia': typeof DerechoFamiliaRoute
+  '/derecho-inmobiliario': typeof DerechoInmobiliarioRoute
+  '/derecho-penal': typeof DerechoPenalRoute
   '/josecarlos': typeof JosecarlosRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/simulador-hipoteca': typeof SimuladorHipotecaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/test-salud-financiera': typeof TestSaludFinancieraRoute
   '/veronica': typeof VeronicaRoute
+  '/administracion-fincas/cambio-administrador': typeof AdministracionFincasCambioAdministradorRoute
+  '/administracion-fincas/gestion-economica-impagos': typeof AdministracionFincasGestionEconomicaImpagosRoute
+  '/administracion-fincas/nueva-comunidad': typeof AdministracionFincasNuevaComunidadRoute
+  '/administracion-fincas/presidentes': typeof AdministracionFincasPresidentesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/administracion-fincas/': typeof AdministracionFincasIndexRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ahorro-potencial': typeof AhorroPotencialRoute
+  '/antes-de-firmar-arras': typeof AntesDeFirmarArrasRoute
+  '/derecho-administrativo': typeof DerechoAdministrativoRoute
+  '/derecho-familia': typeof DerechoFamiliaRoute
+  '/derecho-inmobiliario': typeof DerechoInmobiliarioRoute
+  '/derecho-penal': typeof DerechoPenalRoute
   '/josecarlos': typeof JosecarlosRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/simulador-hipoteca': typeof SimuladorHipotecaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/test-salud-financiera': typeof TestSaludFinancieraRoute
   '/veronica': typeof VeronicaRoute
+  '/administracion-fincas/cambio-administrador': typeof AdministracionFincasCambioAdministradorRoute
+  '/administracion-fincas/gestion-economica-impagos': typeof AdministracionFincasGestionEconomicaImpagosRoute
+  '/administracion-fincas/nueva-comunidad': typeof AdministracionFincasNuevaComunidadRoute
+  '/administracion-fincas/presidentes': typeof AdministracionFincasPresidentesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/administracion-fincas': typeof AdministracionFincasIndexRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/administracion-fincas': typeof AdministracionFincasRouteWithChildren
+  '/ahorro-potencial': typeof AhorroPotencialRoute
+  '/antes-de-firmar-arras': typeof AntesDeFirmarArrasRoute
   '/blog': typeof BlogRouteWithChildren
+  '/derecho-administrativo': typeof DerechoAdministrativoRoute
+  '/derecho-familia': typeof DerechoFamiliaRoute
+  '/derecho-inmobiliario': typeof DerechoInmobiliarioRoute
+  '/derecho-penal': typeof DerechoPenalRoute
   '/josecarlos': typeof JosecarlosRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/quienes-somos': typeof QuienesSomosRoute
+  '/simulador-hipoteca': typeof SimuladorHipotecaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/test-salud-financiera': typeof TestSaludFinancieraRoute
   '/veronica': typeof VeronicaRoute
+  '/administracion-fincas/cambio-administrador': typeof AdministracionFincasCambioAdministradorRoute
+  '/administracion-fincas/gestion-economica-impagos': typeof AdministracionFincasGestionEconomicaImpagosRoute
+  '/administracion-fincas/nueva-comunidad': typeof AdministracionFincasNuevaComunidadRoute
+  '/administracion-fincas/presidentes': typeof AdministracionFincasPresidentesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/administracion-fincas/': typeof AdministracionFincasIndexRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/administracion-fincas'
+    | '/ahorro-potencial'
+    | '/antes-de-firmar-arras'
     | '/blog'
+    | '/derecho-administrativo'
+    | '/derecho-familia'
+    | '/derecho-inmobiliario'
+    | '/derecho-penal'
     | '/josecarlos'
+    | '/llms.txt'
+    | '/quienes-somos'
+    | '/simulador-hipoteca'
     | '/sitemap.xml'
+    | '/test-salud-financiera'
     | '/veronica'
+    | '/administracion-fincas/cambio-administrador'
+    | '/administracion-fincas/gestion-economica-impagos'
+    | '/administracion-fincas/nueva-comunidad'
+    | '/administracion-fincas/presidentes'
     | '/blog/$slug'
+    | '/administracion-fincas/'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/josecarlos' | '/sitemap.xml' | '/veronica' | '/blog/$slug' | '/blog'
+    | '/'
+    | '/ahorro-potencial'
+    | '/antes-de-firmar-arras'
+    | '/derecho-administrativo'
+    | '/derecho-familia'
+    | '/derecho-inmobiliario'
+    | '/derecho-penal'
+    | '/josecarlos'
+    | '/llms.txt'
+    | '/quienes-somos'
+    | '/simulador-hipoteca'
+    | '/sitemap.xml'
+    | '/test-salud-financiera'
+    | '/veronica'
+    | '/administracion-fincas/cambio-administrador'
+    | '/administracion-fincas/gestion-economica-impagos'
+    | '/administracion-fincas/nueva-comunidad'
+    | '/administracion-fincas/presidentes'
+    | '/blog/$slug'
+    | '/administracion-fincas'
+    | '/blog'
   id:
     | '__root__'
     | '/'
+    | '/administracion-fincas'
+    | '/ahorro-potencial'
+    | '/antes-de-firmar-arras'
     | '/blog'
+    | '/derecho-administrativo'
+    | '/derecho-familia'
+    | '/derecho-inmobiliario'
+    | '/derecho-penal'
     | '/josecarlos'
+    | '/llms.txt'
+    | '/quienes-somos'
+    | '/simulador-hipoteca'
     | '/sitemap.xml'
+    | '/test-salud-financiera'
     | '/veronica'
+    | '/administracion-fincas/cambio-administrador'
+    | '/administracion-fincas/gestion-economica-impagos'
+    | '/administracion-fincas/nueva-comunidad'
+    | '/administracion-fincas/presidentes'
     | '/blog/$slug'
+    | '/administracion-fincas/'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdministracionFincasRoute: typeof AdministracionFincasRouteWithChildren
+  AhorroPotencialRoute: typeof AhorroPotencialRoute
+  AntesDeFirmarArrasRoute: typeof AntesDeFirmarArrasRoute
   BlogRoute: typeof BlogRouteWithChildren
+  DerechoAdministrativoRoute: typeof DerechoAdministrativoRoute
+  DerechoFamiliaRoute: typeof DerechoFamiliaRoute
+  DerechoInmobiliarioRoute: typeof DerechoInmobiliarioRoute
+  DerechoPenalRoute: typeof DerechoPenalRoute
   JosecarlosRoute: typeof JosecarlosRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
+  QuienesSomosRoute: typeof QuienesSomosRoute
+  SimuladorHipotecaRoute: typeof SimuladorHipotecaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TestSaludFinancieraRoute: typeof TestSaludFinancieraRoute
   VeronicaRoute: typeof VeronicaRoute
 }
 
@@ -121,11 +332,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/administracion-fincas': {
+      id: '/administracion-fincas'
+      path: '/administracion-fincas'
+      fullPath: '/administracion-fincas'
+      preLoaderRoute: typeof AdministracionFincasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ahorro-potencial': {
+      id: '/ahorro-potencial'
+      path: '/ahorro-potencial'
+      fullPath: '/ahorro-potencial'
+      preLoaderRoute: typeof AhorroPotencialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/antes-de-firmar-arras': {
+      id: '/antes-de-firmar-arras'
+      path: '/antes-de-firmar-arras'
+      fullPath: '/antes-de-firmar-arras'
+      preLoaderRoute: typeof AntesDeFirmarArrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/derecho-administrativo': {
+      id: '/derecho-administrativo'
+      path: '/derecho-administrativo'
+      fullPath: '/derecho-administrativo'
+      preLoaderRoute: typeof DerechoAdministrativoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/derecho-familia': {
+      id: '/derecho-familia'
+      path: '/derecho-familia'
+      fullPath: '/derecho-familia'
+      preLoaderRoute: typeof DerechoFamiliaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/derecho-inmobiliario': {
+      id: '/derecho-inmobiliario'
+      path: '/derecho-inmobiliario'
+      fullPath: '/derecho-inmobiliario'
+      preLoaderRoute: typeof DerechoInmobiliarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/derecho-penal': {
+      id: '/derecho-penal'
+      path: '/derecho-penal'
+      fullPath: '/derecho-penal'
+      preLoaderRoute: typeof DerechoPenalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/josecarlos': {
@@ -135,11 +395,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JosecarlosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quienes-somos': {
+      id: '/quienes-somos'
+      path: '/quienes-somos'
+      fullPath: '/quienes-somos'
+      preLoaderRoute: typeof QuienesSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulador-hipoteca': {
+      id: '/simulador-hipoteca'
+      path: '/simulador-hipoteca'
+      fullPath: '/simulador-hipoteca'
+      preLoaderRoute: typeof SimuladorHipotecaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test-salud-financiera': {
+      id: '/test-salud-financiera'
+      path: '/test-salud-financiera'
+      fullPath: '/test-salud-financiera'
+      preLoaderRoute: typeof TestSaludFinancieraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/veronica': {
@@ -148,6 +436,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/veronica'
       preLoaderRoute: typeof VeronicaRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/administracion-fincas/': {
+      id: '/administracion-fincas/'
+      path: '/'
+      fullPath: '/administracion-fincas/'
+      preLoaderRoute: typeof AdministracionFincasIndexRouteImport
+      parentRoute: typeof AdministracionFincasRoute
+    }
+    '/administracion-fincas/cambio-administrador': {
+      id: '/administracion-fincas/cambio-administrador'
+      path: '/cambio-administrador'
+      fullPath: '/administracion-fincas/cambio-administrador'
+      preLoaderRoute: typeof AdministracionFincasCambioAdministradorRouteImport
+      parentRoute: typeof AdministracionFincasRoute
+    }
+    '/administracion-fincas/gestion-economica-impagos': {
+      id: '/administracion-fincas/gestion-economica-impagos'
+      path: '/gestion-economica-impagos'
+      fullPath: '/administracion-fincas/gestion-economica-impagos'
+      preLoaderRoute: typeof AdministracionFincasGestionEconomicaImpagosRouteImport
+      parentRoute: typeof AdministracionFincasRoute
+    }
+    '/administracion-fincas/nueva-comunidad': {
+      id: '/administracion-fincas/nueva-comunidad'
+      path: '/nueva-comunidad'
+      fullPath: '/administracion-fincas/nueva-comunidad'
+      preLoaderRoute: typeof AdministracionFincasNuevaComunidadRouteImport
+      parentRoute: typeof AdministracionFincasRoute
+    }
+    '/administracion-fincas/presidentes': {
+      id: '/administracion-fincas/presidentes'
+      path: '/presidentes'
+      fullPath: '/administracion-fincas/presidentes'
+      preLoaderRoute: typeof AdministracionFincasPresidentesRouteImport
+      parentRoute: typeof AdministracionFincasRoute
     }
     '/blog/': {
       id: '/blog/'
@@ -166,6 +489,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdministracionFincasRouteChildren {
+  AdministracionFincasCambioAdministradorRoute: typeof AdministracionFincasCambioAdministradorRoute
+  AdministracionFincasGestionEconomicaImpagosRoute: typeof AdministracionFincasGestionEconomicaImpagosRoute
+  AdministracionFincasNuevaComunidadRoute: typeof AdministracionFincasNuevaComunidadRoute
+  AdministracionFincasPresidentesRoute: typeof AdministracionFincasPresidentesRoute
+  AdministracionFincasIndexRoute: typeof AdministracionFincasIndexRoute
+}
+
+const AdministracionFincasRouteChildren: AdministracionFincasRouteChildren = {
+  AdministracionFincasCambioAdministradorRoute:
+    AdministracionFincasCambioAdministradorRoute,
+  AdministracionFincasGestionEconomicaImpagosRoute:
+    AdministracionFincasGestionEconomicaImpagosRoute,
+  AdministracionFincasNuevaComunidadRoute:
+    AdministracionFincasNuevaComunidadRoute,
+  AdministracionFincasPresidentesRoute: AdministracionFincasPresidentesRoute,
+  AdministracionFincasIndexRoute: AdministracionFincasIndexRoute,
+}
+
+const AdministracionFincasRouteWithChildren =
+  AdministracionFincasRoute._addFileChildren(AdministracionFincasRouteChildren)
+
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -180,9 +525,20 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdministracionFincasRoute: AdministracionFincasRouteWithChildren,
+  AhorroPotencialRoute: AhorroPotencialRoute,
+  AntesDeFirmarArrasRoute: AntesDeFirmarArrasRoute,
   BlogRoute: BlogRouteWithChildren,
+  DerechoAdministrativoRoute: DerechoAdministrativoRoute,
+  DerechoFamiliaRoute: DerechoFamiliaRoute,
+  DerechoInmobiliarioRoute: DerechoInmobiliarioRoute,
+  DerechoPenalRoute: DerechoPenalRoute,
   JosecarlosRoute: JosecarlosRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
+  QuienesSomosRoute: QuienesSomosRoute,
+  SimuladorHipotecaRoute: SimuladorHipotecaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TestSaludFinancieraRoute: TestSaludFinancieraRoute,
   VeronicaRoute: VeronicaRoute,
 }
 export const routeTree = rootRouteImport

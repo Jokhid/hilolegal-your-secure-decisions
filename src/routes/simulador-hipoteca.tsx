@@ -34,10 +34,6 @@ export const Route = createFileRoute("/simulador-hipoteca")({
     ],
     links: [
       { rel: "canonical", href: "https://www.hilolegal.es/simulador-hipoteca" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=call,mail,payments,percent,calculate,expand_more&display=swap",
-      },
     ],
     scripts: [
       {

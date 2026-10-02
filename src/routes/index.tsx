@@ -9,6 +9,7 @@ import { submitContact } from "@/lib/contact.functions";
 import { blogPosts, topicOf } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
 import { useDialogA11y } from "@/lib/useDialogA11y";
+import { ConsentMap } from "@/components/ConsentMap";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -1166,14 +1167,9 @@ function Contact() {
           </div>
 
           <div className="border border-white/10 aspect-[4/3] md:aspect-[16/10]">
-            <iframe
+            <ConsentMap
               title="Ubicación de HiloLegal en Altea"
-              src="https://www.google.com/maps?q=Calle+Regata+3,+03590+Altea,+Alicante,+Espa%C3%B1a&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0, filter: "grayscale(1) invert(0.9) contrast(0.9)" }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              iframeStyle={{ filter: "grayscale(1) invert(0.9) contrast(0.9)" }}
             />
           </div>
         </div>

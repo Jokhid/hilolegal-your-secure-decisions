@@ -8,6 +8,7 @@ import { submitContact } from "@/lib/contact.functions";
 import { trackEvent } from "@/lib/analytics";
 import { blogPosts } from "@/lib/blogPosts";
 import { useDialogA11y } from "@/lib/useDialogA11y";
+import { ConsentMap } from "@/components/ConsentMap";
 
 export const Route = createFileRoute("/administracion-fincas/")({
   head: () => ({
@@ -37,10 +38,6 @@ export const Route = createFileRoute("/administracion-fincas/")({
     ],
     links: [
       { rel: "canonical", href: "https://www.hilolegal.es/administracion-fincas" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=apartment,groups,receipt_long,build,event,dashboard,call,mail,location_on,expand_more&display=swap",
-      },
     ],
     scripts: [
       {
@@ -918,13 +915,7 @@ function CtaFinal() {
                 <p className="text-sm font-bold uppercase tracking-widest">Calle Regata 3, 1º E, 03590 Altea</p>
               </div>
               <div className="w-full aspect-[4/3] overflow-hidden border border-[var(--jch-line)]">
-                <iframe
-                  title="Mapa Calle Regata 3, Altea"
-                  src="https://www.google.com/maps?q=Calle+Regata+3,+03590+Altea,+Alicante&output=embed"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full border-0"
-                />
+                <ConsentMap title="Mapa Calle Regata 3, Altea" />
               </div>
             </div>
           </FadeUp>
@@ -1029,8 +1020,9 @@ function PropertyLeadForm() {
         onChange={onChange("units")}
       />
       <div className="space-y-2">
-        <label className="text-[10px] font-black uppercase tracking-[0.2em]">Motivo de consulta</label>
+        <label htmlFor="af-topic" className="text-[10px] font-black uppercase tracking-[0.2em]">Motivo de consulta</label>
         <select
+          id="af-topic"
           value={form.topic}
           onChange={onChange("topic")}
           className="w-full bg-transparent border-0 border-b border-[var(--jch-line)] px-0 py-4 focus:ring-0 focus:border-[#C5A566] transition-colors outline-none"
@@ -1043,8 +1035,9 @@ function PropertyLeadForm() {
         </select>
       </div>
       <div className="space-y-2">
-        <label className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
+        <label htmlFor="af-message" className="text-[10px] font-black uppercase tracking-[0.2em]">Mensaje (opcional)</label>
         <textarea
+          id="af-message"
           rows={4}
           placeholder="Cuéntanos la situación de tu comunidad"
           value={form.message}

@@ -15,8 +15,6 @@ import { CookieBanner } from "../components/CookieBanner";
 import { ChatWidget } from "../components/ChatWidget";
 import { Analytics } from "../components/Analytics";
 
-const FONT_PRIMARY = "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Familjen+Grotesk:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap";
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen flex-col bg-[var(--jch-bg)]">
@@ -134,35 +132,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // Ojo: NO se declara aquí un { rel: "stylesheet", href: FONT_PRIMARY }
-      // — React 19 gestiona los <link rel="stylesheet"> del array `links`
-      // con su propio sistema de "Resources" (precedence-based) y, al
-      // hacerlo, descarta atributos como "onload", además de bloquear
-      // deliberadamente el primer render hasta que carguen (para evitar
-      // FOUC). Por eso la hoja de Google Fonts se inyecta a mano más abajo
-      // (ver FONT_LOAD_SCRIPT / RootShell), fuera de ese sistema, con el
-      // patrón media="print" + onload ya usado en las páginas estáticas de
-      // herramientas. Solo queda aquí el preload como pista de descarga
-      // temprana (no bloquea, no pasa por el sistema de Resources).
-      { rel: "preload", as: "style", href: FONT_PRIMARY },
-      {
-        rel: "preload",
-        as: "image",
-        href: "/fotoalteadespachovertical.webp",
-        type: "image/webp",
-        fetchpriority: "high",
-        media: "(max-width: 767px)",
-      },
-      {
-        rel: "preload",
-        as: "image",
-        href: "/fotoalteadespachohorizontal.webp",
-        type: "image/webp",
-        fetchpriority: "high",
-        media: "(min-width: 768px)",
-      },
+      // Las fuentes van alojadas en /fonts (declaradas en styles.css), sin pasar
+      // por Google. Se precargan solo las dos de uso en casi todas las páginas:
+      // el cuerpo (Inter) y los titulares (Familjen Grotesk).
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/inter-latin.woff2", crossOrigin: "anonymous" },
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/familjen-grotesk-latin.woff2", crossOrigin: "anonymous" },
     ],
     scripts: [
       { src: "/ochre-windows.js", defer: true },
@@ -180,22 +154,6 @@ try {
   var wantsDark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
   if (wantsDark) document.documentElement.removeAttribute('data-theme');
 } catch (e) {}
-`;
-
-// Inyecta la hoja de Google Fonts a mano, fuera del sistema de "Resources"
-// de React 19 (que bloquea el primer render y no deja usar onload — ver
-// el comentario en el array `links` de arriba). media="print" hace que el
-// navegador la descargue sin que bloquee el render en pantalla; el propio
-// onload la conmuta a todos los medios en cuanto termina de cargar. Mismo
-// patrón que ya usan las páginas estáticas de herramientas. Mientras
-// tanto se ve con la fuente de reserva gracias a "&display=swap" en la URL.
-const FONT_LOAD_SCRIPT = `
-var l = document.createElement('link');
-l.rel = 'stylesheet';
-l.href = ${JSON.stringify(FONT_PRIMARY)};
-l.media = 'print';
-l.onload = function () { this.media = 'all'; };
-document.head.appendChild(l);
 `;
 
 // GTM_ID/GA4_ID/GTM_SCRIPT/GA4_INLINE_SCRIPT viven aquí pero ya NO se
@@ -219,7 +177,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="es" suppressHydrationWarning data-theme="light">
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-        <script dangerouslySetInnerHTML={{ __html: FONT_LOAD_SCRIPT }} />
         <HeadContent />
       </head>
       <body>
