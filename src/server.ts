@@ -57,9 +57,19 @@ function isH3SwallowedErrorBody(body: string): boolean {
 // llms.txt, y cualquier archivo estático real como una imagen o un bundle
 // de /assets) — ahí la mayúscula/minúscula puede ser parte real del nombre
 // de archivo y no debe tocarse.
+//
+// Solo se redirigen las navegaciones (GET/HEAD). Un POST — las funciones del
+// servidor — nunca debe redirigirse: el navegador lo convertiría en un GET y
+// perdería el cuerpo. Y /_serverFn/<id> se excluye aunque llegue por GET: el
+// propio prefijo "_serverFn" lleva una F mayúscula, y pasarlo a minúsculas
+// dejaba de reconocerlo como función del servidor. Eso rompió, desde que se
+// añadió esta redirección, TODOS los formularios (contacto, "Descargar
+// informe") y el chat: respondían 301 a /_serverfn/... y después un 500.
 function caseRedirect(request: Request): Response | null {
+  if (request.method !== "GET" && request.method !== "HEAD") return null;
   const url = new URL(request.url);
   const { pathname } = url;
+  if (pathname.startsWith("/_serverFn/")) return null;
   const lower = pathname.toLowerCase();
   if (pathname === lower) return null;
   const lastSegment = pathname.slice(pathname.lastIndexOf("/") + 1);

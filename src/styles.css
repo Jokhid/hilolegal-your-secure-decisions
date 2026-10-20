@@ -965,25 +965,76 @@ main > section:first-child .hero-subtitle {
    realmente transparente (mientras el header flota sobre la foto del
    hero), así que aquí la píldora solo aparece cuando "scrolled" es cierto
    — ya no depende del ancho de pantalla (ver el comentario en index.tsx),
-   así que este mismo bloque funciona igual en móvil y en escritorio. */
+   así que este mismo bloque funciona igual en móvil y en escritorio.
+
+   La píldora NO es el <nav>, sino un pseudo-elemento que va detrás de él.
+   Antes el propio <nav> cambiaba de ancho, margen y borde al hacer scroll
+   y todo lo de dentro se movía (los enlaces saltaban ~40 px a la derecha y
+   ~12 px hacia abajo, la cabecera crecía o encogía unos píxeles y movía la
+   página). Ahora el <nav> tiene exactamente la misma caja con y sin scroll:
+   el texto no se mueve, y la píldora entra deslizándose desde arriba por
+   detrás. */
 .home-header--scrolled {
   background: transparent;
   border-bottom-color: transparent;
 }
-.home-header--scrolled nav {
-  width: calc(100% - 24px);
-  margin: 10px auto 0;
+.home-header nav {
+  position: relative;
+  isolation: isolate;
+}
+.home-header nav::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  /* 10 px por arriba y por abajo del contenido: la píldora queda centrada
+     sobre el logo, los enlaces y el botón sea cual sea la altura del nav. */
+  top: 10px;
+  bottom: 10px;
+  /* Por los lados rodea al contenido: a ancho completo (la caja del nav llega
+     hasta el borde de la pantalla) se deja un hueco de 10 px con el borde;
+     cuando el nav está limitado a 1200 px y centrado, ocupa su caja entera. */
+  left: max(0px, calc(10px - max(0px, (100vw - 1200px) / 2)));
+  right: max(0px, calc(10px - max(0px, (100vw - 1200px) / 2)));
   border-radius: 999px;
   background: rgba(15, 15, 15, 0.62);
   /* Un solo backdrop-filter, sin el -webkit- a mano: el compilador (Lightning
      CSS) añade el prefijo que haga falta él solo — escribir los dos a mano
      hace que descarte la versión estándar en el CSS final (visto en
-     .home-header--scrolled nav y en la píldora compartida de abajo: el build
-     dejaba solo -webkit-backdrop-filter, sin blur real en Chrome). */
+     esta píldora y en la compartida de abajo: el build dejaba solo
+     -webkit-backdrop-filter, sin blur real en Chrome). */
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-  transition: background-color 300ms ease, box-shadow 300ms ease, width 300ms ease, margin 300ms ease;
+  /* Oculta: fuera de pantalla por arriba y transparente (la sombra se
+     extiende ~44 px, así que sin el fundido asomaría por el borde). */
+  opacity: 0;
+  transform: translateY(-140%);
+  pointer-events: none;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+}
+.home-header--scrolled nav::before {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-header nav::before {
+    transform: none;
+    transition: opacity 150ms linear;
+  }
+}
+
+/* Misma caja del nav con y sin scroll: el logo apilado (arriba, sin scroll) y
+   el horizontal (sobre la píldora) miden distinto, así que el hueco del logo
+   tiene el ancho y el alto del apilado y el horizontal, más ancho, se sale
+   por la derecha sin empujar los enlaces. */
+.home-header nav > a:first-child {
+  width: 82.8px;
+  min-height: 57.6px;
+  flex-shrink: 0;
+}
+.home-header__logo {
+  max-width: none;
+  flex-shrink: 0;
 }
 .home-header--scrolled .home-header__link {
   color: #f3f0ea;
@@ -1014,7 +1065,7 @@ main > section:first-child .hero-subtitle {
    para que la píldora siga destacando sobre lo que tenga detrás (la
    propia foto del hero, o páginas que ya son oscuras de por sí, como
    /veronica) en vez de fundirse con un fondo igual de oscuro que ella. */
-:root:not([data-theme="light"]) .home-header--scrolled nav {
+:root:not([data-theme="light"]) .home-header nav::before {
   background: rgba(255, 255, 255, 0.72);
   border-color: rgba(26, 26, 26, 0.1);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
@@ -1031,13 +1082,6 @@ main > section:first-child .hero-subtitle {
 }
 :root:not([data-theme="light"]) .home-header--scrolled .home-header__logo--postscroll-onwhite {
   display: block;
-}
-
-@media (min-width: 640px) {
-  .home-header--scrolled nav {
-    width: calc(100% - 48px);
-    margin-top: 14px;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -1064,6 +1108,11 @@ main > section:first-child .hero-subtitle {
   }
   .home-header:not(.home-header--scrolled) .home-header__cta:hover {
     background: rgba(255, 255, 255, 0.92) !important;
+  }
+  /* El estado "ghost" lleva un borde de 1 px; con scroll se mantiene
+     transparente para que el botón no cambie de tamaño y no mueva nada. */
+  .home-header--scrolled .home-header__cta {
+    border: 1px solid transparent;
   }
 
   /* El logo tiene un punto en ocre (color de marca) además del trazo
@@ -1981,8 +2030,7 @@ footer.site-footer .brand {
 
 /* Responsive tweaks */
 @media (max-width: 767px) {
-  header.sticky nav,
-  .home-header--scrolled nav { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
+  header.sticky nav { padding-top: 0.85rem !important; padding-bottom: 0.85rem !important; }
   main > section { padding-top: 5.5rem !important; padding-bottom: 5.5rem !important; }
   main > section:first-child { min-height: auto; padding-top: 4.5rem !important; }
   main h1 { font-size: clamp(2.5rem, 12vw, 4rem) !important; }
@@ -2716,6 +2764,33 @@ footer.site-footer .brand {
   .blog-post > header nav {
     width: calc(100% - 48px);
     margin-top: 14px;
+  }
+}
+
+/* Entrada de la píldora en el blog: baja deslizándose desde arriba al cargar
+   la página. El resto de páginas ya entran así con su <motion.header> (muelle
+   de Framer Motion); el blog usa un <header> normal y no tenía animación.
+   fill-mode "backwards": mantiene la píldora oculta durante el retardo y,
+   al terminar, suelta el transform (no deja un contexto de apilamiento
+   permanente). */
+@keyframes header-pill-in {
+  from {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.blog-editorial > header nav,
+.blog-post > header nav {
+  animation: header-pill-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .blog-editorial > header nav,
+  .blog-post > header nav {
+    animation: none;
   }
 }
 
