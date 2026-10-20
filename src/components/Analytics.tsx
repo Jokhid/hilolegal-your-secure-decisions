@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { GTM_SCRIPT, GA4_ID, GA4_INLINE_SCRIPT } from "../routes/__root";
 
 declare global {
@@ -41,5 +42,7 @@ export function Analytics() {
     }
   }, []);
 
-  return null;
+  // Vercel Web Analytics se añade aquí y se carga independientemente
+  // del consentimiento de cookies (cumple GDPR por diseño).
+  return <VercelAnalytics />;
 }
