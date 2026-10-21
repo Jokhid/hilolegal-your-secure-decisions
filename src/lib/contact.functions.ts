@@ -16,10 +16,22 @@ function getWebhookUrl(): string {
   return webhookUrl;
 }
 
+// Los formularios mandan email: "" cuando el visitante deja en blanco el campo
+// "Email (opcional)". Un "" no es un email válido, así que antes se rechazaba
+// el envío entero ("Invalid email") y el formulario no llegaba a la hoja salvo
+// que se rellenase el email. Ahora un email en blanco equivale a no haberlo puesto.
+const optionalEmail = z.preprocess(
+  (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
+  z.string().trim().email().max(255).optional(),
+);
+
+const FORM_INVALID =
+  "Revisa los datos: hacen falta tu nombre y un teléfono, y el email, si lo pones, tiene que ser válido.";
+
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
   phone: z.string().trim().min(3).max(40),
-  email: z.string().trim().email().max(255).optional(),
+  email: optionalEmail,
   topic: z.string().trim().min(1).max(100),
   message: z.string().trim().max(2000).optional().default(""),
   // Honeypot: campo invisible para personas, visible para bots que
@@ -33,6 +45,22 @@ const contactSchema = z.object({
 });
 
 const MIN_FILL_TIME_MS = 3000;
+
+/** Apps Script contesta 200 aunque el guardado falle: con la página de inicio de
+ *  sesión de Google (el script no está publicado como "Cualquiera") o con
+ *  {"success":false,...} cuando el script lanza un error. Antes bastaba con que la
+ *  respuesta fuera 200 y la web daba el envío por bueno sin que llegara nada a la hoja.
+ *  Solo se consideran fallo esos dos casos claros; cualquier otra respuesta 200 se
+ *  sigue tratando como éxito para no romper un script con otro formato de respuesta. */
+function webhookFailed(text: string): boolean {
+  const body = text.trim();
+  if (/^<(!doctype|html)/i.test(body)) return true;
+  try {
+    return (JSON.parse(body) as { success?: unknown })?.success === false;
+  } catch {
+    return false;
+  }
+}
 
 /** Honeypot relleno, formulario enviado demasiado rápido o sin marca de tiempo
  *  (todos los formularios legítimos de la web la envían): probablemente un bot. */
@@ -92,8 +120,8 @@ export const submitDownloadLead = createServerFn({ method: "POST" })
 
     const text = await response.text();
 
-    if (!response.ok) {
-      console.error("Google Sheets webhook failed (download lead)", response.status, text);
+    if (!response.ok || webhookFailed(text)) {
+      console.error("Google Sheets webhook failed (download lead)", response.status, text.slice(0, 500));
       throw new Error(USER_ERROR);
     }
 
@@ -101,7 +129,11 @@ export const submitDownloadLead = createServerFn({ method: "POST" })
   });
 
 export const submitContact = createServerFn({ method: "POST" })
-  .inputValidator((input) => contactSchema.parse(input))
+  .inputValidator((input) => {
+    const parsed = contactSchema.safeParse(input);
+    if (!parsed.success) throw new Error(FORM_INVALID);
+    return parsed.data;
+  })
   .handler(async ({ data }) => {
     // Honeypot relleno o formulario enviado demasiado rápido: probablemente
     // un bot. Se responde éxito aparente sin revelar la detección, pero no
@@ -134,8 +166,8 @@ export const submitContact = createServerFn({ method: "POST" })
 
     const text = await response.text();
 
-    if (!response.ok) {
-      console.error("Google Sheets webhook failed", response.status, text);
+    if (!response.ok || webhookFailed(text)) {
+      console.error("Google Sheets webhook failed", response.status, text.slice(0, 500));
       throw new Error(USER_ERROR);
     }
 

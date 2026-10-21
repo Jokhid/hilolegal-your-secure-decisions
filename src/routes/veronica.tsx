@@ -343,9 +343,6 @@ function Header() {
               whileHover={{ rotate: -2, scale: 1.05 }}
               transition={spring}
             />
-            <span className="text-base md:text-lg font-bold tracking-tight text-[#C5A566]">
-              Verónica López
-            </span>
           </Link>
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map(([l, h]) => (
