@@ -6,12 +6,17 @@ const GOOGLE_SHEET_NAME = "Leads";
 const GOOGLE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/edit`;
 const USER_ERROR = "No se ha podido enviar el formulario. Por favor, contacta por WhatsApp o inténtalo de nuevo en unos minutos.";
 
+/** Mismo aviso de siempre más un código corto del paso que ha fallado, para saber
+ *  desde la propia web (sin abrir los registros del servidor) qué hay que mirar:
+ *  sin-configuracion, red, http-<estado>, script-no-publico o script-error. */
+const userError = (code: string) => new Error(`${USER_ERROR} (código: ${code})`);
+
 function getWebhookUrl(): string {
   const webhookUrl =
     process.env.GOOGLE_SHEETS_WEBHOOK_URL || process.env.SHEETS_WEBHOOK_URL || process.env.CONTACT_WEBHOOK_URL;
   if (!webhookUrl) {
     console.error("No Google Sheets webhook env var is configured (GOOGLE_SHEETS_WEBHOOK_URL / SHEETS_WEBHOOK_URL / CONTACT_WEBHOOK_URL)");
-    throw new Error(USER_ERROR);
+    throw userError("sin-configuracion");
   }
   return webhookUrl;
 }
@@ -52,13 +57,45 @@ const MIN_FILL_TIME_MS = 3000;
  *  respuesta fuera 200 y la web daba el envío por bueno sin que llegara nada a la hoja.
  *  Solo se consideran fallo esos dos casos claros; cualquier otra respuesta 200 se
  *  sigue tratando como éxito para no romper un script con otro formato de respuesta. */
-function webhookFailed(text: string): boolean {
+function webhookFailure(text: string): "html" | "script" | null {
   const body = text.trim();
-  if (/^<(!doctype|html)/i.test(body)) return true;
+  if (/^<(!doctype|html)/i.test(body)) return "html";
   try {
-    return (JSON.parse(body) as { success?: unknown })?.success === false;
+    return (JSON.parse(body) as { success?: unknown })?.success === false ? "script" : null;
   } catch {
-    return false;
+    return null;
+  }
+}
+
+/** Envía una fila al script de Google y lanza un error con código si algo falla. */
+async function sendToSheet(label: string, payload: Record<string, unknown>): Promise<void> {
+  const webhookUrl = getWebhookUrl();
+
+  let response: Response;
+  try {
+    response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error(`Google Sheets webhook unreachable (${label})`, err);
+    throw userError("red");
+  }
+
+  const text = await response.text();
+
+  if (!response.ok) {
+    console.error(`Google Sheets webhook failed (${label})`, response.status, text.slice(0, 500));
+    throw userError(`http-${response.status}`);
+  }
+
+  const failure = webhookFailure(text);
+  if (failure) {
+    console.error(`Google Sheets webhook rejected the lead (${label}) [${failure}]`, text.slice(0, 500));
+    throw userError(failure === "html" ? "script-no-publico" : "script-error");
   }
 }
 
@@ -96,34 +133,19 @@ export const submitDownloadLead = createServerFn({ method: "POST" })
       return { success: true };
     }
 
-    const webhookUrl = getWebhookUrl();
-
-    const response = await fetch(webhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8",
-      },
-      body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        sheetId: GOOGLE_SHEET_ID,
-        sheetName: GOOGLE_SHEET_NAME,
-        sheetUrl: GOOGLE_SHEET_URL,
-        name: "",
-        phone: "",
-        email: safeCell(data.email),
-        interest: safeCell(data.topic),
-        topic: safeCell(data.topic),
-        message: "Descarga de informe desde una herramienta web.",
-        origin: "Web HiloLegal — Descarga de informe",
-      }),
+    await sendToSheet("download lead", {
+      timestamp: new Date().toISOString(),
+      sheetId: GOOGLE_SHEET_ID,
+      sheetName: GOOGLE_SHEET_NAME,
+      sheetUrl: GOOGLE_SHEET_URL,
+      name: "",
+      phone: "",
+      email: safeCell(data.email),
+      interest: safeCell(data.topic),
+      topic: safeCell(data.topic),
+      message: "Descarga de informe desde una herramienta web.",
+      origin: "Web HiloLegal — Descarga de informe",
     });
-
-    const text = await response.text();
-
-    if (!response.ok || webhookFailed(text)) {
-      console.error("Google Sheets webhook failed (download lead)", response.status, text.slice(0, 500));
-      throw new Error(USER_ERROR);
-    }
 
     return { success: true };
   });
@@ -142,34 +164,19 @@ export const submitContact = createServerFn({ method: "POST" })
       return { success: true };
     }
 
-    const webhookUrl = getWebhookUrl();
-
-    const response = await fetch(webhookUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8",
-      },
-      body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        sheetId: GOOGLE_SHEET_ID,
-        sheetName: GOOGLE_SHEET_NAME,
-        sheetUrl: GOOGLE_SHEET_URL,
-        name: safeCell(data.name),
-        phone: safeCell(data.phone),
-        email: safeCell(data.email),
-        interest: safeCell(data.topic),
-        topic: safeCell(data.topic),
-        message: safeCell(data.message),
-        origin: "Web HiloLegal",
-      }),
+    await sendToSheet("contact", {
+      timestamp: new Date().toISOString(),
+      sheetId: GOOGLE_SHEET_ID,
+      sheetName: GOOGLE_SHEET_NAME,
+      sheetUrl: GOOGLE_SHEET_URL,
+      name: safeCell(data.name),
+      phone: safeCell(data.phone),
+      email: safeCell(data.email),
+      interest: safeCell(data.topic),
+      topic: safeCell(data.topic),
+      message: safeCell(data.message),
+      origin: "Web HiloLegal",
     });
-
-    const text = await response.text();
-
-    if (!response.ok || webhookFailed(text)) {
-      console.error("Google Sheets webhook failed", response.status, text.slice(0, 500));
-      throw new Error(USER_ERROR);
-    }
 
     return { success: true };
   });
