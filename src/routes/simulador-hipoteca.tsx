@@ -159,7 +159,9 @@ type HousingType = "usada" | "nueva";
  *  que desde 2019 corren a cargo del banco). Estimación orientativa para Comunidad Valenciana. */
 function closingCosts(price: number, housingType: HousingType) {
   const safePrice = Math.max(0, price);
-  const impuestos = housingType === "nueva" ? safePrice * 0.115 : safePrice * 0.10;
+  // Vivienda usada: ITP general de la Comunidad Valenciana, el 9 % (antes el 10 %).
+  // Obra nueva: IVA del 10 % + AJD del 1,5 %.
+  const impuestos = housingType === "nueva" ? safePrice * 0.115 : safePrice * 0.09;
   const notaria = Math.min(900, Math.max(300, safePrice * 0.003));
   const registro = Math.min(500, Math.max(200, safePrice * 0.0015));
   const gestoria = 300;
