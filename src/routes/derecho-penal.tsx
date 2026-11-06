@@ -359,7 +359,6 @@ function ComoTrabajamos() {
 }
 
 const faqs = [
-  { q: "¿La primera consulta es gratuita?", a: "Sí. En esa primera consulta se revisan los hechos y el estado del procedimiento, y te digo con claridad cómo puedo ayudarte." },
   { q: "¿Me tienen que haber citado ya para contactar contigo?", a: "No hace falta esperar a una citación formal. Cuanto antes se revise el caso, más margen hay para preparar una defensa sólida." },
   { q: "¿Puedes garantizarme un resultado?", a: "No, y desconfía de quien lo haga. Lo que sí puedo darte es una defensa técnica sin fisuras y transparencia total sobre las expectativas reales del caso." },
   { q: "¿Cuánto dura un procedimiento penal?", a: "Depende de la complejidad del caso y de la carga del juzgado. No prometo una fecha cerrada de antemano — sí una estimación realista una vez revisado el expediente." },
@@ -421,7 +420,7 @@ function CtaFinal() {
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
-              Cuéntame la situación y te digo con claridad cómo puedo ayudarte, en la primera consulta.
+              Cuéntame la situación y te digo con claridad cómo puedo ayudarte.
             </p>
           </FadeUp>
           <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">

@@ -360,7 +360,6 @@ function ComoTrabajamos() {
 }
 
 const faqs = [
-  { q: "¿La primera consulta es gratuita?", a: "Sí. En esa primera consulta se revisan los hechos, los plazos y los objetivos, y te digo con claridad si puedo ayudarte y cómo." },
   { q: "¿Puedo separarme de mutuo acuerdo sin ir a juicio?", a: "Sí, si hay acuerdo entre las partes sobre custodia, vivienda y pensión, el proceso es notablemente más rápido y menos costoso que un procedimiento contencioso." },
   { q: "¿Qué pasa si los herederos no se ponen de acuerdo?", a: "Se intenta primero una vía negociada. Si no es posible, se valora la vía judicial, siempre explicando antes las implicaciones reales de cada camino." },
   { q: "¿Cuánto tarda un proceso de familia o una herencia?", a: "Varía mucho según haya o no acuerdo entre las partes, y según la carga del juzgado en cada momento. En la primera consulta te doy una horquilla realista para tu caso concreto, no una cifra genérica." },
@@ -422,7 +421,7 @@ function CtaFinal() {
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
-              Cuéntame tu caso y te digo con claridad si puedo ayudarte y cómo, en la primera consulta.
+              Cuéntame tu caso y te digo con claridad si puedo ayudarte y cómo.
             </p>
           </FadeUp>
           <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">

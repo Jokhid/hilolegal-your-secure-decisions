@@ -359,7 +359,6 @@ function ComoTrabajamos() {
 }
 
 const faqs = [
-  { q: "¿La primera consulta es gratuita?", a: "Sí. Se revisa el expediente, los plazos y los objetivos, y te digo con claridad qué opciones reales tienes." },
   { q: "¿Cuánto tiempo tengo para recurrir una sanción?", a: "Depende del tipo de procedimiento y de la notificación recibida. Como referencia general, el recurso de alzada y el de reposición se interponen en un mes desde el día siguiente a la notificación, y el contencioso-administrativo en dos meses. Por eso conviene revisar cuanto antes qué dice tu notificación, para no perder el plazo." },
   { q: "¿Qué diferencia hay entre alegar y recurrir?", a: "La alegación se presenta antes de que la sanción sea firme, dentro del propio procedimiento. El recurso se plantea después, cuando ya hay una resolución. Cada vía tiene su momento." },
   { q: "¿Trabajas con empresas que licitan con el sector público?", a: "Sí, esa consultoría jurídica especializada se explica en la página de Verónica López — el criterio de fondo (entender cómo interpreta la Administración su propia normativa) es el mismo." },
@@ -421,7 +420,7 @@ function CtaFinal() {
           </h2>
           <FadeUp delay={0.1}>
             <p className="contact-editorial__description text-xl leading-relaxed">
-              Cuéntame la situación y te digo con claridad qué opciones reales tienes, en la primera consulta.
+              Cuéntame la situación y te digo con claridad qué opciones reales tienes.
             </p>
           </FadeUp>
           <div className="space-y-10 pt-10 border-t border-[var(--jch-line)]">

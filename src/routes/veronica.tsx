@@ -172,7 +172,6 @@ const method = [
 const faqs = [
   { q: "¿Qué tipo de asuntos lleva Verónica López?", a: "Asuntos jurídicos que requieren análisis, estrategia y criterio profesional, especialmente en el ámbito administrativo, civil, institucional y de asesoramiento preventivo." },
   { q: "¿Trabaja con particulares, empresas e instituciones?", a: "Sí. El asesoramiento puede dirigirse a particulares, profesionales, empresas, entidades e instituciones que necesiten orientación jurídica especializada." },
-  { q: "¿La primera consulta es gratuita?", a: "Sí, es gratuita. En esa primera consulta revisamos los hechos, los plazos y tus objetivos, y te decimos con claridad si podemos ayudarte y cómo." },
   { q: "¿Atiende en Alicante?", a: "Atiende en Alicante y también puede realizar consultas online cuando el asunto lo permita." },
   { q: "¿Qué diferencia este despacho?", a: "La combinación de experiencia jurídica, trayectoria institucional y visión académica. Esa perspectiva permite analizar cada asunto con profundidad y diseñar estrategias realistas." },
 ];
@@ -491,7 +490,7 @@ function Hero() {
                 className="rounded-full bg-[#C5A566] text-black px-10 py-5 font-bold uppercase text-xs tracking-widest hover:bg-[#A78C57] transition-colors shadow-xl shadow-[#C5A566]/20"
                 href="#contact"
               >
-                Primera consulta
+                Cuéntanos tu caso
               </motion.a>
             </div>
           </FadeUp>

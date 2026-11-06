@@ -360,7 +360,6 @@ function ComoTrabajamos() {
 }
 
 const faqs = [
-  { q: "¿La primera consulta es gratuita?", a: "Sí. Se revisa la operación o la situación de la comunidad, y te digo con claridad qué riesgos hay y cómo abordarlos." },
   { q: "¿Revisáis el contrato antes de que lo firme?", a: "Sí, esa es precisamente la parte más importante: revisar antes de firmar es siempre más barato que litigar después de haber firmado." },
   { q: "Mi comunidad tiene un propietario que no paga, ¿es esto legal o de fincas?", a: "Ambas cosas a la vez. Trabajamos en coordinación directa con el área de administración de fincas de HiloLegal para que no tengas que repetir la situación a dos interlocutores distintos." },
   { q: "¿También lleváis alquileres, no solo compraventas?", a: "Sí, tanto la redacción y revisión de contratos de arrendamiento como la resolución de conflictos entre propietario e inquilino." },

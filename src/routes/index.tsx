@@ -974,7 +974,7 @@ const homeFaqs = [
   },
   {
     q: "¿La primera consulta es gratuita?",
-    a: "Sí. En el área legal y en el primer análisis financiero, la consulta inicial no tiene coste ni compromiso.",
+    a: "En hipotecas y planificación financiera, sí: la primera consulta no tiene coste ni compromiso.",
   },
   {
     q: "¿Qué áreas de derecho cubrís?",
